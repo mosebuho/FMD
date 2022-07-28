@@ -1,0 +1,165 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        html {
+            background-color: #272727;
+            color: #fff;
+        }
+
+        div#contentarea {
+            background-color: #363636;
+            width: 1200px;
+            margin: 0 auto;
+            min-height: 100%;
+            position: relative;
+            padding-bottom: 100px;
+            box-sizing: border-box;
+        }
+
+        header {
+            margin: 0;
+            height: 240px;
+            width: 100%;
+            position: relative;
+            z-index: 120;
+        }
+
+        div#header-top {
+            border: solid red 1px;
+            height: 150px;
+            display: flex;
+            flex-direction: row;
+            padding: 15px;
+        }
+
+        div#logo {
+            border: solid blue 1px;
+            width: 350px;
+            padding: 15px;
+            margin-right: 20px;
+        }
+
+        div#header-ad {
+            border: solid blue 1px;
+            width: 800px;
+            padding: 15px;
+        }
+
+        div#header-bottom {
+            margin-top: 10px;
+            border: solid red 1px;
+            height: 75px;
+            display: flex;
+            flex-direction: row;
+            padding: 15px;
+        }
+
+        div#search {
+            border: solid blue 1px;
+            width: 350px;
+            margin-right: 20px;
+            padding: 10px;
+
+        }
+
+        div#menu {
+            border: solid blue 1px;
+            width: 800px;
+            padding: 10px;
+
+        }
+
+        div#content1 {
+            display: flex;
+            flex-direction: row;
+            border: red solid 1px;
+            height: 400px;
+            padding: 15px;
+        }
+
+        div#news-line {
+            display: flex;
+            flex-direction: row;
+            border: blue solid 1px;
+            width: 900px;
+        }
+
+        div#news {
+            height: 250px;
+            width:285px;
+            margin-top:10px;
+            margin-left:11px;
+        }
+        div#news-title {
+            height:280px;
+            border: white 1px solid;
+        }
+        div#news-body {
+            margin-top:10px;
+            height:50px;
+            border: white 1px solid;
+        }
+
+        div#profile {
+            border: blue solid 1px;
+            margin-left: 10px;
+            width: 250px;
+        }
+    </style>
+</head>
+
+<body>
+</body>
+<div id="contentarea">
+    <header>
+        <div id="header-top">
+            <div id="logo">로고</div>
+            <div id="header-ad">광고</div>
+        </div>
+        <div id="header-bottom">
+            <div id="search">검색</div>
+            <div id="menu">메뉴</div>
+        </div>
+    </header>
+    <div id="maincontent">
+        <div id="content1">
+            <div id="news-line">
+                <div id="news">
+                    <div id="news-title">
+                        대표사진
+                    </div>
+                    <div id="news-body">
+                        내용
+                    </div>
+                </div>
+                <div id="news">
+                    <div id="news-title">
+                        대표사진
+                    </div>
+                    <div id="news-body">
+                        내용
+                    </div>
+                </div>
+                <div id="news">
+                    <div id="news-title">
+                        대표사진
+                    </div>
+                    <div id="news-body">
+                        내용
+                    </div>
+                </div>
+
+            </div>
+            <div id="profile">
+                프로필
+            </div>
+        </div>
+    </div>
+</div>
+
+</html>
