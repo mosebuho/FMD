@@ -2,6 +2,7 @@
 <html>
 
 <head>
+    <title>4MILLDUK</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -269,7 +270,7 @@
 
         footer {
             text-align: center;
-            margin-top:15px;
+            margin-top: 15px;
             position: relative;
             bottom: 0;
             width: 100%;
@@ -334,9 +335,17 @@
             <div id="news-button">버튼</div>
         </div>
         <aside id="top-side">
+            {% if request.user.is_authenticated %}
             <div id="profile">
                 프로필
+                <a href="{% url 'user:logout' %}">로그아웃</a>
             </div>
+            {% else %}
+            <div id="profile">
+                <div><a href="{% url 'user:register' %}">회원가입</a></div>
+                <div><a href="{% url 'user:login' %}">로그인</a></div>
+            </div>
+            {% endif %}
             <div id="top-side-ad">
                 광고
             </div>
