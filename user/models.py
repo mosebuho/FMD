@@ -50,3 +50,8 @@ class User(AbstractBaseUser):
     @property
     def is_staff(self):
         return self.is_admin
+
+    class Meta:
+        db_table = "user"
+        verbose_name = "유저"
+        verbose_name_plural = "유저"
