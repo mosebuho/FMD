@@ -11,7 +11,7 @@
             color: #fff;
         }
 
-        div#contentarea {
+        div#content {
             background-color: #363636;
             width: 1200px;
             margin: 0 auto;
@@ -64,58 +64,226 @@
             width: 350px;
             margin-right: 20px;
             padding: 10px;
-
         }
 
         div#menu {
             border: solid blue 1px;
             width: 800px;
             padding: 10px;
-
         }
 
-        div#content1 {
+        div#top-content {
             display: flex;
             flex-direction: row;
             border: red solid 1px;
-            height: 400px;
-            padding: 15px;
+            height: 500px;
+            padding: 10px;
+            margin-top: 10px;
         }
 
         div#news-line {
-            display: flex;
-            flex-direction: row;
             border: blue solid 1px;
             width: 900px;
         }
 
+        div#news-header {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            padding: 15px;
+            font-size: 20px;
+            border-bottom: gray 1px solid;
+        }
+
+        div#news-choice {
+            font-size: 15px;
+            margin-top: 7px;
+        }
+
+        div#news-content {
+            display: flex;
+            flex-direction: row;
+            height: 370px;
+        }
+
         div#news {
             height: 250px;
-            width:285px;
-            margin-top:10px;
-            margin-left:11px;
+            width: 285px;
+            margin-top: 10px;
+            margin-left: 11px;
         }
+
         div#news-title {
-            height:280px;
-            border: white 1px solid;
-        }
-        div#news-body {
-            margin-top:10px;
-            height:50px;
+            height: 280px;
             border: white 1px solid;
         }
 
-        div#profile {
+        div#news-body {
+            margin-top: 10px;
+            height: 60px;
+            border: white 1px solid;
+        }
+
+        div#news-button {
+            padding: 0 10px;
+            text-align: right;
+        }
+
+        aside#top-side {
             border: blue solid 1px;
             margin-left: 10px;
-            width: 250px;
+            width: 270px;
+        }
+
+        div#profile {
+            border: white solid 1px;
+            padding: 10px;
+            width: auto;
+            height: 170px;
+        }
+
+        div#top-side-ad {
+            border: white solid 1px;
+            padding: 10px;
+            width: auto;
+            height: 300px;
+            margin-top: 5px;
+        }
+
+        div#mid-content {
+            display: flex;
+            flex-direction: row;
+            border: red solid 1px;
+            height: 500px;
+            padding: 15px;
+            margin-top: 10px;
+        }
+
+        div#boardlist {
+            display: flex;
+            flex-direction: row;
+            border: blue solid 1px;
+            height: 470px;
+            width: 900px;
+            padding: 15px;
+        }
+
+        div#new-boards {
+            border: white 1px solid;
+            width: 440px;
+        }
+
+        div#hot-boards {
+            border: white 1px solid;
+            width: 440px;
+            margin-left: 15px;
+        }
+
+        div#boards-title {
+            padding: 10px;
+            border-bottom: 1px gray solid;
+            font-size: 20px;
+        }
+
+        div#boards-body {
+            padding: 10px;
+        }
+
+        aside#mid-side {
+            padding: 10px;
+            height: 470px;
+            width: 260px;
+            border: 1px blue solid;
+            margin-left: 10px;
+        }
+
+        div#fire {
+            padding: 10px;
+            border: 1px white solid;
+            height: 220px;
+        }
+
+        div#ranking {
+            padding: 10px;
+            border: 1px white solid;
+            height: 220px;
+            margin-top: 10px;
+        }
+
+        div#bottom-content {
+            display: flex;
+            flex-direction: row;
+            border: red solid 1px;
+            height: 270px;
+            padding: 10px;
+            margin-top: 10px;
+        }
+
+        div#mostlist {
+            display: flex;
+            flex-direction: row;
+            border: 1px solid blue;
+            width: 600px;
+            padding: 10px;
+        }
+
+        div#most-view {
+            padding: 10px;
+            border: white 1px solid;
+            width: 300px;
+        }
+
+        div#most-good {
+            padding: 10px;
+            border: white 1px solid;
+            width: 300px;
+            margin-left: 10px;
+        }
+
+        aside#bottom-side {
+            border: blue 1px solid;
+            width: 570px;
+            margin-left: 10px;
+        }
+
+        div#most-title {
+            padding: 5px;
+            font-size: 16px;
+            border-bottom: 1px solid gray
+        }
+
+        div#most-body {
+            padding: 5px;
+        }
+
+        div#bottom-side-ad {
+            border: white 1px solid;
+            height: 120px;
+        }
+
+        div#bottom-side-ad2 {
+            border: white 1px solid;
+            height: 120px;
+            margin-top: 5px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top:15px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+            height: 100px;
+            padding: 0 15px;
+            box-sizing: border-box;
+            border: red 1px solid;
         }
     </style>
 </head>
 
 <body>
 </body>
-<div id="contentarea">
+<div id="content">
     <header>
         <div id="header-top">
             <div id="logo">로고</div>
@@ -126,40 +294,92 @@
             <div id="menu">메뉴</div>
         </div>
     </header>
-    <div id="maincontent">
-        <div id="content1">
-            <div id="news-line">
-                <div id="news">
-                    <div id="news-title">
-                        대표사진
-                    </div>
-                    <div id="news-body">
-                        내용
-                    </div>
+    <div id="top-content">
+        <div id="news-line">
+            <div id="news-header">
+                <div>
+                    NEWS
                 </div>
-                <div id="news">
-                    <div id="news-title">
-                        대표사진
-                    </div>
-                    <div id="news-body">
-                        내용
-                    </div>
+                <div id="news-choice">
+                    국내 | 해외
                 </div>
-                <div id="news">
-                    <div id="news-title">
-                        대표사진
-                    </div>
-                    <div id="news-body">
-                        내용
-                    </div>
-                </div>
-
             </div>
+            <div id="news-content">
+                <div id="news">
+                    <div id="news-title">
+                        대표사진
+                    </div>
+                    <div id="news-body">
+                        뉴스제목
+                    </div>
+                </div>
+                <div id="news">
+                    <div id="news-title">
+                        대표사진
+                    </div>
+                    <div id="news-body">
+                        뉴스제목
+                    </div>
+                </div>
+                <div id="news">
+                    <div id="news-title">
+                        대표사진
+                    </div>
+                    <div id="news-body">
+                        뉴스제목
+                    </div>
+                </div>
+            </div>
+            <div id="news-button">버튼</div>
+        </div>
+        <aside id="top-side">
             <div id="profile">
                 프로필
             </div>
-        </div>
+            <div id="top-side-ad">
+                광고
+            </div>
+        </aside>
     </div>
+    <div id="mid-content">
+        <div id="boardlist">
+            <div id="new-boards">
+                <div id="boards-title">최신글</div>
+                <div id="boards-body">리스트</div>
+            </div>
+            <div id="hot-boards">
+                <div id="boards-title">인기글</div>
+                <div id="boards-body">리스트</div>
+            </div>
+        </div>
+        <aside id="mid-side">
+            <div id="fire">
+                2022 글로벌 파이어
+            </div>
+            <div id="ranking">
+                랭킹
+            </div>
+        </aside>
+    </div>
+    <div id="bottom-content">
+        <div id="mostlist">
+            <div id="most-view">
+                <div id="most-title">역대 조회수</div>
+                <div id="most-body">리스트</div>
+            </div>
+            <div id="most-good">
+                <div id="most-title">역대 추천수</div>
+                <div id="most-body">리스트</div>
+            </div>
+        </div>
+        <aside id="bottom-side">
+            <div id="bottom-side-ad">광고1</div>
+            <div id="bottom-side-ad2">광고2</div>
+        </aside>
+    </div>
+    <footer>
+        footer
+    </footer>
 </div>
 
 </html>
