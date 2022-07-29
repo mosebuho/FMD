@@ -5,5 +5,5 @@ from .views import HomeView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', HomeView.as_view()),
-    path('account/', include("account.urls")),
+    path('board/', include("board.urls")),
 ]
