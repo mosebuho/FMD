@@ -1,48 +1,49 @@
-{% extends "home/home.html" %}
-{% block content %}
+{% extends "user/login.html" %}
+{% block contents %}
 <style>
-    ul#input {
-        height: 750px;
-        width: 90%;
+    button#register {
+        width: 450px;
+        background-color: rgb(108, 127, 108);
+        height: 55px;
+        margin-top: 35px;
+        margin-bottom: 5px;
+        border: #484848 solid 1px;
     }
 
-    p#register-title {
-        height: 70px;
-        width: 40%;
-        font-size: 18px;
-    }
-
-    p#register-body {
-        height: 70px;
-        width: 40%;
-        font-size: 15px;
-        text-align: center;
+    div#register-ad {
+        width: 800px;
+        height: 130px;
+        margin: 20px auto;
+        border: #484848 1px solid;
+        background-color: #272727;
     }
 </style>
-<ul id="input">
-    <form method="post">
-        {% csrf_token %}
-        <li>
-            <p id="register-title">아이디</p>
-            <p id="register-body">{{form.userid}}</p>
-        </li>
-        <li>
-            <p id="register-title">닉네임</p>
-            <p id="register-body">{{form.name}}</p>
-        </li>
-        <li>
-            <p id="register-title">비밀번호</p>
-            <p id="register-body">{{form.password1}}</p>
-        </li>
-        <li>
-            <p id="register-title">비밀번호 확인</p>
-            <p id="register-body">{{form.password2}}</p>
-        </li>
-        <li>
-            <p id="register-title">이메일</p>
-            <p id="register-body">{{form.email}}</p>
-        </li>
-        <button type="submit">회원가입</button>
-    </form>
-</ul>
-{% endblock content %}
+<div id="login_logo">4MILLDUK</div>
+<form method="post">
+    {% csrf_token %}
+    <div id="user-input">
+        <div>
+            <div id="login-title">아이디<span id="title-sub">(6~20자리 영문과 숫자)</span></div>
+            <div>{{form.userid}}</div>
+        </div>
+        <div id="input-box">
+            <div id="login-title">닉네임<span id="title-sub">(2자 이상 8자 이하)</div>
+            <div>{{form.name}}</div>
+        </div>
+        <div id="input-box">
+            <div id="login-title">비밀번호<span id="title-sub">(특수문자를 포함한 8자 이상)</span></div>
+            <div>{{form.password1}}</div>
+        </div>
+        <div id="input-box">
+            <div id="login-title">비밀번호 확인</div>
+            <div>{{form.password2}}</div>
+        </div>
+        <div id="input-box">
+            <div id="login-title">이메일<span id="title-sub">(비밀번호 분실시 계정정보 확인)</span></div>
+            <div>{{form.email}}</div>
+        </div>
+    </div>
+    <button id="register" type="submit">회원가입</button>
+    <div id="register-ad"></div>
+</form>
+{% endblock contents %}
