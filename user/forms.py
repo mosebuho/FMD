@@ -5,5 +5,5 @@ User = get_user_model()
 class RegisterForm(UserCreationForm):
     class Meta:
         model = User
-        fields = ('email','name')
+        fields = ('userid','name', 'email')
         field_classes = {"username": UsernameField}

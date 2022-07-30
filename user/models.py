@@ -3,21 +3,26 @@ from django.contrib.auth.models import BaseUserManager, AbstractBaseUser
 
 
 class UserManager(BaseUserManager):
-    def create_user(self, email, password=None):
-        if not email:
-            raise ValueError("Users must have an email address")
+    use_in_migrations: True
+
+    def create_user(self, userid, email, name, password=None):
+        if not userid:
+            raise ValueError("아이디는 필수 항목입니다.")
 
         user = self.model(
+            userid=userid,
             email=self.normalize_email(email),
+            name=name
         )
-
         user.set_password(password)
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, email, password):
+    def create_superuser(self, userid, email, name, password):
         user = self.create_user(
-            email,
+            userid=userid,
+            email=self.normalize_email(email),
+            name=name,
             password=password,
         )
         user.is_admin = True
@@ -26,6 +31,7 @@ class UserManager(BaseUserManager):
 
 
 class User(AbstractBaseUser):
+    userid = models.CharField(max_length=60, unique=True, verbose_name="아이디")
     email = models.EmailField(max_length=128, unique=True, verbose_name="이메일")
     name = models.CharField(max_length=60, unique=True, verbose_name="닉네임")
     join_date = models.DateTimeField(auto_now_add=True, verbose_name="생성시간")
@@ -35,11 +41,11 @@ class User(AbstractBaseUser):
 
     objects = UserManager()
 
-    USERNAME_FIELD = "email"
-    REQUIRED_FIELDS = []
+    USERNAME_FIELD = "userid"
+    REQUIRED_FIELDS = ['email','name']
 
     def __str__(self):
-        return self.email
+        return self.userid
 
     def has_perm(self, perm, obj=None):
         return True
