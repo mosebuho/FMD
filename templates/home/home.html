@@ -38,15 +38,17 @@
                 <ul class="menu">
                     <li class="menu-button">
                         <i class="fa-solid fa-newspaper"></i>
-                        <span id="menu-text">뉴스/정보</span>
+                        <span id="menu-text">뉴스</span>
                     </li>
                     <li class="menu-button">
                         <i class="fa-solid fa-chart-column"></i>
                         <span id="menu-text">군사칼럼</span>
                     </li>
                     <li class="menu-button">
-                        <i class="fa-solid fa-comments"></i>
-                        <span id="menu-text">커뮤니티</span>
+                        <a href="{% url 'board:community'%}">
+                            <i class="fa-solid fa-comments"></i>
+                            <span id="menu-text">커뮤니티</span>
+                        </a>
                     </li>
                     <li class="menu-button">
                         <i class="fa-solid fa-book-bookmark"></i>
@@ -75,7 +77,7 @@
                         NEWS
                     </div>
                     <div class="news-choice">
-                        국내 | 해외
+                        <span>국내</span> <span style="color:#aaa;">|</span> <span style="color:#aaa;">해외</span>
                     </div>
                 </div>
                 <div class="news-content">
@@ -108,29 +110,29 @@
             </div>
             <aside class="side">
                 {% if request.user.is_authenticated %}
-                <div class="user-profile">
-                    <div class="in-user-profile">
+                <div class="profile">
+                    <div class="in-profile">
                         <div class="profile-img">
                             <i class="fa-solid fa-user"></i>
                         </div>
                         <div class="profile-info">
+                            <span class="profile-sub">Lv.1</span>
                             <div style="font-size:17px;">{{ request.user.name }}
-                                <span style="font-size:12px; color:#aaa;">내정보</span>
                             </div>
                             <div>
-                                <span style="font-size:12px; color:#aaa;">LV.1</span>
-                                <span style="font-size:12px; color:#aaa; margin-left:10px;">
-                                    <a href="{% url 'user:logout' %}">로그아웃</a>
+                                <span class="profile-sub">내정보</span>
+                                <span class="profile-sub">
+                                    <a href="{% url 'user:logout' %}">&nbsp로그아웃</a>
                             </div>
                             </span>
                         </div>
                     </div>
                     <div>
-                        <div class="user-point"></div>
+                        <div class="profile-point"></div>
                     </div>
                 </div>
                 {% else %}
-                <div class="user-profile">
+                <div class="profile">
                     <div style="color:#aaa">4MILLDUK - 세계체강 밀덕</div>
                     <div class="login"><a href="{% url 'user:login' %}">로그인</a></div>
                     <div class="account-button">

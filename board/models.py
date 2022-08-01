@@ -9,11 +9,12 @@ class Board(models.Model):
         "user.User", on_delete=models.CASCADE, verbose_name="작성자"
     )
     date = models.DateTimeField(auto_now_add=True, verbose_name="작성일")
-    board_name = models.CharField(max_length=32, verbose_name="게시판 종류")
-    hits = models.PositiveIntegerField(default=0, verbose_name="조회수")
-
+    board_name = models.CharField(max_length=32, verbose_name="분류")
+    view = models.PositiveIntegerField(default=0, verbose_name="조회수")
+    like = models.PositiveIntegerField(default=0, verbose_name="추천수")
+    
     @property
-    def created_string(self):
+    def date_string(self):
         time = datetime.now(tz=timezone.utc) - self.date
         if time < timedelta(minutes=1):
             return "방금 전"
