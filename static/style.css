@@ -9,7 +9,7 @@ body {
     font-family: 'Noto Sans KR', sans-serif;
 }
 
-div#content {
+div.content {
     background-color: #363636;
     width: 1200px;
     margin: 0 auto;
@@ -25,33 +25,33 @@ header {
     position: relative;
 }
 
-div#header-top {
+div.header-top {
     height: 150px;
     display: flex;
     flex-direction: row;
     padding: 10px;
 }
 
-div#logo {
+div.logo {
     padding: 15px;
     width: 350px;
     margin-right: 20px;
 }
 
-div#header-ad {
+div.header-ad {
     border: #363636 solid 1px;
     background-color: #272727;
     width: 810px;
 }
 
-div#header-bottom {
+div.header-bottom {
     height: 80px;
     display: flex;
     flex-direction: row;
     padding: 10px;
 }
 
-div#search {
+div.search {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -69,14 +69,14 @@ input#search-input {
     background-color: #272727;
 }
 
-button#search-done {
+button.search-done {
     border: #484848 solid 1px;
     width: 60px;
     background-color: #848b79;
     text-align: center;
 }
 
-div#menu {
+ul.menu {
     display: flex;
     flex-direction: row;
     border: #484848 solid 1px;
@@ -84,7 +84,7 @@ div#menu {
     width: 810px;
 }
 
-div#menu-button {
+li.menu-button {
     background-color: #848b79;
     width: 100%;
     padding-top: 16px;
@@ -92,25 +92,25 @@ div#menu-button {
     color: #fff;
 }
 
-span#menu-text {
+span.menu-text {
     margin-left: 2px;
     font-size: 17px;
 }
 
-div#main-content {
+div.main-content {
     display: flex;
     flex-direction: row;
     height: 500px;
     padding: 10px;
 }
 
-div#news-line {
+div.news-line {
     border: #484848 solid 1px;
     background-color: #272727;
     width: 900px;
 }
 
-div#news-header {
+div.news-header {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -119,47 +119,47 @@ div#news-header {
     border-bottom: #484848 1px solid;
 }
 
-div#news-choice {
+div.news-choice {
     font-size: 15px;
     margin-top: 7px;
 }
 
-div#news-content {
+div.news-content {
     display: flex;
     flex-direction: row;
     height: 370px;
 }
 
-div#news {
+div.news {
     height: 250px;
     width: 285px;
     margin-top: 10px;
     margin-left: 11px;
 }
 
-div#news-title {
+div.news-title {
     height: 280px;
     border: #484848 1px solid;
 }
 
-div#news-body {
+div.news-body {
     margin-top: 10px;
     height: 60px;
     border: #484848 1px solid;
 }
 
-div#news-button {
+div.news-button {
     padding: 0 10px;
     text-align: right;
 }
 
-aside#side {
+aside.side {
 
     margin-left: 10px;
     width: 270px;
 }
 
-div#profile {
+div.user-profile {
     border: #484848 solid 1px;
     padding: 10px;
     width: auto;
@@ -167,14 +167,40 @@ div#profile {
     text-align: center;
 }
 
-div#login {
+div.in-user-profile {
+    display: flex;
+    flex-direction: row;
+}
+
+div.profile-img {
+    width: 50px;
+    height: 50px;
+    padding-top: 15px;
+    font-size: 25px;
+}
+
+div.profile-info {
+    padding-top: 10px;
+    width: 175px;
+    text-align: left;
+    margin-left: 5px;
+}
+
+div.user-point {
+    width: 90%;
+    margin: 15px auto;
+    height: 30px;
+    background-color: #272727;
+}
+
+div.login {
     background-color: #848b79;
     height: 50px;
     margin-top: 8px;
     padding-top: 13px;
 }
 
-div#account-button {
+div.account-button {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -183,51 +209,51 @@ div#account-button {
     color: #aaa;
 }
 
-div#top-side-ad {
+div.top-side-ad {
     border: #484848 solid 1px;
     background-color: #272727;
     width: auto;
     height: 350px;
 }
 
-div#boardlist {
+div.boardlist {
     display: flex;
     flex-direction: row;
     height: 470px;
     width: 900px;
 }
 
-div#new-boards {
+div.new-boards {
     border: #484848 solid 1px;
     background-color: #272727;
     width: 442.5px;
 }
 
-div#hot-boards {
+div.hot-boards {
     border: #484848 solid 1px;
     background-color: #272727;
     width: 442.5px;
     margin-left: 15px;
 }
 
-div#boards-title {
+div.boards-title {
     padding: 10px;
     border-bottom: 1px #484848 solid;
     font-size: 20px;
 }
 
-div#boards-body {
+div.boards-body {
     padding: 10px;
 }
 
-div#side-content {
+div.side-content {
     border: #484848 solid 1px;
     background-color: #272727;
     height: 235px;
 }
 
 
-div#bottom-content {
+div.bottom-content {
     display: flex;
     flex-direction: row;
     height: 270px;
@@ -235,48 +261,48 @@ div#bottom-content {
     margin-top: 10px;
 }
 
-div#mostlist {
+div.mostlist {
     display: flex;
     flex-direction: row;
     width: 610px;
 }
 
-div#most-view {
+div.most-view {
     background-color: #272727;
     border: #484848 solid 1px;
     width: 300px;
 }
 
-div#most-good {
+div.most-good {
     background-color: #272727;
     border: #484848 solid 1px;
     width: 300px;
     margin-left: 10px;
 }
 
-aside#bottom-side {
+aside.bottom-side {
 
     width: 570px;
     margin-left: 10px;
 }
 
-div#most-title {
+div.most-title {
     font-size: 16px;
     padding: 10px;
     border-bottom: 1px solid #484848;
 }
 
-div#most-body {
+div.most-body {
     padding: 10px;
 }
 
-div#bottom-side-ad {
+div.bottom-side-ad {
     border: #484848 solid 1px;
     background-color: #272727;
     height: 122.5px;
 }
 
-div#bottom-side-ad2 {
+div.bottom-side-ad2 {
     border: #484848 solid 1px;
     background-color: #272727;
     height: 122.5px;
@@ -293,12 +319,12 @@ footer {
 
 /* login */
 
-div#user_template {
+div.user_template {
     background-color: #363636;
     padding: 10px;
 }
 
-div#in_user_template {
+div.in_user_template {
     border: #484848 solid 1px;
     background-color: #272727;
     margin: auto;
@@ -307,19 +333,19 @@ div#in_user_template {
     height: 800px;
 }
 
-div#login_logo {
+div.login_logo {
     width: 450px;
     margin: 15px auto;
     height: 115px;
     padding: 0 55px;
 }
 
-div#user-input {
+div.user-input {
     width: 450px;
     margin: auto;
 }
 
-div#input-box {
+div.input-box {
     margin-top: 12px;
 }
 
@@ -331,19 +357,19 @@ input {
     border: #484848 solid 1px;
 }
 
-span#title-sub {
+span.title-sub {
     font-size: 14px;
     color: #aaa;
 }
 
-div#login-title {
+div.login-title {
     width: 100%;
     font-size: 18px;
     text-align: left;
     height: 32px;
 }
 
-button#login {
+button.login {
     width: 450px;
     background-color: #848b79;
     height: 45px;
@@ -352,16 +378,15 @@ button#login {
     border: #484848 solid 1px;
 }
 
-button#naver_login {
+button.naver_login {
     font-weight: bold;
     width: 450px;
     background-color: #00bf18;
     height: 45px;
-    margin-top: 20px;
     border: #484848 solid 1px;
 }
 
-button#kakao_login {
+button.kakao_login {
     font-weight: bold;
     color: #272727;
     width: 450px;
@@ -371,7 +396,7 @@ button#kakao_login {
     border: #484848 solid 1px;
 }
 
-button#google_login {
+button.google_login {
     font-weight: bold;
     color: #272727;
     width: 450px;
@@ -381,7 +406,7 @@ button#google_login {
     border: #484848 solid 1px;
 }
 
-div#user-help {
+div.user-help {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -391,22 +416,22 @@ div#user-help {
 }
 
 
-div#in-user-help {
+div.in-user-help {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     margin-bottom: 20px;
 }
 
-div#social_login {
+div.social_login {
     margin: auto;
     width: 450px;
     padding-top: 20px;
     border-top: 1px solid #363636;
 }
 
-div#login-ad {
-    width: 800px;
+div.login-ad {
+    width: 450px;
     height: 130px;
     margin: 20px auto;
     border: #484848 1px solid;
@@ -415,7 +440,7 @@ div#login-ad {
 
 /* register */
 
-button#register {
+button.register {
     width: 450px;
     background-color: #848b79;
     height: 55px;

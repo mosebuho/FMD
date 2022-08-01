@@ -1,34 +1,34 @@
 {% extends "user/login.html" %}
-{% load static %}
 {% block contents %}
-<div id="login_logo">
+{% load static %}
+<div class="login_logo">
     <a href="/"><img src="{% static 'logo2.png' %}" /></a>
 </div>
 <form method="post">
     {% csrf_token %}
-    <div id="user-input">
+    <div class="user-input">
         <div>
-            <div id="login-title">아이디<span id="title-sub">(6~20자리 영문과 숫자)</span></div>
+            <div class="login-title">아이디<span class="title-sub">(6~20자리 영문과 숫자)</span></div>
             <div>{{form.userid}}</div>
         </div>
-        <div id="input-box">
-            <div id="login-title">닉네임<span id="title-sub">(2자 이상 8자 이하)</div>
+        <div class="input-box">
+            <div class="login-title">닉네임<span class="title-sub">(2자 이상 8자 이하)</div>
             <div>{{form.name}}</div>
         </div>
-        <div id="input-box">
-            <div id="login-title">비밀번호<span id="title-sub">(특수문자를 포함한 8자 이상)</span></div>
+        <div class="input-box">
+            <div class="login-title">비밀번호<span class="title-sub">(특수문자를 포함한 8자 이상)</span></div>
             <div>{{form.password1}}</div>
         </div>
-        <div id="input-box">
-            <div id="login-title">비밀번호 확인</div>
+        <div class="input-box">
+            <div class="login-title">비밀번호 확인</div>
             <div>{{form.password2}}</div>
         </div>
-        <div id="input-box">
-            <div id="login-title">이메일<span id="title-sub">(비밀번호 분실시 계정정보 확인)</span></div>
+        <div class="input-box">
+            <div class="login-title">이메일<span class="title-sub">(비밀번호 분실시 계정정보 확인)</span></div>
             <div>{{form.email}}</div>
         </div>
     </div>
-    <button id="register" type="submit">회원가입</button>
-    <div id="login-ad"></div>
+    <button class="register" type="submit">회원가입</button>
+    <div class="login-ad"></div>
 </form>
 {% endblock contents %}
