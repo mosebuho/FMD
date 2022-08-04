@@ -22,164 +22,295 @@
 <body>
     <div class="content">
         <header>
-            <div class="header-top">
+            <div class="header_top">
                 <div class="logo">
                     <a href="/"><img src="{% static 'logo.png' %}" /></a>
                 </div>
-                <div class="header-ad"></div>
+                <div class="header_ad"></div>
             </div>
-            <div class="header-bottom">
+            <div class="header_bottom">
                 <div class="search">
-                    <input id="search-input" placeholder="검색어를 입력해주세요."></input>
-                    <button class="search-done">
+                    <input id="search_input" placeholder="검색어를 입력해주세요."></input>
+                    <button class="search_done">
                         <i class="fa-solid fa-magnifying-glass" style="font-size:19px;"></i>
                     </button>
                 </div>
                 <ul class="menu">
-                    <li class="menu-button">
+                    <li class="menu_button">
                         <i class="fa-solid fa-newspaper"></i>
-                        <span id="menu-text">뉴스</span>
+                        <span class="menu_text">뉴스/정보</span>
                     </li>
-                    <li class="menu-button">
+                    <li class="menu_button">
                         <i class="fa-solid fa-chart-column"></i>
-                        <span id="menu-text">군사칼럼</span>
+                        <span class="menu_text">군사칼럼</span>
                     </li>
-                    <li class="menu-button">
+                    <li class="menu_button">
                         <a href="{% url 'board:community'%}">
                             <i class="fa-solid fa-comments"></i>
-                            <span id="menu-text">커뮤니티</span>
+                            <span class="menu_text">커뮤니티</span>
                         </a>
                     </li>
-                    <li class="menu-button">
+                    <li class="menu_button">
                         <i class="fa-solid fa-book-bookmark"></i>
-                        <span id="menu-text">밀덕백과</span>
+                        <span class="menu_text">밀덕백과</span>
                     </li>
-                    <li class="menu-button">
+                    <li class="menu_button">
                         <i class="fa-solid fa-calendar-days"></i>
-                        <span id="menu-text">행사</span>
+                        <span class="menu_text">행사일정</span>
                     </li>
-                    <li class="menu-button">
+                    <li class="menu_button">
                         <i class="fa-solid fa-circle-info"></i>
-                        <span id="menu-text">공지</span>
-                    </li>
-                    <li class="menu-button">
-                        <i class="fa-solid fa-life-ring"></i>
-                        <span id="menu-text">건의</span>
+                        <span class="menu_text">공지/건의</span>
                     </li>
                 </ul>
             </div>
         </header>
         {% block content %}
-        <div class="main-content">
-            <div class="news-line">
-                <div class="news-header">
-                    <div>
-                        NEWS
-                    </div>
-                    <div class="news-choice">
-                        <span>국내</span> <span style="color:#aaa;">|</span> <span style="color:#aaa;">해외</span>
-                    </div>
-                </div>
-                <div class="news-content">
-                    <div class="news">
-                        <div class="news-title">
-                            대표사진
-                        </div>
-                        <div class="news-body">
-                            뉴스제목
+        <div class="main_content">
+            {% block contents %}
+            <div>
+                <div class="news">
+                    <div class="news_header">
+                        <div>뉴스/정보</div>
+                        <div class="news_choice">
+                            <span>국내</span>
+                            <span style="color:#848b79;">|</span>
+                            <span style="color:#aaa;">해외</span>
                         </div>
                     </div>
-                    <div class="news">
-                        <div class="news-title">
-                            대표사진
-                        </div>
-                        <div class="news-body">
-                            뉴스제목
-                        </div>
-                    </div>
-                    <div class="news">
-                        <div class="news-title">
-                            대표사진
-                        </div>
-                        <div class="news-body">
-                            뉴스제목
-                        </div>
-                    </div>
-                </div>
-                <div class="news-button">버튼</div>
-            </div>
-            <aside class="side">
-                {% if request.user.is_authenticated %}
-                <div class="profile">
-                    <div class="in-profile">
-                        <div class="profile-img">
-                            <i class="fa-solid fa-user"></i>
-                        </div>
-                        <div class="profile-info">
-                            <span class="profile-sub">Lv.1</span>
-                            <div style="font-size:17px;">{{ request.user.name }}
+                    <div class="news_content">
+                        <div class="in_news_f">
+                            <div class="news_title"></div>
+                            <div class="news_body">
+                                환상적인 드리블
                             </div>
-                            <div>
-                                <span class="profile-sub">내정보</span>
-                                <span class="profile-sub">
-                                    <a href="{% url 'user:logout' %}">&nbsp로그아웃</a>
+                        </div>
+                        <div class="in_news">
+                            <div class="news_title"></div>
+                            <div class="news_body">
+                                오늘은 밖에 비가 온다 천둥도 친다 와다다다다
                             </div>
-                            </span>
+                        </div>
+                        <div class="in_news">
+                            <div class="news_title"></div>
+                            <div class="news_body">
+                                우리 일민이가 너무 귀엽다 요즘 너무 심심한가 보다 놀아주면 맨날 깨문다
+                            </div>
                         </div>
                     </div>
-                    <div>
-                        <div class="profile-point"></div>
+                </div>
+                <div class="column">
+                    <div class="column_header">군사칼럼</div>
+                    <div class="column_content">
+                        <div>
+                            <div class="column_list_l">
+                                <div class="column_img"></div>
+                                <div class="column_text">
+                                    <div class="column_title">한줄일때</div>
+                                    <div class="column_sub">작성일, 댓글아이콘, 뷰아이콘</div>
+                                    <div class="in_column_content">내용</div>
+                                </div>
+                            </div>
+                            <div class="column_list_l">
+                                <div class="column_img"></div>
+                                <div class="column_text">
+                                    <div class="column_title">두줄일때에에ㅔ에에에에에에에에에에에에에에에에에에에에에</div>
+                                    <div class="column_sub">작성일, 댓글아이콘, 뷰아이콘</div>
+                                    <div class="in_column_content">내용</div>
+                                </div>
+                            </div>
+                            <div class="column_list_l">
+                                <div class="column_img"></div>
+                                <div class="column_text">
+                                    <div class="column_title">한줄일때</div>
+                                    <div class="column_sub">작성일, 댓글아이콘, 뷰아이콘</div>
+                                    <div class="in_column_content">내용</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="column_list_r">
+                                <div class="column_img"></div>
+                                <div class="column_text">
+                                    <div class="column_title">제목</div>
+                                    <div class="column_sub">작성일, 댓글아이콘, 뷰아이콘</div>
+                                    <div class="in_column_content">내용</div>
+                                </div>
+                            </div>
+                            <div class="column_list_r">
+                                <div class="column_img"></div>
+                                <div class="column_text">
+                                    <div class="column_title">제목</div>
+                                    <div class="column_sub">작성일, 댓글아이콘, 뷰아이콘</div>
+                                    <div class="in_column_content">내용</div>
+                                </div>
+                            </div>
+                            <div class="column_list_r">
+                                <div class="column_img"></div>
+                                <div class="column_text">
+                                    <div class="column_title">제목</div>
+                                    <div class="column_sub">작성일, 댓글아이콘, 뷰아이콘</div>
+                                    <div class="in_column_content">내용</div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                {% else %}
-                <div class="profile">
-                    <div style="color:#aaa">4MILLDUK - 세계체강 밀덕</div>
-                    <div class="login"><a href="{% url 'user:login' %}">로그인</a></div>
-                    <div class="account-button">
-                        <div>아이디/비밀번호 찾기</div>
-                        <div><a href="{% url 'user:register' %}">회원가입</a></div>
+                <div class="community">
+                    <div class="news_header">
+                        <div>커뮤니티</div>
+                        <div class="news_choice">
+                            <span>최신</span>
+                            <span style="color:#848b79;">|</span>
+                            <span style="color:#aaa;">인기</span>
+                        </div>
+                    </div>
+                    <div class="community_content">
+                        <div class="in_community_content">
+                            <div class="in_community_header">
+                                <span style="color:#848b79;">|</span>
+                                <span>자유</span>
+                                <div class="community_body">
+                                    <div>ㅁㄴㅇㄻㄴㅇㄹ</div>
+                                    <div>ㅁㄴㅇㄻㄴㅇㄹ</div>
+                                    <div>ㅁㄴㅇㄻㄴㅇㄹ</div>
+                                    <div>ㅁㄴㅇㄻㄴㅇㄹ</div>
+                                    <div>ㅁㄴㅇㄻㄴㅇㄹ</div>
+                                    <div>ㅁㄴㅇㄻㄴㅇㄹ</div>
+                                    <div>ㅁㄴㅇㄻㄴㅇㄹ</div>
+                                    <div>ㅁㄴㅇㄻㄴㅇㄹ</div>
+                                    <div>ㅁㄴㅇㄻㄴㅇㄹ</div>
+                                    <div>ㅁㄴㅇㄻㄴㅇㄹ</div>
+                                    <div>ㅁㄴㅇㄻㄴㅇㄹ</div>
+                                    <div>ㅁㄴㅇㄻㄴㅇㄹ</div>
+                                    <div>ㅁㄴㅇㄻㄴㅇㄹ</div>
+                                    <div>ㅁㄴㅇㄻㄴㅇㄹ</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="in_community_content">
+                            <div class="in_community_header">
+                                <span style="color:#848b79;">|</span>
+                                <span>정보</span>
+                            </div>
+                            <div class="community_body">
+                                <div>제목, 댓글, 추천</div>
+                                <div>ㅁㄴㅇㄻㄴㅇㄹ</div>
+                                <div>ㅁㄴㅇㄻㄴㅇㄹ</div>
+                                <div>(경) 대한민국, 폴란드와 40조원 어치 거래 성사! (축)</div>
+                                <div>ㅁㄴㅇㄻㄴㅇㄹ</div>
+                                <div>ㅁㄴㅇㄻㄴㅇㄹ</div>
+                                <div>ㅁㄴㅇㄻㄴㅇㄹ</div>
+                                <div>ㅁㄴㅇㄻㄴㅇㄹ</div>
+                                <div>ㅁㄴㅇㄻㄴㅇㄹ</div>
+                                <div>ㅁㄴㅇㄻㄴㅇㄹ</div>
+                                <div>ㅁㄴㅇㄻㄴㅇㄹ</div>
+                                <div>ㅁㄴㅇㄻㄴㅇㄹ</div>
+                                <div>ㅁㄴㅇㄻㄴㅇㄹ</div>
+                                <div>ㅁㄴㅇㄻㄴㅇㄹ</div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                {% endif %}
-                <div class="top-side-ad">
-                </div>
-            </aside>
-        </div>
-        <div class="main-content">
-            <div class="boardlist">
-                <div class="new-boards">
-                    <div class="boards-title">최신글</div>
-                    <div class="boards-body">리스트</div>
-                </div>
-                <div class="hot-boards">
-                    <div class="boards-title">인기글</div>
-                    <div class="boards-body">리스트</div>
+                <div class="dictionary">
+                    <div class="column_header">밀덕백과</div>
+                    <div class="dict_content">
+                        <div>
+                            <div class="dict_img"></div>
+                            <div class="dict_text">K-9 자주포</div>
+                            <div class="dict_img_bot"></div>
+                            <div class="dict_text">K-2 흑표</div>
+                        </div>
+                        <div>
+                            <div class="dict_img"></div>
+                            <div class="dict_text">AK47</div>
+                            <div class="dict_img_bot"></div>
+                            <div class="dict_text">HK417</div>
+                        </div>
+                        <div>
+                            <div class="dict_img"></div>
+                            <div class="dict_text">극초음속미사일</div>
+                            <div class="dict_img_bot"></div>
+                            <div class="dict_text">딴따라 김정은</div>
+                        </div>
+                        <div>
+                            <div class="dict_img"></div>
+                            <div class="dict_text">B-2 스피릿</div>
+                            <div class="dict_img_bot"></div>
+                            <div class="dict_text">에너미스팟</div>
+                        </div>
+                        <div class="dict_list">
+                            <div>1</div>
+                            <div>2</div>
+                            <div>3</div>
+                            <div>4</div>
+                            <div>5</div>
+                            <div>6</div>
+                            <div>7</div>
+                            <div>8</div>
+                            <div>9</div>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <aside class="side">
-                <div class="side-content">
-                    2022 글로벌 파이어
+            {% endblock contents %}
+            <div class="side">
+                <div id="side1">
+                    {% if request.user.is_authenticated %}
+                    <div class="profile">
+                        <div class="in_profile">
+                            <div class="profile_img">
+                                <i class="fa-solid fa-user"></i>
+                            </div>
+                            <div class="profile_info">
+                                <span class="profile_sub">Lv.1</span>
+                                <div style="font-size:17px;">{{ request.user.name }}
+                                </div>
+                                <div>
+                                    <span class="profile_sub">내정보</span>
+                                    <span class="profile_sub">
+                                        <a href="{% url 'user:logout' %}">&nbsp로그아웃</a>
+                                </div>
+                                </span>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="profile_point"></div>
+                        </div>
+                    </div>
+                    {% else %}
+                    <div class="profile">
+                        <div style="color:#aaa">4MILLDUK - 세계체강 밀덕</div>
+                        <div class="login"><a href="{% url 'user:login' %}">로그인</a></div>
+                        <div class="account_button">
+                            <div>아이디/비밀번호 찾기</div>
+                            <div><a href="{% url 'user:register' %}">회원가입</a></div>
+                        </div>
+                    </div>
+                    {% endif %}
+                    <div class="side1_ad">
+                    </div>
                 </div>
-                <div class="side-content">
-                    랭킹
+                <div id="side2">
+                    <div class="side2_ranking">
+                        랭킹
+                    </div>
+                    <div class="side2_search_data">
+                        실시간 검색어
+                    </div>
                 </div>
-            </aside>
-        </div>
-        <div class="bottom-content">
-            <div class="mostlist">
-                <div class="most-view">
-                    <div class="most-title">역대 조회수</div>
-                    <div class="most-body">리스트</div>
+                <div id="side3">
+                    <div class="side3_calender">
+                        달력
+                    </div>
+                    <div class="side3_list">
+                        리스트
+                    </div>
                 </div>
-                <div class="most-good">
-                    <div class="most-title">역대 추천수</div>
-                    <div class="most-body">리스트</div>
+                <div id="side4">
+                    <div class="side4_ad"></div>
                 </div>
             </div>
-            <aside class="bottom-side">
-                <div class="bottom-side-ad"></div>
-                <div class="bottom-side-ad2"></div>
-            </aside>
         </div>
         {% endblock content %}
         <footer>
