@@ -3,8 +3,8 @@ from datetime import datetime, timedelta, timezone
 
 
 class Board(models.Model):
-    title = models.CharField(max_length=64, verbose_name="글 제목")
-    content = models.TextField(verbose_name="글 내용")
+    title = models.CharField(max_length=64, verbose_name="제목")
+    content = models.TextField(verbose_name="내용")
     writer = models.ForeignKey(
         "user.User", on_delete=models.CASCADE, verbose_name="작성자"
     )

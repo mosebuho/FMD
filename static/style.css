@@ -39,7 +39,7 @@ div.logo {
 
 div.header_ad {
     border: #363636 solid 1px;
-    background-color: black;
+    background-color: #272727;
     width: 810px;
 }
 
@@ -256,7 +256,7 @@ div.in_community_header {
 div.community_body {
     color: #aaa;
     font-size: 15px;
-    padding: 5px 9px;
+    padding: 10px;
 }
 
 /* home_dictionary */
@@ -271,7 +271,7 @@ div.dictionary {
 }
 
 
-div.dict_content {
+div.dictionary_content {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -279,36 +279,37 @@ div.dict_content {
     padding-bottom: 5px;
 }
 
-div.dict_img {
+div.dictionary_img {
     border: 1px solid #484848;
     width: 150px;
     height: 70px;
 }
 
-div.dict_text {
-    font-size:14px;
-    color:#aaa;
-    margin-top:3px;
+div.dictionary_text {
+    font-size: 14px;
+    color: #aaa;
+    margin-top: 3px;
 }
 
-div.dict_img_bot {
+div.dictionary_img_bot {
     border: 1px solid #484848;
     width: 150px;
     height: 70px;
-    margin-top:15px;
+    margin-top: 15px;
 }
 
-div.in_dict_content {
-    display:flex;
+div.in_dictionary_content {
+    display: flex;
     flex-direction: row;
 }
 
-div.dict_list {
+div.dictionary_list {
     width: 250px;
     border: 1px solid #484848;
     height: 210px;
     font-size: 15px;
     color: #aaa;
+    padding: 0 5px;
 }
 
 /* footer */
@@ -369,7 +370,7 @@ div.profile_point {
 
 div.side1_ad {
     border: #484848 solid 1px;
-    background-color: black;
+    background-color: #272727;
     height: 272px;
 }
 
@@ -403,7 +404,7 @@ div.side3_calender {
 div.side3_list {
     border: #484848 solid 1px;
     background-color: #272727;
-    height: 185px;
+    height: 195px;
 }
 
 div#side4 {
@@ -412,7 +413,7 @@ div#side4 {
 
 div.side4_ad {
     border: 1px solid #484848;
-    background-color: black;
+    background-color: #272727;
     height: 300px;
 }
 
@@ -568,11 +569,60 @@ button.register {
 }
 
 /* community */
+div.commu_body {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 16px;
+    color: #aaa;
+    padding: 10px;
+}
 
 div.commu_ad {
     border: 1px solid #484848;
-    background-color: black;
+    background-color: #272727;
     width: 100%;
     height: 120.5px;
     margin-top: 10px;
+}
+
+div.commu_content {
+    justify-content: space-between;
+    margin-top: 10px;
+}
+
+div.in_commu_content {
+    width: 49.5%;
+}
+
+div.all_menu_choice {
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+    background-color: #272727;
+    border: 1px solid #484848;
+    padding: 10px;
+    font-size: 17px;
+}
+
+div.in_all_menu {
+    width: 50px;
+    color:#555;
+}
+
+div.in_all_menu_choice {
+    width: 50px;
+}
+
+div.commu_list {
+    margin-top: 5px;
+    width: 900px;
+    border: 1px solid #484848;
+    background-color: #272727;
+    padding: 10px;
+}
+
+th,
+td {
+    padding: 7px;
 }

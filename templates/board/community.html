@@ -2,47 +2,68 @@
 {% block contents %}
 <div class="main">
     <div class="community">
-        <div class="community_content">
-            <div class="in_community_content">
-                <div class="in_community_header">
-                    <span style="color:#848b79;">|</span>
-                    <span>자유</span>
-                    <div class="community_body">
-                        <div>ㅁㄴㅇㄻㄴㅇㄹ</div>
-                        <div>ㅁㄴㅇㄻㄴㅇㄹ</div>
-                        <div>ㅁㄴㅇㄻㄴㅇㄹ</div>
-                        <div>ㅁㄴㅇㄻㄴㅇㄹ</div>
-                        <div>ㅁㄴㅇㄻㄴㅇㄹ</div>
-                        <div>ㅁㄴㅇㄻㄴㅇㄹ</div>
-                        <div>ㅁㄴㅇㄻㄴㅇㄹ</div>
-                        <div>ㅁㄴㅇㄻㄴㅇㄹ</div>
-                        <div>ㅁㄴㅇㄻㄴㅇㄹ</div>
-                    </div>
-                </div>
+        <div>
+            <div class="in_community_header">
+                <span style="color:#848b79;">|</span>
+                <span>베스트글</span>
             </div>
-            <div class="in_community_content">
-                <div class="in_community_header">
-                    <span style="color:#848b79;">|</span>
-                    <span>정보</span>
+            <div class="commu_body">
+                <div class="in_commu_content">
+                    <p>가나다라마바사아앙삿아</p>
+                    <p>가나다라마바23 4213사아앙삿아</p>
+                    <p>가나다asdfasdf앙삿아</p>
+                    <p>가나ㅋㅌㅊㅍ asdfasdf사아앙삿아</p>
+                    <p>가1235215사아앙삿아</p>
                 </div>
-                <div class="community_body">
-                    <div>제목, 댓글, 추천</div>
-                    <div>ㅁㄴㅇㄻㄴㅇㄹ</div>
-                    <div>ㅁㄴㅇㄻㄴㅇㄹ</div>
-                    <div>(경) 대한민국, 폴란드와 40조원 어치 거래 성사! (축)</div>
-                    <div>ㅁㄴㅇㄻㄴㅇㄹ</div>
-                    <div>ㅁㄴㅇㄻㄴㅇㄹ</div>
-                    <div>ㅁㄴㅇㄻㄴㅇㄹ</div>
-                    <div>ㅁㄴㅇㄻㄴㅇㄹ</div>
-                    <div>ㅁㄴㅇㄻㄴㅇㄹ</div>
+                <div class="in_commu_content">
+                    <p>ㅁㄴㅇㄻㄴㅇ러ㅏㅁㅇ뉴ㅓㅏㄻㅇ넘ㅇㄹ너ㅏ</p>
+                    <p>ㅁㄴㅇㄻㄴㅇ러ㅏㅁㅇ뉴ㅓㅏㄻㅇ넘ㅇㄹ너ㅁ</p>
+                    <p>ㅁㄴㅇㄻㄴㅇ러ㅏㅁㅇ뉴ㅓㅏㄻㅇ넘ㅇㄹ너
+                    </p>
+                    <p>ㅁㄴㅇㄻㄴㅇ러ㅏㅁㅇ뉴ㅓㅏㄻㅇ넘ㅇㄹ너ㅏ</p>
+                    <p>ㅁㄴㅇㄻㄴㅇ러ㅏㅁㅇ뉴ㅓㅏㄻㅇ넘ㅇㄹ너ㅏ</p>
                 </div>
             </div>
         </div>
     </div>
     <div class="commu_ad"></div>
+    <div class="all_menu_choice">
+        <div class="in_all_menu_choice">전체</div>
+        <div class="in_all_menu">자유</div>
+        <div class="in_all_menu">정보</div>
+    </div>
+    <div class="commu_list">
+        <table style="text-align: center;">
+            <thead>
+                <tr class=" table-defalut" style="font-size: 14px; color: #555;">
+                    <th style="width:70px;">추천</th>
+                    <th style="width:100px;">분류</th>
+                    <th style="width:450px;">제목</th>
+                    <th style="width:120px;">작성자</th>
+                    <th style="width:70px;">조회수</th>
+                    <th style="width:70px;">작성일</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for board in boards %}
+                <tr style="font-size: 15px; border: 1px solid #363636; color:#aaa;">
+                    <td>{{ board.like }}</td>
+                    <td>{{ board.board_name }}</td>
+                    <td style="text-align:left;">
+                        <a href="" target="_self" style="text-decoration: none">
+                            {{ board.title }}
+                        </a>
+                    </td>
+                    <td>{{ board.writer }}</td>
+                    <td>{{ board.view }}</td>
+                    <td>{{ board.date_string }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </div>
 {% endblock contents %}
-<!--             
 {% for board in boards %}
 추천:{{board.like}}
 분류:{{board.board_name}}
@@ -52,4 +73,3 @@
 조회:{{board.view}}
 작성일:{{board.date_string}}
 {% endfor %}
--->

@@ -5,8 +5,8 @@ from .models import Board
 @admin.register(Board)
 class UserAdmin(admin.ModelAdmin):
     list_display = (
-        "board_name",
         "title",
+        "board_name",
         "content",
         "writer",
         "date",
