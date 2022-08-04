@@ -1,3 +1,25 @@
+/* all */
+
+div.all_menu_choice {
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+    background-color: #272727;
+    border: 1px solid #484848;
+    padding: 10px;
+    font-size: 17px;
+}
+
+div.in_all_menu {
+    width: 50px;
+    color: #555;
+}
+
+div.in_all_menu_choice {
+    width: 50px;
+}
+
+
 /* home */
 
 html {
@@ -593,25 +615,6 @@ div.commu_content {
 
 div.in_commu_content {
     width: 49.5%;
-}
-
-div.all_menu_choice {
-    display: flex;
-    flex-direction: row;
-    margin-top: 10px;
-    background-color: #272727;
-    border: 1px solid #484848;
-    padding: 10px;
-    font-size: 17px;
-}
-
-div.in_all_menu {
-    width: 50px;
-    color:#555;
-}
-
-div.in_all_menu_choice {
-    width: 50px;
 }
 
 div.commu_list {

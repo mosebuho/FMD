@@ -9,19 +9,14 @@
             </div>
             <div class="commu_body">
                 <div class="in_commu_content">
-                    <p>가나다라마바사아앙삿아</p>
-                    <p>가나다라마바23 4213사아앙삿아</p>
-                    <p>가나다asdfasdf앙삿아</p>
-                    <p>가나ㅋㅌㅊㅍ asdfasdf사아앙삿아</p>
-                    <p>가1235215사아앙삿아</p>
+                    {% for list in hot_list %}
+                    <p>{{ list.title}}</p>
+                    {% endfor %}
                 </div>
                 <div class="in_commu_content">
-                    <p>ㅁㄴㅇㄻㄴㅇ러ㅏㅁㅇ뉴ㅓㅏㄻㅇ넘ㅇㄹ너ㅏ</p>
-                    <p>ㅁㄴㅇㄻㄴㅇ러ㅏㅁㅇ뉴ㅓㅏㄻㅇ넘ㅇㄹ너ㅁ</p>
-                    <p>ㅁㄴㅇㄻㄴㅇ러ㅏㅁㅇ뉴ㅓㅏㄻㅇ넘ㅇㄹ너
-                    </p>
-                    <p>ㅁㄴㅇㄻㄴㅇ러ㅏㅁㅇ뉴ㅓㅏㄻㅇ넘ㅇㄹ너ㅏ</p>
-                    <p>ㅁㄴㅇㄻㄴㅇ러ㅏㅁㅇ뉴ㅓㅏㄻㅇ넘ㅇㄹ너ㅏ</p>
+                    {% for list in hot_list2 %}
+                    <p>{{ list.title}}</p>
+                    {% endfor %}
                 </div>
             </div>
         </div>
@@ -36,27 +31,27 @@
         <table style="text-align: center;">
             <thead>
                 <tr class=" table-defalut" style="font-size: 14px; color: #555;">
-                    <th style="width:70px;">추천</th>
-                    <th style="width:100px;">분류</th>
+                    <th style="width:30px;">추천</th>
+                    <th style="width:90px;">분류</th>
                     <th style="width:450px;">제목</th>
-                    <th style="width:120px;">작성자</th>
+                    <th style="width:140px;">작성자</th>
                     <th style="width:70px;">조회수</th>
-                    <th style="width:70px;">작성일</th>
+                    <th style="width:80px;">작성일</th>
                 </tr>
             </thead>
             <tbody>
-                {% for post in posts %}
+                {% for list in object_list %}
                 <tr style="font-size: 15px; border: 1px solid #363636; color:#aaa;">
-                    <td>{{ post.like }}</td>
-                    <td>{{ post.board_name }}</td>
+                    <td>{{ list.like }}</td>
+                    <td>{{ list.name }}</td>
                     <td style="text-align:left;">
                         <a href="" target="_self" style="text-decoration: none">
-                            {{ post.title }}
+                            {{ list.title }}
                         </a>
                     </td>
-                    <td>{{ post.writer }}</td>
-                    <td>{{ post.view }}</td>
-                    <td>{{ post.date_string }}</td>
+                    <td>{{ list.writer }}</td>
+                    <td>{{ list.view }}</td>
+                    <td>{{ list.date_string }}</td>
                 </tr>
                 {% endfor %}
             </tbody>
