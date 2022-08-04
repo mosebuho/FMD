@@ -45,18 +45,18 @@
                 </tr>
             </thead>
             <tbody>
-                {% for board in boards %}
+                {% for post in posts %}
                 <tr style="font-size: 15px; border: 1px solid #363636; color:#aaa;">
-                    <td>{{ board.like }}</td>
-                    <td>{{ board.board_name }}</td>
+                    <td>{{ post.like }}</td>
+                    <td>{{ post.board_name }}</td>
                     <td style="text-align:left;">
                         <a href="" target="_self" style="text-decoration: none">
-                            {{ board.title }}
+                            {{ post.title }}
                         </a>
                     </td>
-                    <td>{{ board.writer }}</td>
-                    <td>{{ board.view }}</td>
-                    <td>{{ board.date_string }}</td>
+                    <td>{{ post.writer }}</td>
+                    <td>{{ post.view }}</td>
+                    <td>{{ post.date_string }}</td>
                 </tr>
                 {% endfor %}
             </tbody>
@@ -64,12 +64,3 @@
     </div>
 </div>
 {% endblock contents %}
-{% for board in boards %}
-추천:{{board.like}}
-분류:{{board.board_name}}
-제목:{{board.title}}
-내용:{{board.content}}
-작성자:{{board.writer}}
-조회:{{board.view}}
-작성일:{{board.date_string}}
-{% endfor %}

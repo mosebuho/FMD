@@ -1,12 +1,12 @@
 from django.contrib import admin
-from .models import Board
+from .models import Community
 
 
-@admin.register(Board)
+@admin.register(Community)
 class UserAdmin(admin.ModelAdmin):
     list_display = (
         "title",
-        "board_name",
+        "name",
         "content",
         "writer",
         "date",

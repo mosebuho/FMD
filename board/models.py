@@ -2,14 +2,14 @@ from django.db import models
 from datetime import datetime, timedelta, timezone
 
 
-class Board(models.Model):
+class Community(models.Model):
     title = models.CharField(max_length=64, verbose_name="제목")
     content = models.TextField(verbose_name="내용")
     writer = models.ForeignKey(
         "user.User", on_delete=models.CASCADE, verbose_name="작성자"
     )
     date = models.DateTimeField(auto_now_add=True, verbose_name="작성일")
-    board_name = models.CharField(max_length=32, verbose_name="분류")
+    name = models.CharField(max_length=32, verbose_name="분류")
     view = models.PositiveIntegerField(default=0, verbose_name="조회수")
     like = models.PositiveIntegerField(default=0, verbose_name="추천수")
     
@@ -32,6 +32,6 @@ class Board(models.Model):
         return self.title
 
     class Meta:
-        db_table = "board"
-        verbose_name = "게시판"
-        verbose_name_plural = "게시판"
+        db_table = "Community"
+        verbose_name = "커뮤니티"
+        verbose_name_plural = "커뮤니티"
