@@ -1,7 +1,6 @@
 from django.db import models
-from datetime import datetime, timedelta, timezone
-
-
+from datetime import timedelta
+from django.utils import timezone
 class Community(models.Model):
     title = models.CharField(max_length=64, verbose_name="제목")
     content = models.TextField(verbose_name="내용")
@@ -15,18 +14,11 @@ class Community(models.Model):
     
     @property
     def date_string(self):
-        time = datetime.now(tz=timezone.utc) - self.date
-        if time < timedelta(minutes=1):
-            return "방금 전"
-        elif time < timedelta(hours=1):
-            return str(int(time.seconds / 60)) + "분 전"
-        elif time < timedelta(days=1):
-            return str(int(time.seconds / 3600)) + "시간 전"
-        elif time < timedelta(days=7):
-            time = datetime.now(tz=timezone.utc).date() - self.date.date()
-            return str(time.days) + "일 전"
+        time = timezone.now() - self.date
+        if time < timedelta(days=1):
+            return self.date.strftime("%-H:%-M")
         else:
-            return self.date.strftime("%m/%d")
+            return self.date.strftime("%m-%d")
 
     def __str__(self):
         return self.title
