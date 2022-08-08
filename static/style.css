@@ -629,3 +629,32 @@ th,
 td {
     padding: 7px;
 }
+
+ul.pagination {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+li.page-item {
+    text-align: center;
+    padding: 5px 0;
+    width: 25px;
+    height: 30px;
+    font-size: 13px;
+}
+
+li.page-item-active {
+    text-align: center;
+    padding: 5px 0;
+    width: 25px;
+    height: 30px;
+    background-color: #848b79;
+    font-size: 13px;
+}
+
+li.page-item-button {
+    padding: 5px 0;
+    font-size: 14px;
+}
