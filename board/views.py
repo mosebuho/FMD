@@ -5,7 +5,7 @@ from .models import Community
 class CommunitylistView(generic.ListView):
     template_name = "board/community.html"
     queryset = Community.objects.order_by("-id")
-    paginate_by = 30
+    paginate_by = 29
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

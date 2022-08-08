@@ -3,7 +3,7 @@
 div.all_menu_choice {
     display: flex;
     flex-direction: row;
-    margin-top: 10px;
+    margin-top: 5px;
     background-color: #272727;
     border: 1px solid #484848;
     padding: 10px;
@@ -591,6 +591,7 @@ button.register {
 }
 
 /* community */
+
 div.commu_body {
     display: flex;
     flex-direction: row;
@@ -605,12 +606,7 @@ div.commu_ad {
     background-color: #272727;
     width: 100%;
     height: 120.5px;
-    margin-top: 10px;
-}
-
-div.commu_content {
-    justify-content: space-between;
-    margin-top: 10px;
+    margin-top: 5px;
 }
 
 div.in_commu_content {
@@ -618,11 +614,10 @@ div.in_commu_content {
 }
 
 div.commu_list {
-    margin-top: 5px;
+    margin-top: 2px;
     width: 900px;
     border: 1px solid #484848;
     background-color: #272727;
-    padding: 10px;
 }
 
 th,
@@ -634,7 +629,6 @@ ul.pagination {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    margin-top: 10px;
 }
 
 li.page-item {
@@ -651,10 +645,58 @@ li.page-item-active {
     width: 25px;
     height: 30px;
     background-color: #848b79;
-    font-size: 13px;
 }
 
 li.page-item-button {
     padding: 5px 0;
+}
+
+div.commu_buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 10px;
+    height: 30px;
     font-size: 14px;
+    padding-left: 80px;
+}
+
+div.commu_write_button {
+    background-color: #848b79;
+    width: 80px;
+    text-align: center;
+    padding-top: 4px;
+}
+
+div.commu_search {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    text-align: center;
+    height: 40px;
+    font-size: 14px;
+    margin: auto;
+    margin-top: 20px;
+}
+
+
+input#commu_search_input {
+    padding: 5px;
+    width: 280px;
+    height: auto;
+    background-color: #272727;
+}
+
+div.commu_search_choice {
+    width: 90px;
+    padding-top: 8px;
+    border: solid 1px #484848;
+    background-color: #272727;
+}
+
+div.commu_search_done {
+    width: 70px;
+    padding-top: 8px;
+    border: solid 1px #484848;
+    background-color: #272727;
 }

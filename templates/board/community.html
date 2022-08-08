@@ -31,7 +31,7 @@
         <table style="text-align: center;">
             <thead>
                 <tr class="table-defalut" style="font-size: 14px; color: #555;">
-                    <th style="width:30px;">추천</th>
+                    <th style="width:70px;">추천</th>
                     <th style="width:90px;">분류</th>
                     <th style="width:450px;">제목</th>
                     <th style="width:140px;">작성자</th>
@@ -57,30 +57,44 @@
             </tbody>
         </table>
     </div>
-    <div class="pagination">
-        {% if is_paginated %}
-        <ul class="pagination">
-            {% if page_obj.has_previous %}
-            <li class="page-item-button">
-                <a class="page-link" href="?page={{page_obj.previous_page_number}}">&laquo; 이전&nbsp&nbsp</a>
-            </li>
+    <div class="commu_buttons">
+        <div></div>
+        <div class="pagination">
+            {% if is_paginated %}
+            <ul class="pagination">
+                {% if page_obj.has_previous %}
+                <li class="page-item-button">
+                    <a class="page-link" href="?page={{page_obj.previous_page_number}}">&laquo; 이전&nbsp&nbsp</a>
+                </li>
+                {% endif %}
+                {% for i in paginator.page_range %}
+                {% if page_obj.number == i %}
+                <li class="page-item-active">{{ i }}</li>
+                {% else %}
+                <li class="page-item">
+                    <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+                </li>
+                {% endif %}
+                {% endfor %}
+                {% if page_obj.has_next %}
+                <li class="page-item-button">
+                    <a href="?page={{page_obj.next_page_number}}" class="page-link">&nbsp&nbsp다음 &raquo;</a>
+                </li>
+                {% endif %}
+            </ul>
             {% endif %}
-            {% for i in paginator.page_range %}
-            {% if page_obj.number == i %}
-            <li class="page-item-active">{{ i }}</li>
-            {% else %}
-            <li class="page-item">
-                <a class="page-link" href="?page={{ i }}">{{ i }}</a>
-            </li>
-            {% endif %}
-            {% endfor %}
-            {% if page_obj.has_next %}
-            <li class="page-item-button">
-                <a href="?page={{page_obj.next_page_number}}" class="page-link">&nbsp&nbsp다음 &raquo;</a>
-            </li>
-            {% endif %}
-        </ul>
-        {% endif %}
+        </div>
+        <div class="commu_write_button">
+            <button>
+                <i class="fa-solid fa-pen-to-square"></i>
+                <span>글쓰기</span>
+            </button>
+        </div>
+    </div>
+    <div class="commu_search">
+        <div class="commu_search_choice">분류</div>
+        <input id="commu_search_input" placeholder="검색어를 입력해주세요."></input>
+        <div class="commu_search_done">검색</div>
     </div>
 </div>
 {% endblock contents %}
