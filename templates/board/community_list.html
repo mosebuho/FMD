@@ -9,19 +9,20 @@
             </div>
             <div class="commu_body">
                 <div class="in_commu_content">
-                    {% for list in hot_list %}
-                    <p>{{ list.title}}</p>
+                    {% for list in commu_hot_list %}
+                    <p><a href="{% url 'board:community_detail' list.pk%}">{{ list.title}}</a></p>
                     {% endfor %}
                 </div>
                 <div class="in_commu_content">
-                    {% for list in hot_list2 %}
-                    <p>{{ list.title}}</p>
+                    {% for list in commu_hot_list2 %}
+                    <p><a href="{% url 'board:community_detail' list.pk%}">{{ list.title}}</a></p>
                     {% endfor %}
                 </div>
             </div>
         </div>
     </div>
     <div class="commu_ad"></div>
+    {% block detailcontent %}
     <div class="all_menu_choice">
         <div class="in_all_menu_choice">전체</div>
         <div class="in_all_menu">자유</div>
@@ -40,12 +41,13 @@
                 </tr>
             </thead>
             <tbody>
-                {% for list in object_list %}
+                {% for list in commulist %}
                 <tr style="font-size: 15px; border: 1px solid #363636; color:#aaa;">
                     <td>{{ list.like }}</td>
                     <td>{{ list.name }}</td>
                     <td style="text-align:left;">
-                        <a href="" target="_self" style="text-decoration: none">
+                        <a href="{% url 'board:community_detail' list.pk %}" target="_self"
+                            style="text-decoration: none">
                             {{ list.title }}
                         </a>
                     </td>
@@ -87,7 +89,7 @@
         <div class="commu_write_button">
             <button>
                 <i class="fa-solid fa-pen-to-square"></i>
-                <span>글쓰기</span>
+                <span><a href="{% url 'board:community_create' %}">글쓰기</a></span>
             </button>
         </div>
     </div>
@@ -96,5 +98,6 @@
         <input id="commu_search_input" placeholder="검색어를 입력해주세요."></input>
         <div class="commu_search_done">검색</div>
     </div>
+    {% endblock detailcontent %}
 </div>
 {% endblock contents %}

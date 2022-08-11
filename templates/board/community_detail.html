@@ -1,0 +1,24 @@
+{% extends "board/community_list.html" %}
+{% block detailcontent %}
+<div class="commu_detail">
+    <div class="commu_detail_title">{{commudetail}}</div>
+    <div class="commu_detail_sub">
+        <div>
+            <span style="margin-right:5px;">{{commudetail.writer}}</span>
+            <span style="color:#848b79; margin-right:5px;">|</span>
+            <span class="in_commu_detail_sub"><i class="fa-solid fa-eye"></i> {{commudetail.view}}</span>
+            <span class="in_commu_detail_sub"><i class="fa-solid fa-thumbs-up"></i> {{commudetail.like}}</span>
+            <span class="in_commu_detail_sub"><i class="fa-solid fa-comment"></i> 0</span>
+        </div>
+        <div>
+            <i class="fa-solid fa-clock"></i> {{commudetail.date}}
+        </div>
+    </div>
+    <div class="commu_detail_content">
+        {{commudetail.content}}
+    </div>
+    <div class="commu_detail_content_writer_info">
+        
+    </div>
+</div>
+{% endblock detailcontent %}
