@@ -1,7 +1,7 @@
 from django.views import generic
 from .models import Community
 from .forms import CommuModelForm
-
+from user.models import User
 
 class CommunityListView(generic.ListView):
     template_name = "board/community_list.html"
@@ -32,7 +32,9 @@ class CommunityCreateView(generic.CreateView):
     template_name = "board/community_write.html"
     form_class = CommuModelForm
     success_url = "/board/community/"
-
+    
     def form_valid(self, form):
         form.instance.writer = self.request.user
+        self.request.user.point += 1
+        self.request.user.save()
         return super().form_valid(form)
