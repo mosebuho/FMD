@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+{% load static %}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>4MILLDUK</title>
+    <link rel="stylesheet" href="/static/home.css/" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Jua&family=Nanum+Gothic:wght@700&family=Noto+Sans+KR&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <header>
+        <div class="top">
+            <a href="/"><img src="{% static 'logo.png' %}" /></a>
+            <span></span>
+        </div>
+        <nav>
+            <div>
+                <input placeholder="검색어를 입력해주세요."></input>
+                <button>
+                    <i class="fa-solid fa-magnifying-glass" style="font-size:19px;"></i>
+                </button>
+            </div>
+            <ul>
+                <li>
+                    <a href="{% url 'board:community_list'%}">
+                        <i class="fa-solid fa-newspaper"></i>
+                        뉴스/정보
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'board:community_list'%}">
+                        <i class="fa-solid fa-chart-column"></i>
+                        군사칼럼
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'board:community_list'%}">
+                        <i class="fa-solid fa-comments"></i>
+                        커뮤니티
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'board:community_list'%}">
+                        <i class="fa-solid fa-book-bookmark"></i>
+                        밀덕백과
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'board:community_list'%}">
+                        <i class="fa-solid fa-calendar-days"></i>
+                        행사일정
+                    </a>
+                </li>
+                <li>
+                    <a href="{% url 'board:community_list'%}">
+                        <i class="fa-solid fa-circle-info"></i>
+                        공지/건의
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <article>
+            <section id="news">
+                <div class="title">
+                    뉴스/정보
+                    <span>국내 | 해외</span>
+                </div>
+                <ul>
+                    <li>
+                        <div class="img"></div>
+                        환상적인 드리블
+                    </li>
+                    <li>
+                        <div class="img"></div>
+                        오늘은 밖에 비가 온다 천둥도 친다 와다다다다
+                    </li>
+                    <li>
+                        <div class="img"></div>
+                        우리 일민이가 너무 귀엽다 요즘 너무 심심한가 보다 놀아주면 맨날 깨문다
+                    </li>
+                </ul>
+            </section>
+        </article>
+        <aside>
+            <section id="side1">
+                {% if request.user.is_authenticated %}
+                <div class="profile">
+                    <div class="profile-top">
+                        <img src="{% static 'logo.png' %}" />
+                        <div>
+                            <span>Lv.1 {{ request.user.point }}포인트</span>
+                            <div>{{ request.user.name }}</div>
+                            <span>
+                                내정보
+                                <a href="{% url 'user:logout' %}">&nbsp로그아웃</a>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="profile-point"></div>
+                </div>
+                {% else %}
+                <div class="login">
+                    <span>4MILLDUK - 세계체강 밀덕</span>
+                    <button><a href="{% url 'user:login' %}">로그인</a></button>
+                    <div>
+                        아이디/비밀번호 찾기
+                        <a href="{% url 'user:register' %}">회원가입</a>
+                    </div>
+                </div>
+                {% endif %}
+                <div class="ad">
+                </div>
+            </section>
+        </aside>
+    </main>
+    <footer>
+    </footer>
+</body>
+
+</html>

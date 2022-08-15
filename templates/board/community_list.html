@@ -1,7 +1,7 @@
 {% extends "home/home.html" %}
 {% block contents %}
 <div class="main">
-    <div class="community">
+    <div class="in_community">
         <div>
             <div class="in_community_header">
                 <span style="color:#848b79;">|</span>
@@ -88,8 +88,10 @@
         </div>
         <div class="commu_write_button">
             <button>
-                <i class="fa-solid fa-pen-to-square"></i>
-                <span><a href="{% url 'board:community_create' %}">글쓰기</a></span>
+                <a href="{% url 'board:community_create' %}">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                    <span>글쓰기</span>
+                </a>
             </button>
         </div>
     </div>

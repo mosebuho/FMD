@@ -1,10 +1,20 @@
-<p>
-<form method="post">
-    {% csrf_token %}
-    {{form.title}}
-    {{form.content}}
-    {{form.name}}
-    {{form.writer}}
-    <button type="submit">완료</button>
-</form>
-</p>
+{% extends "home/home.html" %}
+{% block contents %}
+<div class="main">
+    <div class="commu_ad"></div>
+    <div class="commu_form">
+        <form method="post">
+            {% csrf_token %}
+            <div style="display:flex; flex-direction:row; width:900px;">
+                <select type="select" class="form-select" id="commu_name" name="name">
+                    <option value="free">자유</option>
+                    <option value="info">정보</option>
+                </select>
+                <input type="text" class="form-control" id="commu_title" name="title" placeholder="제목을 입력해주세요." />
+            </div>
+            {{form.content}}
+            <button type="submit">게시하기</button>
+        </form>
+    </div>
+</div>
+{% endblock contents %}

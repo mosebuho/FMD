@@ -35,6 +35,6 @@ class CommunityCreateView(generic.CreateView):
     
     def form_valid(self, form):
         form.instance.writer = self.request.user
-        self.request.user.point += 1
+        self.request.user.point += 2
         self.request.user.save()
         return super().form_valid(form)

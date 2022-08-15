@@ -35,7 +35,6 @@ div.content {
     background-color: #363636;
     width: 1200px;
     margin: 0 auto;
-    height: auto;
     min-height: 100%;
     position: relative;
 }
@@ -88,6 +87,7 @@ input#search_input {
     height: auto;
     border: none;
     background-color: #272727;
+    outline: none;
 }
 
 button.search_done {
@@ -247,7 +247,7 @@ div.community {
     background-color: #272727;
     width: 900px;
     padding: 10px;
-    margin-top: 5px;
+    margin-top: 10px;
 }
 
 div.community_header {
@@ -496,6 +496,7 @@ input {
     background-color: #363636;
     padding: 5px;
     border: #484848 solid 1px;
+    outline: none;
 }
 
 span.title-sub {
@@ -591,6 +592,14 @@ button.register {
 }
 
 /* community */
+
+div.in_community {
+    border: #484848 solid 1px;
+    background-color: #272727;
+    width: 900px;
+    padding: 10px;
+    margin-top: 5px;
+}
 
 div.commu_body {
     display: flex;
@@ -720,7 +729,7 @@ div.commu_detail {
 }
 
 div.commu_detail_content {
-    color:#aaa;
+    color: #aaa;
 }
 
 div.commu_detail_title {
@@ -746,7 +755,30 @@ span.in_commu_detail_sub {
 div.commu_detail_content_writer_info {
     justify-content: center;
     border: 1px solid #484848;
-    margin-top:15px;
-    height:150px;
-    margin-top:80px;
+    margin-top: 15px;
+    height: 150px;
+    margin-top: 80px;
+}
+
+/* community_create */
+
+div.commu_form {
+    width: 710px;
+    margin-top: 8px;
+}
+
+select#commu_name {
+    width: 120px;
+    height: 50px;
+    background-color: #272727;
+    text-align: center;
+    outline: none;
+}
+
+input#commu_title {
+    height: 50px;
+    padding: 10px;
+    border: none;
+    background-color: #272727;
+    outline: none;
 }
