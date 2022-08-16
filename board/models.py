@@ -14,7 +14,7 @@ class Community(models.Model):
     like = models.PositiveIntegerField(default=0, verbose_name="추천수")
 
     @property
-    def date_string(self):
+    def date_str(self):
         time = timezone.now() - self.date
         if time < timedelta(days=1):
             return self.date.strftime("%-H:%-M")

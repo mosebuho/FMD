@@ -1,13 +1,12 @@
 from django.views import generic
 from .models import Community
 from .forms import CommuModelForm
-from user.models import User
 
 class CommunityListView(generic.ListView):
     template_name = "board/community_list.html"
     queryset = Community.objects.order_by("-id")
-    paginate_by = 30
-    context_object_name = "commulist"
+    paginate_by = 31
+    context_object_name = "lists"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -19,7 +18,7 @@ class CommunityListView(generic.ListView):
 class CommunityDetailView(generic.DetailView):
     template_name = "board/community_detail.html"
     model = Community
-    context_object_name = "commudetail"
+    context_object_name = "detail"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

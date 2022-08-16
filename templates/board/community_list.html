@@ -1,105 +1,101 @@
 {% extends "home/home.html" %}
-{% block contents %}
-<div class="main">
-    <div class="in_community">
-        <div>
-            <div class="in_community_header">
-                <span style="color:#848b79;">|</span>
-                <span>베스트글</span>
-            </div>
-            <div class="commu_body">
-                <div class="in_commu_content">
-                    {% for list in commu_hot_list %}
-                    <p><a href="{% url 'board:community_detail' list.pk%}">{{ list.title}}</a></p>
-                    {% endfor %}
-                </div>
-                <div class="in_commu_content">
-                    {% for list in commu_hot_list2 %}
-                    <p><a href="{% url 'board:community_detail' list.pk%}">{{ list.title}}</a></p>
-                    {% endfor %}
-                </div>
-            </div>
+{% block content %}
+<link rel="stylesheet" href="/static/community.css/" />
+<section id="best">
+    <span>베스트글</span>
+    <div class="body">
+        <div class="content">
+            {% for list in commu_hot_list %}
+            <p><a href="{% url 'board:community_detail' list.pk%}">{{ list.title}}</a></p>
+            {% endfor %}
+        </div>
+        <div class="content">
+            {% for list in commu_hot_list2 %}
+            <p><a href="{% url 'board:community_detail' list.pk%}">{{ list.title}}</a></p>
+            {% endfor %}
         </div>
     </div>
-    <div class="commu_ad"></div>
-    {% block detailcontent %}
-    <div class="all_menu_choice">
-        <div class="in_all_menu_choice">전체</div>
-        <div class="in_all_menu">자유</div>
-        <div class="in_all_menu">정보</div>
-    </div>
-    <div class="commu_list">
-        <table style="text-align: center;">
-            <thead>
-                <tr class="table-defalut" style="font-size: 14px; color: #555;">
-                    <th style="width:70px;">추천</th>
-                    <th style="width:90px;">분류</th>
-                    <th style="width:450px;">제목</th>
-                    <th style="width:140px;">작성자</th>
-                    <th style="width:70px;">조회수</th>
-                    <th style="width:80px;">작성일</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for list in commulist %}
-                <tr style="font-size: 15px; border: 1px solid #363636; color:#aaa;">
-                    <td>{{ list.like }}</td>
-                    <td>{{ list.name }}</td>
-                    <td style="text-align:left;">
-                        <a href="{% url 'board:community_detail' list.pk %}" target="_self"
-                            style="text-decoration: none">
-                            {{ list.title }}
-                        </a>
-                    </td>
-                    <td>{{ list.writer }}</td>
-                    <td>{{ list.view }}</td>
-                    <td>{{ list.date_string }}</td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
-    <div class="commu_buttons">
-        <div></div>
-        <div class="pagination">
-            {% if is_paginated %}
-            <ul class="pagination">
-                {% if page_obj.has_previous %}
-                <li class="page-item-button">
-                    <a class="page-link" href="?page={{page_obj.previous_page_number}}">&laquo; 이전&nbsp&nbsp</a>
-                </li>
-                {% endif %}
-                {% for i in paginator.page_range %}
-                {% if page_obj.number == i %}
-                <li class="page-item-active">{{ i }}</li>
-                {% else %}
-                <li class="page-item">
-                    <a class="page-link" href="?page={{ i }}">{{ i }}</a>
-                </li>
-                {% endif %}
-                {% endfor %}
-                {% if page_obj.has_next %}
-                <li class="page-item-button">
-                    <a href="?page={{page_obj.next_page_number}}" class="page-link">&nbsp&nbsp다음 &raquo;</a>
-                </li>
-                {% endif %}
-            </ul>
-            {% endif %}
-        </div>
-        <div class="commu_write_button">
-            <button>
-                <a href="{% url 'board:community_create' %}">
-                    <i class="fa-solid fa-pen-to-square"></i>
-                    <span>글쓰기</span>
-                </a>
-            </button>
-        </div>
-    </div>
-    <div class="commu_search">
-        <div class="commu_search_choice">분류</div>
-        <input id="commu_search_input" placeholder="검색어를 입력해주세요."></input>
-        <div class="commu_search_done">검색</div>
-    </div>
-    {% endblock detailcontent %}
-</div>
-{% endblock contents %}
+</section>
+<section id="ad">
+    <img id="ad">
+</section>
+{% block detail %}
+<section id="menu">
+    전체
+    자유
+    정보
+</section>
+<section id="list">
+    <table>
+        <thead>
+            <tr>
+                <th style="width:50px;">추천</th>
+                <th style="width:50px;">분류</th>
+                <th style="width:540px;">제목</th>
+                <th style="width:80px;">작성자</th>
+                <th style="width:50px;">조회수</th>
+                <th style="width:50px;">작성일</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for list in lists %}
+            <tr>
+                <td>{{ list.like }}</td>
+                <td>{{ list.name }}</td>
+                <td id="title">
+                    <a href="{% url 'board:community_detail' list.pk %}" target="_self" style="text-decoration: none">
+                        {{ list.title }}
+                    </a>
+                </td>
+                <td>{{ list.writer }}</td>
+                <td>{{ list.view }}</td>
+                <td>{{ list.date_str }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</section>
+<section id="button">
+    <div></div>
+    {% if is_paginated %}
+    <ul>
+        {% if page_obj.has_previous %}
+        <li class="page-item-button">
+            <a class="page-link" href="?page={{page_obj.previous_page_number}}">&laquo; 이전&nbsp&nbsp</a>
+        </li>
+        {% endif %}
+        {% for i in paginator.page_range %}
+        {% if page_obj.number == i %}
+        <li class="page-item-active">{{ i }}</li>
+        {% else %}
+        <li class="page-item">
+            <a class="page-link" href="?page={{ i }}">{{ i }}</a>
+        </li>
+        {% endif %}
+        {% endfor %}
+        {% if page_obj.has_next %}
+        <li class="page-item-button">
+            <a href="?page={{page_obj.next_page_number}}" class="page-link">&nbsp&nbsp다음 &raquo;</a>
+        </li>
+        {% endif %}
+    </ul>
+    {% endif %}
+    <button>
+        <a href="{% url 'board:community_create' %}">
+            <i class="fa-solid fa-pen-to-square"></i> 글쓰기
+        </a>
+    </button>
+</section>
+<section id="search">
+    <form action="" method="post">
+        {% csrf_token %}
+        <select>
+            <option>자유</option>
+            <option>정보</option>
+        </select>
+        <input placeholder="검색어를 입력해주세요."></input>
+        <button type="submit">검색</button>
+    </form>
+</section>
+{% endblock detail %}
+{% endblock content %}

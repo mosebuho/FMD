@@ -12,6 +12,13 @@ body {
     padding: 10px;
 }
 
+select {
+    outline: none;
+    font-family: 'Noto Sans KR', sans-serif;
+    border: none;
+
+}
+
 main {
     display: flex;
     flex-direction: row;
@@ -59,9 +66,8 @@ a {
     padding-top: 10px;
 }
 
-.top span {
-    border: #484848 solid 1px;
-    background-color: #272727;
+.top img#ad {
+    background: #272727;
     width: 820px;
 }
 
@@ -70,7 +76,7 @@ nav {
     flex-direction: row;
     justify-content: space-between;
     height: 60px;
-    margin-top: 10px;
+    margin-top: 15px;
 }
 
 nav div {
@@ -78,19 +84,19 @@ nav div {
     flex-direction: row;
     justify-content: space-between;
     border: #484848 solid 1px;
-    background-color: #272727;
+    background: #272727;
     width: 350px;
 }
 
 nav input {
     width: 280px;
-    background-color: #272727;
+    background: #272727;
     font-size: 15px;
 }
 
 nav button {
     width: 55px;
-    background-color: #848b79;
+    background: #848b79;
     text-align: center;
     border-left: 1px solid #484848;
     color: #eee;
@@ -118,13 +124,11 @@ nav a {
     color: #eee;
 }
 
-/* home-news */
-
-
 section#news {
     border: #484848 solid 1px;
-    background-color: #272727;
+    background: #272727;
     height: 380px;
+    width: 900px;
     padding: 10px;
     margin-top: 5px;
 }
@@ -156,20 +160,194 @@ section#news li {
     width: 280px;
 }
 
-section#news .img {
+section#news li img#thumbnail {
     height: 250px;
+    width: 280px;
     border: #484848 1px solid;
-    margin-bottom: 10px;
 }
 
+
+section#column {
+    border: #484848 solid 1px;
+    background: #272727;
+    width: 900px;
+    padding: 10px;
+    margin-top: 10px;
+}
+
+section#column .title {
+    font-size: 20px;
+    padding-top: 2px;
+    padding-bottom: 12px;
+    border-bottom: #848b79 1px solid;
+}
+
+section#column .content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 5px;
+    padding-bottom: 5px;
+}
+
+section#column .column-list {
+    display: flex;
+    flex-direction: row;
+    width: 425px;
+    height: 118px;
+    margin-top: 10px;
+}
+
+section#column .column-list img#thumbnail {
+    background: #272727;
+    height: 100%;
+    width: 120px;
+}
+
+section#column .column-list div {
+    margin-left: 15px;
+    width: 280px;
+    display: flex;
+    flex-direction: column;
+}
+
+section#column .column-list span {
+    color: #aaa;
+    font-size: 14px;
+}
+
+
+section#community {
+    border: #484848 solid 1px;
+    background: #272727;
+    width: 900px;
+    padding: 10px;
+    margin-top: 10px;
+    height: 430px;
+}
+
+section#community .title {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-size: 20px;
+    padding-top: 2px;
+    padding-bottom: 12px;
+    border-bottom: #848b79 1px solid;
+}
+
+section#community .title span {
+    font-size: 15px;
+    margin-top: 7px;
+}
+
+section#community .content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 10px;
+    padding: 10px;
+
+}
+
+section#community .content div {
+    width: 49.5%;
+}
+
+section#community .content span {
+    font-size: 18px;
+    color: #eee;
+    border-left: 2px solid #848b79;
+    padding-left: 8px;
+}
+
+section#community .content ul {
+    padding: 0;
+    margin: 10px 0 0;
+    list-style: none;
+}
+
+section#community .content li {
+    padding: 2px 0;
+    color: #aaa;
+    font-size: 15px;
+}
+
+
+section#dictionary {
+    margin-top: 10px;
+    border: 1px solid #484848;
+    background: #272727;
+    width: 900px;
+    height: 280px;
+    padding: 10px;
+}
+
+section#dictionary .title {
+    font-size: 20px;
+    padding-top: 2px;
+    padding-bottom: 12px;
+    border-bottom: #848b79 1px solid;
+}
+
+section#dictionary .content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 15px;
+    padding-bottom: 5px;
+}
+
+section#dictionary .img-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 650px;
+}
+
+section#dictionary .img-list ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+section#dictionary .img-list ul li {
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+    color: #aaa;
+}
+
+section#dictionary .content img {
+    border: 1px solid #484848;
+    width: 150px;
+    height: 70px;
+    margin-bottom: 3px;
+}
+
+section#dictionary .list ul {
+    width: 220px;
+    border: 1px solid #484848;
+    height: 215px;
+    font-size: 15px;
+    color: #aaa;
+    padding: 0 8px;
+    list-style: none;
+    margin: 0;
+}
 
 
 /* aside */
 section#side1 {
     border: 1px solid #484848;
+    height: 400px;
 }
 
-.login {
+
+section#side1 .login {
     padding: 10px;
     height: 110px;
     text-align: center;
@@ -177,18 +355,18 @@ section#side1 {
     flex-direction: column;
 }
 
-.login button {
-    background-color: #848b79;
+section#side1 .login button {
+    background: #848b79;
     height: 50px;
     margin-top: 5px;
 }
 
-.login button a {
+section#side1 .login button a {
     color: #eee;
     font-size: 16px;
 }
 
-.login div {
+section#side1 .login div {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -197,58 +375,145 @@ section#side1 {
     color: #aaa;
 }
 
-.login div a {
+section#side1 .login div a {
     color: #aaa;
 }
 
-.login span {
+section#side1 .login span {
     color: #aaa;
 }
 
-.profile {
+
+section#side1 .profile {
     padding: 10px;
     height: 110px;
     text-align: center;
 }
 
-.profile-top {
+section#side1 .profile-info {
     display: flex;
     flex-direction: row;
 }
 
-.profile-top img {
-    width: 65px;
+section#side1 .profile-info img#profile {
+    width: 75px;
     height: 73px;
-    margin-right:10px;
+    margin-right: 10px;
+    background: #272727;
 }
 
-.profile-top div {
-    width: 175px;
+section#side1 .profile-info div {
+    width: 155px;
     text-align: left;
 }
 
-.profile-top div span {
+section#side1 .profile-info span {
+    color: #aaa;
     font-size: 12px;
-    color: #aaa;
 }
 
-.profile-top div span a {
-    color: #aaa;
-}
-
-.profile-top div div {
+section#side1 .profile-info div div {
     font-size: 17px;
 }
 
-.profile-point {
+section#side1 .profile-info a {
+    color: #aaa;
+    font-size: 12px;
+}
+
+section#side1 .profile-point {
     width: 100%;
     height: 25px;
-    background-color: #272727;
+    background: #272727;
     margin-top: 13px;
 }
 
-section#side1 .ad {
-    background-color: #272727;
-    height: 269px;
+
+section#side1 img#ad {
+    height: 270px;
+    width: 100%;
+    background: #272727;
+}
+
+
+section#side2 {
+    margin-top: 10px;
+    border: 1px solid #484848;
+}
+
+section#side2 dl {
+    background: #272727;
+    height: 170px;
+    padding: 5px;
+    margin: 0;
+}
+
+section#side2 dt {
+    border-bottom: 1px solid #848b79;
+    font-size: 17px;
+    padding-bottom: 5px;
+}
+
+section#side2 dd {
+    color: #aaa;
+    margin: 6px 0 0;
+    font-size: 15px;
+    list-style: none;
+}
+
+section#side2 li {
+    margin-top: 5px;
+}
+
+section#side2 div {
+    border-top: 1px solid #484848;
+    background: #272727;
+    height: 267px;
+    padding: 5px;
+}
+
+
+section#side3 {
+    margin-top: 10px;
+    border: 1px solid #484848;
+}
+
+section#side3 .calender {
+    background: #272727;
+    height: 253px;
+    padding: 5px;
+}
+
+section#side3 ul {
+    border-top: 1px solid #484848;
+    background: #272727;
+    height: 176px;
+    margin: 0;
+    padding: 5px;
+    list-style: none;
+}
+
+section#side3 li {
+    color: #aaa;
+    font-size: 14px;
+    padding: 1px 0;
+}
+
+section#side4 {
+    margin-top: 10px;
+}
+
+section#side4 img#ad {
+    height: 302px;
+    width: 270px;
+    background: #272727;
+}
+
+/* footer */
+footer {
+    position: relative;
+    height: 100px;
+    width: 100%;
+    margin-top: 50px;
     border-top: 1px solid #484848;
 }
