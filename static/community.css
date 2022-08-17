@@ -1,6 +1,6 @@
 section#best {
     border: #484848 solid 1px;
-    background-color: #272727;
+    background: #272727;
     width: 900px;
     padding: 10px;
     margin-top: 5px;
@@ -33,10 +33,9 @@ section#best .content {
     width: 49.5%;
 }
 
-
-section#ad img#ad {
+img#list-ad {
     border: 1px solid #484848;
-    background-color: #272727;
+    background: #272727;
     width: 920px;
     height: 120.5px;
     margin-top: 5px;
@@ -46,7 +45,7 @@ section#ad img#ad {
 section#menu {
     display: flex;
     flex-direction: row;
-    background-color: #272727;
+    background: #272727;
     border: 1px solid #484848;
     padding: 10px;
     font-size: 17px;
@@ -58,7 +57,7 @@ section#list {
     margin-top: 2px;
     width: 920px;
     border: 1px solid #484848;
-    background-color: #272727;
+    background: #272727;
 }
 
 table {
@@ -127,7 +126,7 @@ section#button .page-item-active {
     width: 25px;
     height: 25px;
     padding-top: 2px;
-    background-color: #848b79;
+    background: #848b79;
 }
 
 section#button .page-item-button {
@@ -136,7 +135,7 @@ section#button .page-item-button {
 
 
 section#button button {
-    background-color: #848b79;
+    background: #848b79;
     width: 80px;
     text-align: center;
 }
@@ -163,12 +162,12 @@ section#search input {
     padding: 5px;
     width: 300px;
     height: auto;
-    background-color: #272727;
+    background: #272727;
 }
 
 section#search select {
     width: 90px;
-    background-color: #272727;
+    background: #272727;
     color: #aaa;
     text-align: center;
     border-right: 1px solid #484848;
@@ -176,7 +175,7 @@ section#search select {
 
 section#search button {
     width: 70px;
-    background-color: #272727;
+    background: #272727;
     color: #aaa;
     border-left: 1px solid #484848;
 }
@@ -185,11 +184,10 @@ section#search button {
 
 section#detail {
     width: 900px;
-    margin-top: 5px;
     border: 1px solid #484848;
-    background-color: #272727;
+    background: #272727;
     padding: 10px;
-    font-size:22px;
+    font-size: 22px;
 }
 
 
@@ -203,12 +201,12 @@ section#detail .sub {
 }
 
 section#detail span {
-    float:right;
+    float: right;
 }
 
 section#detail .content {
     color: #aaa;
-    font-size:16px;
+    font-size: 16px;
 }
 
 section#detail .writer_info {
@@ -217,4 +215,55 @@ section#detail .writer_info {
     margin-top: 15px;
     height: 150px;
     margin-top: 80px;
+}
+
+/* write */
+section#write {
+    text-align: center;
+}
+
+section#write img#write-ad {
+    border: 1px solid #484848;
+    background: #272727;
+    width: 920px;
+    height: 120.5px;
+    margin-top: 5px;
+}
+
+section#write form {
+    width: 920px;
+    margin-top: 8px;
+    border:1px solid #484848;
+    background:#272727;
+}
+
+section#write select {
+    height: 50px;
+    width: 100px;
+    background: #272727;
+    text-align: center;
+    color: #aaa;
+}
+
+section#write input {
+    height: 30px;
+    width: 790px;
+    background: #272727;
+    font-size:15px;
+}
+
+section#write button {
+    width: 80px;
+    height: 40px;
+    color: #eee;
+    border:1px solid #484848;
+    margin:10px 5px;
+}
+
+section#write button#done {
+    background: #848b79;
+}
+
+section#write button#cancel {
+    background: #363636;
 }

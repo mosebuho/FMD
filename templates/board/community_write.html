@@ -1,20 +1,17 @@
-{% extends "home/home.html" %}
-{% block contents %}
-<div class="main">
-    <div class="commu_ad"></div>
-    <div class="commu_form">
-        <form method="post">
-            {% csrf_token %}
-            <div style="display:flex; flex-direction:row; width:900px;">
-                <select type="select" class="form-select" id="commu_name" name="name">
-                    <option value="free">자유</option>
-                    <option value="info">정보</option>
-                </select>
-                <input type="text" class="form-control" id="commu_title" name="title" placeholder="제목을 입력해주세요." />
-            </div>
-            {{form.content}}
-            <button type="submit">게시하기</button>
-        </form>
-    </div>
-</div>
-{% endblock contents %}
+{% extends "board/community_list.html" %}
+{% block write %}
+<section id="write">
+    <img id="write-ad">
+    <form method="post">
+        {% csrf_token %}
+        <select name="name">
+            <option value="free">자유</option>
+            <option value="info">정보</option>
+        </select>
+        <input name="title" placeholder="제목을 입력해주세요.">
+        {{form.content}}
+        <button id="done">게시</button>
+        <button id="cancel">취소</button>
+    </form>
+</section>
+{% endblock write %}

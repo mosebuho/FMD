@@ -52,7 +52,7 @@ a {
     text-decoration: none;
 }
 
-.top {
+header .top {
     height: 130px;
     display: flex;
     flex-direction: row;
@@ -66,7 +66,7 @@ a {
     padding-top: 10px;
 }
 
-.top img#ad {
+.top img#top-ad {
     background: #272727;
     width: 820px;
 }
@@ -429,7 +429,7 @@ section#side1 .profile-point {
 }
 
 
-section#side1 img#ad {
+section#side1 img#side1-ad {
     height: 270px;
     width: 100%;
     background: #272727;
@@ -499,14 +499,12 @@ section#side3 li {
     padding: 1px 0;
 }
 
-section#side4 {
-    margin-top: 10px;
-}
 
-section#side4 img#ad {
+img#side4-ad {
     height: 302px;
     width: 270px;
     background: #272727;
+    margin-top: 10px;
 }
 
 /* footer */

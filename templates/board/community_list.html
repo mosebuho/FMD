@@ -1,6 +1,7 @@
 {% extends "home/home.html" %}
 {% block content %}
 <link rel="stylesheet" href="/static/community.css/" />
+{% block write %}
 <section id="best">
     <span>베스트글</span>
     <div class="body">
@@ -16,9 +17,7 @@
         </div>
     </div>
 </section>
-<section id="ad">
-    <img id="ad">
-</section>
+<img id="list-ad">
 {% block detail %}
 <section id="menu">
     전체
@@ -87,15 +86,16 @@
     </button>
 </section>
 <section id="search">
-    <form action="" method="post">
+    <form method="post">
         {% csrf_token %}
         <select>
             <option>자유</option>
             <option>정보</option>
         </select>
-        <input placeholder="검색어를 입력해주세요."></input>
+        <input placeholder="검색어를 입력해주세요.">
         <button type="submit">검색</button>
     </form>
 </section>
 {% endblock detail %}
+{% endblock write %}
 {% endblock content %}
