@@ -12,6 +12,7 @@ class Community(models.Model):
     name = models.CharField(max_length=32, choices=name_choice, verbose_name="분류")
     view = models.PositiveIntegerField(default=0, verbose_name="조회수")
     like = models.PositiveIntegerField(default=0, verbose_name="추천수")
+    like_users = models.ManyToManyField(User, related_name="like_boards", blank=True)
 
     @property
     def date_str(self):

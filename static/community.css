@@ -196,7 +196,7 @@ section#detail .sub {
     margin: 15px 0;
     border-top: 1px solid #484848;
     border-bottom: 1px solid #484848;
-    font-size: 14px;
+    font-size: 13px;
     color: #aaa;
 }
 
@@ -209,12 +209,31 @@ section#detail .content {
     font-size: 16px;
 }
 
-section#detail .writer_info {
-    justify-content: center;
+section#detail .writer-info {
     border: 1px solid #484848;
-    margin-top: 15px;
+    width: 700px;
     height: 150px;
-    margin-top: 80px;
+    margin: 100px auto 10px;
+    padding: 10px;
+}
+
+section#detail .buttons {
+    text-align: center;
+}
+
+section#detail .buttons button {
+    width: 80px;
+    height: 40px;
+    color: #eee;
+    border: 1px solid #484848;
+    margin: 10px 5px;
+    background: #848b79;
+    font-size: 15px;
+    border:1px solid #484848;
+}
+
+section#detail .buttons button#flag {
+    background: #e74c3c;
 }
 
 /* write */
@@ -233,8 +252,8 @@ section#write img#write-ad {
 section#write form {
     width: 920px;
     margin-top: 8px;
-    border:1px solid #484848;
-    background:#272727;
+    border: 1px solid #484848;
+    background: #272727;
 }
 
 section#write select {
@@ -249,15 +268,15 @@ section#write input {
     height: 30px;
     width: 790px;
     background: #272727;
-    font-size:15px;
+    font-size: 15px;
 }
 
 section#write button {
     width: 80px;
     height: 40px;
     color: #eee;
-    border:1px solid #484848;
-    margin:10px 5px;
+    border: 1px solid #484848;
+    margin: 10px 5px;
 }
 
 section#write button#done {
