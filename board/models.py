@@ -3,13 +3,13 @@ from datetime import timedelta
 from django.utils import timezone
 from user.models import User
 
-
+name_choice = (("자유", "자유"), ("정보", "정보"))
 class Community(models.Model):
     title = models.CharField(max_length=64, verbose_name="제목")
     content = models.TextField(verbose_name="내용")
     writer = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="작성자")
     date = models.DateTimeField(auto_now_add=True, verbose_name="작성일")
-    name = models.CharField(max_length=32, verbose_name="분류")
+    name = models.CharField(max_length=32, choices=name_choice, verbose_name="분류")
     view = models.PositiveIntegerField(default=0, verbose_name="조회수")
     like = models.PositiveIntegerField(default=0, verbose_name="추천수")
 
@@ -17,7 +17,7 @@ class Community(models.Model):
     def date_str(self):
         time = timezone.now() - self.date
         if time < timedelta(days=1):
-            return self.date.strftime("%-H:%-M")
+            return self.date.strftime("%H:%M")
         else:
             return self.date.strftime("%m-%d")
 
