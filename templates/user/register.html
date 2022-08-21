@@ -1,34 +1,19 @@
 {% extends "user/login.html" %}
-{% block contents %}
 {% load static %}
-<div class="login_logo">
-    <a href="/"><img src="{% static 'logo2.png' %}" /></a>
+{% block register %}
+<div class="input">
+    <span>아이디</span> (6~20자리 영문과 숫자)
+    {{form.userid}}
+    <span>닉네임</span> (2자 이상 8자 이하)
+    {{form.name}}
+    <span>비밀번호</span> (특수문자를 포함한 8자 이상)
+    {{form.password1}}
+    <span>비밀번호 확인</span>
+    {{form.password2}}
+    <span>이메일</span> (비밀번호 분실시 계정정보 확인)
+    {{form.email}}
 </div>
-<form method="post">
-    {% csrf_token %}
-    <div class="user-input">
-        <div>
-            <div class="login-title">아이디<span class="title-sub">(6~20자리 영문과 숫자)</span></div>
-            <div>{{form.userid}}</div>
-        </div>
-        <div class="input-box">
-            <div class="login-title">닉네임<span class="title-sub">(2자 이상 8자 이하)</div>
-            <div>{{form.name}}</div>
-        </div>
-        <div class="input-box">
-            <div class="login-title">비밀번호<span class="title-sub">(특수문자를 포함한 8자 이상)</span></div>
-            <div>{{form.password1}}</div>
-        </div>
-        <div class="input-box">
-            <div class="login-title">비밀번호 확인</div>
-            <div>{{form.password2}}</div>
-        </div>
-        <div class="input-box">
-            <div class="login-title">이메일<span class="title-sub">(비밀번호 분실시 계정정보 확인)</span></div>
-            <div>{{form.email}}</div>
-        </div>
-    </div>
-    <button class="register" type="submit">회원가입</button>
-    <div class="login-ad"></div>
-</form>
-{% endblock contents %}
+<div>
+    <button type="submit">회원가입</button>
+</div>
+{% endblock register %}

@@ -1,40 +1,33 @@
 {% extends "home/home.html" %}
 {% load static %}
-{% block content %}
-<div class="template">
-    <div class="in_template">
-        {% block contents %}
-        <form method="post">
-            {% csrf_token %}
-            <div class="login_logo">
-                <a href="/"><img src="{% static 'logo2.png' %}" /></a>
-            </div>
-            <div class="user-input">
-                <div>
-                    <div class="login-title">아이디<span class="title-sub">(6~20자리 영문과 숫자)</span></div>
-                    <div>{{form.username}}</div>
-                </div>
-                <div class="input-box">
-                    <div class="login-title">비밀번호<span class="title-sub">(특수문자를 포함한 8자 이상)</span></div>
-                    <div>{{form.password}}</div>
-                </div>
-            </div>
-            <button class="login" type="submit">로그인</button>
-            <div class="user-help">
-                <div>자동로그인</div>
-                <div class="in-user-help">
-                    <div><a href="">계정찾기 |</a></div>
-                    <div><a href="{% url 'user:register' %}">&nbsp회원가입</a></div>
-                </div>
-            </div>
-        </form>
-        <div class="social_login">
-            <button class="naver_login" type="submit">네이버 로그인</button>
-            <button class="kakao_login" type="submit">카카오 로그인</button>
-            <button class="google_login" type="submit">구글 로그인</button>
+{% block user %}
+<link rel="stylesheet" href="/static/user.css/" />
+<section id="account">
+    <form method="post">
+        {% csrf_token %}
+        <img src="{% static 'logo2.png' %}" />
+        {% block register %}
+        <div class="input">
+            <span>아이디</span> (6~20자리 영문과 숫자)
+            {{form.username}}
+            <span>비밀번호</span> (특수문자를 포함한 8자 이상)
+            {{form.password}}
         </div>
-        <div class="login-ad"></div>
-        {% endblock contents %}
+        <button type="submit">로그인</button>
+        <div class="help">
+            자동로그인
+            <div>
+                <a href="">계정찾기</a>&nbsp|&nbsp
+                <a href="{% url 'user:register' %}">회원가입</a>
+            </div>
+        </div>
+    </form>
+    <div class="social">
+        <button class="naver" type="submit">네이버 로그인</button>
+        <button class="kakao" type="submit">카카오 로그인</button>
+        <button class="google" type="submit">구글 로그인</button>
     </div>
-</div>
-{% endblock content %}
+    {% endblock register %}
+    <img id="ad">
+</section>
+{% endblock user %}

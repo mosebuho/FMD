@@ -1,0 +1,100 @@
+section#account {
+    border: #484848 solid 1px;
+    background-color: #272727;
+    text-align: center;
+    margin-top: 10px;
+}
+
+section#account img {
+    margin: 15px;
+    padding: 0 55px;
+}
+
+section#account .input {
+    width: 450px;
+    margin: auto;
+    font-size: 14px;
+    color: #aaa;
+    text-align: left;
+}
+
+section#account .input span {
+    font-size: 18px;
+    color: #eee;
+}
+
+section#account input {
+    height: 30px;
+    width: 438px;
+    background-color: #363636;
+    padding: 5px;
+    border: #484848 solid 1px;
+    margin: 3px auto 15px auto;
+}
+
+section#account form button {
+    width: 450px;
+    background-color: #848b79;
+    height: 45px;
+    margin-bottom: 5px;
+    border: #484848 solid 1px;
+    color: #eee;
+    font-size:15px;
+}
+
+section#account .help {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 450px;
+    font-size: 14px;
+    margin: 3px auto 10px auto;
+}
+
+section#account .help a {
+    color: #aaa;
+    font-size: 12px;
+}
+
+section#account .social {
+    margin: auto;
+    width: 450px;
+    padding-top: 20px;
+    border-top: 1px solid #363636;
+}
+
+section#account .naver {
+    font-weight: bold;
+    width: 450px;
+    background-color: #00bf18;
+    height: 45px;
+    border: #484848 solid 1px;
+}
+
+section#account .kakao {
+    font-weight: bold;
+    color: #272727;
+    width: 450px;
+    background-color: #fae301;
+    height: 45px;
+    margin-top: 20px;
+    border: #484848 solid 1px;
+}
+
+section#account .google {
+    font-weight: bold;
+    color: #272727;
+    width: 450px;
+    background-color: #f4f4f4;
+    height: 45px;
+    margin-top: 20px;
+    border: #484848 solid 1px;
+}
+
+section#account img#ad {
+    width: 450px;
+    height: 130px;
+    margin: 25px auto;
+    background-color: #272727;
+}
+

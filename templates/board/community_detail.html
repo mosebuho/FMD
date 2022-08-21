@@ -12,7 +12,6 @@
             dataType: "json",
             success: function (response) {
                 $("#like_count").html(response.like);
-                $(".toast").fadeIn(300).delay(6000).fadeOut(300);
                 if (response.message == "off") {
                     $("#good").attr("class", "fa-regular fa-thumbs-up");
                 } else if (response.message == "on") {
