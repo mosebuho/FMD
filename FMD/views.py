@@ -1,6 +1,5 @@
 from django.views import generic
 from board.models import Community
-from user.models import User
 
 
 class HomeView(generic.TemplateView):
