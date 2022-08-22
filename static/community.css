@@ -204,7 +204,7 @@ section#detail .sub {
     color: #aaa;
 }
 
-section#detail span {
+section#detail .sub span {
     float: right;
 }
 
@@ -226,7 +226,7 @@ section#detail .buttons {
 }
 
 section#detail .buttons button {
-    width: 80px;
+    width: 90px;
     height: 40px;
     color: #eee;
     border: 1px solid #484848;

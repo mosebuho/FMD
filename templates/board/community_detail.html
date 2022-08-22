@@ -38,11 +38,11 @@
     <div class="writer-info">
     </div>
     <div class="buttons">
-        <button id="{{ detail.id }}" onclick="like(this.id)">
+        <button id="{{ board.id }}" onclick="like(this.id)">
             {% if request.user in board.like_users.all %}
-            <i id="like" class="fa-solid fa-thumbs-up"></i> 추천 <span id="like_count">{{detail.like}}</span>
+            <i id="like" class="fa-solid fa-thumbs-up"></i> 추천 <span id="like_count">{{board.like}}</span>
             {% else %}
-            <i id="like" class="fa-regular fa-thumbs-up"></i> 추천 <span id="like_count">{{detail.like}}</span>
+            <i id="like" class="fa-regular fa-thumbs-up"></i> 추천 <span id="like_count">{{board.like}}</span>
             {% endif %}
         </button>
         <button id="flag"><i class="fa-solid fa-flag"></i> 신고</button>
@@ -51,13 +51,13 @@
     <form method="post">
         {% csrf_token %}
         <textarea name="content" rows="4" placeholder="댓글을 입력하세요."></textarea>
-        <button type="submit">게시</button>
+        <button id="comment_create" type="submit">게시</button>
     </form>
     댓글 {{board.comment_set.count}}
     <ul>
         <li id="new_comment"></li>
-        {% for comment in comments %}
-        <li>{{comment.writer}}<div>{{comment.content}}</div>
+        {% for comment in board.comment_set.all %}
+        <li>{{comment.writer}}{{comment.content}}{{comment.date_str}}
         </li>
         {% endfor %}
     </ul>

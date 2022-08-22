@@ -31,6 +31,7 @@ class Community(models.Model):
         db_table = "Community"
         verbose_name = "커뮤니티"
         verbose_name_plural = "커뮤니티"
+        ordering = ["-date"]
 
 
 class Comment(models.Model):
@@ -50,3 +51,6 @@ class Comment(models.Model):
             return self.date.strftime("%H:%M")
         else:
             return self.date.strftime("%m-%d")
+
+    class Meta:
+        ordering = ["-date"]

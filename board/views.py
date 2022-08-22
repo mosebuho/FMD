@@ -8,11 +8,12 @@ from user.models import User
 from django.views.generic.edit import FormMixin
 from django.shortcuts import get_object_or_404
 from django.urls import reverse
+from django.http import HttpResponseRedirect
 
 
 class CommunityListView(generic.ListView):
     template_name = "board/community_list.html"
-    queryset = Community.objects.order_by("-id")
+    model = Community
     paginate_by = 31
     context_object_name = "lists"
 
@@ -29,30 +30,23 @@ class CommunityDetailView(generic.DetailView, FormMixin):
     form_class = CommentModelForm
     context_object_name = "board"
 
-    def get_success_url(self):
-        return reverse("board:community_detail", kwargs={"pk": self.object.pk})
-
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context["commu_hot_list"] = Community.objects.order_by("-like")[0:5]
         context["commu_hot_list2"] = Community.objects.order_by("-like")[5:10]
-        context["comments"] = self.object.comment_set.all()
         return context
 
     def post(self, request, *args, **kwargs):
-        self.object = self.get_object()
         form = self.get_form()
         if form.is_valid():
-            return self.form_valid(form)
-        else:
-            return self.form_invalid(form)
-
-    def form_valid(self, form):
-        comment = form.save(commit=False)
-        comment.community = get_object_or_404(Community, pk=self.object.pk)
-        comment.writer = self.request.user
-        comment.save()
-        return super().form_valid(form)
+            board = self.get_object()
+            comment = form.save(commit=False)
+            comment.community = board
+            comment.writer = self.request.user
+            comment.save()
+            return HttpResponseRedirect(
+                reverse("board:community_detail", args=[board.pk])
+            )
 
 
 class CommunityCreateView(generic.CreateView):
