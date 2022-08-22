@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 {% load static %}
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,7 +13,6 @@
         integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
-
 <body>
     <header>
         <div class="top">
@@ -264,7 +262,7 @@
                     <dt>랭킹</dt>
                     <dd>
                         {% for user in ranking %}
-                        <li>{{user.name}}<span>{{user.point}}포인트</span></li>
+                        <li>{{user.name}}<span>{{user.point}} 포인트</span></li>
                         {% endfor %}
                     </dd>
                 </dl>

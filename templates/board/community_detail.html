@@ -2,7 +2,7 @@
 {% block detail %}
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
     crossorigin="anonymous"></script>
-<script type="text/javascript">
+<script>
     function like(id) {
         $.ajax({
             url: "{% url 'board:like' %}",
@@ -13,9 +13,11 @@
             success: function (response) {
                 $("#like_count").html(response.like);
                 if (response.message == "off") {
-                    $("#good").attr("class", "fa-regular fa-thumbs-up");
+                    $("#like").attr("class", "fa-regular fa-thumbs-up");
                 } else if (response.message == "on") {
-                    $("#good").attr("class", "fa-solid fa-thumbs-up");
+                    $("#like").attr("class", "fa-solid fa-thumbs-up");
+                } else if (response.message == "notlogin") {
+                    alert("로그인이 필요한 기능입니다.")
                 }
             },
         });
@@ -37,11 +39,11 @@
 
     </div>
     <div class="buttons">
-        <button id="{{detail.id}}" onclick="like(this.id)">
+        <button id="{{ detail.id }}" onclick="like(this.id)">
             {% if request.user in detail.like_users.all %}
-            <i id="good" class="fa-solid fa-thumbs-up"></i> 추천 <span id="like_count">{{detail.like}}</span>
+            <i id="like" class="fa-solid fa-thumbs-up"></i> 추천 <span id="like_count">{{detail.like}}</span>
             {% else %}
-            <i id="good" class="fa-regular fa-thumbs-up"></i> 추천 <span id="like_count">{{detail.like}}</span>
+            <i id="like" class="fa-regular fa-thumbs-up"></i> 추천 <span id="like_count">{{detail.like}}</span>
             {% endif %}
         </button>
         <button id="flag"><i class="fa-solid fa-flag"></i> 신고</button>
