@@ -245,9 +245,7 @@ section#community .content {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin-top: 10px;
-    padding: 10px;
-
+    margin-top:10px;
 }
 
 section#community .content div {
@@ -263,11 +261,11 @@ section#community .content span {
 
 section#community .content ul {
     padding: 0;
-    margin: 10px 0 0;
+    margin: 5px 0 0 10px;
     list-style: none;
 }
 
-section#community .content li {
+section#community .content li a {
     padding: 2px 0;
     color: #aaa;
     font-size: 15px;

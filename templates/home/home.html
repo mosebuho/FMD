@@ -158,37 +158,17 @@
                     <div>
                         <span>자유</span>
                         <ul>
-                            <li>ㅁㄴㅇㄻㄴㅇㄹ</li>
-                            <li>ㅁㄴㅇㄻㄴㅇㄹ</li>
-                            <li>ㅁㄴㅇㄻㄴㅇㄹ</li>
-                            <li>ㅁㄴㅇㄻㄴㅇㄹ</li>
-                            <li>ㅁㄴㅇㄻㄴㅇㄹ</li>
-                            <li>ㅁㄴㅇㄻㄴㅇㄹ</li>
-                            <li>ㅁㄴㅇㄻㄴㅇㄹ</li>
-                            <li>ㅁㄴㅇㄻㄴㅇㄹ</li>
-                            <li>ㅁㄴㅇㄻㄴㅇㄹ</li>
-                            <li>ㅁㄴㅇㄻㄴㅇㄹ</li>
-                            <li>ㅁㄴㅇㄻㄴㅇㄹ</li>
-                            <li>ㅁㄴㅇㄻㄴㅇㄹ</li>
-                            <li>ㅁㄴㅇㄻㄴㅇㄹ</li>
+                            {% for list in commu_list_free %}
+                            <li><a href="{% url 'board:community_detail' list.id %}">{{list.title}}</a></li>
+                            {% endfor %}
                         </ul>
                     </div>
                     <div>
                         <span>정보</span>
                         <ul>
-                            <li>ㅁㄴㅇㄻㄴㅇㄹ</li>
-                            <li>ㅁㄴㅇㄻㄴㅇㄹ</li>
-                            <li>ㅁㄴㅇㄻㄴㅇㄹ</li>
-                            <li>ㅁㄴㅇㄻㄴㅇㄹ</li>
-                            <li>ㅁㄴㅇㄻㄴㅇㄹ</li>
-                            <li>ㅁㄴㅇㄻㄴㅇㄹ</li>
-                            <li>ㅁㄴㅇㄻㄴㅇㄹ</li>
-                            <li>ㅁㄴㅇㄻㄴㅇㄹ</li>
-                            <li>ㅁㄴㅇㄻㄴㅇㄹ</li>
-                            <li>ㅁㄴㅇㄻㄴㅇㄹ</li>
-                            <li>ㅁㄴㅇㄻㄴㅇㄹ</li>
-                            <li>ㅁㄴㅇㄻㄴㅇㄹ</li>
-                            <li>ㅁㄴㅇㄻㄴㅇㄹ</li>
+                            {% for list in commu_list_info %}
+                            <li><a href="{% url 'board:community_detail' list.id %}">{{list.title}}</a></li>
+                            {% endfor %}
                         </ul>
                     </div>
                 </div>
