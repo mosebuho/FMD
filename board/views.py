@@ -5,7 +5,7 @@ from django.http import HttpResponse
 import json
 from django.core.serializers.json import DjangoJSONEncoder
 from user.models import User
-
+from FMD.views import HomeView
 
 class CommunityListView(generic.ListView):
     template_name = "board/community_list.html"
@@ -30,6 +30,7 @@ class CommunityDetailView(generic.DetailView):
         context["commu_hot_list"] = Community.objects.order_by("-like")[0:5]
         context["commu_hot_list2"] = Community.objects.order_by("-like")[5:10]
         return context
+    
 
 
 class CommunityCreateView(generic.CreateView):
