@@ -12,7 +12,7 @@ section#best span {
     padding-left: 5px;
 }
 
-section#best .body {
+section#best div {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -25,12 +25,16 @@ section#best a {
     text-decoration: none;
 }
 
-section#best p {
+section#best li {
     margin: 0;
+    list-style: none;
 }
 
-section#best .content {
+section#best ul {
     width: 49.5%;
+    list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
 img#list-ad {
@@ -229,11 +233,58 @@ section#detail .buttons button {
     margin: 10px 5px;
     background: #848b79;
     font-size: 15px;
-    border:1px solid #484848;
+    border: 1px solid #484848;
 }
 
 section#detail .buttons button#flag {
     background: #e74c3c;
+}
+
+img#detail-ad {
+    border: 1px solid #484848;
+    background: #272727;
+    width: 900px;
+    height: 120.5px;
+    margin: 5px 0;
+}
+
+section#detail textarea {
+    font-family: inherit;
+    background: #363636;
+    color: #aaa;
+    min-width: 890px;
+    max-width: 890px;
+    margin-top: 5px;
+    min-height: 85px;
+    padding: 5px;
+    outline: none;
+    font-size: 15px;
+    border: 1px solid #484848;
+}
+
+section#detail #comment_create {
+    width: 60px;
+    height: 35px;
+    color: #eee;
+    border: 1px solid #484848;
+    float: right;
+    background: #848b79;
+}
+
+section#detail ul {
+    list-style: none;
+    margin: 10px 0 0 0;
+    padding: 0;
+}
+
+section#detail li {
+    border: 1px solid #484848;
+    margin: 3px 0;
+}
+
+section#detail #new_comment {
+    border: none;
+    margin: 0;
 }
 
 /* write */
@@ -275,7 +326,6 @@ section#write button {
     width: 80px;
     height: 40px;
     color: #eee;
-    border: 1px solid #484848;
     margin: 10px 5px;
 }
 

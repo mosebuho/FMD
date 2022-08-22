@@ -4,17 +4,17 @@
 {% block write %}
 <section id="best">
     <span>베스트글</span>
-    <div class="body">
-        <div class="content">
+    <div>
+        <ul>
             {% for list in commu_hot_list %}
-            <p><a href="{% url 'board:community_detail' list.pk%}">{{ list.title|truncatechars:35}}</a></p>
+            <li><a href="{% url 'board:community_detail' list.pk%}">{{ list.title|truncatechars:35}}</a></li>
             {% endfor %}
-        </div>
-        <div class="content">
+        </ul>
+        <ul>
             {% for list in commu_hot_list2 %}
-            <p><a href="{% url 'board:community_detail' list.pk%}">{{ list.title|truncatechars:35}}</a></p>
+            <li><a href="{% url 'board:community_detail' list.pk%}">{{ list.title|truncatechars:35}}</a></li>
             {% endfor %}
-        </div>
+        </ul>
     </div>
 </section>
 <img id="list-ad">

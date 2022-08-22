@@ -10,7 +10,9 @@ urlpatterns = [
         name="community_detail",
     ),
     path(
-        "community/write/", views.CommunityCreateView.as_view(), name="community_create"
+        "community/create/",
+        views.CommunityCreateView.as_view(),
+        name="community_create",
     ),
     path("like/", views.like, name="like"),
 ]

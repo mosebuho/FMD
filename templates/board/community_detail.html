@@ -7,7 +7,7 @@
         $.ajax({
             url: "{% url 'board:like' %}",
             data: {
-                detail_id: id,
+                board_id: id,
             },
             dataType: "json",
             success: function (response) {
@@ -24,23 +24,22 @@
     }
 </script>
 <section id="detail">
-    {{ detail }}
+    {{ board }}
     <div class="sub">
-        {{ detail.writer }} |
-        <i class="fa-solid fa-eye"></i> {{ detail.view }}
-        <i class="fa-solid fa-thumbs-up"></i> {{ detail.like }}
+        {{ board.writer }} |
+        <i class="fa-solid fa-eye"></i> {{ board.view }}
+        <i class="fa-solid fa-thumbs-up"></i> {{ board.like }}
         <i class="fa-solid fa-comment"></i> 0
-        <span><i class="fa-solid fa-clock"></i> {{ detail.date }}</span>
+        <span><i class="fa-solid fa-clock"></i> {{ board.date }}</span>
     </div>
     <div class="content">
-        {{ detail.content | safe }}
+        {{ board.content | safe }}
     </div>
     <div class="writer-info">
-
     </div>
     <div class="buttons">
         <button id="{{ detail.id }}" onclick="like(this.id)">
-            {% if request.user in detail.like_users.all %}
+            {% if request.user in board.like_users.all %}
             <i id="like" class="fa-solid fa-thumbs-up"></i> 추천 <span id="like_count">{{detail.like}}</span>
             {% else %}
             <i id="like" class="fa-regular fa-thumbs-up"></i> 추천 <span id="like_count">{{detail.like}}</span>
@@ -48,5 +47,19 @@
         </button>
         <button id="flag"><i class="fa-solid fa-flag"></i> 신고</button>
     </div>
+    <img id="detail-ad">
+    <form method="post">
+        {% csrf_token %}
+        <textarea name="content" rows="4" placeholder="댓글을 입력하세요."></textarea>
+        <button type="submit">게시</button>
+    </form>
+    댓글 {{board.comment_set.count}}
+    <ul>
+        <li id="new_comment"></li>
+        {% for comment in comments %}
+        <li>{{comment.writer}}<div>{{comment.content}}</div>
+        </li>
+        {% endfor %}
+    </ul>
 </section>
 {% endblock detail %}

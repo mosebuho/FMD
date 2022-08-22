@@ -14,7 +14,7 @@ body {
 
 select {
     outline: none;
-    font-family: 'Noto Sans KR', sans-serif;
+    font-family: inherit;
     border: none;
 
 }
@@ -36,7 +36,7 @@ aside {
 }
 
 input {
-    font-family: 'Noto Sans KR', sans-serif;
+    font-family: inherit;
     color: #aaa;
     padding: 10px;
     border: none;
@@ -45,7 +45,7 @@ input {
 
 button {
     border: none;
-    font-family: "Noto Sans KR", sans-serif;
+    font-family: inherit;
 }
 
 a {
@@ -461,13 +461,13 @@ section#side2 dd {
 
 section#side2 li {
     margin-top: 5px;
-    display:flex;
+    display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
 
 section#side2 li span {
-    font-size:13px;
+    font-size: 13px;
 }
 
 section#side2 div {
