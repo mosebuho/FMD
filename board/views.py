@@ -43,7 +43,9 @@ class CommunityDetailView(generic.DetailView, FormMixin):
             comment = form.save(commit=False)
             comment.community = board
             comment.writer = self.request.user
+            request.user.point += 1
             comment.save()
+            request.user.save()
             return HttpResponseRedirect(
                 reverse("board:community_detail", args=[board.pk])
             )
