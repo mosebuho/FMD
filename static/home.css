@@ -245,7 +245,7 @@ section#community .content {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin-top:10px;
+    margin-top: 10px;
 }
 
 section#community .content div {
@@ -461,6 +461,13 @@ section#side2 dd {
 
 section#side2 li {
     margin-top: 5px;
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+section#side2 li span {
+    font-size:13px;
 }
 
 section#side2 div {

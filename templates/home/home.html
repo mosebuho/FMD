@@ -159,7 +159,7 @@
                         <span>자유</span>
                         <ul>
                             {% for list in commu_list_free %}
-                            <li><a href="{% url 'board:community_detail' list.id %}">{{list.title}}</a></li>
+                            <li><a href="{% url 'board:community_detail' list.id %}">{{list.title|truncatechars:40}}</a></li>
                             {% endfor %}
                         </ul>
                     </div>
@@ -167,7 +167,7 @@
                         <span>정보</span>
                         <ul>
                             {% for list in commu_list_info %}
-                            <li><a href="{% url 'board:community_detail' list.id %}">{{list.title}}</a></li>
+                            <li><a href="{% url 'board:community_detail' list.id %}">{{list.title|truncatechars:40}}</a></li>
                             {% endfor %}
                         </ul>
                     </div>
@@ -263,11 +263,9 @@
                 <dl>
                     <dt>랭킹</dt>
                     <dd>
-                        <li>유저, 포인트</li>
-                        <li>유저, 포인트</li>
-                        <li>유저, 포인트</li>
-                        <li>유저, 포인트</li>
-                        <li>유저, 포인트</li>
+                        {% for user in ranking %}
+                        <li>{{user.name}}<span>{{user.point}}포인트</span></li>
+                        {% endfor %}
                     </dd>
                 </dl>
                 <div>

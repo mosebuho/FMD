@@ -7,12 +7,12 @@
     <div class="body">
         <div class="content">
             {% for list in commu_hot_list %}
-            <p><a href="{% url 'board:community_detail' list.pk%}">{{ list.title}}</a></p>
+            <p><a href="{% url 'board:community_detail' list.pk%}">{{ list.title|truncatechars:35}}</a></p>
             {% endfor %}
         </div>
         <div class="content">
             {% for list in commu_hot_list2 %}
-            <p><a href="{% url 'board:community_detail' list.pk%}">{{ list.title}}</a></p>
+            <p><a href="{% url 'board:community_detail' list.pk%}">{{ list.title|truncatechars:35}}</a></p>
             {% endfor %}
         </div>
     </div>
@@ -43,7 +43,7 @@
                 <td>{{ list.name }}</td>
                 <td id="title">
                     <a href="{% url 'board:community_detail' list.pk %}" target="_self" style="text-decoration: none">
-                        {{ list.title }}
+                        {{ list.title|truncatechars:50 }}
                     </a>
                 </td>
                 <td>{{ list.writer }}</td>
