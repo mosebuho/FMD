@@ -57,7 +57,12 @@
     <ul>
         <li id="new_comment"></li>
         {% for comment in board.comment_set.all %}
-        <li>{{comment.writer}}{{comment.content}}{{comment.date_str}}
+        <li id="comment">
+            <img id="profile-img">
+            <div>
+                {{comment.writer}} <span><i class="fa-solid fa-clock"></i> {{comment.date}}</span>
+                <p>{{comment.content}}</p>
+            </div>
         </li>
         {% endfor %}
     </ul>
