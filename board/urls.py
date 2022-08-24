@@ -15,4 +15,5 @@ urlpatterns = [
         name="community_create",
     ),
     path("like/", views.like, name="like"),
+    path('<int:pk>/comment/create/', views.comment_create, name='comment_create'),
 ]

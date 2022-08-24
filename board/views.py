@@ -1,14 +1,11 @@
 from django.views import generic
-from .models import Community
-from .forms import CommuModelForm, CommentModelForm
+from .models import Community, Comment
+from .forms import CommuModelForm
 from django.http import HttpResponse
 import json
 from django.core.serializers.json import DjangoJSONEncoder
 from user.models import User
-from django.views.generic.edit import FormMixin
 from django.shortcuts import get_object_or_404
-from django.urls import reverse
-from django.http import HttpResponseRedirect
 
 
 class CommunityListView(generic.ListView):
@@ -24,10 +21,9 @@ class CommunityListView(generic.ListView):
         return context
 
 
-class CommunityDetailView(generic.DetailView, FormMixin):
+class CommunityDetailView(generic.DetailView):
     template_name = "board/community_detail.html"
     model = Community
-    form_class = CommentModelForm
     context_object_name = "board"
 
     def get_context_data(self, **kwargs):
@@ -35,20 +31,6 @@ class CommunityDetailView(generic.DetailView, FormMixin):
         context["commu_hot_list"] = Community.objects.order_by("-like")[0:5]
         context["commu_hot_list2"] = Community.objects.order_by("-like")[5:10]
         return context
-
-    def post(self, request, *args, **kwargs):
-        form = self.get_form()
-        if form.is_valid():
-            board = self.get_object()
-            comment = form.save(commit=False)
-            comment.community = board
-            comment.writer = self.request.user
-            request.user.point += 1
-            comment.save()
-            request.user.save()
-            return HttpResponseRedirect(
-                reverse("board:community_detail", args=[board.pk])
-            )
 
 
 class CommunityCreateView(generic.CreateView):
@@ -90,3 +72,26 @@ def like(request):
     return HttpResponse(
         json.dumps(data, cls=DjangoJSONEncoder), content_type="application/json"
     )
+
+
+def comment_create(request, pk):
+    community = get_object_or_404(Community, id=pk)
+    writer = request.POST.get("writer")
+    content = request.POST.get("content")
+    if content:
+        comment = Comment.objects.create(
+            community=community, content=content, writer=request.user
+        )
+        community.save()
+        request.user.point += 1
+        request.user.save()
+        data = {
+            "writer": writer,
+            "content": content,
+            "date": comment.date,
+            "comment_id": comment.id,
+            "comment_count": community.comment_set.count(),
+        }
+        return HttpResponse(
+            json.dumps(data, cls=DjangoJSONEncoder), content_type="application/json"
+        )

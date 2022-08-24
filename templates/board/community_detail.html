@@ -22,6 +22,36 @@
             },
         });
     }
+    $(document).ready(function () {
+        $('#comment_create').click(function () {
+            $.ajax({
+                type: "POST",
+                url: "{% url 'board:comment_create' board.id %}",
+                dataType: "json",
+                data: {
+                    'writer': $("#comment_writer").val(),
+                    'content': $("#comment_content").val(),
+                    'csrfmiddlewaretoken': '{{csrf_token}}',
+                },
+                success: function (response) {
+                    {
+                        $('#new_comment').append(
+                            "<li><img id='profile-img'><div>" + response.writer +
+                            "<span><i class='fa-solid fa-clock'></i> " + response.date +
+                            "</span><p>" + response.content + "</p></div></li>"
+                        );
+                    }
+                    $("#comment_count").html(response.comment_count);
+                    $('#comment_content').val("");
+                },
+                error: function () {
+                    if ($('#comment_content').val() == "") {
+                        alert('댓글을 입력해주세요.');
+                    }
+                },
+            })
+        });
+    });
 </script>
 <section id="detail">
     {{ board }}
@@ -29,7 +59,7 @@
         {{ board.writer }} |
         <i class="fa-solid fa-eye"></i> {{ board.view }}
         <i class="fa-solid fa-thumbs-up"></i> {{ board.like }}
-        <i class="fa-solid fa-comment"></i> 0
+        <i class="fa-solid fa-comment"></i> {{ board.comment_set.count }}
         <span><i class="fa-solid fa-clock"></i> {{ board.date }}</span>
     </div>
     <div class="content">
@@ -48,16 +78,14 @@
         <button id="flag"><i class="fa-solid fa-flag"></i> 신고</button>
     </div>
     <img id="detail-ad">
-    <form method="post">
-        {% csrf_token %}
-        <textarea name="content" rows="4" placeholder="댓글을 입력하세요."></textarea>
-        <button id="comment_create" type="submit">게시</button>
-    </form>
-    댓글 {{board.comment_set.count}}
-    <ul>
-        <li id="new_comment"></li>
+    <textarea id="comment_content" name="content" rows="4" placeholder="댓글을 입력하세요."></textarea>
+    <button id="comment_create">게시</button>
+    <input type="hidden" id="comment_writer" value={{request.user}}>
+    댓글 <span id="comment_count">{{board.comment_set.count}}</span>
+    <ul id="new_comment"></ul>
+    <ul id="comment_list">
         {% for comment in board.comment_set.all %}
-        <li id="comment">
+        <li>
             <img id="profile-img">
             <div>
                 {{comment.writer}} <span><i class="fa-solid fa-clock"></i> {{comment.date}}</span>
