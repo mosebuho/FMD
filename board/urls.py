@@ -19,6 +19,11 @@ urlpatterns = [
         views.CommunityUpdateView.as_view(),
         name="community_update",
     ),
+    path(
+        "community/delete/<int:pk>/",
+        views.community_delete,
+        name="community_delete",
+    ),
     path("like/", views.like, name="like"),
-    path('<int:pk>/comment/create/', views.comment_create, name='comment_create'),
+    path("<int:pk>/comment/create/", views.comment_create, name="comment_create"),
 ]

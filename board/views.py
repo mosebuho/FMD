@@ -7,7 +7,7 @@ from django.core.serializers.json import DjangoJSONEncoder
 from user.models import User
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
-
+from django.shortcuts import redirect
 
 class CommunityListView(generic.ListView):
     template_name = "board/community_list.html"
@@ -55,6 +55,15 @@ class CommunityUpdateView(generic.UpdateView):
 
     def get_success_url(self):
         return reverse_lazy("board:community_detail", kwargs={"pk": self.object.pk})
+
+
+def community_delete(request, pk):
+    board = get_object_or_404(Community, id=pk)
+    if board.writer == request.user:
+        board.delete()
+        return redirect("/")
+    else:
+        return redirect(f"/board/detail/{pk}/")
 
 
 def like(request):
