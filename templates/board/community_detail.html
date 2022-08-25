@@ -36,7 +36,7 @@
                 success: function (response) {
                     {
                         $('#new_comment').append(
-                            "<li><img id='profile-img'><div>" + response.writer +
+                            "<li style='border:1px solid #848b79'><img id='profile-img'><div>" + response.writer +
                             "<span><i class='fa-solid fa-clock'></i> " + response.date +
                             "</span><p>" + response.content + "</p></div></li>"
                         );
@@ -54,7 +54,13 @@
     });
 </script>
 <section id="detail">
-    {{ board }}
+    {{ board.title }}
+    {% if request.user == board.writer %}
+    <span class="modify">
+        <a href="{% url 'board:community_update' board.id %}">수정</a>
+        <a href="" id="del">삭제</a>
+    </span>
+    {% endif %}
     <div class="sub">
         {{ board.writer }} |
         <i class="fa-solid fa-eye"></i> {{ board.view }}
@@ -79,8 +85,10 @@
     </div>
     <img id="detail-ad">
     <textarea id="comment_content" name="content" rows="4" placeholder="댓글을 입력하세요."></textarea>
+    {% if request.user.is_authenticated %}
     <button id="comment_create">게시</button>
     <input type="hidden" id="comment_writer" value={{request.user}}>
+    {% endif %}
     댓글 <span id="comment_count">{{board.comment_set.count}}</span>
     <ul id="new_comment"></ul>
     <ul id="comment_list">

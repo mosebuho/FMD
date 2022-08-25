@@ -5,7 +5,7 @@
     <form method="post">
         {% csrf_token %}
         {{ form.name }}
-        <input name="title" placeholder="제목을 입력해주세요.">
+        {{form.title}}
         {{form.content}}
         <button id="done">게시</button>
         <button id="cancel">취소</button>

@@ -194,6 +194,21 @@ section#detail {
     font-size: 22px;
 }
 
+section#detail .modify {
+    font-size: 15px;
+    float: right;
+    color: #aaa;
+    padding: 10px 0;
+}
+
+section#detail .modify a {
+    color: #848b79;
+}
+
+section#detail .modify a#del {
+    color: #e74c3c;
+}
+
 
 section#detail .sub {
     padding: 3px 0;
@@ -279,7 +294,7 @@ section#detail #new_comment {
 section#detail ul {
     list-style: none;
     padding: 0;
-    margin:0;
+    margin: 0;
 }
 
 section#detail li {
@@ -289,7 +304,7 @@ section#detail li {
     font-size: 17px;
     min-height: 70px;
     padding: 10px;
-    margin:10px 0 0 0;
+    margin: 10px 0 0 0;
 }
 
 section#detail li img {

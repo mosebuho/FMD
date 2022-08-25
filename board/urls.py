@@ -14,6 +14,11 @@ urlpatterns = [
         views.CommunityCreateView.as_view(),
         name="community_create",
     ),
+    path(
+        "community/update/<int:pk>/",
+        views.CommunityUpdateView.as_view(),
+        name="community_update",
+    ),
     path("like/", views.like, name="like"),
     path('<int:pk>/comment/create/', views.comment_create, name='comment_create'),
 ]

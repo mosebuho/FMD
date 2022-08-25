@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 {% load static %}
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,6 +14,7 @@
         integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
+
 <body>
     <header>
         <div class="top">
@@ -157,7 +159,8 @@
                         <span>자유</span>
                         <ul>
                             {% for list in commu_list_free %}
-                            <li><a href="{% url 'board:community_detail' list.id %}">{{list.title|truncatechars:40}}</a></li>
+                            <li><a href="{% url 'board:community_detail' list.id %}">{{list.title|truncatechars:40}}</a>
+                            </li>
                             {% endfor %}
                         </ul>
                     </div>
@@ -165,7 +168,8 @@
                         <span>정보</span>
                         <ul>
                             {% for list in commu_list_info %}
-                            <li><a href="{% url 'board:community_detail' list.id %}">{{list.title|truncatechars:40}}</a></li>
+                            <li><a href="{% url 'board:community_detail' list.id %}">{{list.title|truncatechars:40}}</a>
+                            </li>
                             {% endfor %}
                         </ul>
                     </div>
@@ -240,7 +244,7 @@
                             <span>Lv.1 {{ request.user.point }}포인트</span>
                             <div>{{ request.user.name }}</div>
                             <a href="">내정보</a>
-                            <a href="{% url 'user:logout' %}">&nbsp로그아웃</a>
+                            <a href="{% url 'user:logout' %}" id="logout">&nbsp로그아웃</a>
                         </div>
                     </div>
                     <div class="profile-point"></div>

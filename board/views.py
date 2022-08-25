@@ -34,7 +34,7 @@ class CommunityDetailView(generic.DetailView):
 
 
 class CommunityCreateView(generic.CreateView):
-    template_name = "board/community_create.html"
+    template_name = "board/community_form.html"
     form_class = CommuModelForm
     success_url = "/board/community/"
 
@@ -43,6 +43,13 @@ class CommunityCreateView(generic.CreateView):
         self.request.user.point += 2
         self.request.user.save()
         return super().form_valid(form)
+
+
+class CommunityUpdateView(generic.UpdateView):
+    model = Community
+    form_class = CommuModelForm
+    template_name = "board/community_form.html"
+    success_url = "/board/community/"
 
 
 def like(request):
@@ -76,18 +83,18 @@ def like(request):
 
 def comment_create(request, pk):
     community = get_object_or_404(Community, id=pk)
-    writer = request.POST.get("writer")
-    content = request.POST.get("content")
-    if content:
+    if request.POST.get("content"):
         comment = Comment.objects.create(
-            community=community, content=content, writer=request.user
+            community=community,
+            content=request.POST.get("content"),
+            writer=request.user,
         )
         community.save()
         request.user.point += 1
         request.user.save()
         data = {
-            "writer": writer,
-            "content": content,
+            "writer": request.POST.get("writer"),
+            "content": request.POST.get("content"),
             "date": comment.date,
             "comment_id": comment.id,
             "comment_count": community.comment_set.count(),
