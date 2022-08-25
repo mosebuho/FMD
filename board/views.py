@@ -6,6 +6,7 @@ import json
 from django.core.serializers.json import DjangoJSONEncoder
 from user.models import User
 from django.shortcuts import get_object_or_404
+from django.urls import reverse_lazy
 
 
 class CommunityListView(generic.ListView):
@@ -36,7 +37,9 @@ class CommunityDetailView(generic.DetailView):
 class CommunityCreateView(generic.CreateView):
     template_name = "board/community_form.html"
     form_class = CommuModelForm
-    success_url = "/board/community/"
+
+    def get_success_url(self):
+        return reverse_lazy("board:community_detail", kwargs={"pk": self.object.pk})
 
     def form_valid(self, form):
         form.instance.writer = self.request.user
@@ -49,7 +52,9 @@ class CommunityUpdateView(generic.UpdateView):
     model = Community
     form_class = CommuModelForm
     template_name = "board/community_form.html"
-    success_url = "/board/community/"
+
+    def get_success_url(self):
+        return reverse_lazy("board:community_detail", kwargs={"pk": self.object.pk})
 
 
 def like(request):
