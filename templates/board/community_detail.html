@@ -38,9 +38,9 @@
                     success: function (response) {
                         {
                             $('#new_comment').append(
-                                "<li style='border:1px solid #848b79'><img id='profile-img'><div>" + response.writer +
-                                "<span><a onclick='commentUpdate" + response.comment_id + ">수정</a>" +
-                                "<a onclick='commentDelete" + response.comment_id + ">삭제</a></span>" +
+                                "<li id='" + response.comment_id + "'style='border:1px solid #848b79'><img id='profile-img'><div>" + response.writer +
+                                "<span><a onclick='commentUpdate(" + response.comment_id + ")'>수정</a>" +
+                                " <a onclick='commentDelete(" + response.comment_id + ")'>삭제</a></span>" +
                                 "<p>" + response.content + "</p></div></li>"
                             );
                         }
@@ -79,8 +79,24 @@
     }
 
     function commentUpdate(value) {
-        $("#" + value).html("<textarea>");
+        var comment_id = value;
+        var content = $("#comment_content").val();
+        $.ajax({
+            type: "POST",
+            url: "{% url 'board:comment_update' board.id %}",
+            dataType: "json",
+            data: {
+                comment_id: comment_id,
+                content: content,
+                csrfmiddlewaretoken: "{{csrf_token}}",
+            },
+            success: function (response) {
+                $("#" + value).html("<textarea>" + response.content + "</textarea>")
+            }
+        });
     }
+
+
 
 </script>
 <section id="detail">
@@ -131,12 +147,12 @@
                 {{comment.writer}}
                 <span>
                     {% if request.user == comment.writer %}
-                    <a onclick=" commentUpdate('{{comment.id}}')">수정</a>
+                    <a onclick="commentUpdate('{{comment.id}}')">수정</a>
                     <a onclick="commentDelete('{{comment.id}}')">삭제</a>
                     {% endif %}
                     <i class="fa-solid fa-clock"></i> {{comment.date}}
                 </span>
-                <p>{{comment.content}}</p>
+                <p id="{{comment.id}}comment_body">{{comment.content}}</p>
             </div>
         </li>
         {% endfor %}

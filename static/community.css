@@ -275,13 +275,16 @@ section#detail textarea {
     font-family: inherit;
     background: #363636;
     color: #aaa;
+    padding: 5px;
+    outline: none;
+    font-size: 15px;
+}
+
+section#detail textarea#comment_content {
     min-width: 890px;
     max-width: 890px;
     margin-top: 5px;
     min-height: 85px;
-    padding: 5px;
-    outline: none;
-    font-size: 15px;
     border: 1px solid #484848;
 }
 

@@ -94,9 +94,7 @@ def like(request):
             writer.save()
             board.save()
     data = {"like": board.like, "message": message}
-    return HttpResponse(
-        json.dumps(data, cls=DjangoJSONEncoder), content_type="application/json"
-    )
+    return HttpResponse(json.dumps(data, cls=DjangoJSONEncoder))
 
 
 def comment_create(request, pk):
@@ -117,21 +115,13 @@ def comment_create(request, pk):
             "comment_id": comment.id,
             "comment_count": community.comment_set.count(),
         }
-        return HttpResponse(
-            json.dumps(data, cls=DjangoJSONEncoder), content_type="application/json"
-        )
+        return HttpResponse(json.dumps(data, cls=DjangoJSONEncoder))
 
 
 def comment_update(request, pk):
-    board = get_object_or_404(Community, id=pk)
     comment_id = request.POST.get("comment_id")
     target_comment = Comment.objects.get(pk=comment_id)
-    edit_content = request.POST.get("edit_content")
-    if request.method == "POST":
-        if request.user == target_comment.writer:
-            target_comment.content = edit_content
-            target_comment.save()
-            board.save()
+    if request.user == target_comment.writer:
         data = {
             "comment_id": comment_id,
             "content": target_comment.content,
@@ -143,7 +133,6 @@ def comment_delete(request, pk):
     board = get_object_or_404(Community, id=pk)
     comment_id = request.POST.get("comment_id")
     target_comment = Comment.objects.get(pk=comment_id)
-
     if request.user == target_comment.writer:
         target_comment.delete()
         board.save()
