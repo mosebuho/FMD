@@ -39,7 +39,7 @@ class Comment(models.Model):
         Community, null=True, blank=True, on_delete=models.CASCADE, verbose_name="게시글"
     )
     writer = models.ForeignKey(
-        User, on_delete=models.SET_NULL, null=True, verbose_name="작성자"
+        User, on_delete=models.CASCADE, null=True, verbose_name="작성자"
     )
     content = models.CharField(max_length=2000, verbose_name="댓글 내용")
     date = models.DateTimeField(auto_now_add=True, verbose_name="작성일")

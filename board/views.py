@@ -32,9 +32,7 @@ class CommunityDetailView(generic.DetailView, MultipleObjectMixin):
 
     def get_context_data(self, **kwargs):
         object_list = Comment.objects.filter(community=self.get_object())
-        context = super().get_context_data(
-            object_list=object_list, **kwargs
-        )
+        context = super().get_context_data(object_list=object_list, **kwargs)
         context["commu_hot_list"] = Community.objects.order_by("-like")[0:5]
         context["commu_hot_list2"] = Community.objects.order_by("-like")[5:10]
         return context
@@ -122,3 +120,32 @@ def comment_create(request, pk):
         return HttpResponse(
             json.dumps(data, cls=DjangoJSONEncoder), content_type="application/json"
         )
+
+
+def comment_update(request, pk):
+    board = get_object_or_404(Community, id=pk)
+    comment_id = request.POST.get("comment_id")
+    target_comment = Comment.objects.get(pk=comment_id)
+    edit_content = request.POST.get("edit_content")
+    if request.method == "POST":
+        if request.user == target_comment.writer:
+            target_comment.content = edit_content
+            target_comment.save()
+            board.save()
+        data = {
+            "comment_id": comment_id,
+            "content": target_comment.content,
+        }
+        return HttpResponse(json.dumps(data, cls=DjangoJSONEncoder))
+
+
+def comment_delete(request, pk):
+    board = get_object_or_404(Community, id=pk)
+    comment_id = request.POST.get("comment_id")
+    target_comment = Comment.objects.get(pk=comment_id)
+
+    if request.user == target_comment.writer:
+        target_comment.delete()
+        board.save()
+        data = {"comment_id": comment_id}
+        return HttpResponse(json.dumps(data, cls=DjangoJSONEncoder))

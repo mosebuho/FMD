@@ -24,32 +24,30 @@
     }
     $(document).ready(function () {
         $('#comment_create').click(function () {
-            $.ajax({
-                type: "POST",
-                url: "{% url 'board:comment_create' board.id %}",
-                dataType: "json",
-                data: {
-                    'writer': $("#comment_writer").val(),
-                    'content': $("#comment_content").val(),
-                    'csrfmiddlewaretoken': '{{csrf_token}}',
-                },
-                success: function (response) {
-                    {
-                        $('#new_comment').append(
-                            "<li style='border:1px solid #848b79'><img id='profile-img'><div>" + response.writer +
-                            "<span><i class='fa-solid fa-clock'></i> " + response.date +
-                            "</span><p>" + response.content + "</p></div></li>"
-                        );
-                    }
-                    $("#comment_count").html(response.comment_count);
-                    $('#comment_content').val("");
-                },
-                error: function () {
-                    if ($('#comment_content').val() == "") {
-                        alert('댓글을 입력해주세요.');
-                    }
-                },
-            })
+            if ($('#comment_content').val() == "") { alert('댓글을 입력해주세요.'); }
+            else
+                $.ajax({
+                    type: "POST",
+                    url: "{% url 'board:comment_create' board.id %}",
+                    dataType: "json",
+                    data: {
+                        'writer': $("#comment_writer").val(),
+                        'content': $("#comment_content").val(),
+                        'csrfmiddlewaretoken': '{{csrf_token}}',
+                    },
+                    success: function (response) {
+                        {
+                            $('#new_comment').append(
+                                "<li style='border:1px solid #848b79'><img id='profile-img'><div>" + response.writer +
+                                "<span><a onclick='commentUpdate" + response.comment_id + ">수정</a>" +
+                                "<a onclick='commentDelete" + response.comment_id + ">삭제</a></span>" +
+                                "<p>" + response.content + "</p></div></li>"
+                            );
+                        }
+                        $("#comment_count").html(response.comment_count);
+                        $('#comment_content').val("");
+                    },
+                })
         });
     });
     function boardDelete() {
@@ -61,6 +59,29 @@
     function notlogin() {
         alert("로그인이 필요한 기능입니다.")
     }
+
+    function commentDelete(value) {
+        var delete_warning = confirm("댓글을 삭제할 경우 복구가 불가능합니다.\n정말 삭제하시겠습니까?");
+        if (delete_warning == true) {
+            $.ajax({
+                type: "POST",
+                url: "{% url 'board:comment_delete' board.id %}",
+                dataType: "json",
+                data: {
+                    comment_id: value,
+                    csrfmiddlewaretoken: "{{csrf_token}}",
+                },
+                success: function (response) {
+                    window.location.reload()
+                },
+            });
+        }
+    }
+
+    function commentUpdate(value) {
+        $("#" + value).html("<textarea>");
+    }
+
 </script>
 <section id="detail">
     {{ board.title }}
@@ -104,10 +125,17 @@
     <ul id="new_comment"></ul>
     <ul id="comment_list">
         {% for comment in object_list %}
-        <li>
+        <li id="{{comment.id}}">
             <img id="profile-img">
             <div>
-                {{comment.writer}} <span><i class="fa-solid fa-clock"></i> {{comment.date}}</span>
+                {{comment.writer}}
+                <span>
+                    {% if request.user == comment.writer %}
+                    <a onclick=" commentUpdate('{{comment.id}}')">수정</a>
+                    <a onclick="commentDelete('{{comment.id}}')">삭제</a>
+                    {% endif %}
+                    <i class="fa-solid fa-clock"></i> {{comment.date}}
+                </span>
                 <p>{{comment.content}}</p>
             </div>
         </li>
