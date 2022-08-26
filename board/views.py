@@ -8,6 +8,8 @@ from user.models import User
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
 from django.shortcuts import redirect
+from django.views.generic.list import MultipleObjectMixin
+
 
 class CommunityListView(generic.ListView):
     template_name = "board/community_list.html"
@@ -22,13 +24,17 @@ class CommunityListView(generic.ListView):
         return context
 
 
-class CommunityDetailView(generic.DetailView):
+class CommunityDetailView(generic.DetailView, MultipleObjectMixin):
     template_name = "board/community_detail.html"
     model = Community
     context_object_name = "board"
+    paginate_by = 6
 
     def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
+        object_list = Comment.objects.filter(community=self.get_object())
+        context = super().get_context_data(
+            object_list=object_list, **kwargs
+        )
         context["commu_hot_list"] = Community.objects.order_by("-like")[0:5]
         context["commu_hot_list2"] = Community.objects.order_by("-like")[5:10]
         return context

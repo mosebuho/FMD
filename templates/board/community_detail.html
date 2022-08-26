@@ -53,10 +53,13 @@
         });
     });
     function boardDelete() {
-        var delete_warning = confirm("게시글을 삭제할 경우 복구가 불가능합니다.\n정말 삭제하시겠습니까?");
-        if (delete_warning == true) {
+        var warning = confirm("게시글을 삭제할 경우 복구가 불가능합니다.\n정말 삭제하시겠습니까?");
+        if (warning == true) {
             window.location.href = "{% url 'board:community_delete' board.id %}"
         }
+    }
+    function notlogin() {
+        alert("로그인이 필요한 기능입니다.")
     }
 </script>
 <section id="detail">
@@ -90,15 +93,17 @@
         <button id="flag"><i class="fa-solid fa-flag"></i> 신고</button>
     </div>
     <img id="detail-ad">
-    <textarea id="comment_content" name="content" rows="4" placeholder="댓글을 입력하세요."></textarea>
     {% if request.user.is_authenticated %}
+    <textarea id="comment_content" name="content" rows="4" placeholder="댓글을 입력하세요."></textarea>
     <button id="comment_create">게시</button>
     <input type="hidden" id="comment_writer" value={{request.user}}>
+    {% else %}
+    <textarea rows="4" placeholder="댓글을 입력하세요." onclick="notlogin()"></textarea>
     {% endif %}
     댓글 <span id="comment_count">{{board.comment_set.count}}</span>
     <ul id="new_comment"></ul>
     <ul id="comment_list">
-        {% for comment in board.comment_set.all %}
+        {% for comment in object_list %}
         <li>
             <img id="profile-img">
             <div>
@@ -108,5 +113,8 @@
         </li>
         {% endfor %}
     </ul>
+    {% if is_paginated %}
+    {% include "pagination.html" %}
+    {% endif %}
 </section>
 {% endblock detail %}

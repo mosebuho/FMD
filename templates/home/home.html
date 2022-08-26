@@ -159,7 +159,10 @@
                         <span>자유</span>
                         <ul>
                             {% for list in commu_list_free %}
-                            <li><a href="{% url 'board:community_detail' list.id %}">{{list.title|truncatechars:40}}</a>
+                            <li>
+                                <a href="{% url 'board:community_detail' list.id %}">{{list.title|truncatechars:35}}
+                                </a>
+                                <i class="fa-solid fa-comment"></i> {{ list.comment_set.count }}
                             </li>
                             {% endfor %}
                         </ul>
@@ -168,7 +171,10 @@
                         <span>정보</span>
                         <ul>
                             {% for list in commu_list_info %}
-                            <li><a href="{% url 'board:community_detail' list.id %}">{{list.title|truncatechars:40}}</a>
+                            <li>
+                                <a href="{% url 'board:community_detail' list.id %}">{{list.title|truncatechars:35}}
+                                </a>
+                                <i class="fa-solid fa-comment"></i> {{ list.comment_set.count }}
                             </li>
                             {% endfor %}
                         </ul>

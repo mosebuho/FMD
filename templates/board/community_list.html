@@ -7,12 +7,20 @@
     <div>
         <ul>
             {% for list in commu_hot_list %}
-            <li><a href="{% url 'board:community_detail' list.pk%}">{{ list.title|truncatechars:35}}</a></li>
+            <li>
+                <a href="{% url 'board:community_detail' list.id %}">{{list.title|truncatechars:35}}
+                </a>
+                <i class="fa-solid fa-comment"></i> {{ list.comment_set.count }}
+            </li>
             {% endfor %}
         </ul>
         <ul>
             {% for list in commu_hot_list2 %}
-            <li><a href="{% url 'board:community_detail' list.pk%}">{{ list.title|truncatechars:35}}</a></li>
+            <li>
+                <a href="{% url 'board:community_detail' list.id %}">{{list.title|truncatechars:35}}
+                </a>
+                <i class="fa-solid fa-comment"></i> {{ list.comment_set.count }}
+            </li>
             {% endfor %}
         </ul>
     </div>
@@ -57,27 +65,7 @@
 <section id="button">
     <div></div>
     {% if is_paginated %}
-    <ul>
-        {% if page_obj.has_previous %}
-        <li class="page-item-button">
-            <a class="page-link" href="?page={{page_obj.previous_page_number}}">&laquo; 이전&nbsp&nbsp</a>
-        </li>
-        {% endif %}
-        {% for i in paginator.page_range %}
-        {% if page_obj.number == i %}
-        <li class="page-item-active">{{ i }}</li>
-        {% else %}
-        <li class="page-item">
-            <a class="page-link" href="?page={{ i }}">{{ i }}</a>
-        </li>
-        {% endif %}
-        {% endfor %}
-        {% if page_obj.has_next %}
-        <li class="page-item-button">
-            <a href="?page={{page_obj.next_page_number}}" class="page-link">&nbsp&nbsp다음 &raquo;</a>
-        </li>
-        {% endif %}
-    </ul>
+    {% include "pagination.html" %}
     {% endif %}
     <button>
         <a href="{% url 'board:community_create' %}">

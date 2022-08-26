@@ -265,6 +265,11 @@ section#community .content ul {
     list-style: none;
 }
 
+section#community .content li {
+    font-size: 11px;
+    color: #aaa;
+}
+
 section#community .content li a {
     padding: 2px 0;
     color: #aaa;
