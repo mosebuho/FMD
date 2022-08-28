@@ -79,19 +79,38 @@
     }
 
     function commentUpdate(value) {
-        var comment_id = value;
-        var content = $("#comment_content").val();
         $.ajax({
             type: "POST",
             url: "{% url 'board:comment_update' board.id %}",
             dataType: "json",
             data: {
-                comment_id: comment_id,
-                content: content,
+                comment_id: value,
+                content: $("#comment_content").val(),
                 csrfmiddlewaretoken: "{{csrf_token}}",
             },
             success: function (response) {
-                $("#" + value).html("<textarea>" + response.content + "</textarea>")
+                $("#" + value).html("<textarea id='edit_comment'>" + response.content + "</textarea>" +
+                    "<button id='cancel'>취소</button> <button id='done'>수정</button>")
+                $("#cancel").click(function () {
+                    $("#" + value).replaceWith("<p id='" + value + "'>" + response.content + "</p>");
+                });
+                $("#done").click(function () {
+                    if ($("#edit_comment").val() == "") { alert('댓글을 입력해주세요.'); }
+                    else
+                        $.ajax({
+                            type: "POST",
+                            url: "{% url 'board:comment_update' board.id %}",
+                            dataType: "json",
+                            data: {
+                                comment_id: value,
+                                edit_comment: $("#edit_comment").val(),
+                                csrfmiddlewaretoken: "{{csrf_token}}",
+                            },
+                            success: function (response) {
+                                $("#" + value).replaceWith("<p id='" + value + "'>" + response.edit_comment + "</p>");
+                            },
+                        });
+                });
             }
         });
     }
@@ -141,7 +160,7 @@
     <ul id="new_comment"></ul>
     <ul id="comment_list">
         {% for comment in object_list %}
-        <li id="{{comment.id}}">
+        <li>
             <img id="profile-img">
             <div>
                 {{comment.writer}}
@@ -152,7 +171,7 @@
                     {% endif %}
                     <i class="fa-solid fa-clock"></i> {{comment.date}}
                 </span>
-                <p id="{{comment.id}}comment_body">{{comment.content}}</p>
+                <p id="{{comment.id}}">{{comment.content}}</p>
             </div>
         </li>
         {% endfor %}

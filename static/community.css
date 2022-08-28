@@ -278,6 +278,13 @@ section#detail textarea {
     padding: 5px;
     outline: none;
     font-size: 15px;
+    border: 1px solid #484848;
+}
+
+section#detail textarea#edit_comment {
+    min-width: 778px;
+    max-width: 778px;
+    min-height: 85px;
 }
 
 section#detail textarea#comment_content {
@@ -285,7 +292,6 @@ section#detail textarea#comment_content {
     max-width: 890px;
     margin-top: 5px;
     min-height: 85px;
-    border: 1px solid #484848;
 }
 
 section#detail #comment_create {
@@ -337,11 +343,30 @@ section#detail li div span {
     color: #aaa;
 }
 
+section#detail li div span a {
+    cursor: pointer;
+}
+
 
 section#detail li div p {
     color: #aaa;
     margin: 5px 0 0 0;
     font-size: 15px;
+}
+
+section#detail li div p button {
+    width: 60px;
+    height: 35px;
+    color: #eee;
+    border: 1px solid #484848;
+    float: right;
+    background: #848b79;
+    cursor: pointer;
+}
+
+section#detail button#cancel {
+    background:#363636;
+    margin:0 0 0 5px;
 }
 
 section#detail ul.page-list {

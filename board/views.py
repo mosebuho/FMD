@@ -121,12 +121,19 @@ def comment_create(request, pk):
 def comment_update(request, pk):
     comment_id = request.POST.get("comment_id")
     target_comment = Comment.objects.get(pk=comment_id)
+    board = get_object_or_404(Community, id=pk)
+    edit_comment = request.POST.get("edit_comment")
     if request.user == target_comment.writer:
-        data = {
-            "comment_id": comment_id,
-            "content": target_comment.content,
-        }
-        return HttpResponse(json.dumps(data, cls=DjangoJSONEncoder))
+        if edit_comment:
+            target_comment.content = edit_comment
+            target_comment.save()
+            board.save()
+    data = {
+        "comment_id": comment_id,
+        "content": target_comment.content,
+        "edit_comment": edit_comment,
+    }
+    return HttpResponse(json.dumps(data, cls=DjangoJSONEncoder))
 
 
 def comment_delete(request, pk):
