@@ -41,7 +41,7 @@
                                 "<li id='" + response.comment_id + "'style='border:1px solid #848b79'><img id='profile-img'><div>" + response.writer +
                                 "<span><a onclick='commentUpdate(" + response.comment_id + ")'>수정</a>" +
                                 " <a onclick='commentDelete(" + response.comment_id + ")'>삭제</a></span>" +
-                                "<p>" + response.content + "</p></div></li>"
+                                "<p id=" + response.comment_id + "content>" + response.content + "</p></div></li>"
                             );
                         }
                         $("#comment_count").html(response.comment_count);
@@ -72,7 +72,8 @@
                     csrfmiddlewaretoken: "{{csrf_token}}",
                 },
                 success: function (response) {
-                    window.location.reload()
+                    $("#" + value).remove();
+                    $("#comment_count").html(response.comment_count);
                 },
             });
         }
@@ -89,10 +90,10 @@
                 csrfmiddlewaretoken: "{{csrf_token}}",
             },
             success: function (response) {
-                $("#" + value).html("<textarea id='edit_comment'>" + response.content + "</textarea>" +
+                $("#" + value + "content").html("<textarea id='edit_comment'>" + response.content + "</textarea>" +
                     "<button id='cancel'>취소</button> <button id='done'>수정</button>")
                 $("#cancel").click(function () {
-                    $("#" + value).replaceWith("<p id='" + value + "'>" + response.content + "</p>");
+                    $("#" + value + "content").replaceWith("<p id='" + value + "content'>" + response.content + "</p>");
                 });
                 $("#done").click(function () {
                     if ($("#edit_comment").val() == "") { alert('댓글을 입력해주세요.'); }
@@ -107,7 +108,7 @@
                                 csrfmiddlewaretoken: "{{csrf_token}}",
                             },
                             success: function (response) {
-                                $("#" + value).replaceWith("<p id='" + value + "'>" + response.edit_comment + "</p>");
+                                $("#" + value + "content").replaceWith("<p id='" + value + "content'>" + response.edit_comment + "</p>");
                             },
                         });
                 });
@@ -160,7 +161,7 @@
     <ul id="new_comment"></ul>
     <ul id="comment_list">
         {% for comment in object_list %}
-        <li>
+        <li id="{{comment.id}}">
             <img id="profile-img">
             <div>
                 {{comment.writer}}
@@ -171,7 +172,7 @@
                     {% endif %}
                     <i class="fa-solid fa-clock"></i> {{comment.date}}
                 </span>
-                <p id="{{comment.id}}">{{comment.content}}</p>
+                <p id="{{comment.id}}content">{{comment.content}}</p>
             </div>
         </li>
         {% endfor %}

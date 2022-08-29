@@ -39,7 +39,7 @@ class CommunityDetailView(generic.DetailView, MultipleObjectMixin):
         return context
 
 
-class CommunityCreateView(LoginRequiredMixin,generic.CreateView):
+class CommunityCreateView(LoginRequiredMixin, generic.CreateView):
     template_name = "board/community_form.html"
     form_class = CommuModelForm
 
@@ -53,7 +53,7 @@ class CommunityCreateView(LoginRequiredMixin,generic.CreateView):
         return super().form_valid(form)
 
 
-class CommunityUpdateView(LoginRequiredMixin,generic.UpdateView):
+class CommunityUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Community
     form_class = CommuModelForm
     template_name = "board/community_form.html"
@@ -144,5 +144,8 @@ def comment_delete(request, pk):
     if request.user == target_comment.writer:
         target_comment.delete()
         board.save()
-        data = {"comment_id": comment_id}
+        data = {
+            "comment_id": comment_id,
+            "comment_count": board.comment_set.count(),
+        }
         return HttpResponse(json.dumps(data, cls=DjangoJSONEncoder))
