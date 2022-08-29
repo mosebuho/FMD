@@ -318,7 +318,8 @@ section#detail ul#comment_list {
 
 #comment_list li,
 #new_comment li {
-    border: 1px solid #484848;
+    border-top: 1px solid #484848;
+    border-bottom: 1px solid #484848;
     display: flex;
     flex-direction: row;
     font-size: 17px;
@@ -365,8 +366,8 @@ section#detail li div p button {
 }
 
 section#detail button#cancel {
-    background:#363636;
-    margin:0 0 0 5px;
+    background: #363636;
+    margin: 0 0 0 5px;
 }
 
 section#detail ul.page-list {

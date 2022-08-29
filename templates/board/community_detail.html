@@ -38,7 +38,8 @@
                     success: function (response) {
                         {
                             $('#new_comment').append(
-                                "<li id='" + response.comment_id + "'style='border:1px solid #848b79'><img id='profile-img'><div>" + response.writer +
+                                "<li id='" + response.comment_id + "'style='border-top:1px solid #848b79; border-bottom:1px solid #848b79;'>" +
+                                "<img id='profile-img'><div>" + response.writer +
                                 "<span><a onclick='commentUpdate(" + response.comment_id + ")'>수정</a>" +
                                 " <a onclick='commentDelete(" + response.comment_id + ")'>삭제</a></span>" +
                                 "<p id=" + response.comment_id + "content>" + response.content + "</p></div></li>"
@@ -160,7 +161,7 @@
     댓글 <span id="comment_count">{{board.comment_set.count}}</span>
     <ul id="new_comment"></ul>
     <ul id="comment_list">
-        {% for comment in object_list %}
+        {% for comment in board.comment_set.all  %}
         <li id="{{comment.id}}">
             <img id="profile-img">
             <div>
@@ -177,8 +178,5 @@
         </li>
         {% endfor %}
     </ul>
-    {% if is_paginated %}
-    {% include "pagination.html" %}
-    {% endif %}
 </section>
 {% endblock detail %}

@@ -8,7 +8,6 @@ from user.models import User
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
 from django.shortcuts import redirect
-from django.views.generic.list import MultipleObjectMixin
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 
@@ -25,15 +24,13 @@ class CommunityListView(generic.ListView):
         return context
 
 
-class CommunityDetailView(generic.DetailView, MultipleObjectMixin):
+class CommunityDetailView(generic.DetailView):
     template_name = "board/community_detail.html"
     model = Community
     context_object_name = "board"
-    paginate_by = 6
 
     def get_context_data(self, **kwargs):
-        object_list = Comment.objects.filter(community=self.get_object())
-        context = super().get_context_data(object_list=object_list, **kwargs)
+        context = super().get_context_data(**kwargs)
         context["commu_hot_list"] = Community.objects.order_by("-like")[0:5]
         context["commu_hot_list2"] = Community.objects.order_by("-like")[5:10]
         return context
@@ -121,17 +118,17 @@ def comment_create(request, pk):
 
 def comment_update(request, pk):
     comment_id = request.POST.get("comment_id")
-    target_comment = Comment.objects.get(pk=comment_id)
+    comment = Comment.objects.get(pk=comment_id)
     board = get_object_or_404(Community, id=pk)
     edit_comment = request.POST.get("edit_comment")
-    if request.user == target_comment.writer:
+    if request.user == comment.writer:
         if edit_comment:
-            target_comment.content = edit_comment
-            target_comment.save()
+            comment.content = edit_comment
+            comment.save()
             board.save()
     data = {
         "comment_id": comment_id,
-        "content": target_comment.content,
+        "content": comment.content,
         "edit_comment": edit_comment,
     }
     return HttpResponse(json.dumps(data, cls=DjangoJSONEncoder))
@@ -140,9 +137,9 @@ def comment_update(request, pk):
 def comment_delete(request, pk):
     board = get_object_or_404(Community, id=pk)
     comment_id = request.POST.get("comment_id")
-    target_comment = Comment.objects.get(pk=comment_id)
-    if request.user == target_comment.writer:
-        target_comment.delete()
+    comment = Comment.objects.get(pk=comment_id)
+    if request.user == comment.writer:
+        comment.delete()
         board.save()
         data = {
             "comment_id": comment_id,
