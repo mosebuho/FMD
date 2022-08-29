@@ -154,7 +154,7 @@
     <button id="comment_create">게시</button>
     <input type="hidden" id="comment_writer" value={{request.user}}>
     {% else %}
-    <textarea rows="4" placeholder="댓글을 입력하세요." onclick="notlogin()"></textarea>
+    <textarea id="comment_content" rows="4" placeholder="댓글을 입력하세요." onclick="notlogin()"></textarea>
     {% endif %}
     댓글 <span id="comment_count">{{board.comment_set.count}}</span>
     <ul id="new_comment"></ul>

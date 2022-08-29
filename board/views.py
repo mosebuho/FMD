@@ -9,6 +9,7 @@ from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
 from django.shortcuts import redirect
 from django.views.generic.list import MultipleObjectMixin
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 
 class CommunityListView(generic.ListView):
@@ -38,7 +39,7 @@ class CommunityDetailView(generic.DetailView, MultipleObjectMixin):
         return context
 
 
-class CommunityCreateView(generic.CreateView):
+class CommunityCreateView(LoginRequiredMixin,generic.CreateView):
     template_name = "board/community_form.html"
     form_class = CommuModelForm
 
@@ -52,7 +53,7 @@ class CommunityCreateView(generic.CreateView):
         return super().form_valid(form)
 
 
-class CommunityUpdateView(generic.UpdateView):
+class CommunityUpdateView(LoginRequiredMixin,generic.UpdateView):
     model = Community
     form_class = CommuModelForm
     template_name = "board/community_form.html"
