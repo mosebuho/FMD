@@ -162,7 +162,7 @@
                             <li>
                                 <a href="{% url 'board:community_detail' list.id %}">{{list.title|truncatechars:35}}
                                 </a>
-                                <i class="fa-solid fa-comment"></i> {{ list.comment_set.count }}
+                                <i class="fa-solid fa-comment-dots"></i> {{ list.comment_set.count }}
                             </li>
                             {% endfor %}
                         </ul>
@@ -174,7 +174,7 @@
                             <li>
                                 <a href="{% url 'board:community_detail' list.id %}">{{list.title|truncatechars:35}}
                                 </a>
-                                <i class="fa-solid fa-comment"></i> {{ list.comment_set.count }}
+                                <i class="fa-solid fa-comment-dots"></i> {{ list.comment_set.count }}
                             </li>
                             {% endfor %}
                         </ul>
@@ -249,7 +249,7 @@
                         <div>
                             <span>Lv.1 {{ request.user.point }}포인트</span>
                             <div>{{ request.user.name }}</div>
-                            <a href="">내정보</a>
+                            <a href="{% url 'user:profile' request.user.id %}">내정보</a>
                             <a href="{% url 'user:logout' %}" id="logout">&nbsp로그아웃</a>
                         </div>
                     </div>

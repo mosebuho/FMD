@@ -28,12 +28,17 @@ section#best a {
 section#best li {
     font-size: 11px;
     color: #aaa;
+    padding:2px 0;
 }
 
 section#best li a {
     padding: 2px 0;
-    color: #aaa;
+    color: #eee;
     font-size: 15px;
+}
+
+section#best li a:visited {
+    color: #aaa;
 }
 
 section#best ul {
@@ -92,9 +97,17 @@ section#list tr {
 
 section#list td#title {
     text-align: left;
+    font-size: 11px;
+    color: #aaa;
+
 }
 
 section#list a {
+    font-size: 15px;
+    color: #eee;
+}
+
+section#list a:visited {
     color: #aaa;
 }
 

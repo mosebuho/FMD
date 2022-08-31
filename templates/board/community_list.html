@@ -10,7 +10,7 @@
             <li>
                 <a href="{% url 'board:community_detail' list.id %}">{{list.title|truncatechars:35}}
                 </a>
-                <i class="fa-solid fa-comment"></i> {{ list.comment_set.count }}
+                <i class="fa-solid fa-comment-dots"></i> {{ list.comment_set.count }}
             </li>
             {% endfor %}
         </ul>
@@ -19,7 +19,7 @@
             <li>
                 <a href="{% url 'board:community_detail' list.id %}">{{list.title|truncatechars:35}}
                 </a>
-                <i class="fa-solid fa-comment"></i> {{ list.comment_set.count }}
+                <i class="fa-solid fa-comment-dots"></i> {{ list.comment_set.count }}
             </li>
             {% endfor %}
         </ul>
@@ -51,8 +51,9 @@
                 <td>{{ list.name }}</td>
                 <td id="title">
                     <a href="{% url 'board:community_detail' list.pk %}" target="_self" style="text-decoration: none">
-                        {{ list.title|truncatechars:50 }}
+                        {{ list.title|truncatechars:45 }}
                     </a>
+                    <i class="fa-solid fa-comment-dots"></i> {{ list.comment_set.count }}
                 </td>
                 <td>{{ list.writer }}</td>
                 <td>{{ list.view }}</td>

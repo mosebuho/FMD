@@ -39,7 +39,7 @@ section#account form button {
     margin-bottom: 5px;
     border: #484848 solid 1px;
     color: #eee;
-    font-size:15px;
+    font-size: 15px;
 }
 
 section#account .help {
@@ -98,3 +98,75 @@ section#account img#ad {
     background: #272727;
 }
 
+/* profile */
+section#profile {
+    text-align: center;
+    margin-top: 5px;
+}
+
+section#profile img#profile-ad {
+    width: 100%;
+    height: 120px;
+}
+
+
+section#profile .userinfo {
+    background: #272727;
+    border: 1px solid #484848;
+}
+
+section#profile .tab {
+    display: flex;
+    flex-direction: row;
+    border-bottom: 1px solid #484848;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background: #272727;
+}
+
+section#profile li {
+    width: 100%;
+    text-align: center;
+    color: #eee;
+    font-size: 17px;
+    list-style: none;
+    padding: 10px 0;
+}
+
+section#profile a {
+    color: #eee;
+}
+
+section#profile .tabcont {
+    display: none;
+}
+
+section#profile .tabcont.on {
+    display: block;
+}
+
+section#profile .content ul {
+    padding: 10px;
+    margin: 5px 0 0 0;
+}
+
+section#profile .content ul li {
+    text-align: left;
+    padding: 4px 0;
+    margin: 0;
+    color: #aaa;
+    font-size: 12px;
+}
+
+section#profile .content ul li a {
+    color: #eee;
+    font-size: 15px;
+}
+
+section#profile #mycomment p {
+    margin: 5px;
+    color: #aaa;
+    font-size: 14px;
+}

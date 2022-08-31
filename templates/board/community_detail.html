@@ -45,7 +45,7 @@
                                 "<p id=" + response.comment_id + "content>" + response.content + "</p></div></li>"
                             );
                         }
-                        $("#comment_count").html(response.comment_count);
+                        $("#comment_count").html(response.comment_count + "개");
                         $('#comment_content').val("");
                     },
                 })
@@ -74,7 +74,7 @@
                 },
                 success: function (response) {
                     $("#" + value).remove();
-                    $("#comment_count").html(response.comment_count);
+                    $("#comment_count").html(response.comment_count + "개");
                 },
             });
         }
@@ -132,7 +132,7 @@
         {{ board.writer }} |
         <i class="fa-solid fa-eye"></i> {{ board.view }}
         <i class="fa-solid fa-thumbs-up"></i> {{ board.like }}
-        <i class="fa-solid fa-comment"></i> {{ board.comment_set.count }}
+        <i class="fa-solid fa-comment-dots"></i> {{ board.comment_set.count }}
         <span><i class="fa-solid fa-clock"></i> {{ board.date }}</span>
     </div>
     <div class="content">
@@ -158,10 +158,11 @@
     {% else %}
     <textarea id="comment_content" rows="4" placeholder="댓글을 입력하세요." onclick="notlogin()"></textarea>
     {% endif %}
-    댓글 <span id="comment_count">{{board.comment_set.count}}</span>
+    <i class="fa-solid fa-comment-dots" style="color:#eee;"></i>
+    <span id="comment_count">{{board.comment_set.count}}개</span>
     <ul id="new_comment"></ul>
     <ul id="comment_list">
-        {% for comment in board.comment_set.all  %}
+        {% for comment in board.comment_set.all %}
         <li id="{{comment.id}}">
             <img id="profile-img">
             <div>

@@ -272,8 +272,12 @@ section#community .content li {
 
 section#community .content li a {
     padding: 2px 0;
-    color: #aaa;
+    color: #eee;
     font-size: 15px;
+}
+
+section#community .content li a:visited {
+    color: #aaa;
 }
 
 
