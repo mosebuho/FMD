@@ -36,6 +36,7 @@ class User(AbstractBaseUser):
     name = models.CharField(max_length=60, unique=True, verbose_name="닉네임")
     join_date = models.DateTimeField(auto_now_add=True, verbose_name="생성시간")
     point = models.PositiveIntegerField(default=0, verbose_name="포인트")
+    image = models.ImageField(blank=True)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
 

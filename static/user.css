@@ -99,23 +99,20 @@ section#account img#ad {
 }
 
 /* profile */
-section#profile {
-    text-align: center;
+img#profile-ad {
+    width: 100%;
+    height: 120px;
     margin-top: 5px;
 }
 
-section#profile img#profile-ad {
-    width: 100%;
-    height: 120px;
-}
-
-
-section#profile .userinfo {
+section#profile {
+    text-align: center;
+    margin-top: 5px;
     background: #272727;
     border: 1px solid #484848;
 }
 
-section#profile .tab {
+section#profile ul {
     display: flex;
     flex-direction: row;
     border-bottom: 1px solid #484848;
@@ -133,6 +130,7 @@ section#profile li {
     font-size: 17px;
     list-style: none;
     padding: 10px 0;
+    cursor: pointer;
 }
 
 section#profile a {
@@ -147,26 +145,26 @@ section#profile .tabcont.on {
     display: block;
 }
 
-section#profile .content ul {
+section#profile div {
     padding: 10px;
-    margin: 5px 0 0 0;
-}
-
-section#profile .content ul li {
     text-align: left;
-    padding: 4px 0;
-    margin: 0;
-    color: #aaa;
-    font-size: 12px;
 }
 
-section#profile .content ul li a {
-    color: #eee;
+section#profile p {
+    margin: 10px 0;
     font-size: 15px;
 }
 
 section#profile #mycomment p {
-    margin: 5px;
+    margin: 10px 0 5px 0;
+}
+
+section#profile span {
+    font-size: 11px;
     color: #aaa;
+}
+
+section#profile #mycomment {
     font-size: 14px;
+    color: #aaa;
 }
