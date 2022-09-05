@@ -14,9 +14,11 @@ class RegisterView(generic.CreateView):
         return reverse("user:login")
 
 
-class ProfileView(generic.TemplateView):
+class ProfileView(generic.DetailView):
     template_name = "user/profile.html"
     model = User
+    context_object_name = "user"
+
 
     
 class ProfileUpdateView(LoginRequiredMixin, generic.UpdateView):

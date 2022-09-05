@@ -245,7 +245,11 @@
                 {% if request.user.is_authenticated %}
                 <div class="profile">
                     <div class="profile-info">
-                        <img id="profile">
+                        {% if request.user.image %}
+                        <img src="{{ request.user.image.url }}">
+                        {% else %}
+                        <img src="https://i.stack.imgur.com/34AD2.jpg">
+                        {% endif %}
                         <div>
                             <span>Lv.1 {{ request.user.point }}포인트</span>
                             <div>{{ request.user.name }}</div>

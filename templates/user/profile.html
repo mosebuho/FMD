@@ -32,20 +32,24 @@
         </li>
     </ul>
     <div id="info" class="tabcont on">
-        {% if request.user.image %}
-        <img src="{{ request.user.image.url }}">
+        {% block update %}
+        {% if user.image %}
+        <img id="userimage" src="{{ user.image.url }}">
         {% else %}
         <img src="https://i.stack.imgur.com/34AD2.jpg">
         {% endif %}
-        <p>아이디 : {{request.user.userid}}</p>
-        <p>닉네임 : {{request.user.name}}</p>
-        <p>이메일 : {{request.user.email}}</p>
-        <p>생성일 : {{request.user.join_date}}</p>
-        <a style="float:right;" href="{% url 'user:update' request.user.id %}">수정</a>
-        <p>포인트 : {{request.user.point}}</p>
+        <p>아이디 : {{user.userid}}</p>
+        <p>닉네임 : {{user.name}}</p>
+        <p>이메일 : {{user.email}}</p>
+        <p>생성일 : {{user.join_date}}</p>
+        <p>포인트 : {{user.point}}</p>
+        {% if request.user.id == user.id %}
+        <a style="float:right;" href="{% url 'user:update' user.id %}">정보변경</a>
+        {% endif %}
+        {% endblock update %}
     </div>
     <div id="myboard" class="tabcont">
-        {% for board in request.user.community_set.all %}
+        {% for board in user.community_set.all %}
         <p>
             <a href="{% url 'board:community_detail' board.id %}">{{ board.title|truncatechars:35 }}</a>
             &nbsp<span><i class="fa-solid fa-comment-dots"></i> {{ board.comment_set.count }}</span>
@@ -53,7 +57,7 @@
         {% endfor %}
     </div>
     <div id="mycomment" class="tabcont">
-        {% for comment in request.user.comment_set.all %}
+        {% for comment in user.comment_set.all %}
         <p>
             <a href="{% url 'board:community_detail' comment.community_id %}">
                 {{ comment.community.title|truncatechars:35 }}</a>
@@ -63,7 +67,7 @@
         {% endfor %}
     </div>
     <div id="mylike" class="tabcont">
-        {% for board in request.user.like_boards.all %}
+        {% for board in user.like_boards.all %}
         <p>
             <a href="{% url 'board:community_detail' board.id %}">{{ board.title|truncatechars:35 }}</a>
             &nbsp<span><i class="fa-solid fa-comment-dots"></i> {{ board.comment_set.count }}</span>

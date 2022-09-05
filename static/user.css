@@ -139,15 +139,12 @@ section#profile a {
 
 section#profile .tabcont {
     display: none;
+    padding: 10px;
+    text-align: left;
 }
 
 section#profile .tabcont.on {
     display: block;
-}
-
-section#profile div {
-    padding: 10px;
-    text-align: left;
 }
 
 section#profile p {
@@ -167,4 +164,9 @@ section#profile span {
 section#profile #mycomment {
     font-size: 14px;
     color: #aaa;
+}
+
+section#profile #userimage {
+    border-radius: 50%;
+    width: 250px;
 }

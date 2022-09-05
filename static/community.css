@@ -28,7 +28,7 @@ section#best a {
 section#best li {
     font-size: 11px;
     color: #aaa;
-    padding:2px 0;
+    padding: 2px 0;
 }
 
 section#best li a {
@@ -345,6 +345,7 @@ section#detail li img {
     width: 80px;
     height: 80px;
     margin-right: 15px;
+    border-radius: 50%;
 }
 
 section#detail li div {

@@ -402,11 +402,11 @@ section#side1 .profile-info {
     flex-direction: row;
 }
 
-section#side1 .profile-info img#profile {
+section#side1 .profile-info img {
     width: 75px;
-    height: 73px;
+    height: 75px;
     margin-right: 10px;
-    background: #272727;
+    border-radius: 50%;
 }
 
 section#side1 .profile-info div {
