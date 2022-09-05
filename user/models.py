@@ -9,11 +9,7 @@ class UserManager(BaseUserManager):
         if not userid:
             raise ValueError("아이디는 필수 항목입니다.")
 
-        user = self.model(
-            userid=userid,
-            email=self.normalize_email(email),
-            name=name
-        )
+        user = self.model(userid=userid, email=self.normalize_email(email), name=name)
         user.set_password(password)
         user.save(using=self._db)
         return user
@@ -43,7 +39,7 @@ class User(AbstractBaseUser):
     objects = UserManager()
 
     USERNAME_FIELD = "userid"
-    REQUIRED_FIELDS = ['email','name']
+    REQUIRED_FIELDS = ["email", "name"]
 
     def __str__(self):
         return self.name

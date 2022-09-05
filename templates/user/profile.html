@@ -32,12 +32,16 @@
         </li>
     </ul>
     <div id="info" class="tabcont on">
-        <img src={% if person.profile.image %}"{{ person.profile.image.url }}"
-        {% else %}"https://i.stack.imgur.com/34AD2.jpg"{% endif %} width="150rem" style="border-radius: 50%;">
+        {% if request.user.image %}
+        <img src="{{ request.user.image.url }}">
+        {% else %}
+        <img src="https://i.stack.imgur.com/34AD2.jpg">
+        {% endif %}
         <p>아이디 : {{request.user.userid}}</p>
         <p>닉네임 : {{request.user.name}}</p>
         <p>이메일 : {{request.user.email}}</p>
         <p>생성일 : {{request.user.join_date}}</p>
+        <a style="float:right;" href="{% url 'user:update' request.user.id %}">수정</a>
         <p>포인트 : {{request.user.point}}</p>
     </div>
     <div id="myboard" class="tabcont">

@@ -114,10 +114,8 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 AUTH_USER_MODEL = "user.User"
 
 LOGIN_REDIRECT_URL = "/"
-
 LOGOUT_REDIRECT_URL = "/"
 
-# django-summernote
 X_FRAME_OPTIONS = "SAMEORIGIN"
 
 MEDIA_URL = "/media/"

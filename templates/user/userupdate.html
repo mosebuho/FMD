@@ -1,0 +1,12 @@
+{% extends "user/profile.html" %}
+{% block content %}
+<section id="write">
+    <img id="write-ad">
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button id="done">게시</button>
+        <button id="cancel">취소</button>
+    </form>
+</section>
+{% endblock content %}
