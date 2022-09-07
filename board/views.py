@@ -9,6 +9,7 @@ from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
 from django.shortcuts import redirect
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.http import Http404
 
 
 class CommunityListView(generic.ListView):
@@ -54,6 +55,12 @@ class CommunityUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Community
     form_class = CommuModelForm
     template_name = "board/community_form.html"
+
+    def dispatch(self, request, *args, **kwargs):
+        obj = self.get_object()
+        if obj.writer != self.request.user:
+            raise Http404("글을 수정할 권한이 없습니다.")
+        return super(CommunityUpdateView, self).dispatch(request, *args, **kwargs)
 
     def get_success_url(self):
         return reverse_lazy("board:community_detail", kwargs={"pk": self.object.pk})
