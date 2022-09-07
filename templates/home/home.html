@@ -13,6 +13,20 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
         integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <script>
+        $(function () {
+            $('.title li').click(function () {
+                $('.title li').removeClass('on');
+                $('.tabcont').removeClass('on');
+                $(this).addClass('on');
+                $('.content #' + $(this).attr('data-tab')).addClass('on');
+                $('#community .title li').css('color', '#aaa');
+                $(this).css('color', '#eee');
+            })
+        });
+    </script>
 </head>
 
 <body>
@@ -152,13 +166,25 @@
             <section id="community">
                 <div class="title">
                     커뮤니티
-                    <span>최신 | 인기</span>
+                    <ul>
+                        <li data-tab="new" class='on'>최신</li>
+                        <li data-tab="hot" style="color:#aaa;">인기</li>
+                    </ul>
                 </div>
                 <div class="content">
                     <div>
                         <span>자유</span>
-                        <ul>
-                            {% for list in commu_list_free %}
+                        <ul id="new" class="tabcont on">
+                            {% for list in commu_free_new %}
+                            <li>
+                                <a href="{% url 'board:community_detail' list.id %}">{{list.title|truncatechars:35}}
+                                </a>
+                                <i class="fa-solid fa-comment-dots"></i> {{ list.comment_set.count }}
+                            </li>
+                            {% endfor %}
+                        </ul>
+                        <ul id="hot" class="tabcont">
+                            {% for list in commu_free_hot %}
                             <li>
                                 <a href="{% url 'board:community_detail' list.id %}">{{list.title|truncatechars:35}}
                                 </a>
@@ -169,8 +195,17 @@
                     </div>
                     <div>
                         <span>정보</span>
-                        <ul>
-                            {% for list in commu_list_info %}
+                        <ul id="new" class="tabcont on">
+                            {% for list in commu_info_new %}
+                            <li>
+                                <a href="{% url 'board:community_detail' list.id %}">{{list.title|truncatechars:35}}
+                                </a>
+                                <i class="fa-solid fa-comment-dots"></i> {{ list.comment_set.count }}
+                            </li>
+                            {% endfor %}
+                        </ul>
+                        <ul id="hot" class="tabcont">
+                            {% for list in commu_info_hot %}
                             <li>
                                 <a href="{% url 'board:community_detail' list.id %}">{{list.title|truncatechars:35}}
                                 </a>

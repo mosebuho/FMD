@@ -70,7 +70,7 @@ def community_delete(request, pk):
     board = get_object_or_404(Community, id=pk)
     if board.writer == request.user:
         board.delete()
-        return redirect("/")
+        return redirect("board:community_list")
     else:
         return redirect(f"/board/detail/{pk}/")
 

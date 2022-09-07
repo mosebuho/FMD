@@ -236,9 +236,24 @@ section#community .title {
     border-bottom: #848b79 1px solid;
 }
 
-section#community .title span {
+section#community .title ul {
     font-size: 15px;
-    margin-top: 7px;
+    margin: 7px 0 0 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 60px;
+    cursor: pointer;
+}
+
+section#community .tabcont {
+    display: none;
+}
+
+section#community .tabcont.on {
+    display: block;
 }
 
 section#community .content {
