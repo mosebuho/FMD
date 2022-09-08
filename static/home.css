@@ -477,10 +477,14 @@ section#side2 dt {
 }
 
 section#side2 dd {
-    color: #aaa;
     margin: 6px 0 0;
     font-size: 15px;
     list-style: none;
+    color: #aaa;
+}
+
+section#side2 li a {
+    color: #aaa;
 }
 
 section#side2 li {

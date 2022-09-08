@@ -153,15 +153,15 @@
             <img src="https://i.stack.imgur.com/34AD2.jpg">
             {% endif %}
             <span>
-                <p>{{ board.writer }}</p>
-                <p>{{ board.writer.point }}</p>
+                <p><a href="{% url 'user:profile' board.writer.id %}">{{ board.writer }}</a></p>
+                <p>{{ board.writer.point }} 포인트</p>
                 <p>{{ board.writer.join_date }}</p>
             </span>
         </div>
         <div>
             <ul class="title">
-                <li data-tab="board" class='on'>작성한 글</li>
-                <li data-tab="comment" style="color:#aaa;">작성한 댓글</li>
+                <li data-tab="board" class='on'>최근 작성한 글</li>
+                <li data-tab="comment" style="color:#aaa;">최근 작성한 댓글</li>
             </ul>
             <ul id="board" class="tabcont on">
                 {% for list in board.writer.community_set.all|slice:"5" %}

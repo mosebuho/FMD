@@ -311,7 +311,7 @@
                     <dt>랭킹</dt>
                     <dd>
                         {% for user in ranking %}
-                        <li>{{user.name}}<span>{{user.point}} 포인트</span></li>
+                        <li><a href="{% url 'user:profile' user.id %}">{{user.name}}</a><span>{{user.point}} 포인트</span></li>
                         {% endfor %}
                     </dd>
                 </dl>
