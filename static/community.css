@@ -251,7 +251,7 @@ section#detail .content {
 section#detail .writer-info {
     border: 1px solid #484848;
     width: 600px;
-    height: 125px;
+    height: 130px;
     margin: 100px auto 10px;
     padding: 10px;
     display: flex;
@@ -259,7 +259,17 @@ section#detail .writer-info {
     justify-content: space-between;
 }
 
-section#detail .writer-info .info {
+section#detail .writer-info span {
+    margin: auto 10px;
+    font-size: 15px;
+    color: #aaa;
+}
+
+section#detail .writer-info p {
+    margin: 5px;
+}
+
+section#detail .writer-info div {
     display: flex;
     flex-direction: row;
     width: 300px;
@@ -273,47 +283,23 @@ section#detail .writer-info img {
     margin: auto;
 }
 
-section#detail .writer-info span {
-    margin: auto 10px;
-    font-size: 15px;
-    color: #aaa;
-}
-
-section#detail .writer-info p {
-    margin: 5px;
-}
-
-section#detail .writer-info .title {
+section#detail .writer-info ul {
     width: 290px;
     padding: 0 0 5px 0;
-    display: flex;
-    flex-direction: row;
-    font-size: 15px;
-    border-bottom: 1px solid #848b79;
-    cursor: pointer;
+    font-size: 13px;
     margin: 0;
     list-style: none;
 }
 
-section#detail .writer-info .title li {
-    margin: 0 7px 0 0;
+section#detail .writer-info ul p {
+    font-size: 15px;
+    border-bottom: 1px solid #848b79;
+    padding: 0 0 3px 0;
+    margin: 0;
 }
 
-section#detail #board,
-#comment {
-    margin: 3px 0 0 0;
-    padding: 0;
-    font-size: 14px;
-    color: #aaa;
-    list-style: none;
-}
-
-section#detail .tabcont {
-    display: none;
-}
-
-section#detail .tabcont.on {
-    display: block;
+section#detail .writer-info ul li {
+    margin: 2px 0;
 }
 
 section#detail .writer-info a {

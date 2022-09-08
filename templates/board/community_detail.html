@@ -116,16 +116,6 @@
             }
         });
     }
-    $(function () {
-        $('.title li').click(function () {
-            $('.title li').removeClass('on');
-            $('.tabcont').removeClass('on');
-            $(this).addClass('on');
-            $('#' + $(this).attr('data-tab')).addClass('on');
-            $('.title li').css('color', '#aaa');
-            $(this).css('color', '#eee');
-        })
-    });
 </script>
 <section id="detail">
     {{ board.title }}
@@ -146,7 +136,7 @@
         {{ board.content | safe }}
     </div>
     <div class="writer-info">
-        <div class="info">
+        <div>
             {% if board.writer.image %}
             <img src="{{ board.writer.image.url }}">
             {% else %}
@@ -158,22 +148,12 @@
                 <p>{{ board.writer.join_date }}</p>
             </span>
         </div>
-        <div>
-            <ul class="title">
-                <li data-tab="board" class='on'>최근 작성한 글</li>
-                <li data-tab="comment" style="color:#aaa;">최근 작성한 댓글</li>
-            </ul>
-            <ul id="board" class="tabcont on">
-                {% for list in board.writer.community_set.all|slice:"5" %}
-                <li><a href="{% url 'board:community_detail' board.id %}">{{ list.title }}</a></li>
-                {% endfor %}
-            </ul>
-            <ul id="comment" class="tabcont">
-                {% for list in board.writer.comment_set.all|slice:"5" %}
-                <li>{{ list.content }}</li>
-                {% endfor %}
-            </ul>
-        </div>
+        <ul>
+            <p>최근 작성한 글</p>
+            {% for list in board.writer.community_set.all|slice:"5" %}
+            <li><a href="{% url 'board:community_detail' board.id %}">{{ list.title|truncatechars:20 }}</a></li>
+            {% endfor %}
+        </ul>
     </div>
     <div class="buttons">
         <button id="{{ board.id }}" onclick="like(this.id)">
