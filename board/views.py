@@ -1,5 +1,5 @@
 from django.views import generic
-from .models import Community, Comment
+from .models import Community, Comment, News
 from .forms import CommuModelForm
 from django.http import HttpResponse
 import json
@@ -153,3 +153,15 @@ def comment_delete(request, pk):
             "comment_count": board.comment_set.count(),
         }
         return HttpResponse(json.dumps(data, cls=DjangoJSONEncoder))
+
+
+class NewsListView(generic.ListView):
+    template_name = "board/news_list.html"
+    model = News
+    context_object_name = "lists"
+
+
+class NewsDetailView(generic.DetailView):
+    template_name = "board/news_detail.html"
+    model = News
+    context_object_name = "news"

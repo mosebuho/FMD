@@ -12,4 +12,6 @@ urlpatterns = [
     path("<int:pk>/comment/create/", views.comment_create, name="comment_create"),
     path("<int:pk>/comment/update/", views.comment_update, name="comment_update"),
     path("<int:pk>/comment/delete/", views.comment_delete, name="comment_delete"),
+    path("news/", views.NewsListView.as_view(), name="news_list"),
+    path("news/<int:pk>/", views.NewsDetailView.as_view(), name="news_detail"),
 ]

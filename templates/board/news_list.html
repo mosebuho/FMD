@@ -1,0 +1,25 @@
+{% extends "home/home.html" %}
+{% block content %}
+<link rel="stylesheet" href="/static/news.css/" />
+<img id="news_ad">
+<section id="news_list">
+    <ul>
+        {% for list in lists %}
+        <a href="{% url 'board:news_detail' list.id %}">
+            <li>
+                <img src="{{list.thumbnail.url}}">
+                <div>
+                    {{list.title|truncatechars:70}}
+                    <p>
+                        {{ list.writer }}
+                        <i class="fa-solid fa-eye"></i> {{ list.view }}
+                        <span>{{list.date}}</span>
+                    </p>
+                    <span>{{list.content|truncatechars:95}}</span>
+                </div>
+            </li>
+        </a>
+        {% endfor %}
+    </ul>
+</section>
+{% endblock content %}

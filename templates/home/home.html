@@ -44,7 +44,7 @@
             </div>
             <ul>
                 <li>
-                    <a href="{% url 'board:community_list'%}">
+                    <a href="{% url 'board:news_list'%}">
                         <i class="fa-solid fa-newspaper"></i>
                         뉴스/정보
                     </a>
@@ -311,7 +311,8 @@
                     <dt>랭킹</dt>
                     <dd>
                         {% for user in ranking %}
-                        <li><a href="{% url 'user:profile' user.id %}">{{user.name}}</a><span>{{user.point}} 포인트</span></li>
+                        <li><a href="{% url 'user:profile' user.id %}">{{user.name}}</a><span>{{user.point}} 포인트</span>
+                        </li>
                         {% endfor %}
                     </dd>
                 </dl>
