@@ -1,0 +1,15 @@
+{% extends "home/home.html" %}
+{% block user %}
+<section id="write">
+    <img id="write-ad">
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.thumbnail }}
+        {{ form.name }}
+        {{ form.title }}
+        {{ form.content }}
+        <button id="done">게시</button>
+        <button id="cancel">취소</button>
+    </form>
+</section>
+{% endblock user %}

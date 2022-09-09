@@ -122,7 +122,7 @@
     {% if request.user == board.writer %}
     <span class="modify">
         <a href="{% url 'board:community_update' board.id %}">수정</a>
-        <a onclick="boardDelete('{{board.id}}')" id="del">삭제</a>
+        <a onclick="boardDelete('{{board.id}}')">삭제</a>
     </span>
     {% endif %}
     <div class="sub">

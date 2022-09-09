@@ -1,6 +1,6 @@
 from django.views import generic
 from .models import Community, Comment, News
-from .forms import CommuModelForm
+from .forms import CommuModelForm, NewsModelForm
 from django.http import HttpResponse
 import json
 from django.core.serializers.json import DjangoJSONEncoder
@@ -166,3 +166,17 @@ class NewsDetailView(generic.DetailView):
     template_name = "board/news_detail.html"
     model = News
     context_object_name = "news"
+
+
+class NewsCreateView(LoginRequiredMixin, generic.CreateView):
+    template_name = "board/news_form.html"
+    form_class = NewsModelForm
+
+    def get_success_url(self):
+        return reverse_lazy("board:news_detail", kwargs={"pk": self.object.pk})
+
+    def form_valid(self, form):
+        form.instance.writer = self.request.user
+        self.request.user.point += 5
+        self.request.user.save()
+        return super().form_valid(form)

@@ -186,14 +186,9 @@ section#detail .modify {
 }
 
 section#detail .modify a {
-    color: #848b79;
-}
-
-section#detail .modify a#del {
-    color: #e74c3c;
+    color: #aaa;
     cursor: pointer;
 }
-
 
 section#detail .sub {
     padding: 3px 0;

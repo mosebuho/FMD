@@ -1,0 +1,25 @@
+{% extends "home/home.html" %}
+{% block user %}
+<link rel="stylesheet" href="/static/news.css/" />
+<div class="ad">
+    <img id="ad">
+    <img id="ad">
+</div>
+<section id="detail">
+    {{ news.title }}
+    {% if request.user == news.writer %}
+    <span class="modify">
+        <a>수정</a>
+        <a>삭제</a>
+    </span>
+    {% endif %}
+    <div class="sub">
+        {{ news.writer }} |
+        <i class="fa-solid fa-eye"></i> {{ news.view }}
+        <span><i class="fa-solid fa-clock"></i> {{ news.date }}</span>
+    </div>
+    <div class="content">
+        {{ news.content | safe }}
+    </div>
+</section>
+{% endblock user %}
