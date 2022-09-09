@@ -122,41 +122,6 @@ section#button {
 }
 
 
-ul.page-list {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-}
-
-ul.page-list li a {
-    color: #aaa;
-    text-decoration: none;
-}
-
-.page-item {
-    text-align: center;
-    width: 25px;
-    height: 25px;
-    padding-top: 2px;
-    font-size: 13px;
-}
-
-.page-item-active {
-    text-align: center;
-    width: 25px;
-    height: 25px;
-    padding-top: 2px;
-    background: #848b79;
-}
-
-.page-item-button {
-    padding-top: 2px;
-}
-
-
 section#button button {
     background: #848b79;
     width: 80px;
@@ -436,16 +401,6 @@ section#detail li div p button {
 section#detail button#cancel {
     background: #363636;
     margin: 0 0 0 5px;
-}
-
-section#detail ul.page-list {
-    font-size: 13px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    list-style: none;
-    margin: 10px 0 0 0;
-    padding: 0;
 }
 
 /* write */
