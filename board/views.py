@@ -72,7 +72,7 @@ def community_delete(request, pk):
         board.delete()
         return redirect("board:community_list")
     else:
-        return redirect(f"/board/detail/{pk}/")
+        return redirect("board:community_list")
 
 
 def like(request):
@@ -180,3 +180,27 @@ class NewsCreateView(LoginRequiredMixin, generic.CreateView):
         self.request.user.point += 5
         self.request.user.save()
         return super().form_valid(form)
+
+
+def news_delete(request, pk):
+    board = get_object_or_404(News, id=pk)
+    if board.writer == request.user:
+        board.delete()
+        return redirect("board:news_list")
+    else:
+        return redirect("board:news_list")
+
+
+class NewsUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = News
+    form_class = NewsModelForm
+    template_name = "board/news_form.html"
+
+    def dispatch(self, request, *args, **kwargs):
+        obj = self.get_object()
+        if obj.writer != self.request.user:
+            raise Http404("글을 수정할 권한이 없습니다.")
+        return super(NewsUpdateView, self).dispatch(request, *args, **kwargs)
+
+    def get_success_url(self):
+        return reverse_lazy("board:news_detail", kwargs={"pk": self.object.pk})

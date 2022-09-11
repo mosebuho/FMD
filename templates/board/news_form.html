@@ -27,7 +27,7 @@
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="top">
-            {{ form.thumbnail }}
+            <input type="file" name="thumbnail" accept="image/*" id="id_thumbnail">
             {{ form.name }}
             {{ form.title }}
         </div>
