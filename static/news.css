@@ -59,6 +59,25 @@ section#news_list .news-page li .content {
     font-size: 15px;
 }
 
+section#button {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 30px;
+    font-size: 14px;
+    padding-left: 80px;
+    margin: 5px 0 0 0;
+}
+
+section#button button {
+    background: #848b79;
+    width: 80px;
+    text-align: center;
+}
+
+section#button button a {
+    color: #eee;
+}
 
 /* detail */
 
@@ -102,5 +121,61 @@ section#detail .sub {
 
 section#detail .content {
     font-size: 16px;
-    line-height: 1;
+}
+
+section#detail .content p {
+    margin: 0;
+}
+
+/* write */
+section#write {
+    text-align: center;
+}
+
+section#write form {
+    border: 1px solid #484848;
+    background: #272727;
+}
+
+section#write form .top {
+    background: #363636;
+    height: 60px;
+}
+
+section#write #id_thumbnail {
+    width: 200px;
+    height: 30px;
+}
+
+section#write select {
+    height: 60px;
+    width: 100px;
+    text-align: center;
+    background: #363636;
+    color: #aaa;
+    font-size: 16px;
+}
+
+section#write #id_title {
+    width: 850px;
+    height: 40px;
+    background: #363636;
+    font-size: 16px;
+}
+
+
+section#write button#done {
+    background: #848b79;
+    width: 80px;
+    height: 40px;
+    color: #eee;
+    margin: 10px 5px;
+}
+
+section#write button#cancel {
+    background: #363636;
+    width: 80px;
+    height: 40px;
+    color: #eee;
+    margin: 10px 5px;
 }

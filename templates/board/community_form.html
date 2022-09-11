@@ -26,8 +26,10 @@
     <img id="write-ad">
     <form method="post">
         {% csrf_token %}
-        {{ form.name }}
-        {{ form.title }}
+        <div class="top">
+            {{ form.name }}
+            {{ form.title }}
+        </div>
         {{ form.content }}
         <button id="done">게시</button>
         <button id="cancel">취소</button>

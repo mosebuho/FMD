@@ -115,9 +115,9 @@ section#button {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    margin-top: 10px;
     height: 30px;
     font-size: 14px;
+    margin: 5px 0 0 0;
     padding-left: 80px;
 }
 
@@ -205,7 +205,10 @@ section#detail .sub span {
 
 section#detail .content {
     font-size: 16px;
-    line-height: 1;
+}
+
+section#detail .content p {
+    margin: 0;
 }
 
 section#detail .writer-info {
@@ -418,10 +421,15 @@ section#write form {
     background: #272727;
 }
 
+section#write form .top {
+    background: #363636;
+    height: 60px;
+}
+
 section#write select {
     height: 50px;
     width: 100px;
-    background: #272727;
+    background: #363636;
     text-align: center;
     color: #aaa;
 }
@@ -429,7 +437,7 @@ section#write select {
 section#write input#id_title {
     height: 30px;
     width: 790px;
-    background: #272727;
+    background: #363636;
     font-size: 15px;
 }
 
