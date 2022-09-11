@@ -57,7 +57,6 @@ section#news_list .news-page p span {
 
 section#news_list .news-page li .content {
     font-size: 15px;
-    color: #aaa;
 }
 
 
@@ -99,4 +98,9 @@ section#detail .sub {
     border-bottom: 1px solid #484848;
     font-size: 13px;
     color: #aaa;
+}
+
+section#detail .content {
+    font-size: 16px;
+    line-height: 1;
 }

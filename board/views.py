@@ -15,7 +15,7 @@ from django.http import Http404
 class CommunityListView(generic.ListView):
     template_name = "board/community_list.html"
     model = Community
-    paginate_by = 1
+    paginate_by = 31
     context_object_name = "lists"
 
     def get_context_data(self, **kwargs):

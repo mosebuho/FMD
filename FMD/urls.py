@@ -9,7 +9,6 @@ urlpatterns = [
     path("", HomeView.as_view()),
     path("user/", include("user.urls")),
     path("board/", include("board.urls")),
-    path("summernote/", include("django_summernote.urls")),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

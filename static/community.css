@@ -204,8 +204,8 @@ section#detail .sub span {
 }
 
 section#detail .content {
-    color: #aaa;
     font-size: 16px;
+    line-height: 1;
 }
 
 section#detail .writer-info {
@@ -426,25 +426,25 @@ section#write select {
     color: #aaa;
 }
 
-section#write input {
+section#write input#id_title {
     height: 30px;
     width: 790px;
     background: #272727;
     font-size: 15px;
 }
 
-section#write button {
+section#write button#done {
+    background: #848b79;
     width: 80px;
     height: 40px;
     color: #eee;
     margin: 10px 5px;
-    cursor: pointer;
-}
-
-section#write button#done {
-    background: #848b79;
 }
 
 section#write button#cancel {
     background: #363636;
+    width: 80px;
+    height: 40px;
+    color: #eee;
+    margin: 10px 5px;
 }
