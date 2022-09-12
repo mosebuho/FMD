@@ -3,6 +3,7 @@
 <link rel="stylesheet" href="/static/news.css/" />
 <img id="news_ad">
 <section id="news_list">
+    {% block column-list %}
     <ul class="news-page">
         {% for list in lists %}
         <a href="{% url 'board:news_detail' list.id %}">
@@ -21,16 +22,19 @@
         </a>
         {% endfor %}
     </ul>
+    {% endblock column-list %}
 </section>
 <section id="button">
     <div></div>
     {% if is_paginated %}
     {% include "pagination.html" %}
     {% endif %}
+    {% block column %}
     <button>
         <a href="{% url 'board:news_create' %}">
             <i class="fa-solid fa-pen-to-square"></i> 글쓰기
         </a>
     </button>
+    {% endblock column %}
 </section>
 {% endblock content %}

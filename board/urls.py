@@ -17,4 +17,9 @@ urlpatterns = [
     path("news/create/", views.NewsCreateView.as_view(), name="news_create"),
     path("news/delete/<int:pk>/", views.news_delete, name="news_delete"),
     path("news/update/<int:pk>/",views.NewsUpdateView.as_view(),name="news_update"),
+    path("column/", views.ColumnListView.as_view(), name="column_list"),
+    path("column/<int:pk>/", views.ColumnDetailView.as_view(), name="column_detail"),
+    path("column/create/", views.ColumnCreateView.as_view(), name="column_create"),
+    path("column/delete/<int:pk>/", views.column_delete, name="column_delete"),
+    path("column/update/<int:pk>/",views.ColumnUpdateView.as_view(),name="column_update"),
 ]

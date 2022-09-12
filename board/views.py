@@ -1,6 +1,6 @@
 from django.views import generic
-from .models import Community, Comment, News
-from .forms import CommuModelForm, NewsModelForm
+from .models import Community, Comment, News, Column
+from .forms import CommuModelForm, NewsModelForm, ColumnModelForm
 from django.http import HttpResponse
 import json
 from django.core.serializers.json import DjangoJSONEncoder
@@ -204,3 +204,54 @@ class NewsUpdateView(LoginRequiredMixin, generic.UpdateView):
 
     def get_success_url(self):
         return reverse_lazy("board:news_detail", kwargs={"pk": self.object.pk})
+
+
+class ColumnListView(generic.ListView):
+    template_name = "board/column_list.html"
+    model = Column
+    paginate_by = 10
+    context_object_name = "lists"
+
+
+class ColumnDetailView(generic.DetailView):
+    template_name = "board/column_detail.html"
+    model = Column
+    context_object_name = "news"
+
+
+class ColumnCreateView(LoginRequiredMixin, generic.CreateView):
+    template_name = "board/column_form.html"
+    form_class = ColumnModelForm
+
+    def get_success_url(self):
+        return reverse_lazy("board:column_detail", kwargs={"pk": self.object.pk})
+
+    def form_valid(self, form):
+        form.instance.writer = self.request.user
+        self.request.user.point += 5
+        self.request.user.save()
+        return super().form_valid(form)
+
+
+def column_delete(request, pk):
+    board = get_object_or_404(Column, id=pk)
+    if board.writer == request.user:
+        board.delete()
+        return redirect("board:column_list")
+    else:
+        return redirect("board:column_list")
+
+
+class ColumnUpdateView(LoginRequiredMixin, generic.UpdateView):
+    model = Column
+    form_class = ColumnModelForm
+    template_name = "board/column_form.html"
+
+    def dispatch(self, request, *args, **kwargs):
+        obj = self.get_object()
+        if obj.writer != self.request.user:
+            raise Http404("글을 수정할 권한이 없습니다.")
+        return super(ColumnUpdateView, self).dispatch(request, *args, **kwargs)
+
+    def get_success_url(self):
+        return reverse_lazy("board:column_detail", kwargs={"pk": self.object.pk})

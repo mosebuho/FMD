@@ -1,0 +1,28 @@
+{% extends "board/news_list.html" %}
+{% block column-list %}
+<ul class="news-page">
+    {% for list in lists %}
+    <a href="{% url 'board:column_detail' list.id %}">
+        <li>
+            <img src="{{list.thumbnail.url}}">
+            <div>
+                {{list.title|truncatechars:70}}
+                <p>
+                    {{ list.writer }}
+                    <i class="fa-solid fa-eye"></i> {{ list.view }}
+                    <span>{{ list.date }}</span>
+                </p>
+                <span class="content">{{list.content|striptags|safe|truncatechars:110}}</span>
+            </div>
+        </li>
+    </a>
+    {% endfor %}
+</ul>
+{% endblock column-list %}
+{% block column %}
+<button>
+    <a href="{% url 'board:column_create' %}">
+        <i class="fa-solid fa-pen-to-square"></i> 글쓰기
+    </a>
+</button>
+{% endblock column %}
