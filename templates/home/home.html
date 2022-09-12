@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 {% load static %}
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -88,21 +89,16 @@
             <section id="news">
                 <div class="title">
                     뉴스/정보
-                    <span>국내 | 해외</span>
                 </div>
                 <ul>
-                    <li>
-                        <img id="thumbnail">
-                        환상적인 드리블
-                    </li>
-                    <li>
-                        <img id="thumbnail">
-                        오늘은 밖에 비가 온다 천둥도 친다 와다다다다
-                    </li>
-                    <li>
-                        <img id="thumbnail">
-                        우리 일민이가 너무 귀엽다 요즘 너무 심심한가 보다 놀아주면 맨날 깨문다
-                    </li>
+                    {% for list in news_list %}
+                    <a href="{% url 'board:news_detail' list.id %}">
+                        <li>
+                            <img id="thumbnail" src="{{ list.thumbnail.url }}">
+                            {{ list.title}}
+                        </li>
+                    </a>
+                    {% endfor %}
                 </ul>
             </section>
             <section id="column">

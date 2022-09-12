@@ -143,11 +143,6 @@ section#news .title {
     border-bottom: #848b79 1px solid;
 }
 
-section#news .title span {
-    font-size: 15px;
-    margin-top: 7px;
-}
-
 section#news ul {
     display: flex;
     flex-direction: row;
@@ -156,9 +151,14 @@ section#news ul {
     list-style: none;
 }
 
+section#news ul a {
+    color: #eee;
+}
+
 section#news li {
     width: 280px;
 }
+
 
 section#news li img#thumbnail {
     height: 250px;
