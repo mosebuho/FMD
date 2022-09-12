@@ -6,13 +6,13 @@
         <li>
             <img src="{{list.thumbnail.url}}">
             <div>
-                {{list.title|truncatechars:70}}
+                {{list.title|truncatechars:37}}
                 <p>
                     {{ list.writer }}
                     <i class="fa-solid fa-eye"></i> {{ list.view }}
                     <span>{{ list.date }}</span>
                 </p>
-                <span class="content">{{list.content|striptags|safe|truncatechars:110}}</span>
+                <span class="content">{{list.content|striptags|safe|truncatechars:100}}</span>
             </div>
         </li>
     </a>

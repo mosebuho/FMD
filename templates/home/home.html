@@ -94,8 +94,8 @@
                     {% for list in news_list %}
                     <a href="{% url 'board:news_detail' list.id %}">
                         <li>
-                            <img id="thumbnail" src="{{ list.thumbnail.url }}">
-                            {{ list.title}}
+                            <img src="{{ list.thumbnail.url }}">
+                            {{ list.title|truncatechars:37}}
                         </li>
                     </a>
                     {% endfor %}
@@ -104,58 +104,40 @@
             <section id="column">
                 <div class="title">군사칼럼</div>
                 <div class="content">
-                    <div>
-                        <div class="column-list">
-                            <img id="thumbnail">
-                            <div>
-                                <span style="font-size:18px; color:#eee;">제목</span>
-                                <span>작성일, 댓글아이콘, 뷰아이콘</span>
-                                <span>내용</span>
-                            </div>
-                        </div>
-                        <div class="column-list">
-                            <img id="thumbnail">
-                            <div>
-                                <span style="font-size:18px; color:#eee;">제목</span>
-                                <span>작성일, 댓글아이콘, 뷰아이콘</span>
-                                <span>내용</span>
-                            </div>
-                        </div>
-                        <div class="column-list">
-                            <img id="thumbnail">
-                            <div>
-                                <span style="font-size:18px; color:#eee;">제목</span>
-                                <span>작성일, 댓글아이콘, 뷰아이콘</span>
-                                <span>내용</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="column-list">
-                            <img id="thumbnail">
-                            <div>
-                                <span style="font-size:18px; color:#eee;">제목</span>
-                                <span>작성일, 댓글아이콘, 뷰아이콘</span>
-                                <span>내용</span>
-                            </div>
-                        </div>
-                        <div class="column-list">
-                            <img id="thumbnail">
-                            <div>
-                                <span style="font-size:18px; color:#eee;">제목</span>
-                                <span>작성일, 댓글아이콘, 뷰아이콘</span>
-                                <span>내용</span>
-                            </div>
-                        </div>
-                        <div class="column-list">
-                            <img id="thumbnail">
-                            <div>
-                                <span style="font-size:18px; color:#eee;">제목</span>
-                                <span>작성일, 댓글아이콘, 뷰아이콘</span>
-                                <span>내용</span>
-                            </div>
-                        </div>
-                    </div>
+                    <ul>
+                        {% for list in column_list|slice:3 %}
+                        <a href="{% url 'board:column_detail' list.id %}">
+                            <li>
+                                <img src="{{ list.thumbnail.url }}">
+                                <div>
+                                    <span class="listintitle">{{list.title|truncatechars:30}}</span>
+                                    <span class="listinsub">
+                                        {{list.writer}}
+                                        <i class="fa-solid fa-eye"></i> {{ list.view }}
+                                    </span>
+                                    <span>{{list.content|safe|striptags|truncatechars:40}}</span>
+                                </div>
+                            </li>
+                        </a>
+                        {% endfor %}
+                    </ul>
+                    <ul>
+                        {% for list in column_list|slice:"3:6" %}
+                        <a href="{% url 'board:column_detail' list.id %}">
+                            <li>
+                                <img src="{{ list.thumbnail.url }}">
+                                <div>
+                                    <span class="listintitle">{{list.title|truncatechars:30}}</span>
+                                    <span class="listinsub">
+                                        {{list.writer}}
+                                        <i class="fa-solid fa-eye"></i> {{ list.view }}
+                                    </span>
+                                    <span>{{list.content|safe|striptags|truncatechars:40}}</span>
+                                </div>
+                            </li>
+                        </a>
+                        {% endfor %}
+                    </ul>
                 </div>
             </section>
             <section id="community">

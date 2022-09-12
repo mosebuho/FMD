@@ -160,9 +160,10 @@ section#news li {
 }
 
 
-section#news li img#thumbnail {
+section#news li img {
     height: 250px;
     width: 280px;
+    min-width: 280px;
     border: #484848 1px solid;
 }
 
@@ -190,30 +191,51 @@ section#column .content {
     padding-bottom: 5px;
 }
 
-section#column .column-list {
+section#column .content ul {
+    padding: 0;
+    margin: 0;
+}
+
+section#column li {
     display: flex;
     flex-direction: row;
     width: 425px;
     height: 118px;
-    margin-top: 10px;
+    margin: 10px 0 0 0;
 }
 
-section#column .column-list img#thumbnail {
+section#column li img {
     background: #272727;
     height: 100%;
     width: 150px;
+    min-width: 150px;
 }
 
-section#column .column-list div {
+section#column li div {
     margin-left: 15px;
     width: 280px;
     display: flex;
     flex-direction: column;
 }
 
-section#column .column-list span {
+section#column li span {
     color: #aaa;
     font-size: 14px;
+}
+
+section#column li .listintitle {
+    font-size: 18px;
+    color: #eee;
+}
+
+section#column li .listinsub {
+    font-size: 12px;
+    border-top: 1px solid #484848;
+    border-bottom: 1px solid #484848;
+}
+
+section#column .listinsub i {
+    margin: 0 0 0 5px;
 }
 
 

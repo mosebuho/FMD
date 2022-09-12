@@ -1,5 +1,5 @@
 from django.views import generic
-from board.models import Community, News
+from board.models import Community, News, Column
 
 
 class HomeView(generic.TemplateView):
@@ -12,4 +12,5 @@ class HomeView(generic.TemplateView):
         context["commu_free_hot"] = Community.objects.filter(name="자유").order_by("-like")[:14]
         context["commu_info_hot"] = Community.objects.filter(name="정보").order_by("-like")[:14]
         context["news_list"] = News.objects.order_by("-id")[:3]
+        context["column_list"] = Column.objects.order_by("-id")[:6]
         return context
