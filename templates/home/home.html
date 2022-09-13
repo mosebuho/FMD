@@ -263,7 +263,7 @@
                         <img src="https://i.stack.imgur.com/34AD2.jpg">
                         {% endif %}
                         <div>
-                            <span>Lv.1 {{ request.user.point }}포인트</span>
+                            <span>Lv.{{request.user.level}} {{ request.user.point }}포인트</span>
                             <div>{{ request.user.name }}</div>
                             <a href="{% url 'user:profile' request.user.id %}">내정보</a>
                             <a href="{% url 'user:logout' %}" id="logout">&nbsp로그아웃</a>

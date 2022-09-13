@@ -22,6 +22,7 @@ class UserManager(BaseUserManager):
             password=password,
         )
         user.is_admin = True
+        user.level = 3
         user.save(using=self._db)
         return user
 
@@ -32,6 +33,7 @@ class User(AbstractBaseUser):
     name = models.CharField(max_length=60, unique=True, verbose_name="닉네임")
     join_date = models.DateTimeField(auto_now_add=True, verbose_name="생성시간")
     point = models.PositiveIntegerField(default=0, verbose_name="포인트")
+    level = models.PositiveIntegerField(default=0, verbose_name="레벨")
     image = models.ImageField(blank=True)
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)

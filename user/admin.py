@@ -9,6 +9,7 @@ class UserAdmin(admin.ModelAdmin):
         "image",
         "name",
         "email",
+        "level",
         "point",
         "join_date",
         "last_login",
