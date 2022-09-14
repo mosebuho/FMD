@@ -73,6 +73,8 @@ section#button button {
     background: #848b79;
     width: 80px;
     text-align: center;
+    color: #eee;
+    cursor: pointer;
 }
 
 section#button button a {

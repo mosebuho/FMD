@@ -1,18 +1,23 @@
 {% extends "board/news_list.html" %}
 {% block column-list %}
+<script>
+    function lv2() {
+        alert("Lv2 이상의 권한이 필요합니다.")
+    }
+</script>
 <ul class="news-page">
     {% for list in lists %}
     <a href="{% url 'board:column_detail' list.id %}">
         <li>
             <img src="{{list.thumbnail.url}}">
             <div>
-                {{list.title|truncatechars:37}}
+                {{ list.title | truncatechars:37}}
                 <p>
                     {{ list.writer }}
                     <i class="fa-solid fa-eye"></i> {{ list.view }}
                     <span>{{ list.date }}</span>
                 </p>
-                <span class="content">{{list.content|striptags|safe|truncatechars:100}}</span>
+                <span class="content">{{ list.content | striptags | safe | truncatechars:100}}</span>
             </div>
         </li>
     </a>
@@ -20,9 +25,15 @@
 </ul>
 {% endblock column-list %}
 {% block column %}
+{% if request.user.level >= 2 %}
 <button>
     <a href="{% url 'board:column_create' %}">
         <i class="fa-solid fa-pen-to-square"></i> 글쓰기
     </a>
 </button>
+{% else %}
+<button onclick="lv2()">
+    <i class="fa-solid fa-pen-to-square"></i> 글쓰기
+</button>
+{% endif %}
 {% endblock column %}

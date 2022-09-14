@@ -8,8 +8,9 @@ from user.models import User
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
 from django.shortcuts import redirect
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import Http404
+from user.decorator import *
+from django.utils.decorators import method_decorator
 
 
 class CommunityListView(generic.ListView):
@@ -37,7 +38,8 @@ class CommunityDetailView(generic.DetailView):
         return context
 
 
-class CommunityCreateView(LoginRequiredMixin, generic.CreateView):
+@method_decorator(lv1_required, name="dispatch")
+class CommunityCreateView(generic.CreateView):
     template_name = "board/community_form.html"
     form_class = CommuModelForm
 
@@ -51,7 +53,7 @@ class CommunityCreateView(LoginRequiredMixin, generic.CreateView):
         return super().form_valid(form)
 
 
-class CommunityUpdateView(LoginRequiredMixin, generic.UpdateView):
+class CommunityUpdateView(generic.UpdateView):
     model = Community
     form_class = CommuModelForm
     template_name = "board/community_form.html"
@@ -168,7 +170,8 @@ class NewsDetailView(generic.DetailView):
     context_object_name = "news"
 
 
-class NewsCreateView(LoginRequiredMixin, generic.CreateView):
+@method_decorator(lv2_required, name="dispatch")
+class NewsCreateView(generic.CreateView):
     template_name = "board/news_form.html"
     form_class = NewsModelForm
 
@@ -191,7 +194,7 @@ def news_delete(request, pk):
         return redirect("board:news_list")
 
 
-class NewsUpdateView(LoginRequiredMixin, generic.UpdateView):
+class NewsUpdateView(generic.UpdateView):
     model = News
     form_class = NewsModelForm
     template_name = "board/news_form.html"
@@ -219,7 +222,8 @@ class ColumnDetailView(generic.DetailView):
     context_object_name = "news"
 
 
-class ColumnCreateView(LoginRequiredMixin, generic.CreateView):
+@method_decorator(lv2_required, name="dispatch")
+class ColumnCreateView(generic.CreateView):
     template_name = "board/column_form.html"
     form_class = ColumnModelForm
 
@@ -242,7 +246,7 @@ def column_delete(request, pk):
         return redirect("board:column_list")
 
 
-class ColumnUpdateView(LoginRequiredMixin, generic.UpdateView):
+class ColumnUpdateView(generic.UpdateView):
     model = Column
     form_class = ColumnModelForm
     template_name = "board/column_form.html"

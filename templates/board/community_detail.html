@@ -61,6 +61,10 @@
         alert("로그인이 필요한 기능입니다.")
     }
 
+    function commentlv0() {
+        alert("이메일 인증이 필요한 기능입니다.")
+    }
+
     function commentDelete(value) {
         var delete_warning = confirm("댓글을 삭제할 경우 복구가 불가능합니다.\n정말 삭제하시겠습니까?");
         if (delete_warning == true) {
@@ -166,7 +170,9 @@
         <button id="flag"><i class="fa-solid fa-flag"></i> 신고</button>
     </div>
     <img id="detail-ad">
-    {% if request.user.is_authenticated %}
+    {% if request.user.level == 0 %}
+    <textarea id="comment_content" rows="4" placeholder="댓글을 입력하세요." onclick="commentlv0()"></textarea>
+    {% elif request.user.is_authenticated %}
     <textarea id="comment_content" name="content" rows="4" placeholder="댓글을 입력하세요."></textarea>
     <button id="comment_create">등록</button>
     <input type="hidden" id="comment_writer" value={{request.user}}>
