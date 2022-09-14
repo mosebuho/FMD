@@ -37,7 +37,7 @@
     {% block column %}
     {% if request.user.level >= 2 %}
     <button>
-        <a href="{% url 'board:column_create' %}">
+        <a href="{% url 'board:news_create' %}">
             <i class="fa-solid fa-pen-to-square"></i> 글쓰기
         </a>
     </button>

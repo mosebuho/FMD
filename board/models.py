@@ -59,7 +59,12 @@ class Comment(models.Model):
 
 class News(models.Model):
     title = models.CharField(max_length=128, verbose_name="제목")
-    thumbnail = models.ImageField(null=False, blank=False, verbose_name="썸네일")
+    thumbnail = models.ImageField(
+        null=False,
+        blank=False,
+        upload_to="news_thumbnial/%Y/%m/%d/",
+        verbose_name="썸네일",
+    )    
     content = models.TextField(verbose_name="내용")
     writer = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="작성자")
     date = models.DateTimeField(auto_now_add=True, verbose_name="작성일")
@@ -86,7 +91,12 @@ class News(models.Model):
 
 class Column(models.Model):
     title = models.CharField(max_length=128, verbose_name="제목")
-    thumbnail = models.ImageField(null=False, blank=False, verbose_name="썸네일")
+    thumbnail = models.ImageField(
+        null=False,
+        blank=False,
+        upload_to="column_thumbnial/%Y/%m/%d/",
+        verbose_name="썸네일",
+    )
     content = models.TextField(verbose_name="내용")
     writer = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="작성자")
     date = models.DateTimeField(auto_now_add=True, verbose_name="작성일")

@@ -138,11 +138,7 @@
     </div>
     <div class="writer-info">
         <div>
-            {% if board.writer.image %}
             <img src="{{ board.writer.image.url }}">
-            {% else %}
-            <img src="https://i.stack.imgur.com/34AD2.jpg">
-            {% endif %}
             <span>
                 <p><a href="{% url 'user:profile' board.writer.id %}">{{ board.writer }}</a></p>
                 <p>{{ board.writer.point }} 포인트</p>
