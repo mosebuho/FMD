@@ -1,0 +1,29 @@
+section#notice {
+    width: 900px;
+    height: 1000px;
+    background: #272727;
+    margin: 5px 0 0 0;
+    padding: 10px;
+}
+
+section#notice .title {
+    font-size: 20px;
+    padding: 2px 0 12px 0;
+    border-bottom: #848b79 1px solid;
+}
+
+section#notice ul {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0;
+}
+
+section#notice ul li {
+    font-size: 18px;
+    margin: 5px 0;
+    cursor: pointer;
+}
+
+section#notice .notice-content {
+    display: none;
+}

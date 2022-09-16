@@ -1,0 +1,28 @@
+{% extends "home/home.html" %}
+{% block content %}
+<link rel="stylesheet" href="/static/notice.css/" />
+<script>
+    function openclose(id) {
+        if (document.getElementById(id).style.display === 'block') {
+            document.getElementById(id).style.display = 'none';
+        } else {
+            document.getElementById(id).style.display = 'block';
+        }
+    }
+</script>
+<section id="notice">
+    <div class="title">
+        공지
+    </div>
+    <ul>
+        {% for list in notice_list %}
+        <li onclick="openclose('{{list.id}}')">
+            <i class="fa-solid fa-caret-down"></i> {{ list.title|truncatechars:45}}
+        </li>
+        <div id="{{list.id}}" class="notice-content">
+            {{list.content}}
+        </div>
+        {% endfor %}
+    </ul>
+</section>
+{% endblock content %}

@@ -134,12 +134,8 @@ section#news {
 }
 
 section#news .title {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
     font-size: 20px;
-    padding-top: 2px;
-    padding-bottom: 12px;
+    padding: 2px 0 10px 0;
     border-bottom: #848b79 1px solid;
 }
 
@@ -178,8 +174,7 @@ section#column {
 
 section#column .title {
     font-size: 20px;
-    padding-top: 2px;
-    padding-bottom: 12px;
+    padding: 2px 0 10px 0;
     border-bottom: #848b79 1px solid;
 }
 
@@ -253,8 +248,7 @@ section#community .title {
     flex-direction: row;
     justify-content: space-between;
     font-size: 20px;
-    padding-top: 2px;
-    padding-bottom: 12px;
+    padding: 2px 0 10px 0;
     border-bottom: #848b79 1px solid;
 }
 
@@ -329,8 +323,7 @@ section#dictionary {
 
 section#dictionary .title {
     font-size: 20px;
-    padding-top: 2px;
-    padding-bottom: 12px;
+    padding: 2px 0 10px 0;
     border-bottom: #848b79 1px solid;
 }
 
