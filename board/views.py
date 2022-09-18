@@ -1,6 +1,6 @@
 from django.views import generic
 from .models import Community, Comment, News, Column, Notice
-from .forms import CommuModelForm, NewsModelForm, ColumnModelForm
+from .forms import CommuModelForm, NewsModelForm, ColumnModelForm, NoticeModelForm
 from django.http import HttpResponse
 import json
 from django.core.serializers.json import DjangoJSONEncoder
@@ -260,7 +260,31 @@ class ColumnUpdateView(generic.UpdateView):
     def get_success_url(self):
         return reverse_lazy("board:column_detail", kwargs={"pk": self.object.pk})
 
+
 class NoticeListView(generic.ListView):
     model = Notice
-    template_name="board/notice_list.html"
+    template_name = "board/notice_list.html"
     context_name = "notice_list"
+
+
+class NoticeCreateView(generic.CreateView):
+    model = Notice
+    form_class = NoticeModelForm
+    template_name = "board/notice_form.html"
+    success_url = "/board/notice/"
+
+
+class NoticeUpdateView(generic.UpdateView):
+    model = Notice
+    form_class = NoticeModelForm
+    template_name = "board/notice_form.html"
+    success_url = "/board/notice/"
+
+
+def notice_delete(request, pk):
+    board = get_object_or_404(Notice, id=pk)
+    if request.user.is_admin:
+        board.delete()
+        return redirect("board:notice")
+    else:
+        return redirect("board:notice")

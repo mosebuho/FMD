@@ -3,7 +3,7 @@ from .models import Community, News, Column, Notice
 
 
 @admin.register(Community)
-class UserAdmin(admin.ModelAdmin):
+class CommunityAdmin(admin.ModelAdmin):
     list_display = (
         "title",
         "name",
@@ -15,7 +15,7 @@ class UserAdmin(admin.ModelAdmin):
 
 
 @admin.register(News)
-class UserAdmin(admin.ModelAdmin):
+class NewsAdmin(admin.ModelAdmin):
     list_display = (
         "title",
         "name",
@@ -26,7 +26,7 @@ class UserAdmin(admin.ModelAdmin):
 
 
 @admin.register(Column)
-class UserAdmin(admin.ModelAdmin):
+class ColumnAdmin(admin.ModelAdmin):
     list_display = (
         "title",
         "writer",
@@ -36,7 +36,7 @@ class UserAdmin(admin.ModelAdmin):
 
 
 @admin.register(Notice)
-class UserAdmin(admin.ModelAdmin):
+class NoticeAdmin(admin.ModelAdmin):
     list_display = (
         "title",
         "date",
