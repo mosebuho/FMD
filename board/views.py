@@ -267,6 +267,7 @@ class NoticeListView(generic.ListView):
     context_name = "notice_list"
 
 
+@method_decorator(lv3_required, name="dispatch")
 class NoticeCreateView(generic.CreateView):
     model = Notice
     form_class = NoticeModelForm
@@ -274,17 +275,15 @@ class NoticeCreateView(generic.CreateView):
     success_url = "/board/notice/"
 
 
+@method_decorator(lv3_required, name="dispatch")
 class NoticeUpdateView(generic.UpdateView):
     model = Notice
     form_class = NoticeModelForm
     template_name = "board/notice_form.html"
     success_url = "/board/notice/"
 
-
+@lv3_required
 def notice_delete(request, pk):
     board = get_object_or_404(Notice, id=pk)
-    if request.user.is_admin:
-        board.delete()
-        return redirect("board:notice")
-    else:
-        return redirect("board:notice")
+    board.delete()
+    return redirect("board:notice")

@@ -64,7 +64,7 @@ class News(models.Model):
         blank=False,
         upload_to="news_thumbnial/%Y/%m/%d/",
         verbose_name="썸네일",
-    )    
+    )
     content = models.TextField(verbose_name="내용")
     writer = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="작성자")
     date = models.DateTimeField(auto_now_add=True, verbose_name="작성일")
@@ -119,18 +119,11 @@ class Column(models.Model):
         verbose_name_plural = "칼럼"
         ordering = ["-date"]
 
+
 class Notice(models.Model):
     title = models.CharField(max_length=128, verbose_name="제목")
     content = models.TextField(verbose_name="내용")
     date = models.DateTimeField(auto_now_add=True, verbose_name="작성일")
-
-    @property
-    def date_str(self):
-        time = timezone.now() - self.date
-        if time < timedelta(days=1):
-            return self.date.strftime("%H:%M")
-        else:
-            return self.date.strftime("%m-%d")
 
     def __str__(self):
         return self.title

@@ -23,8 +23,8 @@ section#notice ul {
 }
 
 section#notice ul li {
-    font-size: 18px;
-    margin: 8px 0;
+    font-size: 17px;
+    margin: 7px 0;
     cursor: pointer;
 }
 
@@ -41,7 +41,6 @@ section#notice .notice-content {
 section#question {
     width: 900px;
     background: #272727;
-    margin: 5px 0 0 0;
     padding: 10px;
 }
 
@@ -49,4 +48,10 @@ section#question .title {
     font-size: 20px;
     padding: 2px 0 12px 0;
     border-bottom: #848b79 1px solid;
+}
+
+img#ad {
+    width: 100%;
+    height: 125px;
+    margin: 5px 0 0 0;
 }
