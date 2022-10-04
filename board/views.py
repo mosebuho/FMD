@@ -287,3 +287,6 @@ def notice_delete(request, pk):
     board = get_object_or_404(Notice, id=pk)
     board.delete()
     return redirect("board:notice")
+
+class EventView(generic.TemplateView):
+    template_name = "board/event.html"

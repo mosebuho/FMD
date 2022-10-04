@@ -22,6 +22,7 @@ urlpatterns = [
     path("column/create/", views.ColumnCreateView.as_view(), name="column_create"),
     path("column/delete/<int:pk>/", views.column_delete, name="column_delete"),
     path("column/update/<int:pk>/",views.ColumnUpdateView.as_view(), name="column_update"),
+    path("event/", views.EventView.as_view(), name="event"),
     path("notice/", views.NoticeListView.as_view(), name="notice"),
     path("notice/create/", views.NoticeCreateView.as_view(), name="notice_create"),
     path("notice/update/<int:pk>/", views.NoticeUpdateView.as_view(), name="notice_update"),

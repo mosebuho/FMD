@@ -526,10 +526,24 @@ section#side3 {
     border: 1px solid #484848;
 }
 
-section#side3 .calender {
+section#side3 dl {
     background: #272727;
     height: 253px;
     padding: 5px;
+    margin: 0;
+}
+
+section#side3 dt {
+    border-bottom: 1px solid #848b79;
+    font-size: 17px;
+    padding-bottom: 5px;
+}
+
+section#side3 dd {
+    margin: 6px 0 0;
+    font-size: 15px;
+    list-style: none;
+    color: #aaa;
 }
 
 section#side3 ul {
@@ -541,7 +555,7 @@ section#side3 ul {
     list-style: none;
 }
 
-section#side3 li {
+section#side3 ul li {
     color: #aaa;
     font-size: 14px;
     padding: 1px 0;
