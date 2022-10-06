@@ -1,5 +1,5 @@
 from django.views import generic
-from .models import Community, Comment, News, Column, Notice
+from .models import Community, Comment, News, Column, Notice, Event
 from .forms import CommuModelForm, NewsModelForm, ColumnModelForm, NoticeModelForm
 from django.http import HttpResponse
 import json
@@ -11,6 +11,8 @@ from django.shortcuts import redirect
 from django.http import Http404
 from user.decorator import *
 from django.utils.decorators import method_decorator
+from django.http import JsonResponse
+from django.shortcuts import render
 
 
 class CommunityListView(generic.ListView):
@@ -282,11 +284,17 @@ class NoticeUpdateView(generic.UpdateView):
     template_name = "board/notice_form.html"
     success_url = "/board/notice/"
 
+
 @lv3_required
 def notice_delete(request, pk):
     board = get_object_or_404(Notice, id=pk)
     board.delete()
     return redirect("board:notice")
 
-class EventView(generic.TemplateView):
-    template_name = "board/event.html"
+
+def calendar(request):
+    events = Event.objects.all()
+    context = {
+        "events": events,
+    }
+    return render(request, "board/event.html", context)

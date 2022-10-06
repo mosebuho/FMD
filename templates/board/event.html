@@ -7,13 +7,22 @@
     document.addEventListener('DOMContentLoaded', function () {
         var calendarEl = document.getElementById('calendar');
         var calendar = new FullCalendar.Calendar(calendarEl, {
-            initialView: 'dayGridMonth'
+            initialView: 'dayGridMonth',
+            locale: 'ko',
+            events: [
+                {% for i in events %}
+                {
+                title: '{{i.title}}',
+                start: '{{i.start|date:"Y-m-d" }}',
+                end: '{{i.end|date:"Y-m-d" }}',
+                },
+                {% endfor %}
+            ]
         });
-        calendar.render();
+    calendar.render();
     });
 </script>
-<div id='calendar'></div>
-<div>
-    리스트쭉
+<div style="background:#272727; margin:5px 0 0 0; padding:10px;">
+    <div id='calendar'></div>
 </div>
 {% endblock content %}

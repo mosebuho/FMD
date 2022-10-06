@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Community, News, Column, Notice
+from .models import Community, News, Column, Notice, Event
 
 
 @admin.register(Community)
@@ -40,4 +40,12 @@ class NoticeAdmin(admin.ModelAdmin):
     list_display = (
         "title",
         "date",
+    )
+
+@admin.register(Event)
+class EventAdmin(admin.ModelAdmin):
+    list_display = (
+        "title",
+        "start",
+        "end",
     )

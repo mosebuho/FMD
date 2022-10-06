@@ -133,3 +133,16 @@ class Notice(models.Model):
         verbose_name = "공지"
         verbose_name_plural = "공지"
         ordering = ["-date"]
+
+
+class Event(models.Model):
+    title = models.CharField(max_length=255, verbose_name="제목")
+    start = models.DateTimeField(null=True, blank=True, verbose_name="시작")
+    end = models.DateTimeField(null=True, blank=True, verbose_name="종료")
+
+    def __str__(self):
+        return self.title
+    
+    class Meta:
+        verbose_name = "행사"
+        verbose_name_plural = "행사"
