@@ -282,6 +282,10 @@ class NoticeCreateView(generic.CreateView):
     template_name = "board/notice_form.html"
     success_url = "/board/notice/"
 
+    def form_valid(self, form):
+        form.instance.writer = self.request.user
+        return super().form_valid(form)
+
 
 @method_decorator(lv3_required, name="dispatch")
 class NoticeUpdateView(generic.UpdateView):
@@ -318,29 +322,25 @@ class EventCreateView(generic.CreateView):
     template_name = "board/event_form.html"
     form_class = EventModelForm
 
+    def form_valid(self, form):
+        form.instance.writer = self.request.user
+        return super().form_valid(form)
+
     def get_success_url(self):
         return reverse_lazy("board:event_detail", kwargs={"pk": self.object.pk})
 
-
+@method_decorator(lv3_required, name="dispatch")
 class EventUpdateView(generic.UpdateView):
     model = Event
     form_class = EventModelForm
     template_name = "board/event_form.html"
 
-    def dispatch(self, request, *args, **kwargs):
-        obj = self.get_object()
-        if request.user.level != 3:
-            raise Http404("글을 수정할 권한이 없습니다.")
-        return super(EventUpdateView, self).dispatch(request, *args, **kwargs)
-
     def get_success_url(self):
         return reverse_lazy("board:event_detail", kwargs={"pk": self.object.pk})
 
 
+@lv3_required
 def event_delete(request, pk):
     board = get_object_or_404(Event, id=pk)
-    if request.user.level == 3:
-        board.delete()
-        return redirect("board:event_list")
-    else:
-        return redirect("board:event_list")
+    board.delete()
+    return redirect("board:event_list")

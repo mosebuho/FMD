@@ -123,6 +123,7 @@ class Column(models.Model):
 class Notice(models.Model):
     title = models.CharField(max_length=128, verbose_name="제목")
     content = models.TextField(verbose_name="내용")
+    writer = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="작성자")
     date = models.DateTimeField(auto_now_add=True, verbose_name="작성일")
 
     def __str__(self):
@@ -144,6 +145,7 @@ class Event(models.Model):
         verbose_name="썸네일",
     )
     content = models.TextField(verbose_name="내용")
+    writer = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="작성자")
     start = models.DateTimeField(null=True, blank=True, verbose_name="시작")
     end = models.DateTimeField(null=True, blank=True, verbose_name="종료")
 
