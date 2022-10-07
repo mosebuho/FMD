@@ -1,6 +1,12 @@
 from django.views import generic
 from .models import Community, Comment, News, Column, Notice, Event
-from .forms import CommuModelForm, NewsModelForm, ColumnModelForm, NoticeModelForm
+from .forms import (
+    CommuModelForm,
+    NewsModelForm,
+    ColumnModelForm,
+    NoticeModelForm,
+    EventModelForm,
+)
 from django.http import HttpResponse
 import json
 from django.core.serializers.json import DjangoJSONEncoder
@@ -297,4 +303,44 @@ def calendar(request):
     context = {
         "events": events,
     }
-    return render(request, "board/event.html", context)
+    return render(request, "board/event_list.html", context)
+
+
+class EventDetailView(generic.DetailView):
+    template_name = "board/event_detail.html"
+    model = Event
+    context_object_name = "board"
+
+
+@method_decorator(lv3_required, name="dispatch")
+class EventCreateView(generic.CreateView):
+    model = Event
+    template_name = "board/event_form.html"
+    form_class = EventModelForm
+
+    def get_success_url(self):
+        return reverse_lazy("board:event_detail", kwargs={"pk": self.object.pk})
+
+
+class EventUpdateView(generic.UpdateView):
+    model = Event
+    form_class = EventModelForm
+    template_name = "board/event_form.html"
+
+    def dispatch(self, request, *args, **kwargs):
+        obj = self.get_object()
+        if request.user.level != 3:
+            raise Http404("글을 수정할 권한이 없습니다.")
+        return super(EventUpdateView, self).dispatch(request, *args, **kwargs)
+
+    def get_success_url(self):
+        return reverse_lazy("board:event_detail", kwargs={"pk": self.object.pk})
+
+
+def event_delete(request, pk):
+    board = get_object_or_404(Event, id=pk)
+    if request.user.level == 3:
+        board.delete()
+        return redirect("board:event_list")
+    else:
+        return redirect("board:event_list")

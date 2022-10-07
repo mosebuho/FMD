@@ -1,0 +1,37 @@
+{% extends "home/home.html" %}
+{% block user %}
+<link rel="stylesheet" href="/static/news.css/" />
+{% block column-scr %}
+<script>
+    function boardDelete() {
+        var warning = confirm("게시글을 삭제할 경우 복구가 불가능합니다.\n정말 삭제하시겠습니까?");
+        if (warning == true) {
+            window.location.href = "{% url 'board:event_delete' board.id %}"
+        }
+    }
+</script>
+{% endblock column-scr %}
+<div class="ad">
+    <img id="ad">
+    <img id="ad">
+</div>
+<section id="detail">
+    {{ board.title }}
+    {% block column %}
+    {% if request.user.level == 3 %}
+    <span class="modify">
+        <a href="{% url 'board:event_update' board.id %}">수정</a>
+        <a onclick="boardDelete('{{board.id}}')">삭제</a>
+    </span>
+    {% endif %}
+    {% endblock column %}
+    <div class="sub">
+        {{ board.writer }} |
+        <span><i class="fa-solid fa-clock"></i> {{ board.start }} ~ {{ board.end }} </span>
+        <i class="fa-solid fa-eye"></i> {{ board.view }}
+    </div>
+    <div class="content">
+        {{ board.content | safe }}
+    </div>
+</section>
+{% endblock user %}

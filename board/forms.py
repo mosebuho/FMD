@@ -1,5 +1,5 @@
 from django import forms
-from .models import Community, News, Column, Notice
+from .models import Community, News, Column, Notice, Event
 
 
 class CommuModelForm(forms.ModelForm):
@@ -35,4 +35,29 @@ class NoticeModelForm(forms.ModelForm):
         fields = ["title", "content"]
         widgets = {
             "title": forms.TextInput(attrs={"placeholder": "제목을 입력해주세요."}),
+        }
+
+
+class EventModelForm(forms.ModelForm):
+    class Meta:
+        model = Event
+        fields = ["title", "content", "start", "end"]
+        widgets = {
+            "title": forms.TextInput(attrs={"placeholder": "제목을 입력해주세요."}),
+            "start": forms.DateInput(
+                format=("%m/%d/%Y"),
+                attrs={
+                    "class": "form-control",
+                    "placeholder": "시작일",
+                    "type": "date",
+                },
+            ),
+            "end": forms.DateInput(
+                format=("%m/%d/%Y"),
+                attrs={
+                    "class": "form-control",
+                    "placeholder": "종료일",
+                    "type": "date",
+                },
+            ),
         }

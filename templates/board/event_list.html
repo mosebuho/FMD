@@ -24,5 +24,11 @@
 </script>
 <div style="background:#272727; margin:5px 0 0 0; padding:10px;">
     <div id='calendar'></div>
+    <div>
+        {% for i in events %}
+        <a href="{% url 'board:event_detail' i.id %}">{{ i.title }}</a>
+        {% endfor %}
+        <a href="{% url 'board:event_create' %}">글쓰기</a>
+    </div>
 </div>
 {% endblock content %}
