@@ -1,4 +1,3 @@
-from board.models import Community
 from user.models import User
 
 

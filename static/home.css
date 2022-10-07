@@ -546,19 +546,10 @@ section#side3 dd {
     color: #aaa;
 }
 
-section#side3 ul {
-    border-top: 1px solid #484848;
-    background: #272727;
+section#side3 img.event {
     height: 176px;
+    width: 100%;
     margin: 0;
-    padding: 5px;
-    list-style: none;
-}
-
-section#side3 ul li {
-    color: #aaa;
-    font-size: 14px;
-    padding: 1px 0;
 }
 
 
