@@ -1,5 +1,6 @@
 {% extends "board/news_list.html" %}
 {% block content %}
+<link rel="stylesheet" href="/static/event.css/" />
 <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css' rel='stylesheet' />
 <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js'></script>
 <script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/locales-all.min.js'></script>
@@ -15,20 +16,18 @@
                 title: '{{i.title}}',
                 start: '{{i.start|date:"Y-m-d" }}',
                 end: '{{i.end|date:"Y-m-d" }}',
-                },
-                {% endfor %}
+            },
+            {% endfor %}
             ]
         });
     calendar.render();
     });
 </script>
-<div style="background:#272727; margin:5px 0 0 0; padding:10px;">
-    <div id='calendar'></div>
-    <div>
-        {% for i in events %}
-        <a href="{% url 'board:event_detail' i.id %}">{{ i.title }}</a>
-        {% endfor %}
-        <a href="{% url 'board:event_create' %}">글쓰기</a>
+
+<section id="event">
+    <div class="title">
+        캘린더
     </div>
-</div>
+    <div id='calendar'></div>
+</section>
 {% endblock content %}

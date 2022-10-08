@@ -1,0 +1,101 @@
+section#event {
+    border: #484848 solid 1px;
+    background: #272727;
+    padding: 10px;
+    margin-top: 5px;
+}
+
+section#event .title {
+    font-size: 20px;
+    padding: 2px 0 10px 0;
+    border-bottom: #848b79 1px solid;
+}
+
+section#event #calendar {
+    margin: 10px 0 0 0;
+}
+
+#calendar .fc-toolbar-title {
+    font-size: 24px;
+}
+
+#calendar .fc-button-primary {
+    background: #848b79;
+    border-color: #484848;
+}
+
+#calendar .fc-event-title-container {
+    background: #848b79;
+}
+
+#calendar .fc-day-today {
+    background: #484848;
+}
+
+#calendar .fc-h-event {
+    border: none;
+}
+
+section#write {
+    text-align: center;
+}
+
+section#write form {
+    border: 1px solid #484848;
+    background: #272727;
+}
+
+section#write form .top {
+    background: #363636;
+    height: 60px;
+}
+
+
+section#write #id_start {
+    width: 100px;
+    background: #363636;
+    color: #aaa;
+}
+
+section#write #id_end {
+    width: 100px;
+    background: #363636;
+    color: #aaa;
+}
+
+section#write #id_thumbnail {
+    width: 175px;
+    height: 30px;
+}
+
+section#write select {
+    height: 60px;
+    width: 100px;
+    text-align: center;
+    background: #363636;
+    color: #aaa;
+    font-size: 16px;
+}
+
+section#write #id_title {
+    width: 720px;
+    height: 40px;
+    background: #363636;
+    font-size: 16px;
+}
+
+section#write button#done {
+    background: #848b79;
+    width: 80px;
+    height: 40px;
+    color: #eee;
+    margin: 10px 5px;
+}
+
+section#write button#cancel {
+    background: #363636;
+    width: 80px;
+    height: 40px;
+    color: #eee;
+    margin: 10px 5px;
+}
