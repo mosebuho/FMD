@@ -24,17 +24,16 @@ section#event #calendar {
     border-color: #484848;
 }
 
-#calendar .fc-event-title-container {
-    background: #848b79;
-}
-
 #calendar .fc-day-today {
     background: #484848;
 }
 
 #calendar .fc-h-event {
-    border: none;
+    border: 1px solid #848b79;
+    background: #848b79;
+    opacity: 0.8;
 }
+
 
 #calendar .fc-day-future,
 #calendar .fc-day-past,

@@ -273,6 +273,8 @@ class NoticeListView(generic.ListView):
     model = Notice
     template_name = "board/notice_list.html"
     context_name = "notice_list"
+    paginate_by = 33
+
 
 
 @method_decorator(lv3_required, name="dispatch")

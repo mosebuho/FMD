@@ -13,38 +13,48 @@ section#notice .title {
 
 section#notice a {
     color: #aaa;
-    font-size: 13px;
+    font-size: 14px;
 }
 
-section#notice ul {
+section#notice ul.noticelist {
     list-style: none;
     padding: 0;
     margin: 10px 0;
 }
 
-section#notice ul li {
-    font-size: 19px;
+section#notice li.inlist {
+    font-size: 17px;
     margin: 7px 0;
     cursor: pointer;
+    padding: 0 0 10px 0;
+    border-bottom: 1px solid #484848;
 }
 
-section#notice li i {
+section#notice li.inlist i {
     color: #aaa;
     font-size: 14px;
 }
 
 section#notice .notice-content p {
-    margin: 0;
+    margin: 5px 0;
+    font-size: 15px;
 }
 
 section#notice .notice-content {
     display: none;
-    border: 1px solid #484848;
-    padding: 10px;
+    border-top: 1px solid #484848;
+    padding: 10px 0 5px 0;
+    margin: 10px 0 0 0;
 }
 
 img#ad {
     width: 100%;
     height: 125px;
     margin: 5px 0 0 0;
+}
+
+section#notice .page-item-active,
+section#notice .page-item,
+section#notice .page-item-button {
+    padding: 0;
 }
