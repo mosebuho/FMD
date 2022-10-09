@@ -29,5 +29,18 @@
         캘린더
     </div>
     <div id='calendar'></div>
+    <ul>
+        {% for i in events %}
+        <li>
+            <img src="{{i.thumbnail.url}}">
+            <div>
+                <a href="{% url 'board:event_detail' i.id %}">{{i.title|truncatechars:37}}</a>
+                <p>
+                    {{ i.start|date }} ~ {{ i.end|date }}
+                </p>
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
 </section>
 {% endblock content %}

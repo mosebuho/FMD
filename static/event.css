@@ -36,6 +36,50 @@ section#event #calendar {
     border: none;
 }
 
+#calendar .fc-day-future,
+#calendar .fc-day-past,
+#calendar .fc-scrollgrid {
+    border: 1px solid #484848;
+}
+
+#calendar td,
+#calendar th {
+    border: none;
+}
+
+section#event ul {
+    list-style: none;
+    margin: 10px 0 0 0;
+    border-top: 1px solid #848b79;
+    padding: 10px 0 0 0;
+}
+
+section#event li {
+    display: flex;
+    flex-direction: row;
+    margin: 0 0 10px 0;
+}
+
+section#event img {
+    width: 120px;
+    height: 70px;
+}
+
+section#event ul div {
+    margin: 0 0 0 10px;
+}
+
+section#event ul a {
+    color: #eee;
+    font-size: 20px;
+}
+
+section#event ul p {
+    font-size: 15px;
+    color: #aaa;
+    margin: 5px 0 0 0;
+}
+
 section#write {
     text-align: center;
 }

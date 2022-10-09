@@ -41,7 +41,7 @@ class NoticeModelForm(forms.ModelForm):
 class EventModelForm(forms.ModelForm):
     class Meta:
         model = Event
-        fields = ["title", "content", "start", "end"]
+        fields = ["title", "thumbnail", "content", "start", "end"]
         widgets = {
             "title": forms.TextInput(attrs={"placeholder": "제목을 입력해주세요."}),
             "start": forms.DateInput(

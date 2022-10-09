@@ -153,5 +153,6 @@ class Event(models.Model):
         return self.title
 
     class Meta:
+        db_table = "Event"
         verbose_name = "행사"
         verbose_name_plural = "행사"
