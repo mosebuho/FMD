@@ -516,7 +516,7 @@ section#side2 li span {
 section#side2 div {
     border-top: 1px solid #484848;
     background: #272727;
-    height: 267px;
+    height: 265px;
     padding: 5px;
 }
 
@@ -524,6 +524,7 @@ section#side2 div {
 section#side3 {
     margin-top: 10px;
     border: 1px solid #484848;
+    height: 450px;
 }
 
 section#side3 dl {
@@ -547,7 +548,7 @@ section#side3 dd {
 }
 
 section#side3 img.event {
-    height: 176px;
+    height: 187px;
     width: 100%;
     margin: 0;
 }

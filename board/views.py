@@ -302,12 +302,11 @@ def notice_delete(request, pk):
     return redirect("board:notice")
 
 
-def calendar(request):
-    events = Event.objects.all()
-    context = {
-        "events": events,
-    }
-    return render(request, "board/event_list.html", context)
+class EventListView(generic.ListView):
+    model = Event
+    template_name = "board/event_list.html"
+    paginate_by = 10
+    context_object_name = "events"
 
 
 class EventDetailView(generic.DetailView):

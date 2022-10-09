@@ -31,16 +31,35 @@
     <div id='calendar'></div>
     <ul>
         {% for i in events %}
-        <li>
-            <img src="{{i.thumbnail.url}}">
-            <div>
-                <a href="{% url 'board:event_detail' i.id %}">{{i.title|truncatechars:37}}</a>
-                <p>
-                    {{ i.start|date }} ~ {{ i.end|date }}
-                </p>
-            </div>
-        </li>
+        <a href="{% url 'board:event_detail' i.id %}">
+            <li>
+                <img src="{{i.thumbnail.url}}">
+                <div>
+                    {{i.title|truncatechars:37}}
+                    <p>
+                        {{ i.start|date }} ~ {{ i.end|date }}
+                    </p>
+                </div>
+            </li>
+        </a>
         {% endfor %}
     </ul>
+</section>
+<section id="button">
+    <div></div>
+    {% if is_paginated %}
+    {% include "pagination.html" %}
+    {% endif %}
+    {% block column %}
+    {% if request.user.level >= 3 %}
+    <button>
+        <a href="{% url 'board:event_create' %}">
+            <i class="fa-solid fa-pen-to-square"></i> 글쓰기
+        </a>
+    </button>
+    {% else %}
+    <div></div>
+    {% endif %}
+    {% endblock column %}
 </section>
 {% endblock content %}

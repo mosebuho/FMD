@@ -57,7 +57,9 @@ section#event ul {
 section#event li {
     display: flex;
     flex-direction: row;
-    margin: 0 0 10px 0;
+    margin: 0 0 5px 0;
+    padding: 0 0 5px 0;
+    border-bottom: 1px solid #484848;
 }
 
 section#event img {
@@ -78,6 +80,28 @@ section#event ul p {
     font-size: 15px;
     color: #aaa;
     margin: 5px 0 0 0;
+}
+
+section#button {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 30px;
+    font-size: 14px;
+    padding-left: 80px;
+    margin: 5px 0 0 0;
+}
+
+section#button button {
+    background: #848b79;
+    width: 80px;
+    text-align: center;
+    color: #eee;
+    cursor: pointer;
+}
+
+section#button button a {
+    color: #eee;
 }
 
 section#write {
