@@ -166,3 +166,38 @@ section#write button#cancel {
     color: #eee;
     margin: 10px 5px;
 }
+
+section#detail {
+    width: 900px;
+    border: 1px solid #484848;
+    background: #272727;
+    padding: 10px;
+    font-size: 22px;
+}
+
+img#event-detail-ad {
+    width: 922px;
+    height: 120px;
+    margin: 5px 0 0 0;
+}
+
+section#detail .modify {
+    font-size: 15px;
+    float: right;
+    color: #aaa;
+    padding: 10px 0;
+}
+
+section#detail .modify a {
+    color: #aaa;
+    cursor: pointer;
+}
+
+section#detail .sub {
+    padding: 3px 0;
+    margin: 15px 0;
+    border-top: 1px solid #484848;
+    border-bottom: 1px solid #484848;
+    font-size: 13px;
+    color: #aaa;
+}
