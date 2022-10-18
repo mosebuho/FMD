@@ -1,5 +1,5 @@
 from django.db import models
-from datetime import timedelta
+from datetime import timedelta, datetime
 from django.utils import timezone
 from user.models import User
 
@@ -19,8 +19,9 @@ class Community(models.Model):
 
     @property
     def date_short(self):
-        time = timezone.now() - self.date
-        if time < timedelta(days=1):
+        time = self.date.strftime("%Y%m%d")
+        today = datetime.now().strftime("%Y%m%d")
+        if time == today:
             return self.date.strftime("%H:%M")
         else:
             return self.date.strftime("%m-%d")
@@ -51,11 +52,7 @@ class Comment(models.Model):
 
     @property
     def date_str(self):
-        time = timezone.now() - self.date
-        if time < timedelta(days=1):
-            return self.date.strftime("%H:%M")
-        else:
-            return self.date.strftime("%m-%d")
+        return self.date.strftime("%Y-%m-%d %H:%M")
 
     class Meta:
         ordering = ["-date"]

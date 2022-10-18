@@ -186,7 +186,7 @@
                     <a onclick="commentUpdate('{{comment.id}}')">수정</a>
                     <a onclick="commentDelete('{{comment.id}}')">삭제</a>
                     {% endif %}
-                    <i class="fa-solid fa-clock"></i> {{comment.date}}
+                    <i class="fa-solid fa-clock"></i> {{comment.date_str}}
                 </span>
                 <p id="{{comment.id}}content">{{comment.content}}</p>
             </div>
