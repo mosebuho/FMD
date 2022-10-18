@@ -39,7 +39,7 @@
                         {
                             $('#new_comment').append(
                                 "<li id='" + response.comment_id + "'style='border-top:1px solid #848b79; border-bottom:1px solid #848b79;'>" +
-                                "<img id='profile-img'><div>" + response.writer +
+                                "<img src='" + response.img + "'><div>" + response.writer +
                                 "<span><a onclick='commentUpdate(" + response.comment_id + ")'>수정</a>" +
                                 " <a onclick='commentDelete(" + response.comment_id + ")'>삭제</a></span>" +
                                 "<p id=" + response.comment_id + "content>" + response.content + "</p></div></li>"
@@ -131,7 +131,7 @@
         <i class="fa-solid fa-eye"></i> {{ board.view }}
         <i class="fa-solid fa-thumbs-up"></i> {{ board.like }}
         <i class="fa-solid fa-comment-dots"></i> {{ board.comment_set.count }}
-        <span><i class="fa-solid fa-clock"></i> {{ board.date }}</span>
+        <span><i class="fa-solid fa-clock"></i> {{ board.date_str }}</span>
     </div>
     <div class="content">
         {{ board.content | safe }}
@@ -178,7 +178,7 @@
     <ul id="comment_list">
         {% for comment in board.comment_set.all %}
         <li id="{{comment.id}}">
-            <img src="{{ request.user.image.url }}">
+            <img src="{{ comment.writer.image.url }}">
             <div>
                 {{comment.writer}}
                 <span>

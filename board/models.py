@@ -18,12 +18,16 @@ class Community(models.Model):
     like_users = models.ManyToManyField(User, related_name="like_boards", blank=True)
 
     @property
-    def date_str(self):
+    def date_short(self):
         time = timezone.now() - self.date
         if time < timedelta(days=1):
             return self.date.strftime("%H:%M")
         else:
             return self.date.strftime("%m-%d")
+
+    @property
+    def date_str(self):
+        return self.date.strftime("%Y-%m-%d %H:%M")
 
     def __str__(self):
         return self.title
@@ -73,11 +77,7 @@ class News(models.Model):
 
     @property
     def date_str(self):
-        time = timezone.now() - self.date
-        if time < timedelta(days=1):
-            return self.date.strftime("%H:%M")
-        else:
-            return self.date.strftime("%m-%d")
+        return self.date.strftime("%Y-%m-%d %H:%M")
 
     def __str__(self):
         return self.title
@@ -104,11 +104,7 @@ class Column(models.Model):
 
     @property
     def date_str(self):
-        time = timezone.now() - self.date
-        if time < timedelta(days=1):
-            return self.date.strftime("%H:%M")
-        else:
-            return self.date.strftime("%m-%d")
+        return self.date.strftime("%Y-%m-%d %H:%M")
 
     def __str__(self):
         return self.title
@@ -125,6 +121,10 @@ class Notice(models.Model):
     content = models.TextField(verbose_name="내용")
     writer = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="작성자")
     date = models.DateTimeField(auto_now_add=True, verbose_name="작성일")
+
+    @property
+    def date_str(self):
+        return self.date.strftime("%Y-%m-%d %H:%M")
 
     def __str__(self):
         return self.title

@@ -129,6 +129,7 @@ def comment_create(request, pk):
             "date": comment.date,
             "comment_id": comment.id,
             "comment_count": community.comment_set.count(),
+            "img": request.user.image.url,
         }
         return HttpResponse(json.dumps(data, cls=DjangoJSONEncoder))
 
@@ -276,7 +277,6 @@ class NoticeListView(generic.ListView):
     paginate_by = 33
 
 
-
 @method_decorator(lv3_required, name="dispatch")
 class NoticeCreateView(generic.CreateView):
     model = Notice
@@ -329,6 +329,7 @@ class EventCreateView(generic.CreateView):
 
     def get_success_url(self):
         return reverse_lazy("board:event_detail", kwargs={"pk": self.object.pk})
+
 
 @method_decorator(lv3_required, name="dispatch")
 class EventUpdateView(generic.UpdateView):
