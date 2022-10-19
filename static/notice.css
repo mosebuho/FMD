@@ -30,6 +30,18 @@ section#notice li.inlist {
     border-bottom: 1px solid #484848;
 }
 
+section#notice li.inlist span {
+    font-size: 12px;
+    float: right;
+    color: #aaa;
+    padding: 2px 0 0 0;
+}
+
+section#notice li.inlist span i {
+    font-size: 12px;
+    color: #aaa;
+}
+
 section#notice li.inlist i {
     color: #aaa;
     font-size: 14px;

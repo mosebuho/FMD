@@ -28,7 +28,7 @@
     <div class="sub">
         {{ news.writer }} |
         <i class="fa-solid fa-eye"></i> {{ news.view }}
-        <span><i class="fa-solid fa-clock"></i> {{ news.date }}</span>
+        <span><i class="fa-solid fa-clock"></i> {{ news.date_str }}</span>
     </div>
     <div class="content">
         {{ news.content | safe }}

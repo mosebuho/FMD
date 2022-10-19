@@ -22,6 +22,7 @@
         {% for list in notice_list %}
         <li class="inlist" onclick="openclose('{{list.id}}')">
             <i class="fa-solid fa-caret-down"></i> <b>{{ list.title|truncatechars:45}}</b>
+            <span><i class="fa-solid fa-clock"></i> {{ list.date_str }}</span>
             {% if request.user.is_admin %}
             <a href="{% url 'board:notice_update' list.id %}">수정</a>
             <a onclick="boardDelete('{{list.id}}')">삭제</a>

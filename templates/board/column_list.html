@@ -15,7 +15,7 @@
                 <p>
                     {{ list.writer }}
                     <i class="fa-solid fa-eye"></i> {{ list.view }}
-                    <span>{{ list.date }}</span>
+                    <span><i class="fa-solid fa-clock"></i> {{ list.date_str }}</span>
                 </p>
                 <span class="content">{{ list.content | striptags | safe | truncatechars:100}}</span>
             </div>
