@@ -1,12 +1,6 @@
 from django.views import generic
 from .models import Community, Comment, News, Column, Notice, Event
-from .forms import (
-    CommuModelForm,
-    NewsModelForm,
-    ColumnModelForm,
-    NoticeModelForm,
-    EventModelForm,
-)
+from .forms import CommuModelForm, NewsModelForm, ColumnModelForm, NoticeModelForm, EventModelForm
 from django.http import HttpResponse
 import json
 from django.core.serializers.json import DjangoJSONEncoder
@@ -17,8 +11,6 @@ from django.shortcuts import redirect
 from django.http import Http404
 from user.decorator import *
 from django.utils.decorators import method_decorator
-from django.http import JsonResponse
-from django.shortcuts import render
 
 
 class CommunityListView(generic.ListView):
@@ -44,7 +36,6 @@ class CommunityDetailView(generic.DetailView):
         context["commu_hot_list"] = Community.objects.order_by("-like")[0:5]
         context["commu_hot_list2"] = Community.objects.order_by("-like")[5:10]
         return context
-
 
 @method_decorator(lv1_required, name="dispatch")
 class CommunityCreateView(generic.CreateView):

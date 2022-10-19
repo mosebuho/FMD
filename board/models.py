@@ -30,6 +30,11 @@ class Community(models.Model):
     def date_str(self):
         return self.date.strftime("%Y-%m-%d %H:%M")
 
+    @property
+    def view_count(self):
+        self.view += 1
+        self.save()
+
     def __str__(self):
         return self.title
 
@@ -38,7 +43,6 @@ class Community(models.Model):
         verbose_name = "커뮤니티"
         verbose_name_plural = "커뮤니티"
         ordering = ["-date"]
-
 
 class Comment(models.Model):
     community = models.ForeignKey(
@@ -76,6 +80,11 @@ class News(models.Model):
     def date_str(self):
         return self.date.strftime("%Y-%m-%d %H:%M")
 
+    @property
+    def view_count(self):
+        self.view += 1
+        self.save()
+
     def __str__(self):
         return self.title
 
@@ -102,6 +111,11 @@ class Column(models.Model):
     @property
     def date_str(self):
         return self.date.strftime("%Y-%m-%d %H:%M")
+
+    @property
+    def view_count(self):
+        self.view += 1
+        self.save()
 
     def __str__(self):
         return self.title

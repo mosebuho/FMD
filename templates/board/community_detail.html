@@ -118,6 +118,7 @@
         alert("이메일 인증이 필요한 기능입니다.")
     }
 </script>
+{{ board.view_count }}
 <section id="detail">
     {{ board.title }}
     {% if request.user == board.writer %}
