@@ -126,6 +126,10 @@ section#detail .sub {
     color: #aaa;
 }
 
+section#detail .sub span {
+    float: right;
+}
+
 section#detail .content {
     font-size: 16px;
 }

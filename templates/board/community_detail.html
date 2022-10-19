@@ -2,6 +2,7 @@
 {% block detail %}
 <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
     crossorigin="anonymous"></script>
+<input type="hidden" value={{board.view_count}}>
 <script>
     function like(id) {
         $.ajax({
@@ -118,7 +119,6 @@
         alert("이메일 인증이 필요한 기능입니다.")
     }
 </script>
-{{ board.view_count }}
 <section id="detail">
     {{ board.title }}
     {% if request.user == board.writer %}

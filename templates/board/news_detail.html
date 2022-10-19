@@ -1,7 +1,7 @@
 {% extends "home/home.html" %}
 {% block user %}
 <link rel="stylesheet" href="/static/news.css/" />
-{% block column-scr %}
+<input type="hidden" value={{news.view_count}}>
 <script>
     function boardDelete() {
         var warning = confirm("게시글을 삭제할 경우 복구가 불가능합니다.\n정말 삭제하시겠습니까?");
@@ -10,12 +10,10 @@
         }
     }
 </script>
-{% endblock column-scr %}
 <div class="ad">
     <img id="ad">
     <img id="ad">
 </div>
-{{ news.view_count }}
 <section id="detail">
     {{ news.title }}
     {% block column %}

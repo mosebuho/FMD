@@ -392,15 +392,18 @@ section#side1 .login {
     flex-direction: column;
 }
 
-section#side1 .login button {
+section#side1 .login .loginbutton {
     background: #848b79;
     height: 50px;
-    margin-top: 5px;
+    margin: 5px 0 0 0;
 }
 
-section#side1 .login button a {
+section#side1 .login .loginbutton button {
     color: #eee;
+    background: #848b79;
     font-size: 16px;
+    margin: 12px 0 0 0;
+    cursor: pointer;
 }
 
 section#side1 .login div {

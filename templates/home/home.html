@@ -271,7 +271,7 @@
                 {% else %}
                 <div class="login">
                     <span>4MILLDUK - 세계체강 밀덕</span>
-                    <button><a href="{% url 'user:login' %}">로그인</a></button>
+                    <a href="{% url 'user:login' %}" class="loginbutton"><button>로그인</button></a>
                     <div>
                         아이디/비밀번호 찾기
                         <a href="{% url 'user:register' %}">회원가입</a>

@@ -40,6 +40,7 @@ section#account form button {
     border: #484848 solid 1px;
     color: #eee;
     font-size: 15px;
+    cursor: pointer;
 }
 
 section#account .help {
