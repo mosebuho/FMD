@@ -37,12 +37,15 @@
             <img id="top-ad">
         </div>
         <nav>
-            <div>
-                <input placeholder="검색어를 입력해주세요."></input>
-                <button>
-                    <i class="fa-solid fa-magnifying-glass" style="font-size:19px;"></i>
-                </button>
-            </div>
+            <form action="{% url 'search' %}" method="post">
+                    <div>
+                    {% csrf_token %}
+                    <input name="q" value="{{q}}" placeholder="검색어를 입력해주세요."></input>
+                    <button type="submit">
+                        <i class="fa-solid fa-magnifying-glass" style="font-size:19px;"></i>
+                    </button>
+                </div>
+                </form>
             <ul>
                 <li>
                     <a href="{% url 'board:news_list'%}">

@@ -1,0 +1,16 @@
+{% extends 'home/home.html' %}
+{% block content %}
+{% for i in community %}
+    {{i.title}}
+{% endfor %}
+{% for i in news %}
+    {{i.title}}
+{% endfor %}
+{% for i in column %}
+    {{i.title}}
+{% endfor %}
+{% for i in event %}
+    {{i.title}}
+{% endfor %}
+
+{% endblock content %}

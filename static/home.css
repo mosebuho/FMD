@@ -86,6 +86,7 @@ nav div {
     border: #484848 solid 1px;
     background: #272727;
     width: 350px;
+    height: 58px;
 }
 
 nav input {
@@ -100,6 +101,7 @@ nav button {
     text-align: center;
     border-left: 1px solid #484848;
     color: #eee;
+    cursor: pointer;
 }
 
 nav ul {
