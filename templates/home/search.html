@@ -1,16 +1,180 @@
 {% extends 'home/home.html' %}
 {% block content %}
-{% for i in community %}
-    {{i.title}}
-{% endfor %}
-{% for i in news %}
-    {{i.title}}
-{% endfor %}
-{% for i in column %}
-    {{i.title}}
-{% endfor %}
-{% for i in event %}
-    {{i.title}}
-{% endfor %}
-
+<link rel="stylesheet" href="/static/search.css/">
+<img class="ad">
+<section id="search">
+    <div class="title">
+        뉴스
+        <a href="/">더보기</a>
+    </div>
+    {% if news %}
+    <div class="list">
+        <ul>
+            {% for i in news|slice:3 %}
+            <a href="{% url 'board:news_detail' i.id %}">
+                <li>
+                    <img src="{{ i.thumbnail.url }}">
+                    <div>
+                        <span class="listintitle">{{i.title|truncatechars:20}}</span>
+                        <span class="listinsub"> {{i.writer}} <i class="fa-solid fa-eye"></i> {{ i.view }} <i
+                                class="fa-solid fa-clock"></i> {{ i.date_str }}
+                        </span>
+                        <span class="listincontent">{{i.content|safe|striptags|truncatechars:40}}</span>
+                    </div>
+                </li>
+            </a>
+            {% endfor %}
+        </ul>
+        <ul>
+            {% for i in news|slice:"3:6" %}
+            <a href="{% url 'board:news_detail' i.id %}">
+                <li>
+                    <img src="{{ i.thumbnail.url }}">
+                    <div>
+                        <span class="listintitle">{{i.title|truncatechars:20}}</span>
+                        <span class="listinsub"> {{i.writer}} <i class="fa-solid fa-eye"></i> {{ i.view }} <i
+                                class="fa-solid fa-clock"></i> {{ i.date_str }}
+                        </span>
+                        <span class="listincontent">{{i.content|safe|striptags|truncatechars:40}}</span>
+                    </div>
+                </li>
+            </a>
+            {% endfor %}
+        </ul>
+    </div>
+    {% else %}
+    <div class="nolist">
+        <p>검색 결과가 없습니다.</p>
+    </div>
+    {% endif %}
+    <div class="title">
+        칼럼
+        <a href="/">더보기</a>
+    </div>
+    {% if column %}
+    <div class="list">
+        <ul>
+            {% for i in column|slice:3 %}
+            <a href="{% url 'board:column_detail' i.id %}">
+                <li>
+                    <img src="{{ i.thumbnail.url }}">
+                    <div>
+                        <span class="listintitle">{{i.title|truncatechars:20}}</span>
+                        <span class="listinsub"> {{i.writer}} <i class="fa-solid fa-eye"></i> {{ i.view }} <i
+                                class="fa-solid fa-clock"></i> {{ i.date_str }}
+                        </span>
+                        <span class="listincontent">{{i.content|safe|striptags|truncatechars:40}}</span>
+                    </div>
+                </li>
+            </a>
+            {% endfor %}
+        </ul>
+        <ul>
+            {% for i in column|slice:"3:6" %}
+            <a href="{% url 'board:news_detail' i.id %}">
+                <li>
+                    <img src="{{ i.thumbnail.url }}">
+                    <div>
+                        <span class="listintitle">{{i.title|truncatechars:20}}</span>
+                        <span class="listinsub"> {{i.writer}} <i class="fa-solid fa-eye"></i> {{ i.view }} <i
+                                class="fa-solid fa-clock"></i> {{ i.date_str }}
+                        </span>
+                        <span class="listincontent">{{i.content|safe|striptags|truncatechars:40}}</span>
+                    </div>
+                </li>
+            </a>
+            {% endfor %}
+        </ul>
+    </div>
+    {% else %}
+    <div class="nolist">
+        <p>검색 결과가 없습니다.</p>
+    </div>
+    {% endif %}
+    <div class="title">
+        커뮤니티
+        <a href="/">더보기</a>
+    </div>
+    {% if community %}
+    <div class="content">
+        <div>
+            <ul>
+                {% for i in community|slice:11 %}
+                <li>
+                    <a href="{% url 'board:community_detail' i.id %}">{{i.title|truncatechars:35}}
+                    </a>
+                    <i class="fa-solid fa-comment-dots"></i> {{ i.comment_set.count }}
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div>
+            <ul>
+                {% for i in community|slice:"12:23" %}
+                <li>
+                    <a href="{% url 'board:community_detail' i.id %}">{{i.title|truncatechars:35}}
+                    </a>
+                    <i class="fa-solid fa-comment-dots"></i> {{ i.comment_set.count }}
+                </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    {% else %}
+    <div class="nolist">
+        <p>검색 결과가 없습니다.</p>
+    </div>
+    {% endif %}
+    <div class="title">
+        밀덕백과
+        <a href="/">더보기</a>
+    </div>
+    <div class="nolist">
+        <p>검색 결과가 없습니다.</p>
+    </div>
+    <div class="title">
+        행사
+        <a href="/">더보기</a>
+    </div>
+    {% if event %}
+    <div class="list">
+        <ul>
+            {% for i in event|slice:3 %}
+            <a href="{% url 'board:column_detail' i.id %}">
+                <li>
+                    <img src="{{ i.thumbnail.url }}">
+                    <div>
+                        <span class="listintitle">{{i.title|truncatechars:20}}</span>
+                        <span class="listinsub"> <i class="fa-regular fa-calendar" style="margin:0;"></i>
+                            {{ i.start|date }} ~ {{ i.end|date }}
+                        </span>
+                        <span class="listincontent">{{i.content|safe|striptags|truncatechars:40}}</span>
+                    </div>
+                </li>
+            </a>
+            {% endfor %}
+        </ul>
+        <ul>
+            {% for i in event|slice:"3:6" %}
+            <a href="{% url 'board:news_detail' i.id %}">
+                <li>
+                    <img src="{{ i.thumbnail.url }}">
+                    <div>
+                        <span class="listintitle">{{i.title|truncatechars:20}}</span>
+                        <span class="listinsub"> <i class="fa-regular fa-calendar" style="margin:0;"></i>
+                            {{ i.start|date }} ~ {{ i.end|date }}
+                        </span>
+                        <span class="listincontent">{{i.content|safe|striptags|truncatechars:40}}</span>
+                    </div>
+                </li>
+            </a>
+            {% endfor %}
+        </ul>
+    </div>
+    {% else %}
+    <div class="nolist">
+        <p>검색 결과가 없습니다.</p>
+    </div>
+    {% endif %}
+</section>
 {% endblock content %}

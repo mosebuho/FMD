@@ -8,14 +8,8 @@ class HomeView(generic.TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["commu_free_new"] = Community.objects.filter(name="자유")[:14]
-        context["commu_info_new"] = Community.objects.filter(name="정보")[:14]
-        context["commu_free_hot"] = Community.objects.filter(name="자유").order_by(
-            "-like"
-        )[:14]
-        context["commu_info_hot"] = Community.objects.filter(name="정보").order_by(
-            "-like"
-        )[:14]
+        context["commu_new"] = Community.objects.all()[:16]
+        context["commu_hot"] = Community.objects.all().order_by("-like")[:16]
         context["news_list"] = News.objects.order_by("-id")[:3]
         context["column_list"] = Column.objects.order_by("-id")[:6]
         return context
@@ -36,9 +30,9 @@ def search(request):
         column = column.filter(title__icontains=q)
         event = event.filter(title__icontains=q)
         context = {
-            "community": community,
-            "news": news,
-            "column": column,
-            "event": event,
+            "community" : community,
+            "news" : news,
+            "column" : column,
+            "event" : event,
         }
     return render(request, "home/search.html", context)

@@ -1,10 +1,6 @@
 from django.db import models
-from datetime import timedelta, datetime
-from django.utils import timezone
+from datetime import datetime
 from user.models import User
-
-name_choice = (("자유", "자유"), ("정보", "정보"))
-news_choice = (("국내", "국내"), ("해외", "해외"))
 
 
 class Community(models.Model):
@@ -12,7 +8,6 @@ class Community(models.Model):
     content = models.TextField(verbose_name="내용")
     writer = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="작성자")
     date = models.DateTimeField(auto_now_add=True, verbose_name="작성일")
-    name = models.CharField(max_length=32, choices=name_choice, verbose_name="분류")
     view = models.PositiveIntegerField(default=0, verbose_name="조회수")
     like = models.PositiveIntegerField(default=0, verbose_name="추천수")
     like_users = models.ManyToManyField(User, related_name="like_boards", blank=True)
@@ -44,6 +39,7 @@ class Community(models.Model):
         verbose_name_plural = "커뮤니티"
         ordering = ["-date"]
 
+
 class Comment(models.Model):
     community = models.ForeignKey(
         Community, null=True, blank=True, on_delete=models.CASCADE, verbose_name="게시글"
@@ -73,7 +69,6 @@ class News(models.Model):
     content = models.TextField(verbose_name="내용")
     writer = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="작성자")
     date = models.DateTimeField(auto_now_add=True, verbose_name="작성일")
-    name = models.CharField(max_length=32, choices=news_choice, verbose_name="분류")
     view = models.PositiveIntegerField(default=0, verbose_name="조회수")
 
     @property

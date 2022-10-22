@@ -38,14 +38,14 @@
         </div>
         <nav>
             <form action="{% url 'search' %}" method="post">
-                    <div>
+                <div>
                     {% csrf_token %}
                     <input name="q" value="{{q}}" placeholder="검색어를 입력해주세요."></input>
                     <button type="submit">
                         <i class="fa-solid fa-magnifying-glass" style="font-size:19px;"></i>
                     </button>
                 </div>
-                </form>
+            </form>
             <ul>
                 <li>
                     <a href="{% url 'board:news_list'%}">
@@ -147,25 +147,12 @@
             <section id="community">
                 <div class="title">
                     커뮤니티
-                    <ul>
-                        <li data-tab="new" class='on'>최신</li>
-                        <li data-tab="hot" style="color:#aaa;">인기</li>
-                    </ul>
                 </div>
                 <div class="content">
                     <div>
-                        <span>자유</span>
-                        <ul id="new" class="tabcont on">
-                            {% for list in commu_free_new %}
-                            <li>
-                                <a href="{% url 'board:community_detail' list.id %}">{{list.title|truncatechars:35}}
-                                </a>
-                                <i class="fa-solid fa-comment-dots"></i> {{ list.comment_set.count }}
-                            </li>
-                            {% endfor %}
-                        </ul>
-                        <ul id="hot" class="tabcont">
-                            {% for list in commu_free_hot %}
+                        <span><b>최신</b></span>
+                        <ul>
+                            {% for list in commu_new %}
                             <li>
                                 <a href="{% url 'board:community_detail' list.id %}">{{list.title|truncatechars:35}}
                                 </a>
@@ -175,18 +162,9 @@
                         </ul>
                     </div>
                     <div>
-                        <span>정보</span>
-                        <ul id="new" class="tabcont on">
-                            {% for list in commu_info_new %}
-                            <li>
-                                <a href="{% url 'board:community_detail' list.id %}">{{list.title|truncatechars:35}}
-                                </a>
-                                <i class="fa-solid fa-comment-dots"></i> {{ list.comment_set.count }}
-                            </li>
-                            {% endfor %}
-                        </ul>
-                        <ul id="hot" class="tabcont">
-                            {% for list in commu_info_hot %}
+                        <span><b>인기</b></span>
+                        <ul>
+                            {% for list in commu_hot %}
                             <li>
                                 <a href="{% url 'board:community_detail' list.id %}">{{list.title|truncatechars:35}}
                                 </a>

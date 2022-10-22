@@ -254,26 +254,6 @@ section#community .title {
     border-bottom: #848b79 1px solid;
 }
 
-section#community .title ul {
-    font-size: 15px;
-    margin: 7px 0 0 0;
-    padding: 0;
-    list-style: none;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    width: 60px;
-    cursor: pointer;
-}
-
-section#community .tabcont {
-    display: none;
-}
-
-section#community .tabcont.on {
-    display: block;
-}
-
 section#community .content {
     display: flex;
     flex-direction: row;
@@ -286,10 +266,9 @@ section#community .content div {
 }
 
 section#community .content span {
-    font-size: 18px;
     color: #eee;
     border-left: 2px solid #848b79;
-    padding-left: 8px;
+    padding: 0 0 2px 8px;
 }
 
 section#community .content ul {
@@ -301,6 +280,7 @@ section#community .content ul {
 section#community .content li {
     font-size: 11px;
     color: #aaa;
+    margin: 1px 0;
 }
 
 section#community .content li a {

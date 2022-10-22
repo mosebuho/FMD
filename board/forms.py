@@ -5,7 +5,7 @@ from .models import Community, News, Column, Notice, Event
 class CommuModelForm(forms.ModelForm):
     class Meta:
         model = Community
-        fields = ["title", "name", "content"]
+        fields = ["title", "content"]
         widgets = {
             "title": forms.TextInput(attrs={"placeholder": "제목을 입력해주세요."}),
         }
@@ -14,7 +14,7 @@ class CommuModelForm(forms.ModelForm):
 class NewsModelForm(forms.ModelForm):
     class Meta:
         model = News
-        fields = ["title", "thumbnail", "name", "content"]
+        fields = ["title", "thumbnail", "content"]
         widgets = {
             "title": forms.TextInput(attrs={"placeholder": "제목을 입력해주세요."}),
         }

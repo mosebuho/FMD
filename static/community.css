@@ -56,18 +56,6 @@ img#list-ad {
     margin-top: 5px;
 }
 
-
-section#menu {
-    display: flex;
-    flex-direction: row;
-    background: #272727;
-    border: 1px solid #484848;
-    padding: 10px;
-    font-size: 17px;
-    width: 900px;
-}
-
-
 section#list {
     margin-top: 2px;
     width: 920px;
@@ -86,7 +74,7 @@ th {
 }
 
 section#list td {
-    padding: 7px;
+    padding: 4px;
 }
 
 section#list tr {
@@ -428,17 +416,9 @@ section#write form .top {
     height: 60px;
 }
 
-section#write select {
-    height: 50px;
-    width: 100px;
-    background: #363636;
-    text-align: center;
-    color: #aaa;
-}
-
 section#write input#id_title {
     height: 30px;
-    width: 790px;
+    width: 900px;
     background: #363636;
     font-size: 15px;
 }

@@ -1,0 +1,133 @@
+img.ad {
+    width: 922px;
+    height: 120.5px;
+    margin: 5px 0 0 0;
+}
+
+section#search {
+    width: 900px;
+    padding: 0 10px 10px 10px;
+    background: #272727;
+    border: 1px solid #484848;
+    margin: 5px 0 0 0;
+}
+
+section#search div.title {
+    display: flex;
+    flex-direction: row;
+    font-size: 18px;
+    justify-content: space-between;
+    padding: 2px 0 5px 0;
+    border-bottom: #848b79 1px solid;
+    margin: 10px 0 0 0;
+}
+
+section#search .list {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 256.5px;
+}
+
+section#search div a {
+    color: #aaa;
+    padding: 3px 0 0 0;
+    font-size: 12px;
+}
+
+section#search ul {
+    padding: 0;
+    list-style: none;
+    width: 49.5%;
+    margin: 0;
+}
+
+section#search ul li {
+    display: flex;
+    flex-direction: row;
+    margin: 14px 0;
+}
+
+section#search ul img {
+    width: 125px;
+    height: 70px;
+}
+
+section#search li div {
+    display: flex;
+    flex-direction: column;
+    margin-left: 7px;
+    color: #aaa;
+}
+
+section#search li .listintitle {
+    font-size: 18px;
+    color: #eee;
+}
+
+section#search li .listinsub {
+    font-size: 11px;
+    border-top: 1px solid #484848;
+    border-bottom: 1px solid #484848;
+    margin: 3px 0 0 0;
+    padding: 1px 0;
+}
+
+section#search li .listincontent {
+    font-size: 13px;
+}
+
+section#search .listinsub i {
+    margin: 0 0 0 5px;
+}
+
+section#search .nolist {
+    height: 240.5px;
+    width: 900px;
+    text-align: center;
+}
+
+section#search .nolist p {
+    padding: 110px 0 0 0;
+}
+
+section#search .content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 10px;
+    height: 246px;
+}
+
+section#search .content div {
+    width: 49.5%;
+}
+
+section#search .content span {
+    color: #eee;
+    border-left: 2px solid #848b79;
+    padding: 0 0 2px 8px;
+}
+
+section#search .content ul {
+    padding: 0;
+    margin: 5px 0 0 10px;
+    list-style: none;
+}
+
+section#search .content li {
+    display: block;
+    font-size: 11px;
+    color: #aaa;
+    margin: 1px 0;
+}
+
+section#search .content li a {
+    padding: 2px 0;
+    color: #eee;
+    font-size: 15px;
+}
+
+section#search .content li a:visited {
+    color: #aaa;
+}

@@ -6,7 +6,6 @@ from .models import Community, News, Column, Notice, Event
 class CommunityAdmin(admin.ModelAdmin):
     list_display = (
         "title",
-        "name",
         "writer",
         "date",
         "view",
@@ -18,7 +17,6 @@ class CommunityAdmin(admin.ModelAdmin):
 class NewsAdmin(admin.ModelAdmin):
     list_display = (
         "title",
-        "name",
         "writer",
         "date",
         "view",

@@ -158,17 +158,8 @@ section#write #id_thumbnail {
     height: 30px;
 }
 
-section#write select {
-    height: 60px;
-    width: 100px;
-    text-align: center;
-    background: #363636;
-    color: #aaa;
-    font-size: 16px;
-}
-
 section#write #id_title {
-    width: 850px;
+    width: 950px;
     height: 40px;
     background: #363636;
     font-size: 16px;
