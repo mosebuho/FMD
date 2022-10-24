@@ -1,13 +1,19 @@
 from django.views import generic
 from .models import Community, Comment, News, Column, Notice, Event
-from .forms import CommuModelForm, NewsModelForm, ColumnModelForm, NoticeModelForm, EventModelForm
+from .forms import (
+    CommuModelForm,
+    NewsModelForm,
+    ColumnModelForm,
+    NoticeModelForm,
+    EventModelForm,
+)
 from django.http import HttpResponse
 import json
 from django.core.serializers.json import DjangoJSONEncoder
 from user.models import User
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 from django.http import Http404
 from user.decorator import *
 from django.utils.decorators import method_decorator
@@ -16,14 +22,32 @@ from django.utils.decorators import method_decorator
 class CommunityListView(generic.ListView):
     template_name = "board/community_list.html"
     model = Community
-    paginate_by = 31
+    paginate_by = 40
     context_object_name = "community"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["commu_hot_list"] = Community.objects.order_by("-like")[0:5]
+        context["commu_hot_list"] = Community.objects.order_by("-like")[:5]
         context["commu_hot_list2"] = Community.objects.order_by("-like")[5:10]
         return context
+
+
+def community_search(request):
+    community = Community.objects.all()
+    commu_hot_list = Community.objects.order_by("-like")[:5]
+    commu_hot_list2 = Community.objects.order_by("-like")[5:10]
+    q = request.POST.get("q")
+    if q:
+        community = community.filter(title__icontains=q)
+        context = {
+            "q": q,
+            "community": community,
+            "commu_hot_list": commu_hot_list,
+            "commu_hot_list2": commu_hot_list2,
+        }
+        return render(request, "board/community_search.html", context)
+    else:
+        return render(request, "board/community_search.html", context)
 
 
 class CommunityDetailView(generic.DetailView):
@@ -33,9 +57,10 @@ class CommunityDetailView(generic.DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context["commu_hot_list"] = Community.objects.order_by("-like")[0:5]
+        context["commu_hot_list"] = Community.objects.order_by("-like")[:5]
         context["commu_hot_list2"] = Community.objects.order_by("-like")[5:10]
         return context
+
 
 @method_decorator(lv1_required, name="dispatch")
 class CommunityCreateView(generic.CreateView):

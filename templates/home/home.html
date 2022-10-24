@@ -40,7 +40,7 @@
             <form action="{% url 'search' %}" method="post">
                 <div>
                     {% csrf_token %}
-                    <input name="q" value="{{q}}" placeholder="검색어를 입력해주세요."></input>
+                    <input name="q" value="{{q}}" placeholder="검색어를 입력해주세요.">
                     <button type="submit">
                         <i class="fa-solid fa-magnifying-glass" style="font-size:19px;"></i>
                     </button>

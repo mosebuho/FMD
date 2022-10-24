@@ -127,7 +127,7 @@ section#search form {
     flex-direction: row;
     justify-content: center;
     text-align: center;
-    width: 460px;
+    width: 380px;
     height: 40px;
     font-size: 14px;
     margin: auto;
@@ -143,19 +143,12 @@ section#search input {
     background: #272727;
 }
 
-section#search select {
-    width: 90px;
-    background: #272727;
-    color: #aaa;
-    text-align: center;
-    border-right: 1px solid #484848;
-}
-
 section#search button {
     width: 70px;
     background: #272727;
     color: #aaa;
     border-left: 1px solid #484848;
+    cursor: pointer;
 }
 
 /* detail */

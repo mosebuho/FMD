@@ -77,13 +77,9 @@
     {% endif %}
 </section>
 <section id="search">
-    <form method="post">
+    <form action="{% url 'board:community_search' %}" method="post">
         {% csrf_token %}
-        <select>
-            <option>자유</option>
-            <option>정보</option>
-        </select>
-        <input placeholder="검색어를 입력해주세요.">
+        <input name="q" value="{{q}}" placeholder="검색어를 입력해주세요.">
         <button type="submit">검색</button>
     </form>
 </section>

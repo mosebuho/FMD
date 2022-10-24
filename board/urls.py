@@ -4,6 +4,7 @@ from . import views
 app_name = "board"
 urlpatterns = [
     path("community/", views.CommunityListView.as_view(), name="community_list"),
+    path("community/search/",views.community_search,name="community_search"),
     path("community/<int:pk>/", views.CommunityDetailView.as_view(),name="community_detail"),
     path("community/create/",views.CommunityCreateView.as_view(),name="community_create"),
     path("community/update/<int:pk>/",views.CommunityUpdateView.as_view(),name="community_update"),
