@@ -31,8 +31,8 @@
             {{ form.title }}
         </div>
         {{ form.content }}
-        <button id="done">게시</button>
-        <button id="cancel">취소</button>
+        <input id="done" type="submit" value="게시">
+        <button id="cancel" onclick="window.history.back();" type="button">취소</button>
     </form>
 </section>
 {% endblock write %}

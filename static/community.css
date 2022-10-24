@@ -423,12 +423,13 @@ section#write input#id_title {
     font-size: 15px;
 }
 
-section#write button#done {
+section#write input#done {
     background: #848b79;
     width: 80px;
     height: 40px;
     color: #eee;
     margin: 10px 5px;
+    cursor: pointer;
 }
 
 section#write button#cancel {
@@ -437,4 +438,5 @@ section#write button#cancel {
     height: 40px;
     color: #eee;
     margin: 10px 5px;
+    cursor: pointer;
 }
