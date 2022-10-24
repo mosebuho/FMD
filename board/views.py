@@ -1,12 +1,6 @@
 from django.views import generic
 from .models import Community, Comment, News, Column, Notice, Event
-from .forms import (
-    CommuModelForm,
-    NewsModelForm,
-    ColumnModelForm,
-    NoticeModelForm,
-    EventModelForm,
-)
+from .forms import CommuModelForm, NewsModelForm, ColumnModelForm, NoticeModelForm, EventModelForm
 from django.http import HttpResponse
 import json
 from django.core.serializers.json import DjangoJSONEncoder
