@@ -16,23 +16,37 @@ class HomeView(generic.TemplateView):
 
 
 def search(request):
-    community = Community.objects.all().order_by("-id")
-    news = News.objects.all().order_by("-id")
-    column = Column.objects.all().order_by("-id")
-    event = Event.objects.all().order_by("-id")
-
-    q = request.POST.get("q", "")
-    context = {"q": q}
-
-    if q:
-        community = community.filter(title__icontains=q)
-        news = news.filter(title__icontains=q)
-        column = column.filter(title__icontains=q)
-        event = event.filter(title__icontains=q)
-        context = {
-            "community" : community,
-            "news" : news,
-            "column" : column,
-            "event" : event,
-        }
-    return render(request, "home/search.html", context)
+    if request.method == "POST":
+        q = request.POST.get("q")
+        community = Community.objects.filter(title__icontains=q)
+        news = News.objects.filter(title__icontains=q)
+        column = Column.objects.filter(title__icontains=q)
+        event = Event.objects.filter(title__icontains=q)
+        return render(
+            request,
+            "home/search.html",
+            {
+                "q": q,
+                "community": community,
+                "news": news,
+                "column": column,
+                "event": event,
+            },
+        )
+    else:
+        q = request.GET.get("q")
+        community = Community.filter(title__icontains=q)
+        news = News.filter(title__icontains=q)
+        column = Column.filter(title__icontains=q)
+        event = Event.filter(title__icontains=q)
+        return render(
+            request,
+            "home/search.html",
+            {
+                "q": q,
+                "community": community,
+                "news": news,
+                "column": column,
+                "event": event,
+            },
+        )

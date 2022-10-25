@@ -5,7 +5,7 @@
 <section id="search">
     <div class="title">
         뉴스
-        <a href="/">더보기</a>
+        <a href="/board/news/search/?page=1&q={{q}}">더보기</a>
     </div>
     {% if news %}
     <div class="list">
@@ -49,7 +49,7 @@
     {% endif %}
     <div class="title">
         칼럼
-        <a href="/">더보기</a>
+        <a href="/board/column/search/?page=1&q={{q}}">더보기</a>
     </div>
     {% if column %}
     <div class="list">
@@ -93,7 +93,7 @@
     {% endif %}
     <div class="title">
         커뮤니티
-        <a href="/">더보기</a>
+        <a href="/board/community/search/?page=1&q={{q}}">더보기</a>
     </div>
     {% if community %}
     <div class="content">
@@ -134,13 +134,13 @@
     </div>
     <div class="title">
         행사
-        <a href="/">더보기</a>
+        <a href="/board/event/search/?page=1&q={{q}}">더보기</a>
     </div>
     {% if event %}
     <div class="list">
         <ul>
             {% for i in event|slice:3 %}
-            <a href="{% url 'board:column_detail' i.id %}">
+            <a href="{% url 'board:event_detail' i.id %}">
                 <li>
                     <img src="{{ i.thumbnail.url }}">
                     <div>
@@ -156,7 +156,7 @@
         </ul>
         <ul>
             {% for i in event|slice:"3:6" %}
-            <a href="{% url 'board:news_detail' i.id %}">
+            <a href="{% url 'board:event_detail' i.id %}">
                 <li>
                     <img src="{{ i.thumbnail.url }}">
                     <div>
