@@ -1,6 +1,12 @@
 from django.views import generic
 from .models import Community, Comment, News, Column, Notice, Event
-from .forms import CommuModelForm, NewsModelForm, ColumnModelForm, NoticeModelForm, EventModelForm
+from .forms import (
+    CommuModelForm,
+    NewsModelForm,
+    ColumnModelForm,
+    NoticeModelForm,
+    EventModelForm,
+)
 from django.http import HttpResponse
 import json
 from django.core.serializers.json import DjangoJSONEncoder
@@ -11,13 +17,13 @@ from django.shortcuts import redirect, render
 from django.http import Http404
 from user.decorator import *
 from django.utils.decorators import method_decorator
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 
 class CommunityListView(generic.ListView):
-    template_name = "board/community_list.html"
+    template_name = "board/communityist.html"
     model = Community
     paginate_by = 40
-    context_object_name = "community"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -27,21 +33,40 @@ class CommunityListView(generic.ListView):
 
 
 def community_search(request):
-    community = Community.objects.all()
     commu_hot_list = Community.objects.order_by("-like")[:5]
     commu_hot_list2 = Community.objects.order_by("-like")[5:10]
-    q = request.POST.get("q")
-    if q:
-        community = community.filter(title__icontains=q)
-        context = {
-            "q": q,
-            "community": community,
-            "commu_hot_list": commu_hot_list,
-            "commu_hot_list2": commu_hot_list2,
-        }
-        return render(request, "board/community_search.html", context)
+    if request.method == "POST":
+        q = request.POST.get("q")
+        community = Community.objects.filter(title__contains=q)
+        paginator = Paginator(community, 40)
+        page = request.GET.get("page")
+        page_obj = paginator.get_page(page)
+        return render(
+            request,
+            "board/community_search.html",
+            {
+                "q": q,
+                "page_obj": page_obj,
+                "commu_hot_list": commu_hot_list,
+                "commu_hot_list2": commu_hot_list2,
+            },
+        )
     else:
-        return render(request, "board/community_search.html", context)
+        q = request.GET.get("q")
+        community = Community.objects.filter(title__contains=q)
+        paginator = Paginator(community, 40)
+        page = request.GET.get("page")
+        page_obj = paginator.get_page(page)
+        return render(
+            request,
+            "board/community_search.html",
+            {
+                "q": q,
+                "page_obj": page_obj,
+                "commu_hot_list": commu_hot_list,
+                "commu_hot_list2": commu_hot_list2,
+            },
+        )
 
 
 class CommunityDetailView(generic.DetailView):
@@ -90,9 +115,9 @@ def community_delete(request, pk):
     board = get_object_or_404(Community, id=pk)
     if board.writer == request.user:
         board.delete()
-        return redirect("board:community_list")
+        return redirect("board:communityist")
     else:
-        return redirect("board:community_list")
+        return redirect("board:communityist")
 
 
 def like(request):

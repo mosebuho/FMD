@@ -42,7 +42,7 @@
             </tr>
         </thead>
         <tbody>
-            {% for i in community %}
+            {% for i in page_obj %}
             <tr>
                 <td>{{ i.like }}</td>
                 <td id="title">
@@ -61,9 +61,9 @@
 </section>
 <section id="button">
     <div></div>
-    {% if is_paginated %}
+    {% block search_table %}
     {% include "pagination.html" %}
-    {% endif %}
+    {% endblock search_table %}
     {% if request.user.level >= 1 %}
     <button>
         <a href="{% url 'board:community_create' %}">
