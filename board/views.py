@@ -17,11 +17,11 @@ from django.shortcuts import redirect, render
 from django.http import Http404
 from user.decorator import *
 from django.utils.decorators import method_decorator
-from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from django.core.paginator import Paginator
 
 
 class CommunityListView(generic.ListView):
-    template_name = "board/communityist.html"
+    template_name = "board/community_list.html"
     model = Community
     paginate_by = 40
 
@@ -115,9 +115,9 @@ def community_delete(request, pk):
     board = get_object_or_404(Community, id=pk)
     if board.writer == request.user:
         board.delete()
-        return redirect("board:communityist")
+        return redirect("board:community_list")
     else:
-        return redirect("board:communityist")
+        return redirect("board:community_list")
 
 
 def like(request):
@@ -205,7 +205,37 @@ class NewsListView(generic.ListView):
     template_name = "board/news_list.html"
     model = News
     paginate_by = 10
-    context_object_name = "lists"
+
+def news_search(request):
+    if request.method == "POST":
+        q = request.POST.get("q")
+        news = News.objects.filter(title__contains=q)
+        paginator = Paginator(news, 10)
+        page = request.GET.get("page")
+        page_obj = paginator.get_page(page)
+        return render(
+            request,
+            "board/news_search.html",
+            {
+                "q": q,
+                "page_obj": page_obj,
+            },
+        )
+    else:
+        q = request.GET.get("q")
+        news = News.objects.filter(title__contains=q)
+        paginator = Paginator(news, 10)
+        page = request.GET.get("page")
+        page_obj = paginator.get_page(page)
+        return render(
+            request,
+            "board/news_search.html",
+            {
+                "q": q,
+                "page_obj": page_obj,
+            },
+        )
+
 
 
 class NewsDetailView(generic.DetailView):
@@ -257,7 +287,36 @@ class ColumnListView(generic.ListView):
     template_name = "board/column_list.html"
     model = Column
     paginate_by = 10
-    context_object_name = "lists"
+
+def column_search(request):
+    if request.method == "POST":
+        q = request.POST.get("q")
+        column = Column.objects.filter(title__contains=q)
+        paginator = Paginator(column, 10)
+        page = request.GET.get("page")
+        page_obj = paginator.get_page(page)
+        return render(
+            request,
+            "board/column_search.html",
+            {
+                "q": q,
+                "page_obj": page_obj,
+            },
+        )
+    else:
+        q = request.GET.get("q")
+        column = Column.objects.filter(title__contains=q)
+        paginator = Paginator(column, 10)
+        page = request.GET.get("page")
+        page_obj = paginator.get_page(page)
+        return render(
+            request,
+            "board/column_search.html",
+            {
+                "q": q,
+                "page_obj": page_obj,
+            },
+        )
 
 
 class ColumnDetailView(generic.DetailView):
@@ -343,7 +402,37 @@ class EventListView(generic.ListView):
     model = Event
     template_name = "board/event_list.html"
     paginate_by = 10
-    context_object_name = "events"
+
+def event_search(request):
+    if request.method == "POST":
+        q = request.POST.get("q")
+        event = Event.objects.filter(title__contains=q)
+        paginator = Paginator(event, 10)
+        page = request.GET.get("page")
+        page_obj = paginator.get_page(page)
+        return render(
+            request,
+            "board/event_search.html",
+            {
+                "q": q,
+                "page_obj": page_obj,
+            },
+        )
+    else:
+        q = request.GET.get("q")
+        event = Event.objects.filter(title__contains=q)
+        paginator = Paginator(event, 10)
+        page = request.GET.get("page")
+        page_obj = paginator.get_page(page)
+        return render(
+            request,
+            "board/event_search.html",
+            {
+                "q": q,
+                "page_obj": page_obj,
+            },
+        )
+
 
 
 class EventDetailView(generic.DetailView):

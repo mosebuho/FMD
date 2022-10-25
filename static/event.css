@@ -203,3 +203,31 @@ section#detail .sub {
     font-size: 13px;
     color: #aaa;
 }
+
+section#search form {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    text-align: center;
+    width: 380px;
+    height: 40px;
+    font-size: 14px;
+    margin: auto;
+    margin-top: 20px;
+    border: 1px solid #484848;
+}
+
+section#search input {
+    padding: 5px;
+    width: 300px;
+    height: auto;
+    background: #272727;
+}
+
+section#search button {
+    width: 70px;
+    background: #272727;
+    color: #aaa;
+    border-left: 1px solid #484848;
+    cursor: pointer;
+}

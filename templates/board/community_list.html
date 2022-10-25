@@ -61,9 +61,9 @@
 </section>
 <section id="button">
     <div></div>
-    {% block search_table %}
+    {% block search %}
     {% include "pagination.html" %}
-    {% endblock search_table %}
+    {% endblock search %}
     {% if request.user.level >= 1 %}
     <button>
         <a href="{% url 'board:community_create' %}">

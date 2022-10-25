@@ -1,4 +1,4 @@
-{% extends "board/news_list.html" %}
+{% extends "home/home.html" %}
 {% block content %}
 <link rel="stylesheet" href="/static/event.css/" />
 <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css' rel='stylesheet' />
@@ -11,7 +11,7 @@
             initialView: 'dayGridMonth',
             locale: 'ko',
             events: [
-                {% for i in events %}
+                {% for i in page_obj %}
                 {
                 title: '{{i.title}}',
                 start: '{{i.start|date:"Y-m-d" }}',
@@ -23,14 +23,13 @@
     calendar.render();
     });
 </script>
-
 <section id="event">
     <div class="title">
         캘린더
     </div>
     <div id='calendar'></div>
     <ul>
-        {% for i in events %}
+        {% for i in page_obj %}
         <a href="{% url 'board:event_detail' i.id %}">
             <li>
                 <img src="{{i.thumbnail.url}}">
@@ -47,10 +46,9 @@
 </section>
 <section id="button">
     <div></div>
-    {% if is_paginated %}
-    {% include "pagination.html" %}
-    {% endif %}
-    {% block column %}
+    {% block search %}
+    {% include 'pagination.html' %}
+    {% endblock search %}
     {% if request.user.level >= 3 %}
     <button>
         <a href="{% url 'board:event_create' %}">
@@ -60,6 +58,12 @@
     {% else %}
     <div></div>
     {% endif %}
-    {% endblock column %}
+</section>
+<section id="search">
+    <form action="{% url 'board:event_search' %}" method="post">
+        {% csrf_token %}
+        <input name="q" value="{{q}}" placeholder="검색어를 입력해주세요.">
+        <button type="submit">검색</button>
+    </form>
 </section>
 {% endblock content %}

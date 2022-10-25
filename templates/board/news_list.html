@@ -8,33 +8,30 @@
 <link rel="stylesheet" href="/static/news.css/" />
 <img id="news_ad">
 <section id="news_list">
-    {% block column-list %}
     <ul class="news-page">
-        {% for list in lists %}
-        <a href="{% url 'board:news_detail' list.id %}">
+        {% for i in page_obj %}
+        <a href="{% url 'board:news_detail' i.id %}">
             <li>
-                <img src="{{list.thumbnail.url}}">
+                <img src="{{i.thumbnail.url}}">
                 <div>
-                    {{list.title|truncatechars:37}}
+                    {{i.title|truncatechars:37}}
                     <p>
-                        {{ list.writer }}
-                        <i class="fa-solid fa-eye"></i> {{ list.view }}
-                        <span><i class="fa-solid fa-clock"></i> {{ list.date_str }}</span>
+                        {{ i.writer }}
+                        <i class="fa-solid fa-eye"></i> {{ i.view }}
+                        <span><i class="fa-solid fa-clock"></i> {{ i.date_str }}</span>
                     </p>
-                    <span class="content">{{list.content|striptags|safe|truncatechars:100}}</span>
+                    <span class="content">{{i.content|striptags|safe|truncatechars:100}}</span>
                 </div>
             </li>
         </a>
         {% endfor %}
     </ul>
-    {% endblock column-list %}
 </section>
 <section id="button">
     <div></div>
-    {% if is_paginated %}
+    {% block search %}
     {% include "pagination.html" %}
-    {% endif %}
-    {% block column %}
+    {% endblock search %}
     {% if request.user.level >= 2 %}
     <button>
         <a href="{% url 'board:news_create' %}">
@@ -46,6 +43,12 @@
         <i class="fa-solid fa-pen-to-square"></i> 글쓰기
     </button>
     {% endif %}
-    {% endblock column %}
+</section>
+<section id="search">
+    <form action="{% url 'board:news_search' %}" method="post">
+        {% csrf_token %}
+        <input name="q" value="{{q}}" placeholder="검색어를 입력해주세요.">
+        <button type="submit">검색</button>
+    </form>
 </section>
 {% endblock content %}
