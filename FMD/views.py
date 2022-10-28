@@ -33,20 +33,3 @@ def search(request):
                 "event": event,
             },
         )
-    else:
-        q = request.GET.get("q")
-        community = Community.filter(title__icontains=q)
-        news = News.filter(title__icontains=q)
-        column = Column.filter(title__icontains=q)
-        event = Event.filter(title__icontains=q)
-        return render(
-            request,
-            "home/search.html",
-            {
-                "q": q,
-                "community": community,
-                "news": news,
-                "column": column,
-                "event": event,
-            },
-        )

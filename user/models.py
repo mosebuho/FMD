@@ -31,7 +31,7 @@ class User(AbstractBaseUser):
     userid = models.CharField(max_length=60, unique=True, verbose_name="아이디")
     email = models.EmailField(max_length=128, unique=True, verbose_name="이메일")
     name = models.CharField(max_length=60, unique=True, verbose_name="닉네임")
-    join_date = models.DateTimeField(auto_now_add=True, verbose_name="생성시간")
+    join_date = models.DateTimeField(auto_now_add=True, verbose_name="가입일")
     point = models.PositiveIntegerField(default=0, verbose_name="포인트")
     level = models.PositiveIntegerField(default=0, verbose_name="레벨")
     image = models.ImageField(default='profile_images/default.png', upload_to='profile_images/%Y/%m/%d/')
