@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import BaseUserManager, AbstractBaseUser
+from django.contrib.auth.password_validation import name_validate, id_validate
 
 
 class UserManager(BaseUserManager):
@@ -28,13 +29,19 @@ class UserManager(BaseUserManager):
 
 
 class User(AbstractBaseUser):
-    userid = models.CharField(max_length=60, unique=True, verbose_name="아이디")
-    email = models.EmailField(max_length=128, unique=True, verbose_name="이메일")
-    name = models.CharField(max_length=60, unique=True, verbose_name="닉네임")
+    userid = models.CharField(
+        max_length=20, unique=True, validators=[id_validate], verbose_name="아이디"
+    )
+    email = models.EmailField(max_length=32, unique=True, verbose_name="이메일")
+    name = models.CharField(
+        max_length=8, unique=True, validators=[name_validate], verbose_name="닉네임"
+    )
     join_date = models.DateTimeField(auto_now_add=True, verbose_name="가입일")
     point = models.PositiveIntegerField(default=0, verbose_name="포인트")
     level = models.PositiveIntegerField(default=0, verbose_name="레벨")
-    image = models.ImageField(default='profile_images/default.png', upload_to='profile_images/%Y/%m/%d/')
+    image = models.ImageField(
+        default="profile_images/default.png", upload_to="profile_images/%Y/%m/%d/"
+    )
     is_active = models.BooleanField(default=True)
     is_admin = models.BooleanField(default=False)
 

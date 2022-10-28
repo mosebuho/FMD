@@ -6,7 +6,6 @@ from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import Http404
 
-
 class RegisterView(generic.CreateView):
     template_name = "user/register.html"
     form_class = RegisterForm
