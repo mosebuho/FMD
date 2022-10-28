@@ -8,9 +8,9 @@
         <img src="{% static 'logo2.png' %}" />
         {% block register %}
         <div class="input">
-            <span>아이디</span> (6~20자리 영문과 숫자)
+            <span>아이디</span>
             {{form.username}}
-            <span>비밀번호</span> (특수문자를 포함한 8자 이상)
+            <span>비밀번호</span>
             {{form.password}}
         </div>
         <button type="submit">로그인</button>
