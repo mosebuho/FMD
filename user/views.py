@@ -5,6 +5,8 @@ from .models import User
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import Http404
+from django.http import JsonResponse
+
 
 class RegisterView(generic.CreateView):
     template_name = "user/register.html"
@@ -33,3 +35,30 @@ class ProfileUpdateView(LoginRequiredMixin, generic.UpdateView):
 
     def get_success_url(self):
         return reverse_lazy("user:profile", kwargs={"pk": self.object.pk})
+
+
+def check(request):
+    if request.GET.get("userid"):
+        userid = request.GET.get("userid")
+        try:
+            user = User.objects.get(userid=userid)
+        except:
+            user = None
+        if user is None:
+            check = "pass"
+        else:
+            check = "fail"
+        context = {"check": check}
+        return JsonResponse(context)
+    elif request.GET.get("name"):
+        name = request.GET.get("name")
+        try:
+            user = User.objects.get(name=name)
+        except:
+            user = None
+        if user is None:
+            check = "pass"
+        else:
+            check = "fail"
+        context = {"check": check}
+        return JsonResponse(context)
