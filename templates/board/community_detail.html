@@ -26,7 +26,7 @@
     $(document).ready(function () {
         $('#comment_create').click(function () {
             if ($('#comment_content').val() == "") { alert('댓글을 입력해주세요.'); }
-            else
+            else {
                 $.ajax({
                     type: "POST",
                     url: "{% url 'board:comment_create' board.id %}",
@@ -50,6 +50,7 @@
                         $('#comment_content').val("");
                     },
                 })
+            }
         });
     });
     function commentDelete(value) {
@@ -88,7 +89,7 @@
                 });
                 $("#done").click(function () {
                     if ($("#edit_comment").val() == "") { alert('댓글을 입력해주세요.'); }
-                    else
+                    else {
                         $.ajax({
                             type: "POST",
                             url: "{% url 'board:comment_update' board.id %}",
@@ -102,6 +103,7 @@
                                 $("#" + value + "content").replaceWith("<p id='" + value + "content'>" + response.edit_comment + "</p>");
                             },
                         });
+                    }
                 });
             }
         });
