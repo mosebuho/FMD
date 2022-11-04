@@ -10,7 +10,7 @@ class HomeView(generic.TemplateView):
         context = super().get_context_data(**kwargs)
         context["commu_new"] = Community.objects.all()[:16]
         context["commu_hot"] = Community.objects.all().order_by("-like")[:16]
-        context["news_list"] = News.objects.order_by("-id")[:3]
+        context["news_list"] = News.objects.order_by("-id")[:8]
         context["column_list"] = Column.objects.order_by("-id")[:6]
         return context
 

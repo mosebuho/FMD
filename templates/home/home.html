@@ -84,16 +84,27 @@
                 <div class="title">
                     뉴스/정보
                 </div>
-                <ul>
+                <ul class="news_container">
                     {% for list in news_list %}
                     <a href="{% url 'board:news_detail' list.id %}">
                         <li>
                             <img src="{{ list.thumbnail.url }}">
-                            {{ list.title|truncatechars:37}}
+                            <p>{{ list.title|truncatechars:37}}</p>
                         </li>
                     </a>
                     {% endfor %}
                 </ul>
+                <script type="text/javascript">
+                    $('.news_container').slick({
+                        slidesToShow: 4,
+                        slidesToScroll: 4,
+                        autoplay: true,
+                        infinite: true,
+                        autoplaySpeed: 10000,
+                        arrows: true,
+                        draggable: true,
+                    });
+                </script>
             </section>
             <section id="column">
                 <div class="title">군사칼럼</div>
@@ -288,8 +299,8 @@
                     $('.container').slick({
                         slidesToShow: 1,
                         slidesToScroll: 1,
-/*                         autoplay: true,
- */                        infinite: true,
+                        autoplay: true,
+                        infinite: true,
                         autoplaySpeed: 5000,
                         arrows: false,
                         dots: true,
