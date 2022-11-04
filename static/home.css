@@ -514,7 +514,7 @@ section#side3 {
 
 section#side3 dl {
     background: #272727;
-    height: 253px;
+    height: 180px;
     padding: 5px;
     margin: 0;
 }
@@ -527,7 +527,7 @@ section#side3 dt {
 
 section#side3 dd {
     margin: 0;
-    font-size: 15px;
+    font-size: 14px;
     list-style: none;
 }
 
@@ -541,46 +541,30 @@ section#side3 dd li a {
 
 section#side3 .container {
     width: 268px;
-    height: 187px;
-    position: relative;
-    overflow: hidden;
+    height: 260px;
 }
 
-section#side3 .slide {
-    position: absolute;
-    left: 0;
-    width: 2680px;
-    transition: left 0.5s ease-out;
-    margin: 0;
-    padding: 0;
-}
-
-section#side3 .slide li {
-    float: left;
-    list-style: none;
-}
-
-section#side3 .slide li img {
-    height: 187px;
+section#side3 .container img {
     width: 268px;
+    height: 260px;
 }
 
-section#side3 p span {
-    position: absolute;
-    color: #272727;
-    border-radius: 50%;
-    font-size: 25px;
-    cursor: pointer;
-    top: 70px;
+section#side3 .slick-dots {
+    bottom: 0;
 }
 
-section#side3 .prev {
-    left: 5px;
+section#side3 .slick-dots li {
+    margin: auto 0;
 }
 
+section#side3 .slick-dots li button:before {
+    color: #fff;
+    opacity: 0.9;
+}
 
-section#side3 .next {
-    right: 5px;
+section#side3 .slick-dots li.slick-active button:before {
+    color: black;
+    opacity: 0.9;
 }
 
 /* side4 */

@@ -6,6 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>4MILLDUK</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <link rel="shortcut icon" href="{% static 'favicon.ico' %}">
     <link rel="stylesheet" href="/static/home.css/" />
     <link
@@ -14,8 +15,9 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
         integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <script src="https://code.jquery.com/jquery-3.5.1.js"
-        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 </head>
 
 <body>
@@ -276,32 +278,22 @@
                     </dd>
                 </dl>
                 <div class="container">
-                    <ul class="slide">
-                        {% for i in events %}
-                        <li>
-                            <a href="{% url 'board:event_detail' i.id %}"><img src="{{ i.thumbnail.url }}"></a>
-                        </li>
-                        {% endfor %}
-                    </ul>
-                    <p>
-                        <span class="prev"><b>&lang;</b></span>
-                        <span class="next"><b>&rang;</b></span>
-                    </p>
+                    {% for i in events %}
+                    <a href="{% url 'board:event_detail' i.id %}">
+                        <img src="{{ i.thumbnail.url }}">
+                    </a>
+                    {% endfor %}
                 </div>
-                <script>
-                    let currentIdx = 0;
-                    function moveSlide(num) {
-                        document.querySelector('.slide').style.left = -num * 268 + 'px';
-                        currentIdx = num;
-                    }
-                    document.querySelector('.prev').addEventListener('click', function () {
-                        if (currentIdx !== 0) moveSlide(currentIdx - 1);
-                    });
-
-                    document.querySelector('.next').addEventListener('click', function () {
-                        if (currentIdx !== document.querySelectorAll('.slide li').length - 1) {
-                            moveSlide(currentIdx + 1);
-                        }
+                <script type="text/javascript">
+                    $('.container').slick({
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+/*                         autoplay: true,
+ */                        infinite: true,
+                        autoplaySpeed: 5000,
+                        arrows: false,
+                        dots: true,
+                        draggable: true,
                     });
                 </script>
             </section>
