@@ -526,19 +526,64 @@ section#side3 dt {
 }
 
 section#side3 dd {
-    margin: 6px 0 0;
+    margin: 0;
     font-size: 15px;
     list-style: none;
+}
+
+section#side3 dd li {
+    margin: 1px 0 0 0;
+}
+
+section#side3 dd li a {
     color: #aaa;
 }
 
-section#side3 img.event {
+section#side3 .container {
+    width: 268px;
     height: 187px;
-    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+section#side3 .slide {
+    position: absolute;
+    left: 0;
+    width: 2680px;
+    transition: left 0.5s ease-out;
     margin: 0;
+    padding: 0;
+}
+
+section#side3 .slide li {
+    float: left;
+    list-style: none;
+}
+
+section#side3 .slide li img {
+    height: 187px;
+    width: 268px;
+}
+
+section#side3 p span {
+    position: absolute;
+    color: #272727;
+    border-radius: 50%;
+    font-size: 25px;
+    cursor: pointer;
+    top: 70px;
+}
+
+section#side3 .prev {
+    left: 5px;
 }
 
 
+section#side3 .next {
+    right: 5px;
+}
+
+/* side4 */
 img#side4-ad {
     height: 302px;
     width: 270px;

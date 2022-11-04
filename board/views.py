@@ -399,7 +399,7 @@ def notice_delete(request, pk):
 
 
 class EventListView(generic.ListView):
-    model = Event
+    queryset = Event.objects.order_by("-id")
     template_name = "board/event_list.html"
     paginate_by = 10
 

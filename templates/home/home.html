@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 {% load static %}
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,18 +16,6 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://code.jquery.com/jquery-3.5.1.js"
         integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
-    <script>
-        $(function () {
-            $('.title li').click(function () {
-                $('.title li').removeClass('on');
-                $('.tabcont').removeClass('on');
-                $(this).addClass('on');
-                $('.content #' + $(this).attr('data-tab')).addClass('on');
-                $('#community .title li').css('color', '#aaa');
-                $(this).css('color', '#eee');
-            })
-        });
-    </script>
 </head>
 
 <body>
@@ -265,7 +254,8 @@
                     <dt>랭킹</dt>
                     <dd>
                         {% for user in ranking %}
-                        <li><a href="{% url 'user:profile' user.id %}">{{user.name}}</a><span>{{user.point}} 포인트</span>
+                        <li>
+                            <a href="{% url 'user:profile' user.id %}">{{user.name}}</a><span>{{user.point}} 포인트</span>
                         </li>
                         {% endfor %}
                     </dd>
@@ -278,9 +268,42 @@
                 <dl>
                     <dt>행사</dt>
                     <dd>
+                        {% for i in events %}
+                        <li>
+                            <a href="{% url 'board:event_detail' i.id %}">{{i.title|truncatechars:22}}</a>
+                        </li>
+                        {% endfor %}
                     </dd>
                 </dl>
-                <img class="event">
+                <div class="container">
+                    <ul class="slide">
+                        {% for i in events %}
+                        <li>
+                            <a href="{% url 'board:event_detail' i.id %}"><img src="{{ i.thumbnail.url }}"></a>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    <p>
+                        <span class="prev"><b>&lang;</b></span>
+                        <span class="next"><b>&rang;</b></span>
+                    </p>
+                </div>
+                <script>
+                    let currentIdx = 0;
+                    function moveSlide(num) {
+                        document.querySelector('.slide').style.left = -num * 268 + 'px';
+                        currentIdx = num;
+                    }
+                    document.querySelector('.prev').addEventListener('click', function () {
+                        if (currentIdx !== 0) moveSlide(currentIdx - 1);
+                    });
+
+                    document.querySelector('.next').addEventListener('click', function () {
+                        if (currentIdx !== document.querySelectorAll('.slide li').length - 1) {
+                            moveSlide(currentIdx + 1);
+                        }
+                    });
+                </script>
             </section>
             <img id="side4-ad">
         </aside>
