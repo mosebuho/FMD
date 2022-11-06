@@ -168,22 +168,6 @@ section#news li p {
     padding: 0 3px 0 3px
 }
 
-section#news .slick-next {
-    right: 6px;
-}
-
-section#news .slick-prev {
-    z-index: 2;
-    left: -10px;
-}
-
-section#news .slick-prev:before,
-section#news .slick-next:before {
-    color: black;
-    font-size: 35px;
-    line-height: 0;
-}
-
 
 
 section#column {
@@ -449,10 +433,6 @@ section#side1 .profile-info div {
     text-align: left;
 }
 
-section#side1 .profile-info span {
-    color: #aaa;
-    font-size: 12px;
-}
 
 section#side1 .profile-info div div {
     font-size: 17px;
@@ -461,13 +441,6 @@ section#side1 .profile-info div div {
 section#side1 .profile-info a {
     color: #aaa;
     font-size: 12px;
-}
-
-section#side1 .profile-point {
-    width: 100%;
-    height: 25px;
-    background: #272727;
-    margin-top: 13px;
 }
 
 

@@ -38,7 +38,6 @@
         <p>닉네임 : {{user.name}}</p>
         <p>이메일 : {{user.email}}</p>
         <p>생성일 : {{user.join_date}}</p>
-        <p>포인트 : {{user.point}}</p>
         {% if request.user.id == user.id %}
         <a style="float:right;" href="{% url 'user:update' user.id %}">정보변경</a>
         {% endif %}

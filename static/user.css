@@ -36,7 +36,7 @@ section#account form button {
     width: 450px;
     background: #848b79;
     height: 45px;
-    margin-bottom: 5px;
+    margin: 8px 0 0 0;
     border: #484848 solid 1px;
     color: #eee;
     font-size: 15px;
@@ -49,7 +49,7 @@ section#account .help {
     justify-content: space-between;
     width: 450px;
     font-size: 14px;
-    margin: 3px auto 10px auto;
+    margin: 5px auto 10px auto;
 }
 
 section#account .help a {

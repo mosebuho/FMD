@@ -7,9 +7,6 @@ class UserManager(BaseUserManager):
     use_in_migrations: True
 
     def create_user(self, userid, email, name, password=None):
-        if not userid:
-            raise ValueError("아이디는 필수 항목입니다.")
-
         user = self.model(userid=userid, email=self.normalize_email(email), name=name)
         user.set_password(password)
         user.save(using=self._db)
@@ -23,7 +20,6 @@ class UserManager(BaseUserManager):
             password=password,
         )
         user.is_admin = True
-        user.level = 3
         user.save(using=self._db)
         return user
 
@@ -37,12 +33,10 @@ class User(AbstractBaseUser):
         max_length=8, unique=True, validators=[name_validate], verbose_name="닉네임"
     )
     join_date = models.DateTimeField(auto_now_add=True, verbose_name="가입일")
-    point = models.PositiveIntegerField(default=0, verbose_name="포인트")
-    level = models.PositiveIntegerField(default=0, verbose_name="레벨")
     image = models.ImageField(
         default="profile_images/default.png", upload_to="profile_images/%Y/%m/%d/"
     )
-    is_active = models.BooleanField(default=True)
+    is_active = models.BooleanField(default=False)
     is_admin = models.BooleanField(default=False)
 
     objects = UserManager()

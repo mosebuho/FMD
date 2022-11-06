@@ -62,3 +62,15 @@ def check(request):
             check = "fail"
         context = {"check": check}
         return JsonResponse(context)
+    elif request.GET.get("email"):
+        email = request.GET.get("email")
+        try:
+            user = User.objects.get(email=email)
+        except:
+            user = None
+        if user is None:
+            check = "pass"
+        else:
+            check = "fail"
+        context = {"check": check}
+        return JsonResponse(context)

@@ -32,7 +32,7 @@
     {% block search %}
     {% include "pagination.html" %}
     {% endblock search %}
-    {% if request.user.level >= 2 %}
+    {% if request.user.is_admin %}
     <button>
         <a href="{% url 'board:column_create' %}">
             <i class="fa-solid fa-pen-to-square"></i> 글쓰기

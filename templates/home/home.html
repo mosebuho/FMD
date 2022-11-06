@@ -85,11 +85,11 @@
                     뉴스/정보
                 </div>
                 <ul class="news_container">
-                    {% for list in news_list %}
-                    <a href="{% url 'board:news_detail' list.id %}">
+                    {% for i in news_list %}
+                    <a href="{% url 'board:news_detail' i.id %}">
                         <li>
-                            <img src="{{ list.thumbnail.url }}">
-                            <p>{{ list.title|truncatechars:37}}</p>
+                            <img src="{{ i.thumbnail.url }}">
+                            <p>{{ i.title|truncatechars:37}}</p>
                         </li>
                     </a>
                     {% endfor %}
@@ -100,8 +100,8 @@
                         slidesToScroll: 4,
                         autoplay: true,
                         infinite: true,
-                        autoplaySpeed: 10000,
-                        arrows: true,
+                        autoplaySpeed: 5000,
+                        arrows: false,
                         draggable: true,
                     });
                 </script>
@@ -242,13 +242,11 @@
                     <div class="profile-info">
                         <img src="{{ request.user.image.url }}">
                         <div>
-                            <span>Lv.{{request.user.level}} {{ request.user.point }}포인트</span>
                             <div>{{ request.user.name }}</div>
                             <a href="{% url 'user:profile' request.user.id %}">내정보</a>
                             <a href="{% url 'user:logout' %}" id="logout">&nbsp로그아웃</a>
                         </div>
                     </div>
-                    <div class="profile-point"></div>
                 </div>
                 {% else %}
                 <div class="login">
@@ -265,13 +263,6 @@
             <section id="side2">
                 <dl>
                     <dt>랭킹</dt>
-                    <dd>
-                        {% for user in ranking %}
-                        <li>
-                            <a href="{% url 'user:profile' user.id %}">{{user.name}}</a><span>{{user.point}} 포인트</span>
-                        </li>
-                        {% endfor %}
-                    </dd>
                 </dl>
                 <div>
                     실시간 검색어

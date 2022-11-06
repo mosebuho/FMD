@@ -1,7 +1,5 @@
 {% extends "board/community_list.html" %}
 {% block detail %}
-<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
-    crossorigin="anonymous"></script>
 <input type="hidden" value={{board.view_count}}>
 <script>
     function like(id) {
@@ -117,9 +115,6 @@
     function notlogin() {
         alert("로그인이 필요한 기능입니다.")
     }
-    function commentlv0() {
-        alert("이메일 인증이 필요한 기능입니다.")
-    }
 </script>
 <section id="detail">
     {{ board.title }}
@@ -144,7 +139,6 @@
             <img src="{{ board.writer.image.url }}">
             <span>
                 <p><a href="{% url 'user:profile' board.writer.id %}">{{ board.writer }}</a></p>
-                <p>{{ board.writer.point }} 포인트</p>
                 <p>{{ board.writer.join_date }}</p>
             </span>
         </div>
@@ -166,9 +160,7 @@
         <button id="flag"><i class="fa-solid fa-flag"></i> 신고</button>
     </div>
     <img id="detail-ad">
-    {% if request.user.level == 0 %}
-    <textarea id="comment_content" rows="4" placeholder="댓글을 입력하세요." onclick="commentlv0()"></textarea>
-    {% elif request.user.is_authenticated %}
+    {% if request.user.is_authenticated %}
     <textarea id="comment_content" name="content" rows="4" placeholder="댓글을 입력하세요."></textarea>
     <button id="comment_create">등록</button>
     <input type="hidden" id="comment_writer" value={{request.user}}>
