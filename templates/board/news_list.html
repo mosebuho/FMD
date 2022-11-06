@@ -1,8 +1,8 @@
 {% extends "home/home.html" %}
 {% block content %}
 <script>
-    function lv2() {
-        alert("Lv2 이상의 권한이 필요합니다.")
+    function notstaff() {
+        alert("스태프 이상의 권한이 필요합니다.")
     }
 </script>
 <link rel="stylesheet" href="/static/news.css/" />
@@ -39,7 +39,7 @@
         </a>
     </button>
     {% else %}
-    <button onclick="lv2()">
+    <button onclick="notstaff()">
         <i class="fa-solid fa-pen-to-square"></i> 글쓰기
     </button>
     {% endif %}

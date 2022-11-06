@@ -1,16 +1,12 @@
-from django.contrib.auth.forms import UserCreationForm, UsernameField
-from django.contrib.auth import get_user_model
 from django import forms
+from .models import User
 
-User = get_user_model()
-class RegisterForm(UserCreationForm):
+
+class SignupForm(forms.ModelForm):
     class Meta:
         model = User
-        fields = ("userid", "name", "email")
-        field_classes = {"username": UsernameField}
+        fields = ["nickname"]
 
-
-class UserUpdateForm(forms.ModelForm):
-    class Meta:
-        model = User
-        fields = ["image", "userid", "name", "email"]
+    def signup(self, request, user):
+        user.nickname = self.cleaned_data["nickname"]
+        user.save()

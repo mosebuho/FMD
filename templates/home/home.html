@@ -243,18 +243,18 @@
                         <img src="{{ request.user.image.url }}">
                         <div>
                             <div>{{ request.user.name }}</div>
-                            <a href="{% url 'user:profile' request.user.id %}">내정보</a>
-                            <a href="{% url 'user:logout' %}" id="logout">&nbsp로그아웃</a>
+                            <a href="/">내정보</a>
+                            <a href="{% url 'account_logout' %}" id="logout">&nbsp로그아웃</a>
                         </div>
                     </div>
                 </div>
                 {% else %}
                 <div class="login">
                     <span>4MILLDUK - 세계체강 밀덕</span>
-                    <a href="{% url 'user:login' %}" class="loginbutton"><button>로그인</button></a>
+                    <a href="{% url 'account_login' %}" class="loginbutton"><button>로그인</button></a>
                     <div>
                         아이디/비밀번호 찾기
-                        <a href="{% url 'user:register' %}">회원가입</a>
+                        <a href="{% url 'account_signup' %}">회원가입</a>
                     </div>
                 </div>
                 {% endif %}

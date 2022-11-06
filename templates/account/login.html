@@ -9,7 +9,7 @@
         {% block register %}
         <div class="input">
             <span>아이디</span>
-            {{form.username}}
+            {{form.login}}
             <span>비밀번호</span>
             {{form.password}}
         </div>
@@ -18,14 +18,12 @@
             자동로그인
             <div>
                 <a href="">계정찾기</a>&nbsp|&nbsp
-                <a href="{% url 'user:register' %}">회원가입</a>
+                <a href="{% url 'account_signup' %}">회원가입</a>
             </div>
         </div>
     </form>
     {% if form.non_field_errors %}
-    {% for error in form.non_field_errors %}
-    <p style="color:#ff3737; font-size:13px;">{{ error | linebreaksbr }}</p>
-    {% endfor %}
+    <p style="color:#ff3737; font-size:13px;">아이디 또는 비밀번호가 올바르지 않습니다. <br> 입력하신 내용을 다시 확인해주세요.</p>
     {% endif %}
     <div class="social">
         <button class="naver" type="submit">네이버 로그인</button>

@@ -1,9 +1,9 @@
-{% extends "user/login.html" %}
+{% extends "account/login.html" %}
 {% load static %}
 {% block register %}
 <div class="input">
     <span>아이디</span> (영문, 숫자 조합 5자 이상)
-    <input type="text" name="userid" maxlength="20" autofocus required id="userid" onchange="id_val()"
+    <input type="text" name="username" maxlength="20" autofocus required id="username" onchange="id_val()"
         style="margin-bottom:0;">
     <script>
         function id_val() {
@@ -11,17 +11,17 @@
             var reg = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/g;
             var space = /\s/g;
             document.getElementById('id_help').style.color = "#ff3737";
-            if (space.test($("#userid").val()) == true) {
+            if (space.test($("#username").val()) == true) {
                 document.getElementById('id_help').innerHTML = "공백을 제거해주세요.";
             }
             else {
-                if (!check.test($("#userid").val()) || reg.test($("#userid").val()) == true) {
+                if (!check.test($("#username").val()) || reg.test($("#username").val()) == true) {
                     document.getElementById('id_help').innerHTML = "영문과 숫자로 이루어진 5자 이상으로 생성해주세요.";
                 }
                 else {
                     $.ajax({
                         url: "{% url 'user:check' %}",
-                        data: { "userid": $("#userid").val() },
+                        data: { "username": $("#username").val() },
                         datatype: 'json',
                         success: function (data) {
                             if (data['check'] == "fail") {
@@ -40,24 +40,24 @@
     </script>
     <p id="id_help" style="margin-top:5px;"></p>
     <span>닉네임</span> (특수문자를 제외한 2~8자)
-    <input type="text" name="name" maxlength="8" required id="name" onchange="name_val()" style="margin-bottom:0;">
+    <input type="text" name="nickname" maxlength="8" required id="nickname" onchange="name_val()" style="margin-bottom:0;">
     <script>
         function name_val() {
             var check = /^(?=.*[a-zA-Z0-9ㄱ-힣]).{2,8}$/;
             var reg = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/g;
             var space = /\s/g;
             document.getElementById('name_help').style.color = "#ff3737";
-            if (space.test($("#name").val()) == true) {
+            if (space.test($("#nickname").val()) == true) {
                 document.getElementById('name_help').innerHTML = "공백을 제거해주세요.";
             }
             else {
-                if (!check.test($("#name").val()) || reg.test($("#name").val()) == true) {
+                if (!check.test($("#nickname").val()) || reg.test($("#nickname").val()) == true) {
                     document.getElementById('name_help').innerHTML = "특수 문자를 제외한 2자~8자내로 생성해주세요.";
                 }
                 else {
                     $.ajax({
                         url: "{% url 'user:check' %}",
-                        data: { "name": $("#name").val() },
+                        data: { "nickname": $("#nickname").val() },
                         datatype: 'json',
                         success: function (data) {
                             if (data['check'] == "fail") {

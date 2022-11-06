@@ -35,8 +35,12 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django.contrib.sites",
     "user",
     "board",
+    "allauth",
+    "allauth.account",
+    "allauth.socialaccount",
 ]
 
 MIDDLEWARE = [
@@ -111,8 +115,31 @@ X_FRAME_OPTIONS = "SAMEORIGIN"
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
 
-LOGIN_URL = "/user/login/"
+LOGIN_URL = "/login/"
 
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 SESSION_COOKIE_AGE = 600
 SESSION_SAVE_EVERY_REQUEST = True
+
+AUTHENTICATION_BACKENDS = {
+    "django.contrib.auth.backends.ModelBackend",
+    "allauth.account.auth_backends.AuthenticationBackend",
+}
+SITE_ID = 1
+
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+ACCOUNT_AUTHENTICATION_METHOD = "username"
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USERNAME_REQUIRED = True
+ACCOUNT_EMAIL_VERIFICATION = "mandatory"
+ACCOUNT_CONFIRM_EMIAL_ON_GET = True
+ACCOUNT_SIGNUP_FORM_CLASS = 'user.forms.SignupForm'
+
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_PORT = "587"
+EMAIL_HOST_USER = get_secret("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = get_secret("EMAIL_HOST_PASSWORD")
+EMAIL_USE_TLS = True
+DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 1
+ACCOUNT_EMAIL_SUBJECT_PREFIX = "[이메일 인증]"
