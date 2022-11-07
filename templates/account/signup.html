@@ -40,7 +40,8 @@
     </script>
     <p id="id_help" style="margin-top:5px;"></p>
     <span>닉네임</span> (특수문자를 제외한 2~8자)
-    <input type="text" name="nickname" maxlength="8" required id="nickname" onchange="name_val()" style="margin-bottom:0;">
+    <input type="text" name="nickname" maxlength="8" required id="nickname" onchange="name_val()"
+        style="margin-bottom:0;">
     <script>
         function name_val() {
             var check = /^(?=.*[a-zA-Z0-9ㄱ-힣]).{2,8}$/;
@@ -114,8 +115,17 @@
         function email_val() {
             var exp = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
             document.getElementById('email_help').style.color = "#ff3737";
-            if (!exp.test($("#email").val())) {
+            if ($("#email").val() == "") {
+                document.getElementById('email_help').innerHTML = ''
+                document.getElementById('done').style.backgroundColor = "#484848"
+                document.getElementById('done').style.color = "#aaa"
+                $("#done").attr("disabled", true);
+            }
+            else if (!exp.test($("#email").val())) {
                 document.getElementById('email_help').innerHTML = "이메일 형식이 올바르지 않습니다.";
+                document.getElementById('done').style.backgroundColor = "#484848"
+                document.getElementById('done').style.color = "#aaa"
+                $("#done").attr("disabled", true);
             }
             else {
                 $.ajax({
@@ -125,13 +135,15 @@
                     success: function (data) {
                         if (data['check'] == "fail") {
                             document.getElementById('email_help').innerHTML = "이미 사용중인 이메일입니다.";
-                            return false;
+                            document.getElementById('done').style.backgroundColor = "#484848"
+                            document.getElementById('done').style.color = "#aaa"
+                            $("#done").attr("disabled", true);
                         } else {
                             document.getElementById('done').style.backgroundColor = "#848b79"
+                            document.getElementById('done').style.color = "#fff"
                             $("#done").removeAttr("disabled");
                             document.getElementById('email_help').style.color = "#19ce60";
                             document.getElementById('email_help').innerHTML = "사용 가능한 이메일입니다.";
-                            return;
                         }
                     }
                 })
@@ -141,6 +153,6 @@
     <p id="email_help" style="margin-top:5px;"></p>
 </div>
 <div>
-    <button type="submit" id="done" style="background:#484848;" disabled>회원가입</button>
+    <button type="submit" id="done" style="background:#484848; color:#aaa;" disabled>회원가입</button>
 </div>
 {% endblock signup %}

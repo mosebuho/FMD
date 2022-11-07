@@ -250,9 +250,11 @@
                 {% else %}
                 <div class="login">
                     <span>4MILLDUK - 세계체강 밀덕</span>
-                    <a href="{% url 'account_login' %}" class="loginbutton"><p>로그인</p></a>
+                    <a href="{% url 'account_login' %}" class="loginbutton">
+                        <p>로그인</p>
+                    </a>
                     <div>
-                        아이디/비밀번호 찾기
+                        <a href="{% url 'account_reset_password' %}">아이디/비밀번호 찾기</a>
                         <a href="{% url 'account_signup' %}">회원가입</a>
                     </div>
                 </div>
