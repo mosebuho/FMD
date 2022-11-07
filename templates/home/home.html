@@ -76,7 +76,6 @@
             </ul>
         </nav>
     </header>
-    {% block user %}
     <main>
         <article>
             {% block content %}
@@ -251,7 +250,7 @@
                 {% else %}
                 <div class="login">
                     <span>4MILLDUK - 세계체강 밀덕</span>
-                    <a href="{% url 'account_login' %}" class="loginbutton"><button>로그인</button></a>
+                    <a href="{% url 'account_login' %}" class="loginbutton"><p>로그인</p></a>
                     <div>
                         아이디/비밀번호 찾기
                         <a href="{% url 'account_signup' %}">회원가입</a>
@@ -302,7 +301,6 @@
             <img id="side4-ad">
         </aside>
     </main>
-    {% endblock user %}
     <footer>
     </footer>
 </body>

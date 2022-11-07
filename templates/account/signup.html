@@ -1,6 +1,6 @@
 {% extends "account/login.html" %}
 {% load static %}
-{% block register %}
+{% block signup %}
 <div class="input">
     <span>아이디</span> (영문, 숫자 조합 5자 이상)
     <input type="text" name="username" maxlength="20" autofocus required id="username" onchange="id_val()"
@@ -143,4 +143,4 @@
 <div>
     <button type="submit" id="done" style="background:#484848;" disabled>회원가입</button>
 </div>
-{% endblock register %}
+{% endblock signup %}

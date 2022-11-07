@@ -1,0 +1,23 @@
+{% extends "account/signup.html" %}
+{% load static %}
+{% block emailcheck %}
+{% if confirmation %}
+<p style="font-size:22px; margin:0; color:#eee;">
+    <b>이메일 인증 안내</b>
+</p>
+<p style="color:#aaa;">
+    아래 인증 버튼을 눌러 가입을 완료해주세요.
+</p>
+<form method="post" action="{% url 'account_confirm_email' confirmation.key %}">
+    {% csrf_token %}
+    <button type="submit">인증</button>
+</form>
+{% else %}
+<p style="font-size:22px; margin:0; color:#eee;">
+    <b>이메일 인증 안내</b>
+</p>
+<p style="color:#aaa;">
+    인증이 만료되었거나 유효하지 않습니다.
+</p>
+{% endif %}
+{% endblock emailcheck %}

@@ -1,12 +1,13 @@
 {% extends "home/home.html" %}
 {% load static %}
-{% block user %}
+{% block content %}
 <link rel="stylesheet" href="/static/user.css/" />
 <section id="account">
+    <img src="{% static 'logo2.png' %}" />
+    {% block emailcheck %}
     <form method="post">
         {% csrf_token %}
-        <img src="{% static 'logo2.png' %}" />
-        {% block register %}
+        {% block signup %}
         <div class="input">
             <span>아이디</span>
             {{form.login}}
@@ -30,7 +31,8 @@
         <button class="kakao" type="submit">카카오 로그인</button>
         <button class="google" type="submit">구글 로그인</button>
     </div>
-    {% endblock register %}
+    {% endblock signup %}
+    {% endblock emailcheck %}
     <img id="ad">
 </section>
-{% endblock user %}
+{% endblock content %}
