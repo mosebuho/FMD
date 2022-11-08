@@ -118,7 +118,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
 
 
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
-SESSION_COOKIE_AGE = 600
 SESSION_SAVE_EVERY_REQUEST = True
 
 AUTHENTICATION_BACKENDS = {
@@ -133,7 +132,10 @@ ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_USERNAME_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 ACCOUNT_CONFIRM_EMIAL_ON_GET = True
-ACCOUNT_SIGNUP_FORM_CLASS = "user.forms.SignupForm"
+ACCOUNT_FORMS = {
+    "login": "user.forms.LoginForm",
+    "signup": "user.forms.SignupForm",
+}
 ACCOUNT_LOGOUT_ON_GET = True
 
 EMAIL_HOST = "smtp.gmail.com"

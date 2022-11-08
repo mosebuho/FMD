@@ -16,7 +16,11 @@
         </div>
         <button type="submit" style="margin:0;">로그인</button>
         <div class="help">
-            자동로그인
+            <div>
+                <input type="checkbox" id="remember" name="remember"
+                    style="width:18px; height:18px; margin:0; vertical-align: -4px;">
+                로그인 유지
+            </div>
             <div>
                 <a href="{% url 'account_reset_password' %}">계정찾기</a>&nbsp|&nbsp
                 <a href="{% url 'account_signup' %}">회원가입</a>

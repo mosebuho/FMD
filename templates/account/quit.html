@@ -12,12 +12,12 @@
     <form method="post" style="margin:15px 0 0 0;">
         {% csrf_token %}
         <p style="margin:0;">
-            <input type="password" name="password" id="password" style="margin:0;" onchange="pw_val()">
+            <input type="password" name="password" id="password" style="margin:0 0 5px 0;" onchange="pw_val()">
         </p>
         {% if password_form.password.errors %}
-        <p id="pw_help" style="margin:5px 0 10px 0; font-size:14px; color:#ff3737;">비밀번호가 일치하지 않습니다.</p>
+        <p id="pw_help" style="margin:3px 0 5px 0; font-size:14px; color:#ff3737;">비밀번호가 일치하지 않습니다.</p>
         {% else %}
-        <p id="pw_help" style="margin:5px 0 10px 0; font-size:14px; color:#ff3737;"></p>
+        <p id="pw_help" style="margin:3px 0 5px 0; font-size:14px; color:#ff3737;"></p>
         {% endif %}
         <script type="text/javascript">
             function pw_val() {
@@ -38,8 +38,8 @@
                 }
             }
         </script>
-        <p style="margin:0; padding:5px 0 0 0;">
-            <input id="box" name="box" type="checkbox" style="width:22px; margin:0; height:19px; vertical-align:middle;"
+        <p style="margin:0;">
+            <input id="box" name="box" type="checkbox" style="width:19px; margin:0; height:19px; vertical-align:-4px;"
                 disabled onclick="check(this.form)">
             <span style="font-size:15px;"><b>유의 사항 동의</b></span>
         </p>

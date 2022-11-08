@@ -1,16 +1,25 @@
 from django import forms
-from .models import User
 from django.contrib.auth.hashers import check_password
+from allauth.account.forms import LoginForm
+from allauth.account.forms import SignupForm
+from django.conf import settings
 
+class SignupForm(SignupForm):
+    nickname = forms.CharField(label="닉네임")
 
-class SignupForm(forms.ModelForm):
-    class Meta:
-        model = User
-        fields = ["nickname"]
-
-    def signup(self, request, user):
+    def save(self, request):
+        user = super(SignupForm, self).save(request)
         user.nickname = self.cleaned_data["nickname"]
         user.save()
+        return user
+
+
+class LoginForm(LoginForm):
+    def login(self, *args, **kwargs):
+        remember = forms.BooleanField(required=False)
+        if remember:
+            settings.SESSION_EXPIRE_AT_BROWSER_CLOSE = False
+        return super(LoginForm, self).login(*args, **kwargs)
 
 
 class CheckPasswordForm(forms.Form):
