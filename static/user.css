@@ -20,7 +20,7 @@ section#account .input {
 
 section#account .input span {
     font-size: 18px;
-    color: #eee;
+    color: #ddd;
 }
 
 section#account input {
@@ -38,7 +38,7 @@ section#account form button {
     height: 45px;
     margin: 8px 0 0 0;
     border: #484848 solid 1px;
-    color: #eee;
+    color: #ddd;
     font-size: 15px;
     cursor: pointer;
 }
@@ -127,7 +127,7 @@ section#profile ul {
 section#profile li {
     width: 100%;
     text-align: center;
-    color: #eee;
+    color: #ddd;
     font-size: 17px;
     list-style: none;
     padding: 10px 0;
@@ -136,7 +136,7 @@ section#profile li {
 }
 
 section#profile a {
-    color: #eee;
+    color: #ddd;
 }
 
 section#profile .tabcont {

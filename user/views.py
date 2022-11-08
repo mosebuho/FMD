@@ -5,6 +5,10 @@ from django.core.serializers.json import DjangoJSONEncoder
 from django.http import HttpResponse
 import json
 import datetime
+from .forms import CheckPasswordForm
+from django.shortcuts import render, redirect
+from django.contrib.auth import logout
+from django.contrib import messages
 
 
 def check(request):
@@ -68,3 +72,17 @@ def name_edit(request, pk):
                 json.dumps(data, cls=DjangoJSONEncoder),
                 content_type="application/json",
             )
+
+
+def quit(request):
+    if request.method == "POST":
+        password_form = CheckPasswordForm(request.user, request.POST)
+        if password_form.is_valid():
+            request.user.delete()
+            logout(request)
+            return redirect("/")
+        else:
+            render(request, "account/quit.html", {"password_form": password_form})
+    else:
+        password_form = CheckPasswordForm(request.user)
+    return render(request, "account/quit.html", {"password_form": password_form})

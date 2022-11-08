@@ -4,7 +4,7 @@
 <img id="profile-ad">
 <section id="profile">
     <ul>
-        <li data-tab="info" class='on' style="background:#848b79; color:#eee;">
+        <li data-tab="info" class='on' style="background:#848b79; color:#ddd;">
             <i class="fa-solid fa-circle-info"></i> 내정보
         </li>
         <li data-tab="myboard">
@@ -32,7 +32,7 @@
                             {{ user.nickname }}
                             {% if not user.nchanged and request.user.id == user.id%}
                             <button onclick='name_edit()'
-                                style="background:#848b79; color:#eee; border:1px solid #484848; margin:0 0 0 5px; height:29px; cursor:pointer;">변경
+                                style="background:#848b79; color:#ddd; border:1px solid #484848; margin:0 0 0 5px; height:29px; cursor:pointer;">변경
                             </button>
                         </span>
                         <p id="name_help" style="margin:0; font-size:12px; color:#ff3737"></p>
@@ -78,7 +78,7 @@
                                                 document.getElementById('name_help').innerHTML = "";
                                                 $("#name_edit").removeAttr("disabled");
                                                 document.getElementById('name_edit').style.backgroundColor = "#848b79";
-                                                document.getElementById('name_edit').style.color = "#eee";
+                                                document.getElementById('name_edit').style.color = "#ddd";
                                                 return;
                                             }
                                         }
@@ -89,7 +89,7 @@
                                 $("#nickname").html(
                                     '<input type="text" id="edit_name" class="form-control" value="{{user.nickname}}"style="background:#363636; border:1px solid #484848; margin:5px 0;" onchange="name_val()">' +
                                     '<button id="name_edit" style="color:#aaa; height:41.3px; width:45px; border:1px solid #484848; border-left:none; cursor:pointer" type="button" disabled>변경</button>' +
-                                    '<button id="name_cancel" style=" background:#ff7b7b; color:#eee; height:41.3px; width:45px; border:1px solid #484848; border-left:none; cursor:pointer" type="button">취소</button>'
+                                    '<button id="name_cancel" style=" background:#484848; color:#ddd; height:41.3px; width:45px; border:1px solid #484848; border-left:none; cursor:pointer" type="button">취소</button>'
                                 );
                                 $("#name_edit").click(function () {
                                     var warning = confirm("닉네임은 30일에 한 번 변경 가능합니다. \n정말 변경하시겠습니까?");
@@ -110,7 +110,7 @@
                                     }
                                 });
                                 $("#name_cancel").click(function () {
-                                    $("#nickname").html("{{ user.nickname }} <button onclick='name_edit()' style='background:#848b79; color:#eee; border:1px solid #484848; margin:0 0 0 5px; height:29px; cursor:pointer;'>변경</button></span>");
+                                    $("#nickname").html("{{ user.nickname }} <button onclick='name_edit()' style='background:#848b79; color:#ddd; border:1px solid #484848; margin:0 0 0 5px; height:29px; cursor:pointer;'>변경</button></span>");
                                 });
                             }
                         </script>
@@ -133,7 +133,15 @@
                 {% if request.user.id == user.id %}
                 <th style="border:none;"></th>
                 <td style="text-align: right; font-size:14px; border:none;">
-                    <a href="" style="margin-right:10px;">비밀번호 변경</a>
+                    <a href="" style="margin-right:10px;">
+                        <button
+                            style="background:#363636; color:#bbb; border:1px solid #484848; width:100px; height:35px; cursor:pointer;">비밀번호
+                            변경</button>
+                    </a>
+                    <a href="{% url 'user:quit' %}" style="margin-right:10px;">
+                        <button
+                            style="background:#363636; color:#bbb; border:1px solid #484848; width:80px; height:35px; cursor:pointer;">탈퇴</button>
+                    </a>
                 </td>
                 {% endif %}
             </tbody>
@@ -194,7 +202,7 @@
             $('#profile li').css('background-color', '#272727');
             $('#profile li').css('color', '#aaa');
             $(this).css('background-color', '#848b79');
-            $(this).css('color', '#eee');
+            $(this).css('color', '#ddd');
         })
     });
 </script>

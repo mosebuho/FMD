@@ -33,7 +33,7 @@ section#best li {
 
 section#best li a {
     padding: 2px 0;
-    color: #eee;
+    color: #ddd;
     font-size: 15px;
 }
 
@@ -92,7 +92,7 @@ section#list td#title {
 
 section#list a {
     font-size: 15px;
-    color: #eee;
+    color: #ddd;
 }
 
 section#list a:visited {
@@ -114,12 +114,12 @@ section#button button {
     background: #848b79;
     width: 80px;
     text-align: center;
-    color: #eee;
+    color: #ddd;
     cursor: pointer;
 }
 
 section#button button a {
-    color: #eee;
+    color: #ddd;
 }
 
 section#search form {
@@ -249,7 +249,7 @@ section#detail .writer-info ul li {
 }
 
 section#detail .writer-info a {
-    color: #eee;
+    color: #ddd;
 }
 
 section#detail .writer-info a:visited {
@@ -263,7 +263,7 @@ section#detail .buttons {
 section#detail .buttons button {
     width: 90px;
     height: 40px;
-    color: #eee;
+    color: #ddd;
     border: 1px solid #484848;
     margin: 10px 5px;
     background: #848b79;
@@ -310,7 +310,7 @@ section#detail textarea#comment_content {
 section#detail #comment_create {
     width: 60px;
     height: 35px;
-    color: #eee;
+    color: #ddd;
     border: 1px solid #484848;
     float: right;
     background: #848b79;
@@ -372,7 +372,7 @@ section#detail li div p {
 section#detail li div p button {
     width: 60px;
     height: 35px;
-    color: #eee;
+    color: #ddd;
     border: 1px solid #484848;
     float: right;
     background: #848b79;
@@ -420,7 +420,7 @@ section#write input#done {
     background: #848b79;
     width: 80px;
     height: 40px;
-    color: #eee;
+    color: #ddd;
     margin: 10px 5px;
     cursor: pointer;
 }
@@ -429,7 +429,7 @@ section#write button#cancel {
     background: #363636;
     width: 80px;
     height: 40px;
-    color: #eee;
+    color: #ddd;
     margin: 10px 5px;
     cursor: pointer;
 }

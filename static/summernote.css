@@ -11,11 +11,11 @@
 .note-btn {
     background: #363636;
     border: none;
-    color: #eee;
+    color: #ddd;
 }
 
 .note-editable {
-    color: #eee;
+    color: #ddd;
     text-align: left;
     font-family: inherit;
 }
@@ -27,7 +27,7 @@
 .note-btn.active {
     background: #272727;
     border: none;
-    color: #eee;
+    color: #ddd;
 }
 
 .note-editor.note-frame .note-statusbar .note-resizebar .note-icon-bar {

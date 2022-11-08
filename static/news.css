@@ -37,7 +37,7 @@ section#news_list .news-page li img {
 section#news_list .news-page li div {
     margin: 0 0 0 15px;
     font-size: 20px;
-    color: #eee;
+    color: #ddd;
     width: 100%;
 }
 
@@ -73,12 +73,12 @@ section#button button {
     background: #848b79;
     width: 80px;
     text-align: center;
-    color: #eee;
+    color: #ddd;
     cursor: pointer;
 }
 
 section#button button a {
-    color: #eee;
+    color: #ddd;
 }
 
 /* detail */
@@ -170,7 +170,7 @@ section#write input#done {
     background: #848b79;
     width: 80px;
     height: 40px;
-    color: #eee;
+    color: #ddd;
     margin: 10px 5px;
     cursor: pointer;
 }
@@ -179,7 +179,7 @@ section#write button#cancel {
     background: #363636;
     width: 80px;
     height: 40px;
-    color: #eee;
+    color: #ddd;
     margin: 10px 5px;
     cursor: pointer;
 }

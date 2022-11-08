@@ -8,7 +8,7 @@ body {
     margin: 0 auto;
     position: relative;
     font-family: "Noto Sans KR", sans-serif;
-    color: #eee;
+    color: #ddd;
     padding: 10px;
 }
 
@@ -100,7 +100,7 @@ nav button {
     background: #848b79;
     text-align: center;
     border-left: 1px solid #484848;
-    color: #eee;
+    color: #ddd;
     cursor: pointer;
 }
 
@@ -117,13 +117,13 @@ nav ul {
 nav li {
     width: 100%;
     text-align: center;
-    color: #eee;
+    color: #ddd;
     font-size: 17px;
     list-style: none;
 }
 
 nav a {
-    color: #eee;
+    color: #ddd;
 }
 
 section#news {
@@ -147,7 +147,7 @@ section#news .news_container {
 }
 
 section#news .news_container a {
-    color: #eee;
+    color: #ddd;
 }
 
 section#news li {
@@ -226,7 +226,7 @@ section#column li span {
 
 section#column li .listintitle {
     font-size: 18px;
-    color: #eee;
+    color: #ddd;
 }
 
 section#column li .listinsub {
@@ -270,7 +270,7 @@ section#community .content div {
 }
 
 section#community .content span {
-    color: #eee;
+    color: #ddd;
     border-left: 2px solid #848b79;
     padding: 0 0 2px 8px;
 }
@@ -289,7 +289,7 @@ section#community .content li {
 
 section#community .content li a {
     padding: 2px 0;
-    color: #eee;
+    color: #ddd;
     font-size: 15px;
 }
 
@@ -385,7 +385,7 @@ section#side1 .login .loginbutton {
 }
 
 section#side1 .login .loginbutton p {
-    color: #eee;
+    color: #ddd;
     background: #848b79;
     font-size: 16px;
     margin: 12px 0 0 0;

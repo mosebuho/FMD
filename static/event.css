@@ -71,7 +71,7 @@ section#event ul div {
 }
 
 section#event ul a {
-    color: #eee;
+    color: #ddd;
     font-size: 20px;
 }
 
@@ -95,12 +95,12 @@ section#button button {
     background: #848b79;
     width: 80px;
     text-align: center;
-    color: #eee;
+    color: #ddd;
     cursor: pointer;
 }
 
 section#button button a {
-    color: #eee;
+    color: #ddd;
 }
 
 section#write {
@@ -155,7 +155,7 @@ section#write input#done {
     background: #848b79;
     width: 80px;
     height: 40px;
-    color: #eee;
+    color: #ddd;
     margin: 10px 5px;
     cursor: pointer;
 }
@@ -164,7 +164,7 @@ section#write button#cancel {
     background: #363636;
     width: 80px;
     height: 40px;
-    color: #eee;
+    color: #ddd;
     margin: 10px 5px;
     cursor: pointer;
 }

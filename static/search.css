@@ -62,7 +62,7 @@ section#search li div {
 
 section#search li .listintitle {
     font-size: 18px;
-    color: #eee;
+    color: #ddd;
 }
 
 section#search li .listinsub {
@@ -104,7 +104,7 @@ section#search .content div {
 }
 
 section#search .content span {
-    color: #eee;
+    color: #ddd;
     border-left: 2px solid #848b79;
     padding: 0 0 2px 8px;
 }
@@ -124,7 +124,7 @@ section#search .content li {
 
 section#search .content li a {
     padding: 2px 0;
-    color: #eee;
+    color: #ddd;
     font-size: 15px;
 }
 
