@@ -1,24 +1,10 @@
 {% extends "home/home.html" %}
 {% block content %}
 <link rel="stylesheet" href="/static/user.css/" />
-<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
-    crossorigin="anonymous"></script>
-<script>
-    $(function () {
-        $('li').click(function () {
-            $('ul.tab li').removeClass('on');
-            $('.tabcont').removeClass('on');
-            $(this).addClass('on');
-            $('#' + $(this).attr('data-tab')).addClass('on');
-            $('#profile li').css('background-color', '#272727');
-            $(this).css('background-color', '#848b79');
-        })
-    });
-</script>
 <img id="profile-ad">
 <section id="profile">
     <ul>
-        <li data-tab="info" class='on' style="background:#848b79;">
+        <li data-tab="info" class='on' style="background:#848b79; color:#eee;">
             <i class="fa-solid fa-circle-info"></i> 내정보
         </li>
         <li data-tab="myboard">
@@ -31,18 +17,123 @@
             <i class="fa-solid fa-thumbs-up"></i> 추천한 글
         </li>
     </ul>
-    <div id="info" class="tabcont on">
-        {% block update %}
-        <img id="userimage" src="{{ user.image.url }}">
-        <p>아이디 : {{user.userid}}</p>
-        <p>닉네임 : {{user.name}}</p>
-        <p>이메일 : {{user.email}}</p>
-        <p>생성일 : {{user.join_date}}</p>
-        {% if request.user.id == user.id %}
-        <a style="float:right;" href="{% url 'user:update' user.id %}">정보변경</a>
-        {% endif %}
-        {% endblock update %}
+    <div id="info" class="tabcont on" style="padding:0;">
+        <table>
+            <tbody>
+                <tr>
+                    <th style="padding:15px 0 0 0;">프로필 이미지</th>
+                    <td style="padding:15px 0 10px 10px;">
+                        <img id="userimage" src="{{ user.image.url }}">
+                    </td>
+                <tr>
+                    <th>닉네임</th>
+                    <td>
+                        <span id="nickname">
+                            {{ user.nickname }}
+                            <button onclick='name_edit()'
+                                style="background:#848b79; color:#eee; border:1px solid #484848; margin:0 0 0 5px; height:29px; cursor:pointer;">변경</button></span>
+                        <p id="name_help" style="margin:0; font-size:12px; color:#ff3737"></p>
+                        <script>
+                            function name_val() {
+                                var check = /^(?=.*[a-zA-Z0-9ㄱ-힣]).{2,8}$/;
+                                var reg = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/g;
+                                var space = /\s/g;
+                                if ($("#edit_name").val() == '') {
+                                    document.getElementById('name_help').innerHTML = '';
+                                    document.getElementById('name_edit').style.backgroundColor = "efefef4d";
+                                    document.getElementById('name_edit').style.color = "#aaa";
+                                    $("#name_edit").attr("disabled", true);
+                                }
+                                else if (space.test($("#edit_name").val()) == true) {
+                                    document.getElementById('name_help').innerHTML = "공백을 제거해주세요.";
+                                    document.getElementById('name_edit').style.backgroundColor = "efefef4d";
+                                    document.getElementById('name_edit').style.color = "#aaa";
+                                    $("#name_edit").attr("disabled", true);
+                                }
+                                else if (!check.test($("#edit_name").val()) || reg.test($("#edit_name").val()) == true) {
+                                    document.getElementById('name_help').innerHTML = "특수 문자를 제외한 2자~8자내로 생성해주세요.";
+                                    $("#name_edit").attr("disabled", true);
+                                    document.getElementById('name_edit').style.backgroundColor = "efefef4d";
+                                    document.getElementById('name_edit').style.color = "#aaa";
+                                }
+                                else {
+                                    $.ajax({
+                                        url: "{% url 'user:check' %}",
+                                        data: { "nickname": $("#edit_name").val() },
+                                        datatype: 'json',
+                                        success: function (data) {
+                                            if (data['check'] == "fail") {
+                                                document.getElementById('name_help').innerHTML = "이미 존재하는 닉네임입니다.";
+                                                $("#name_edit").attr("disabled", true);
+                                                document.getElementById('name_edit').style.backgroundColor = "efefef4d";
+                                                document.getElementById('name_edit').style.color = "#aaa";
+                                                return false;
+                                            } else {
+                                                document.getElementById('name_help').innerHTML = "";
+                                                $("#name_edit").removeAttr("disabled");
+                                                document.getElementById('name_edit').style.backgroundColor = "#848b79";
+                                                document.getElementById('name_edit').style.color = "#eee";
+                                                return;
+                                            }
+                                        }
+                                    })
+                                }
+                            }
+                            function name_edit(value) {
+                                $("#nickname").html(
+                                    '<input type="text" id="edit_name" class="form-control" value="{{user.nickname}}"style="background:#363636; border:1px solid #484848; margin:5px 0;" onchange="name_val()">' +
+                                    '<button id="name_edit" style="color:#aaa; height:41.3px; width:45px; border:1px solid #484848; border-left:none; cursor:pointer" type="button" disabled>변경</button>' +
+                                    '<button id="name_cancel" style=" background:#ff7b7b; color:#eee; height:41.3px; width:45px; border:1px solid #484848; border-left:none; cursor:pointer" type="button">취소</button>'
+                                );
+                                $("#name_edit").click(function () {
+                                    $.ajax({
+                                        type: "POST",
+                                        url: "{% url 'user:name_edit' user.id %}",
+                                        dataType: "json",
+                                        data: {
+                                            user_id: value,
+                                            edit_name: $("#edit_name").val(),
+                                            csrfmiddlewaretoken: "{{csrf_token}}",
+                                        },
+                                        success: function (response) {
+                                            $("#nickname").html(
+                                                response.edit_name +
+                                                " <button onclick='name_edit()' style='background:#848b79; color:#eee; border:1px solid #484848; margin:0 0 0 5px; height:29px; cursor:pointer;'>변경</button></span>"
+                                            );
+                                        },
+                                    });
+                                });
+                                $("#name_cancel").click(function () {
+                                    $("#nickname").html("{{ user.nickname }} <button onclick='name_edit()' style='background:#848b79; color:#eee; border:1px solid #484848; margin:0 0 0 5px; height:29px; cursor:pointer;'>변경</button></span>");
+                                });
+                            }
+                        </script>
+                    </td>
+                </tr>
+                {% if request.user.id == user.id %}
+                <tr>
+                    <th>아이디</th>
+                    <td>{{ user.username }}</td>
+                </tr>
+                <tr>
+                    <th>이메일</th>
+                    <td>{{ user.email }}</td>
+                </tr>
+                {% endif %}
+                <tr>
+                    <th>가입일</th>
+                    <td>{{user.date_joined|date:"Y년 m월 d일"}}</td>
+                </tr>
+                {% if request.user.id == user.id %}
+                <th style="border:none;"></th>
+                <td style="text-align: right; font-size:14px; border:none;">
+                    <a href="" style="margin-right:10px;">비밀번호 변경</a>
+                </td>
+                {% endif %}
+            </tbody>
+        </table>
     </div>
+    {% if user.community_set.all %}
     <div id="myboard" class="tabcont">
         {% for board in user.community_set.all %}
         <p>
@@ -51,6 +142,12 @@
         </p>
         {% endfor %}
     </div>
+    {% else %}
+    <div id="myboard" class="tabcont" style="text-align:center; padding: 40px; font-size:16px; color:#fff;">
+        작성한 글이 없습니다.
+    </div>
+    {% endif %}
+    {% if user.comment_set.all %}
     <div id="mycomment" class="tabcont">
         {% for comment in user.comment_set.all %}
         <p>
@@ -61,6 +158,12 @@
         <i class="fa-solid fa-arrow-right"></i>&nbsp {{ comment.content }}
         {% endfor %}
     </div>
+    {% else %}
+    <div id="mycomment" class="tabcont" style="text-align:center; padding: 40px; font-size:16px; color:#fff;">
+        작성한 댓글이 없습니다.
+    </div>
+    {% endif %}
+    {% if user.like_boards.all %}
     <div id="mylike" class="tabcont">
         {% for board in user.like_boards.all %}
         <p>
@@ -69,5 +172,25 @@
         </p>
         {% endfor %}
     </div>
+    {% else %}
+    <div id="mylike" class="tabcont" style="text-align:center; padding: 40px; font-size:16px; color:#fff;">
+        추천한 글이 없습니다.
+    </div>
+    {% endif %}
 </section>
+<script>
+    $(function () {
+        $('li').click(function () {
+            $('ul.tab li').removeClass('on');
+            $('.tabcont').removeClass('on');
+            $(this).addClass('on');
+            $('#' + $(this).attr('data-tab')).addClass('on');
+            $('#profile li').css('background-color', '#272727');
+            $('#profile li').css('color', '#aaa');
+            $(this).css('background-color', '#848b79');
+            $(this).css('color', '#eee');
+        })
+    });
+</script>
+
 {% endblock content %}

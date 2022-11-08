@@ -1,5 +1,9 @@
 from .models import User
 from django.http import JsonResponse
+from django.views import generic
+from django.core.serializers.json import DjangoJSONEncoder
+from django.http import HttpResponse
+import json
 
 
 def check(request):
@@ -39,3 +43,25 @@ def check(request):
             check = "fail"
         context = {"check": check}
         return JsonResponse(context)
+
+
+class ProfileView(generic.DetailView):
+    template_name = "account/profile.html"
+    model = User
+    context_object_name = "user"
+
+
+def name_edit(request, pk):
+    target = User.objects.get(pk=pk)
+    edit_name = request.POST.get("edit_name")
+    if request.user.id == target.id:
+        if edit_name:
+            target.nickname = edit_name
+            target.save()
+            data = {
+                "user_id": request.user.id,
+                "edit_name": edit_name,
+            }
+            return HttpResponse(
+                json.dumps(data, cls=DjangoJSONEncoder), content_type="application/json"
+            )

@@ -132,6 +132,7 @@ section#profile li {
     list-style: none;
     padding: 10px 0;
     cursor: pointer;
+    color: #aaa;
 }
 
 section#profile a {
@@ -140,17 +141,12 @@ section#profile a {
 
 section#profile .tabcont {
     display: none;
-    padding: 10px;
+    padding: 20px 10px;
     text-align: left;
 }
 
 section#profile .tabcont.on {
     display: block;
-}
-
-section#profile p {
-    margin: 10px 0;
-    font-size: 15px;
 }
 
 section#profile #mycomment p {
@@ -162,6 +158,10 @@ section#profile span {
     color: #aaa;
 }
 
+section#profile #nickname {
+    font-size: 16px;
+}
+
 section#profile #mycomment {
     font-size: 14px;
     color: #aaa;
@@ -169,5 +169,28 @@ section#profile #mycomment {
 
 section#profile #userimage {
     border-radius: 50%;
-    width: 250px;
+    width: 75px;
+    height: 75px;
+}
+
+section#profile #info table {
+    border-collapse: collapse
+}
+
+section#profile #info tr {
+    width: 100%;
+    border-bottom: 1px solid #484848;
+}
+
+section#profile #info th {
+    width: 238px;
+    height: 50px;
+    text-align: center;
+    border-right: 1px solid #484848;
+}
+
+section#profile #info td {
+    color: #aaa;
+    padding: 0 0 0 10px;
+    width: 705px;
 }

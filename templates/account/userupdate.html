@@ -1,9 +1,0 @@
-{% extends "user/profile.html" %}
-{% block update %}
-<form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button id="done">완료</button>
-    <button id="cancel">취소</button>
-</form>
-{% endblock update %}

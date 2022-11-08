@@ -15,8 +15,6 @@ from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
 from django.shortcuts import redirect, render
 from django.http import Http404
-from user.decorator import *
-from django.utils.decorators import method_decorator
 from django.core.paginator import Paginator
 
 
@@ -120,7 +118,6 @@ def community_delete(request, pk):
 def like(request):
     board_id = request.GET["board_id"]
     board = Community.objects.get(id=board_id)
-    writer = User.objects.get(id=board.writer_id)
 
     if board.like_users.filter(id=request.user.id).exists():
         board.like_users.remove(request.user)
