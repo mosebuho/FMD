@@ -30,9 +30,15 @@
                     <td>
                         <span id="nickname">
                             {{ user.nickname }}
+                            {% if not user.nchanged and request.user.id == user.id%}
                             <button onclick='name_edit()'
-                                style="background:#848b79; color:#eee; border:1px solid #484848; margin:0 0 0 5px; height:29px; cursor:pointer;">변경</button></span>
+                                style="background:#848b79; color:#eee; border:1px solid #484848; margin:0 0 0 5px; height:29px; cursor:pointer;">변경
+                            </button>
+                        </span>
                         <p id="name_help" style="margin:0; font-size:12px; color:#ff3737"></p>
+                        {% else %}
+                        <span style="margin: 0 0 0 5px; color:#bbb;">*가입일로부터 30일 이후, 30일에 한 번 변경 가능합니다.</span>
+                        {% endif %}
                         <script>
                             function name_val() {
                                 var check = /^(?=.*[a-zA-Z0-9ㄱ-힣]).{2,8}$/;
@@ -86,22 +92,22 @@
                                     '<button id="name_cancel" style=" background:#ff7b7b; color:#eee; height:41.3px; width:45px; border:1px solid #484848; border-left:none; cursor:pointer" type="button">취소</button>'
                                 );
                                 $("#name_edit").click(function () {
-                                    $.ajax({
-                                        type: "POST",
-                                        url: "{% url 'user:name_edit' user.id %}",
-                                        dataType: "json",
-                                        data: {
-                                            user_id: value,
-                                            edit_name: $("#edit_name").val(),
-                                            csrfmiddlewaretoken: "{{csrf_token}}",
-                                        },
-                                        success: function (response) {
-                                            $("#nickname").html(
-                                                response.edit_name +
-                                                " <button onclick='name_edit()' style='background:#848b79; color:#eee; border:1px solid #484848; margin:0 0 0 5px; height:29px; cursor:pointer;'>변경</button></span>"
-                                            );
-                                        },
-                                    });
+                                    var warning = confirm("닉네임은 30일에 한 번 변경 가능합니다. \n정말 변경하시겠습니까?");
+                                    if (warning == true) {
+                                        $.ajax({
+                                            type: "POST",
+                                            url: "{% url 'user:name_edit' user.id %}",
+                                            dataType: "json",
+                                            data: {
+                                                user_id: value,
+                                                edit_name: $("#edit_name").val(),
+                                                csrfmiddlewaretoken: "{{csrf_token}}",
+                                            },
+                                            success: function (response) {
+                                                $("#nickname").html(response.edit_name);
+                                            },
+                                        });
+                                    }
                                 });
                                 $("#name_cancel").click(function () {
                                     $("#nickname").html("{{ user.nickname }} <button onclick='name_edit()' style='background:#848b79; color:#eee; border:1px solid #484848; margin:0 0 0 5px; height:29px; cursor:pointer;'>변경</button></span>");
@@ -143,7 +149,7 @@
         {% endfor %}
     </div>
     {% else %}
-    <div id="myboard" class="tabcont" style="text-align:center; padding: 40px; font-size:16px; color:#fff;">
+    <div id="myboard" class="tabcont" style="text-align:center; padding: 40px; font-size:16px; color:#aaa;">
         작성한 글이 없습니다.
     </div>
     {% endif %}
@@ -159,7 +165,7 @@
         {% endfor %}
     </div>
     {% else %}
-    <div id="mycomment" class="tabcont" style="text-align:center; padding: 40px; font-size:16px; color:#fff;">
+    <div id="mycomment" class="tabcont" style="text-align:center; padding: 40px; font-size:16px; color:#aaa;">
         작성한 댓글이 없습니다.
     </div>
     {% endif %}
@@ -173,7 +179,7 @@
         {% endfor %}
     </div>
     {% else %}
-    <div id="mylike" class="tabcont" style="text-align:center; padding: 40px; font-size:16px; color:#fff;">
+    <div id="mylike" class="tabcont" style="text-align:center; padding: 40px; font-size:16px; color:#aaa;">
         추천한 글이 없습니다.
     </div>
     {% endif %}

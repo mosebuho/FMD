@@ -4,6 +4,7 @@ from django.views import generic
 from django.core.serializers.json import DjangoJSONEncoder
 from django.http import HttpResponse
 import json
+import datetime
 
 
 def check(request):
@@ -55,13 +56,15 @@ def name_edit(request, pk):
     target = User.objects.get(pk=pk)
     edit_name = request.POST.get("edit_name")
     if request.user.id == target.id:
-        if edit_name:
+        if not target.nchanged:
             target.nickname = edit_name
+            target.n_changed = datetime.datetime.now()
             target.save()
             data = {
                 "user_id": request.user.id,
                 "edit_name": edit_name,
             }
             return HttpResponse(
-                json.dumps(data, cls=DjangoJSONEncoder), content_type="application/json"
+                json.dumps(data, cls=DjangoJSONEncoder),
+                content_type="application/json",
             )
