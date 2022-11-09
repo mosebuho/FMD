@@ -18,7 +18,7 @@ class SignupForm(SignupForm):
 class LoginForm(LoginForm):
     def login(self, *args, **kwargs):
         remember = forms.BooleanField(required=False)
-        if remember is True:
+        if remember:
             settings.SESSION_EXPIRE_AT_BROWSER_CLOSE = False
         return super(LoginForm, self).login(*args, **kwargs)
 
