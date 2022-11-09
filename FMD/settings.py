@@ -27,6 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+CRONJOBS = [("* * * * *", "django.core.management.call_command", ["clearsessions"])]
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -41,6 +42,7 @@ INSTALLED_APPS = [
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
+    "django_crontab",
 ]
 
 MIDDLEWARE = [
@@ -118,7 +120,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
 
 
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
-SESSION_SAVE_EVERY_REQUEST = True
+SESSION_COOKIE_AGE = 21600
 
 AUTHENTICATION_BACKENDS = {
     "django.contrib.auth.backends.ModelBackend",

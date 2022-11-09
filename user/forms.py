@@ -4,6 +4,7 @@ from allauth.account.forms import LoginForm
 from allauth.account.forms import SignupForm
 from django.conf import settings
 
+
 class SignupForm(SignupForm):
     nickname = forms.CharField(label="닉네임")
 
@@ -17,7 +18,7 @@ class SignupForm(SignupForm):
 class LoginForm(LoginForm):
     def login(self, *args, **kwargs):
         remember = forms.BooleanField(required=False)
-        if remember:
+        if remember is True:
             settings.SESSION_EXPIRE_AT_BROWSER_CLOSE = False
         return super(LoginForm, self).login(*args, **kwargs)
 
