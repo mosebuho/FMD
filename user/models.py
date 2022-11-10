@@ -11,6 +11,9 @@ class User(AbstractUser):
         verbose_name="프로필 이미지",
     )
     n_changed = models.DateTimeField(auto_now_add=True, verbose_name="닉네임 변경일")
+    exp = models.PositiveIntegerField(default=0)
+    lv = models.PositiveIntegerField(default=0)
+    verified = models.BooleanField(default=False, verbose_name="인증")
 
     @property
     def nchanged(self):

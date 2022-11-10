@@ -155,7 +155,7 @@ section#profile #mycomment p {
 
 section#profile span {
     font-size: 11px;
-    color: #aaa;
+    color: #ddd;
 }
 
 section#profile #nickname {
@@ -171,7 +171,21 @@ section#profile #userimage {
     border-radius: 50%;
     width: 75px;
     height: 75px;
+    margin-left: 5px;
 }
+
+section#profile .filebox label {
+    padding: .5em .75em;
+    background: #363636;
+    font-size: 13px;
+    border: 1px solid #484848;
+    cursor: pointer;
+}
+
+section#profile .filebox input[type="file"] {
+    display: none;
+}
+
 
 section#profile #info table {
     border-collapse: collapse
@@ -190,7 +204,7 @@ section#profile #info th {
 }
 
 section#profile #info td {
-    color: #aaa;
+    color: #ddd;
     padding: 0 0 0 10px;
     width: 705px;
 }

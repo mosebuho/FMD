@@ -73,6 +73,15 @@ def name_edit(request, pk):
             )
 
 
+def image_edit(request, pk):
+    target = User.objects.get(pk=pk)
+    edit_image = request.FILES.get("image")
+    if request.user.id == target.id:
+        target.image = edit_image
+        target.save()
+    return render(request, "account/profile.html")
+
+
 def quit(request):
     if request.method == "POST":
         password_form = CheckPasswordForm(request.user, request.POST)
