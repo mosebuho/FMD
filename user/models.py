@@ -1,12 +1,14 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 from datetime import datetime, timedelta
+from django_resized import ResizedImageField
 
 
 class User(AbstractUser):
     nickname = models.CharField(max_length=8, unique=True, verbose_name="닉네임")
-    image = models.ImageField(
-        default="profile_images/default.png",
+    image = ResizedImageField(
+        size=[200, 200],
+        default="profile_images/default.jpg",
         upload_to="profile_images/%Y/%m/%d/",
         verbose_name="프로필 이미지",
     )

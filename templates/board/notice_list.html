@@ -14,7 +14,7 @@
 <section id="notice">
     <div class="title">
         공지
-        {% if request.user.is_admin %}
+        {% if request.user.is_staff %}
         <a href="{% url 'board:notice_create' %}">작성</a>
         {% endif %}
     </div>
@@ -23,7 +23,7 @@
         <li class="inlist" onclick="openclose('{{list.id}}')">
             <i class="fa-solid fa-caret-down"></i> <b>{{ list.title|truncatechars:45}}</b>
             <span><i class="fa-solid fa-clock"></i> {{ list.date_str }}</span>
-            {% if request.user.is_admin %}
+            {% if request.user.is_staff %}
             <a href="{% url 'board:notice_update' list.id %}">수정</a>
             <a onclick="boardDelete('{{list.id}}')">삭제</a>
             <script>

@@ -1,6 +1,7 @@
 from django.db import models
 from datetime import datetime
 from user.models import User
+from django_resized import ResizedImageField
 
 
 class Community(models.Model):
@@ -60,7 +61,8 @@ class Comment(models.Model):
 
 class News(models.Model):
     title = models.CharField(max_length=128, verbose_name="제목")
-    thumbnail = models.ImageField(
+    thumbnail = ResizedImageField(
+        size=[250, 300],
         null=False,
         blank=False,
         upload_to="news_thumbnial/%Y/%m/%d/",
@@ -92,7 +94,8 @@ class News(models.Model):
 
 class Column(models.Model):
     title = models.CharField(max_length=128, verbose_name="제목")
-    thumbnail = models.ImageField(
+    thumbnail = ResizedImageField(
+        size=[200, 150],
         null=False,
         blank=False,
         upload_to="column_thumbnial/%Y/%m/%d/",
@@ -144,7 +147,8 @@ class Notice(models.Model):
 
 class Event(models.Model):
     title = models.CharField(max_length=255, verbose_name="제목")
-    thumbnail = models.ImageField(
+    thumbnail = ResizedImageField(
+        size=[300, 300],
         null=False,
         blank=False,
         upload_to="event_thumbnial/%Y/%m/%d/",

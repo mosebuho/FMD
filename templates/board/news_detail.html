@@ -1,5 +1,5 @@
 {% extends "home/home.html" %}
-{% block user %}
+{% block content %}
 <link rel="stylesheet" href="/static/news.css/" />
 <input type="hidden" value={{news.view_count}}>
 <script>
@@ -33,4 +33,4 @@
         {{ news.content | safe }}
     </div>
 </section>
-{% endblock user %}
+{% endblock content %}
