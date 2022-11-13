@@ -153,13 +153,21 @@ section#write form .top {
     height: 60px;
 }
 
-section#write #id_thumbnail {
-    width: 200px;
-    height: 30px;
+section#write .top label {
+    padding: .5em .75em;
+    background: #363636;
+    font-size: 15px;
+    border: 1px solid #484848;
+    cursor: pointer;
 }
 
+section#write .top input[type="file"] {
+    display: none;
+}
+
+
 section#write #id_title {
-    width: 950px;
+    width: 790px;
     height: 40px;
     background: #363636;
     font-size: 16px;

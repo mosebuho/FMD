@@ -9,7 +9,7 @@ class User(AbstractUser):
     image = ResizedImageField(
         size=[200, 200],
         default="profile_images/default.jpg",
-        upload_to="profile_images/%Y/%m/%d/",
+        upload_to="profile_images/%Y-%m-%d/",
         verbose_name="프로필 이미지",
     )
     n_changed = models.DateTimeField(auto_now_add=True, verbose_name="닉네임 변경일")

@@ -11,11 +11,6 @@ section#notice .title {
     border-bottom: #848b79 1px solid;
 }
 
-section#notice a {
-    color: #aaa;
-    font-size: 14px;
-}
-
 section#notice ul.noticelist {
     list-style: none;
     padding: 0;

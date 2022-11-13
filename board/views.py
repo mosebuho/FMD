@@ -1,16 +1,9 @@
 from django.views import generic
 from .models import Community, Comment, News, Column, Notice, Event
-from .forms import (
-    CommuModelForm,
-    NewsModelForm,
-    ColumnModelForm,
-    NoticeModelForm,
-    EventModelForm,
-)
+from .forms import CommuModelForm, NewsModelForm, ColumnModelForm
 from django.http import HttpResponse
 import json
 from django.core.serializers.json import DjangoJSONEncoder
-from user.models import User
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
 from django.shortcuts import redirect, render
@@ -354,30 +347,6 @@ class NoticeListView(generic.ListView):
     paginate_by = 33
 
 
-class NoticeCreateView(generic.CreateView):
-    model = Notice
-    form_class = NoticeModelForm
-    template_name = "board/notice_form.html"
-    success_url = "/board/notice/"
-
-    def form_valid(self, form):
-        form.instance.writer = self.request.user
-        return super().form_valid(form)
-
-
-class NoticeUpdateView(generic.UpdateView):
-    model = Notice
-    form_class = NoticeModelForm
-    template_name = "board/notice_form.html"
-    success_url = "/board/notice/"
-
-
-def notice_delete(request, pk):
-    board = get_object_or_404(Notice, id=pk)
-    board.delete()
-    return redirect("board:notice")
-
-
 class EventListView(generic.ListView):
     queryset = Event.objects.order_by("-id")
     template_name = "board/event_list.html"
@@ -419,31 +388,3 @@ class EventDetailView(generic.DetailView):
     template_name = "board/event_detail.html"
     model = Event
     context_object_name = "board"
-
-
-class EventCreateView(generic.CreateView):
-    model = Event
-    template_name = "board/event_form.html"
-    form_class = EventModelForm
-
-    def form_valid(self, form):
-        form.instance.writer = self.request.user
-        return super().form_valid(form)
-
-    def get_success_url(self):
-        return reverse_lazy("board:event_detail", kwargs={"pk": self.object.pk})
-
-
-class EventUpdateView(generic.UpdateView):
-    model = Event
-    form_class = EventModelForm
-    template_name = "board/event_form.html"
-
-    def get_success_url(self):
-        return reverse_lazy("board:event_detail", kwargs={"pk": self.object.pk})
-
-
-def event_delete(request, pk):
-    board = get_object_or_404(Event, id=pk)
-    board.delete()
-    return redirect("board:event_list")

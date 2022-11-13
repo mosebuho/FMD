@@ -1,6 +1,24 @@
 {% extends "home/home.html" %}
 {% block content %}
 <link rel="stylesheet" href="/static/notice.css/" />
+<img id="ad">
+<section id="notice">
+    <div class="title">
+        공지
+    </div>
+    <ul class="noticelist">
+        {% for list in notice_list %}
+        <li class="inlist" onclick="openclose('{{list.id}}')">
+            <i class="fa-solid fa-caret-down"></i> <b>{{ list.title|truncatechars:45}}</b>
+            <span><i class="fa-solid fa-clock"></i> {{ list.date_str }}</span>
+            <div id="{{list.id}}" class="notice-content">
+                {{list.content|safe}}
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+    {% include "pagination.html" %}
+</section>
 <script>
     function openclose(id) {
         if (document.getElementById(id).style.display === 'block') {
@@ -10,37 +28,4 @@
         }
     }
 </script>
-<img id="ad">
-<section id="notice">
-    <div class="title">
-        공지
-        {% if request.user.is_staff %}
-        <a href="{% url 'board:notice_create' %}">작성</a>
-        {% endif %}
-    </div>
-    <ul class="noticelist">
-        {% for list in notice_list %}
-        <li class="inlist" onclick="openclose('{{list.id}}')">
-            <i class="fa-solid fa-caret-down"></i> <b>{{ list.title|truncatechars:45}}</b>
-            <span><i class="fa-solid fa-clock"></i> {{ list.date_str }}</span>
-            {% if request.user.is_staff %}
-            <a href="{% url 'board:notice_update' list.id %}">수정</a>
-            <a onclick="boardDelete('{{list.id}}')">삭제</a>
-            <script>
-                function boardDelete() {
-                    var warning = confirm("게시글을 삭제할 경우 복구가 불가능합니다.\n정말 삭제하시겠습니까?");
-                    if (warning == true) {
-                        window.location.href = "{% url 'board:notice_delete' list.id %}"
-                    }
-                }
-            </script>
-            {% endif %}
-            <div id="{{list.id}}" class="notice-content">
-                {{list.content|safe}}
-            </div>
-        </li>
-        {% endfor %}
-    </ul>
-    {% include "pagination.html" %}
-</section>
 {% endblock content %}

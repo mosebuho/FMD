@@ -65,7 +65,7 @@ class News(models.Model):
         size=[250, 300],
         null=False,
         blank=False,
-        upload_to="news_thumbnial/%Y/%m/%d/",
+        upload_to="news_thumbnial/%Y-%m-%d/",
         verbose_name="썸네일",
     )
     content = models.TextField(verbose_name="내용")
@@ -98,7 +98,7 @@ class Column(models.Model):
         size=[200, 150],
         null=False,
         blank=False,
-        upload_to="column_thumbnial/%Y/%m/%d/",
+        upload_to="column_thumbnial/%Y-%m-%d/",
         verbose_name="썸네일",
     )
     content = models.TextField(verbose_name="내용")
@@ -151,7 +151,7 @@ class Event(models.Model):
         size=[300, 300],
         null=False,
         blank=False,
-        upload_to="event_thumbnial/%Y/%m/%d/",
+        upload_to="event_thumbnial/%Y-%m-%d/",
         verbose_name="썸네일",
     )
     content = models.TextField(verbose_name="내용")

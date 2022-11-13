@@ -1,5 +1,6 @@
 from django.contrib import admin
 from .models import Community, News, Column, Notice, Event
+from django_summernote.admin import SummernoteModelAdmin
 
 
 @admin.register(Community)
@@ -34,14 +35,19 @@ class ColumnAdmin(admin.ModelAdmin):
 
 
 @admin.register(Notice)
-class NoticeAdmin(admin.ModelAdmin):
+class NoticeAdmin(SummernoteModelAdmin):
+    summernote_fields = ("content",)
     list_display = (
         "title",
+        "content",
+        "writer",
         "date",
     )
 
+
 @admin.register(Event)
 class EventAdmin(admin.ModelAdmin):
+    summernote_fields = ("content",)
     list_display = (
         "title",
         "start",

@@ -1,10 +1,8 @@
 from pathlib import Path
-
-BASE_DIR = Path(__file__).resolve().parent.parent
-
-
 import os, json
 from django.core.exceptions import ImproperlyConfigured
+
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 secret_file = os.path.join(BASE_DIR, "secrets.json")
 
@@ -37,6 +35,7 @@ INSTALLED_APPS = [
     "django.contrib.sites",
     "user",
     "board",
+    "django_summernote",
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
@@ -88,12 +87,11 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
 LANGUAGE_CODE = "ko-kr"
-
 TIME_ZONE = "Asia/Seoul"
-
 USE_I18N = True
-
 USE_TZ = False
 
 STATIC_URL = "static/"
@@ -102,11 +100,23 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
 
-DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
-
-
-ACCOUNT_LOGIN_ATTEMPTS_LIMIT = 5
-ACCOUNT_LOGIN_ATTEMPTS_TIMEOUT = 300
+SUMMERNOTE_CONFIG = {
+    "summernote": {
+        "width": "100%",
+        "height": "700",
+        "lang": "ko-KR",
+        "toolbar": [
+            ["style", ["style"]],
+            ["font", ["bold", "underline", "clear"]],
+            ["color", ["color"]],
+            ["para", ["ul", "ol", "paragraph"]],
+            ["table", ["table"]],
+            ["insert", ["link", "picture", "video"]],
+            ["view", ["fullscreen"]],
+        ],
+    },
+    "css": ("/static/summernote.css",),
+}
 
 X_FRAME_OPTIONS = "SAMEORIGIN"
 
@@ -117,8 +127,10 @@ DJANGORESIZED_DEFAULT_FORCE_FORMAT = "JPEG"
 DJANGORESIZED_DEFAULT_FORMAT_EXTENSIONS = {"JPEG": ".jpg"}
 DJANGORESIZED_DEFAULT_NORMALIZE_ROTATION = True
 
-
 AUTH_USER_MODEL = "user.User"
+
+ACCOUNT_LOGIN_ATTEMPTS_LIMIT = 5
+ACCOUNT_LOGIN_ATTEMPTS_TIMEOUT = 300
 
 LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "/"
