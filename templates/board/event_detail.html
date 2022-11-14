@@ -4,6 +4,20 @@
 <img id="event-detail-ad">
 <section id="detail">
     {{ board.title }}
+    {% if request.user.is_staff %}
+    <span class="modify">
+        <a href="{% url 'board:event_update' board.id %}">수정</a>
+        <a onclick="boardDelete('{{board.id}}')">삭제</a>
+        <script>
+            function boardDelete() {
+                var warning = confirm("게시글을 삭제할 경우 복구가 불가능합니다.\n정말 삭제하시겠습니까?");
+                if (warning == true) {
+                    window.location.href = "{% url 'board:event_delete' board.id %}"
+                }
+            }
+        </script>
+    </span>
+    {% endif %}
     <div class="sub">
         <i class="fa-regular fa-calendar"></i> {{board.start|date}} ~ {{board.end|date}}
     </div>

@@ -1,10 +1,5 @@
 {% extends "board/news_list.html" %}
 {% block content %}
-<script>
-    function noverified() {
-        alert("인증된 유저만 작성 가능합니다.")
-    }
-</script>
 <link rel="stylesheet" href="/static/news.css/" />
 <img id="news_ad">
 <section id="news_list">
@@ -32,17 +27,11 @@
     {% block search %}
     {% include "pagination.html" %}
     {% endblock search %}
-    {% if request.user.verified %}
     <button>
         <a href="{% url 'board:column_create' %}">
             <i class="fa-solid fa-pen-to-square"></i> 글쓰기
         </a>
     </button>
-    {% else %}
-    <button onclick="noverified()">
-        <i class="fa-solid fa-pen-to-square"></i> 글쓰기
-    </button>
-    {% endif %}
 </section>
 <section id="search">
     <form action="{% url 'board:column_search' %}" method="post">

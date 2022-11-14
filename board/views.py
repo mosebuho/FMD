@@ -1,6 +1,6 @@
 from django.views import generic
-from .models import Community, Comment, News, Column, Notice, Event
-from .forms import CommuModelForm, NewsModelForm, ColumnModelForm, EventModelForm
+from .models import *
+from .forms import *
 from django.http import HttpResponse
 import json
 from django.core.serializers.json import DjangoJSONEncoder
@@ -9,6 +9,10 @@ from django.urls import reverse_lazy
 from django.shortcuts import redirect, render
 from django.http import Http404
 from django.core.paginator import Paginator
+from user.decorator import *
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
+
 
 class CommunityListView(generic.ListView):
     template_name = "board/community_list.html"
@@ -68,9 +72,20 @@ class CommunityDetailView(generic.DetailView):
         context = super().get_context_data(**kwargs)
         context["commu_hot_list"] = Community.objects.order_by("-like")[:5]
         context["commu_hot_list2"] = Community.objects.order_by("-like")[5:10]
+        comment_set= self.get_comment_set()
+        context['commentset'] = comment_set
+        context['page_obj'] = comment_set 
         return context
 
+    def get_comment_set(self):
+        queryset = self.object.comment_set.all()
+        paginator = Paginator(queryset, 6)
+        page = self.request.GET.get("page")
+        board_comments = paginator.get_page(page)
+        return board_comments
 
+
+@method_decorator(login_required, name="dispatch")
 class CommunityCreateView(generic.CreateView):
     template_name = "board/community_form.html"
     form_class = CommuModelForm
@@ -110,7 +125,6 @@ def community_delete(request, pk):
 def like(request):
     board_id = request.GET["board_id"]
     board = Community.objects.get(id=board_id)
-
     if board.like_users.filter(id=request.user.id).exists():
         board.like_users.remove(request.user)
         message = "off"
@@ -131,22 +145,23 @@ def like(request):
 
 def comment_create(request, pk):
     community = get_object_or_404(Community, id=pk)
-    if request.POST.get("content"):
-        comment = Comment.objects.create(
-            community=community,
-            content=request.POST.get("content"),
-            writer=request.user,
-        )
-        community.save()
-        data = {
-            "writer": request.POST.get("writer"),
-            "content": request.POST.get("content"),
-            "date": comment.date,
-            "comment_id": comment.id,
-            "comment_count": community.comment_set.count(),
-            "img": request.user.image.url,
-        }
-        return HttpResponse(json.dumps(data, cls=DjangoJSONEncoder))
+    if request.user.is_authenticated:
+        if request.POST.get("content"):
+            comment = Comment.objects.create(
+                community=community,
+                content=request.POST.get("content"),
+                writer=request.user,
+            )
+            community.save()
+            data = {
+                "writer": request.POST.get("writer"),
+                "content": request.POST.get("content"),
+                "date_str": comment.date_str,
+                "comment_id": comment.id,
+                "comment_count": community.comment_set.count(),
+                "img": request.user.image.url,
+            }
+            return HttpResponse(json.dumps(data, cls=DjangoJSONEncoder))
 
 
 def comment_update(request, pk):
@@ -224,6 +239,7 @@ class NewsDetailView(generic.DetailView):
     context_object_name = "news"
 
 
+@method_decorator(verified_required, name="dispatch")
 class NewsCreateView(generic.CreateView):
     template_name = "board/news_form.html"
     form_class = NewsModelForm
@@ -303,6 +319,7 @@ class ColumnDetailView(generic.DetailView):
     context_object_name = "news"
 
 
+@method_decorator(verified_required, name="dispatch")
 class ColumnCreateView(generic.CreateView):
     template_name = "board/column_form.html"
     form_class = ColumnModelForm
@@ -389,6 +406,7 @@ class EventDetailView(generic.DetailView):
     context_object_name = "board"
 
 
+@method_decorator(staff_required, name="dispatch")
 class EventCreateView(generic.CreateView):
     model = Event
     template_name = "board/event_form.html"
@@ -407,11 +425,18 @@ class EventUpdateView(generic.UpdateView):
     form_class = EventModelForm
     template_name = "board/event_form.html"
 
+    def dispatch(self, request, *args, **kwargs):
+        obj = self.get_object()
+        if obj.writer != self.request.user:
+            raise Http404("글을 수정할 권한이 없습니다.")
+        return super(EventUpdateView, self).dispatch(request, *args, **kwargs)
+
     def get_success_url(self):
         return reverse_lazy("board:event_detail", kwargs={"pk": self.object.pk})
 
 
 def event_delete(request, pk):
     board = get_object_or_404(Event, id=pk)
-    board.delete()
+    if request.user.is_staff:
+        board.delete()
     return redirect("board:event_list")

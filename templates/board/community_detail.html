@@ -1,5 +1,6 @@
 {% extends "board/community_list.html" %}
 {% block detail %}
+<link rel="stylesheet" href="/static/pagination.css">
 <input type="hidden" value={{board.view_count}}>
 <section id="detail">
     {{ board.title }}
@@ -90,23 +91,25 @@
     <span id="comment_count">{{board.comment_set.count}}개</span>
     <ul id="new_comment"></ul>
     <ul id="comment_list">
-        {% for comment in board.comment_set.all %}
+        {% for comment in page_obj %}
         <li id="{{comment.id}}">
             <img src="{{ comment.writer.image.url }}">
             <div>
                 {{comment.writer}}
                 <span>
+                    <i class="fa-solid fa-clock"></i> {{comment.date_str}}
+                    <br>
                     {% if request.user == comment.writer %}
                     <a onclick="comment_update('{{comment.id}}')">수정</a>
                     <a onclick="comment_delete('{{comment.id}}')">삭제</a>
                     {% endif %}
-                    <i class="fa-solid fa-clock"></i> {{comment.date_str}}
                 </span>
                 <p id="{{comment.id}}content">{{comment.content}}</p>
             </div>
         </li>
         {% endfor %}
     </ul>
+    {% include "pagination.html" %}
 </section>
 <script>
     function comment_create() {
@@ -126,7 +129,7 @@
                         $('#new_comment').append(
                             "<li id='" + response.comment_id + "'style='border-top:1px solid #848b79; border-bottom:1px solid #848b79;'>" +
                             "<img src='" + response.img + "'><div>" + response.writer +
-                            "<span><a onclick='comment_update(" + response.comment_id + ")'>수정</a>" +
+                            "<span><i class='fa-solid fa-clock' style='margin-right:3px;'></i>" + response.date_str + "<br><a onclick='comment_update(" + response.comment_id + ")'>수정</a>" +
                             " <a onclick='comment_delete(" + response.comment_id + ")'>삭제</a></span>" +
                             "<p id=" + response.comment_id + "content>" + response.content + "</p></div></li>"
                         );

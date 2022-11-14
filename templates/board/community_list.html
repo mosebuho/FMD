@@ -1,10 +1,5 @@
 {% extends "home/home.html" %}
 {% block content %}
-<script>
-    function notactive() {
-        alert("이메일 인증이 필요한 기능입니다.")
-    }
-</script>
 <link rel="stylesheet" href="/static/community.css/" />
 {% block write %}
 <section id="best">
@@ -64,17 +59,11 @@
     {% block search %}
     {% include "pagination.html" %}
     {% endblock search %}
-    {% if request.user.is_active %}
     <button>
         <a href="{% url 'board:community_create' %}">
             <i class="fa-solid fa-pen-to-square"></i> 글쓰기
         </a>
     </button>
-    {% else %}
-    <button onclick="notactive()">
-        <i class="fa-solid fa-pen-to-square"></i> 글쓰기
-    </button>
-    {% endif %}
 </section>
 <section id="search">
     <form action="{% url 'board:community_search' %}" method="post">

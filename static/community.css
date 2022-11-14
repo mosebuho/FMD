@@ -356,6 +356,7 @@ section#detail li div span {
     float: right;
     font-size: 12px;
     color: #aaa;
+    text-align: right;
 }
 
 section#detail li div span a {
