@@ -30,50 +30,59 @@
                             <form method="POST" action="{% url 'user:image_edit' user.id %}"
                                 enctype="multipart/form-data">
                                 <label for="image">프로필 사진 변경</label>
-                                <input type="file" accept="image/*" name="image" id="image" onchange="upload()"
-                                    class="form-control">
-                            </form>
+                                <span style="font-size:13px; color:#848b79; vertical-align:-4px; margin-right:-3px;">*
+                                </span>
+                                <span style="color:#bbb;">5MB 이하의 사진만 업로드 가능합니다.</span>
                         </span>
+                        <input type="file" accept="image/*" name="image" id="image" onchange="upload()"
+                            class="form-control">
                         <script>
                             function upload() {
                                 var f = image.files[0];
-                                var fileName = f.name.split('.')[0];
-                                var img = new Image();
-                                img.src = URL.createObjectURL(f);
-                                img.onload = function (e) {
-                                    var canvas = document.createElement('canvas');
-                                    var MAX_WIDTH = 640;
-                                    var MAX_HEIGHT = 360;
-                                    var width = img.width;
-                                    var height = img.height;
-                                    if (width > height) {
-                                        if (width > MAX_WIDTH) {
-                                            height *= MAX_WIDTH / width;
-                                            width = MAX_WIDTH;
+                                if (f.size > 5242880) {
+                                    alert("5MB 이하의 사진을 업로드 해주세요.")
+                                }
+                                else {
+                                    var fileName = f.name.split('.')[0];
+                                    var img = new Image();
+                                    img.src = URL.createObjectURL(f);
+                                    img.onload = function (e) {
+                                        var canvas = document.createElement('canvas');
+                                        var maxsize = 300;
+                                        var width = img.width;
+                                        var height = img.height;
+                                        if (width > height) {
+                                            if (width > maxsize) {
+                                                height *= maxsize / width;
+                                                width = maxsize;
+                                            }
+                                        } else {
+                                            if (height > maxsize) {
+                                                width *= maxsize / height;
+                                                height = maxsize;
+                                            }
                                         }
-                                    } else {
-                                        if (height > MAX_HEIGHT) {
-                                            width *= MAX_HEIGHT / height;
-                                            height = MAX_HEIGHT;
-                                        }
+                                        canvas.width = width;
+                                        canvas.height = height;
+                                        var ctx = canvas.getContext('2d');
+                                        ctx.drawImage(img, 0, 0, width, height);
+                                        canvas.toBlob(function (blob) {
+                                            var f2 = new File([blob], fileName + ".jpeg");
+                                            var xhr = new XMLHttpRequest();
+                                            var form = new FormData();
+                                            form.append("image", f2);
+                                            xhr.open("POST", "{% url 'user:image_edit' user.id %}");
+                                            xhr.send(form);
+                                        }, 'image/jpeg', 0.5);
                                     }
-                                    canvas.width = width;
-                                    canvas.height = height;
-                                    var ctx = canvas.getContext('2d');
-                                    ctx.drawImage(img, 0, 0, width, height);
-                                    canvas.toBlob(function (blob) {
-                                        var f2 = new File([blob], fileName + ".jpeg");
-                                        var xhr = new XMLHttpRequest();
-                                        var form = new FormData();
-                                        form.append("image", f2);
-                                        xhr.open("POST", "{% url 'user:image_edit' user.id %}");
-                                        xhr.send(form);
-                                        dataurl = canvas.toDataURL(f2.type);
-                                        document.getElementById('userimage').src = dataurl;
-                                    }, 'image/jpeg', 0.5);
+                                    document.getElementById('userimage').src = img.src;
+                                    document.getElementById('side-userimage').src = img.src;
+                                    alert("프로필 사진이 변경되었습니다.")
                                 }
                             }
                         </script>
+                        </form>
+                        </span>
                         {% endif %}
                     </td>
                 <tr>

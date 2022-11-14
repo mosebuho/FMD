@@ -239,7 +239,7 @@
                 {% if request.user.is_authenticated %}
                 <div class="profile">
                     <div class="profile-info">
-                        <img src="{{ request.user.image.url }}">
+                        <img id="side-userimage" src="{{ request.user.image.url }}">
                         <div>
                             <div>{{ request.user.nickname }}</div>
                             <a href="{% url 'user:profile' request.user.id %}">내정보</a>

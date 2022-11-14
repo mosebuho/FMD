@@ -205,19 +205,23 @@ section#write .top label {
     font-size: 15px;
     border: 1px solid #484848;
     cursor: pointer;
+    margin-left: 13px;
 }
 
 section#write .top input[type="file"] {
     display: none;
 }
 
-section#write select {
+section#write .top #preview {
+    width: 60px;
     height: 60px;
-    width: 100px;
-    text-align: center;
-    background: #363636;
-    color: #aaa;
-    font-size: 16px;
+    margin: auto;
+    vertical-align: -23px;
+    display: none;
+}
+
+section#write .top #preview:hover {
+    transform: scale(5);
 }
 
 section#write #id_title {

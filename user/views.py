@@ -80,7 +80,7 @@ def image_edit(request, pk):
     if request.user.id == target.id:
         target.image = edit_image
         target.save()
-    return render(request, "account/profile.html")
+    return HttpResponse()
 
 
 def quit(request):

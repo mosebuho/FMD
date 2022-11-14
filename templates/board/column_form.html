@@ -6,6 +6,7 @@
     <form method="post" enctype="multipart/form-data" id="form">
         {% csrf_token %}
         <div class="top">
+            <img id="preview">
             <label for="thumbnail">썸네일</label>
             <input type="file" accept="image/*" name="thumbnail" id="thumbnail" onchange="resizing()">
             <script>
@@ -16,21 +17,18 @@
                     img.src = URL.createObjectURL(f);
                     img.onload = function () {
                         var canvas = document.createElement('canvas');
-                        canvas.width = img.width;
-                        canvas.height = img.height;
-                        var MAX_WIDTH = 640;
-                        var MAX_HEIGHT = 360;
+                        var maxsize = 600;
                         var width = img.width;
                         var height = img.height;
                         if (width > height) {
-                            if (width > MAX_WIDTH) {
-                                height *= MAX_WIDTH / width;
-                                width = MAX_WIDTH;
+                            if (width > maxsize) {
+                                height *= maxsize / width;
+                                width = maxsize;
                             }
                         } else {
-                            if (height > MAX_HEIGHT) {
-                                width *= MAX_HEIGHT / height;
-                                height = MAX_HEIGHT;
+                            if (height > maxsize) {
+                                width *= maxsize / height;
+                                height = maxsize;
                             }
                         }
                         canvas.width = width;
@@ -46,8 +44,11 @@
                                     dataTranster.items.add(f2);
                                 });
                             document.querySelector('#thumbnail').files = dataTranster.files;
-                        }, 'image/jpeg', 0.7);
+                        }, 'image/jpeg', 0.5);
                     }
+                    document.getElementById("preview").style.display = "inline-block";
+                    document.getElementById("preview").src = img.src;
+                    document.getElementById("id_title").style.width = "750px";
                 }
             </script>
             {{ form.title }}
