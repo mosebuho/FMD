@@ -4,7 +4,8 @@ from django_summernote.admin import SummernoteModelAdmin
 
 
 @admin.register(Community)
-class CommunityAdmin(admin.ModelAdmin):
+class CommunityAdmin(SummernoteModelAdmin):
+    summernote_fields = ("content",)
     list_display = (
         "title",
         "writer",
@@ -15,7 +16,8 @@ class CommunityAdmin(admin.ModelAdmin):
 
 
 @admin.register(News)
-class NewsAdmin(admin.ModelAdmin):
+class NewsAdmin(SummernoteModelAdmin):
+    summernote_fields = ("content",)
     list_display = (
         "title",
         "writer",
@@ -25,7 +27,8 @@ class NewsAdmin(admin.ModelAdmin):
 
 
 @admin.register(Column)
-class ColumnAdmin(admin.ModelAdmin):
+class ColumnAdmin(SummernoteModelAdmin):
+    summernote_fields = ("content",)
     list_display = (
         "title",
         "writer",
@@ -46,7 +49,7 @@ class NoticeAdmin(SummernoteModelAdmin):
 
 
 @admin.register(Event)
-class EventAdmin(admin.ModelAdmin):
+class EventAdmin(SummernoteModelAdmin):
     summernote_fields = ("content",)
     list_display = (
         "title",

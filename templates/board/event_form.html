@@ -1,13 +1,13 @@
 {% extends "home/home.html" %}
 {% block content %}
-<link rel="stylesheet" href="/static/news.css/" />
+<link rel="stylesheet" href="/static/event.css/" />
 <section id="write">
     <img id="write-ad">
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="top">
             <label for="thumbnail">썸네일</label>
-            <input type="file" accept="image/*" name="thumbnail" id="thumbnail" onchange="resizing()">
+            <input type="file" name="thumbnail" accept="image/*" id="thumbnail" onchange="resizing()">
             <script>
                 function resizing() {
                     var f = thumbnail.files[0];
@@ -50,9 +50,10 @@
                     }
                 }
             </script>
+            {{ form.start }}~{{ form.end }}
             {{ form.title }}
         </div>
-        {{ form.content|safe }}
+        {{ form.content }}
         <input id="done" type="submit" value="게시">
         <button id="cancel" onclick="window.history.back();" type="button">취소</button>
     </form>

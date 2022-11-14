@@ -1,7 +1,7 @@
 {% extends "home/home.html" %}
 {% block content %}
 <script>
-    function notstaff() {
+    function noverified() {
         alert("스태프 이상의 권한이 필요합니다.")
     }
 </script>
@@ -32,14 +32,14 @@
     {% block search %}
     {% include "pagination.html" %}
     {% endblock search %}
-    {% if request.user.is_staff %}
+    {% if request.user.verified %}
     <button>
         <a href="{% url 'board:news_create' %}">
             <i class="fa-solid fa-pen-to-square"></i> 글쓰기
         </a>
     </button>
     {% else %}
-    <button onclick="notstaff()">
+    <button onclick="noverified()">
         <i class="fa-solid fa-pen-to-square"></i> 글쓰기
     </button>
     {% endif %}

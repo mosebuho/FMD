@@ -31,3 +31,29 @@ class ColumnModelForm(forms.ModelForm):
             "title": forms.TextInput(attrs={"placeholder": "제목을 입력해주세요."}),
             "content": SummernoteWidget(),
         }
+
+
+class EventModelForm(forms.ModelForm):
+    class Meta:
+        model = Event
+        fields = ["title", "thumbnail", "content", "start", "end"]
+        widgets = {
+            "title": forms.TextInput(attrs={"placeholder": "제목을 입력해주세요."}),
+            "content": SummernoteWidget(),
+            "start": forms.DateInput(
+                format=("%m/%d/%Y"),
+                attrs={
+                    "class": "form-control",
+                    "placeholder": "시작일",
+                    "type": "date",
+                },
+            ),
+            "end": forms.DateInput(
+                format=("%m/%d/%Y"),
+                attrs={
+                    "class": "form-control",
+                    "placeholder": "종료일",
+                    "type": "date",
+                },
+            ),
+        }

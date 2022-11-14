@@ -27,9 +27,8 @@
                     <td>
                         {% if request.user.id == user.id %}
                         <span class="filebox">
-                            <form method="POST" action="{% url 'user:image_edit' user.id %}" id="img_ajax"
+                            <form method="POST" action="{% url 'user:image_edit' user.id %}"
                                 enctype="multipart/form-data">
-                                {% csrf_token %}
                                 <label for="image">프로필 사진 변경</label>
                                 <input type="file" accept="image/*" name="image" id="image" onchange="upload()"
                                     class="form-control">
@@ -37,18 +36,42 @@
                         </span>
                         <script>
                             function upload() {
-                                var data = new FormData($('#img_ajax').get(0));
-                                $.ajax({
-                                    url: "{% url 'user:image_edit' user.id %}",
-                                    type: 'POST',
-                                    data: data,
-                                    contentType: 'multipart/form-data',
-                                    processData: false,
-                                    contentType: false,
-                                    success: function (data) {
-                                        $('#img').load(location.href + ' #userimage');
+                                var f = image.files[0];
+                                var fileName = f.name.split('.')[0];
+                                var img = new Image();
+                                img.src = URL.createObjectURL(f);
+                                img.onload = function (e) {
+                                    var canvas = document.createElement('canvas');
+                                    var MAX_WIDTH = 640;
+                                    var MAX_HEIGHT = 360;
+                                    var width = img.width;
+                                    var height = img.height;
+                                    if (width > height) {
+                                        if (width > MAX_WIDTH) {
+                                            height *= MAX_WIDTH / width;
+                                            width = MAX_WIDTH;
+                                        }
+                                    } else {
+                                        if (height > MAX_HEIGHT) {
+                                            width *= MAX_HEIGHT / height;
+                                            height = MAX_HEIGHT;
+                                        }
                                     }
-                                });
+                                    canvas.width = width;
+                                    canvas.height = height;
+                                    var ctx = canvas.getContext('2d');
+                                    ctx.drawImage(img, 0, 0, width, height);
+                                    canvas.toBlob(function (blob) {
+                                        var f2 = new File([blob], fileName + ".jpeg");
+                                        var xhr = new XMLHttpRequest();
+                                        var form = new FormData();
+                                        form.append("image", f2);
+                                        xhr.open("POST", "{% url 'user:image_edit' user.id %}");
+                                        xhr.send(form);
+                                        dataurl = canvas.toDataURL(f2.type);
+                                        document.getElementById('userimage').src = dataurl;
+                                    }, 'image/jpeg', 0.5);
+                                }
                             }
                         </script>
                         {% endif %}

@@ -7,7 +7,6 @@
 
 .note-editor {
     background: #272727;
-    color: #ddd;
 }
 
 .note-editor.note-frame {
@@ -26,6 +25,7 @@
 
 .note-editable {
     font-family: 'Noto Sans KR';
+    color: #ddd;
 }
 
 .note-editable p {

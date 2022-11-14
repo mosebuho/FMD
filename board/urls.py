@@ -27,6 +27,9 @@ urlpatterns = [
     path("column/update/<int:pk>/",views.ColumnUpdateView.as_view(), name="column_update"),
     path("event/", views.EventListView.as_view(), name="event_list"),
     path("event/search/", views.event_search, name="event_search"),
+    path("event/create/", views.EventCreateView.as_view(), name="event_create"),
+    path("event/update/<int:pk>/", views.EventUpdateView.as_view(), name="event_update"),
+    path("event/delete/<int:pk>/", views.event_delete, name="event_delete"),
     path("event/<int:pk>/", views.EventDetailView.as_view(), name="event_detail"),
     path("notice/", views.NoticeListView.as_view(), name="notice"),
 ]

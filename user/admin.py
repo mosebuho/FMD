@@ -5,7 +5,7 @@ from .models import User
 
 admin.site.register(User, UserAdmin)
 class UserAdmin(admin.ModelAdmin):
-    UserAdmin.fieldsets += (("Custom fields", {"fields": ("nickname",)}),)
+    UserAdmin.fieldsets += (("Custom fields", {"fields": ("nickname", "image", "verified")}),)
     UserAdmin.list_display = (
         "username",
         "email",

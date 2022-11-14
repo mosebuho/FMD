@@ -143,6 +143,14 @@ section#write {
     text-align: center;
 }
 
+section#write #write-ad{
+    border: 1px solid #484848;
+    background: #272727;
+    width: 920px;
+    height: 120.5px;
+    margin-top: 5px;
+}
+
 section#write form {
     border: 1px solid #484848;
     background: #272727;
