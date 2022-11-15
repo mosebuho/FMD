@@ -59,11 +59,17 @@
     {% block search %}
     {% include "pagination.html" %}
     {% endblock search %}
+    {% if request.user.is_authenticated %}
     <button>
         <a href="{% url 'board:community_create' %}">
             <i class="fa-solid fa-pen-to-square"></i> 글쓰기
         </a>
     </button>
+    {% else %}
+    <button onclick="alert('로그인 후 작성 가능합니다.')">
+        <i class="fa-solid fa-pen-to-square"></i> 글쓰기
+    </button>
+    {% endif %}
 </section>
 <section id="search">
     <form action="{% url 'board:community_search' %}" method="post">

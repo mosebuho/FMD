@@ -32,4 +32,8 @@ urlpatterns = [
     path("event/<int:pk>/delete/", views.event_delete, name="event_delete"),
     path("event/<int:pk>/", views.EventDetailView.as_view(), name="event_detail"),
     path("notice/", views.NoticeListView.as_view(), name="notice"),
+    path("notice/create/", views.NoticeCreateView.as_view(), name="notice_create"),
+    path("notice/<int:pk>/update/", views.NoticeUpdateView.as_view(), name="notice_update"),
+    path("notice/<int:pk>/delete/", views.notice_delete, name="notice_delete"),
+    path("summernote/", views.summernote, name="summernote"),
 ]

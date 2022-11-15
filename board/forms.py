@@ -1,6 +1,5 @@
 from django import forms
-from .models import Community, News, Column, Event
-from django_summernote.widgets import SummernoteWidget
+from .models import *
 
 
 class CommuModelForm(forms.ModelForm):
@@ -9,7 +8,6 @@ class CommuModelForm(forms.ModelForm):
         fields = ["title", "content"]
         widgets = {
             "title": forms.TextInput(attrs={"placeholder": "제목을 입력해주세요."}),
-            "content": SummernoteWidget(),
         }
 
 
@@ -19,7 +17,6 @@ class NewsModelForm(forms.ModelForm):
         fields = ["title", "thumbnail", "content"]
         widgets = {
             "title": forms.TextInput(attrs={"placeholder": "제목을 입력해주세요."}),
-            "content": SummernoteWidget(),
         }
 
 
@@ -29,7 +26,15 @@ class ColumnModelForm(forms.ModelForm):
         fields = ["title", "thumbnail", "content"]
         widgets = {
             "title": forms.TextInput(attrs={"placeholder": "제목을 입력해주세요."}),
-            "content": SummernoteWidget(),
+        }
+
+
+class NoticeModelForm(forms.ModelForm):
+    class Meta:
+        model = Notice
+        fields = ["title", "content"]
+        widgets = {
+            "title": forms.TextInput(attrs={"placeholder": "제목을 입력해주세요."}),
         }
 
 
@@ -39,7 +44,6 @@ class EventModelForm(forms.ModelForm):
         fields = ["title", "thumbnail", "content", "start", "end"]
         widgets = {
             "title": forms.TextInput(attrs={"placeholder": "제목을 입력해주세요."}),
-            "content": SummernoteWidget(),
             "start": forms.DateInput(
                 format=("%m/%d/%Y"),
                 attrs={

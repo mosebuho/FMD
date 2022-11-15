@@ -35,7 +35,6 @@ INSTALLED_APPS = [
     "django.contrib.sites",
     "user",
     "board",
-    "django_summernote",
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
@@ -99,26 +98,6 @@ STATIC_URL = "static/"
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
-
-SUMMERNOTE_CONFIG = {
-    "summernote": {
-        "width": "100%",
-        "height": "700",
-        "lang": "ko-KR",
-        "toolbar": [
-            ["style", ["style"]],
-            ["font", ["bold", "underline", "clear"]],
-            ["color", ["color"]],
-            ["para", ["ul", "ol", "paragraph"]],
-            ["table", ["table"]],
-            ["insert", ["link", "picture", "video"]],
-            ["view", ["fullscreen"]],
-        ],
-    },
-    "css": ("/static/summernote.css",),
-}
-
-X_FRAME_OPTIONS = "SAMEORIGIN"
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media/")

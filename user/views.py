@@ -1,9 +1,6 @@
 from .models import User
 from django.http import JsonResponse
 from django.views import generic
-from django.core.serializers.json import DjangoJSONEncoder
-from django.http import HttpResponse
-import json
 import datetime
 from .forms import CheckPasswordForm
 from django.shortcuts import render, redirect
@@ -68,10 +65,8 @@ def name_edit(request, pk):
                 "user_id": request.user.id,
                 "edit_name": edit_name,
             }
-            return HttpResponse(
-                json.dumps(data, cls=DjangoJSONEncoder),
-                content_type="application/json",
-            )
+        return JsonResponse(data)
+
 
 @csrf_exempt
 def image_edit(request, pk):
@@ -80,7 +75,9 @@ def image_edit(request, pk):
     if request.user.id == target.id:
         target.image = edit_image
         target.save()
-    return HttpResponse()
+        url = target.image.url
+        data = {"url": url}
+    return JsonResponse(data)
 
 
 def quit(request):

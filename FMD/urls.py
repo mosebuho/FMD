@@ -8,7 +8,6 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("", HomeView.as_view()),
     path("", include("allauth.urls")),
-    path("summernote/", include("django_summernote.urls")),
     path("search/", search, name="search"),
     path("user/", include("user.urls")),
     path("board/", include("board.urls")),

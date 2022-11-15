@@ -1,9 +1,7 @@
 from django.views import generic
 from .models import *
 from .forms import *
-from django.http import HttpResponse
-import json
-from django.core.serializers.json import DjangoJSONEncoder
+from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
 from django.urls import reverse_lazy
 from django.shortcuts import redirect, render
@@ -12,6 +10,7 @@ from django.core.paginator import Paginator
 from user.decorator import *
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
+from django.views.decorators.csrf import csrf_exempt
 
 
 class CommunityListView(generic.ListView):
@@ -72,9 +71,9 @@ class CommunityDetailView(generic.DetailView):
         context = super().get_context_data(**kwargs)
         context["commu_hot_list"] = Community.objects.order_by("-like")[:5]
         context["commu_hot_list2"] = Community.objects.order_by("-like")[5:10]
-        comment_set= self.get_comment_set()
-        context['commentset'] = comment_set
-        context['page_obj'] = comment_set 
+        comment_set = self.get_comment_set()
+        context["commentset"] = comment_set
+        context["page_obj"] = comment_set
         return context
 
     def get_comment_set(self):
@@ -140,7 +139,7 @@ def like(request):
             board.like += 1
             board.save()
     data = {"like": board.like, "message": message}
-    return HttpResponse(json.dumps(data, cls=DjangoJSONEncoder))
+    return JsonResponse(data)
 
 
 def comment_create(request, pk):
@@ -161,7 +160,7 @@ def comment_create(request, pk):
                 "comment_count": community.comment_set.count(),
                 "img": request.user.image.url,
             }
-            return HttpResponse(json.dumps(data, cls=DjangoJSONEncoder))
+            return JsonResponse(data)
 
 
 def comment_update(request, pk):
@@ -179,7 +178,7 @@ def comment_update(request, pk):
         "content": comment.content,
         "edit_comment": edit_comment,
     }
-    return HttpResponse(json.dumps(data, cls=DjangoJSONEncoder))
+    return JsonResponse(data)
 
 
 def comment_delete(request, pk):
@@ -193,7 +192,7 @@ def comment_delete(request, pk):
             "comment_id": comment_id,
             "comment_count": board.comment_set.count(),
         }
-        return HttpResponse(json.dumps(data, cls=DjangoJSONEncoder))
+        return JsonResponse(data)
 
 
 class NewsListView(generic.ListView):
@@ -363,6 +362,41 @@ class NoticeListView(generic.ListView):
     paginate_by = 33
 
 
+@method_decorator(staff_required, name="dispatch")
+class NoticeCreateView(generic.CreateView):
+    model = Notice
+    form_class = NoticeModelForm
+    template_name = "board/notice_form.html"
+    success_url = "/board/notice/"
+
+    def form_valid(self, form):
+        form.instance.writer = self.request.user
+        return super().form_valid(form)
+
+
+class NoticeUpdateView(generic.UpdateView):
+    model = Notice
+    form_class = NoticeModelForm
+    template_name = "board/notice_form.html"
+    success_url = "/board/notice/"
+
+    def dispatch(self, request, *args, **kwargs):
+        obj = self.get_object()
+        if obj.writer != self.request.user:
+            raise Http404("글을 수정할 권한이 없습니다.")
+        return super(NoticeUpdateView, self).dispatch(request, *args, **kwargs)
+
+    def get_success_url(self):
+        return reverse_lazy("board:event_detail", kwargs={"pk": self.object.pk})
+
+
+def notice_delete(request, pk):
+    board = get_object_or_404(Notice, id=pk)
+    if board.writer == request.user:
+        board.delete()
+    return redirect("board:notice")
+
+
 class EventListView(generic.ListView):
     queryset = Event.objects.order_by("-id")
     template_name = "board/event_list.html"
@@ -437,6 +471,15 @@ class EventUpdateView(generic.UpdateView):
 
 def event_delete(request, pk):
     board = get_object_or_404(Event, id=pk)
-    if request.user.is_staff:
+    if board.writer == request.user:
         board.delete()
     return redirect("board:event_list")
+
+
+@csrf_exempt
+def summernote(request):
+    f2 = request.FILES.get("file")
+    image = Image(image=f2)
+    image.save()
+    data = {"url": image.image.url}
+    return JsonResponse(data)

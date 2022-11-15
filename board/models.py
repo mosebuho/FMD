@@ -162,3 +162,11 @@ class Event(models.Model):
         db_table = "Event"
         verbose_name = "행사"
         verbose_name_plural = "행사"
+
+
+class Image(models.Model):
+    image = models.ImageField(
+        null=True,
+        blank=True,
+        upload_to="summernote/%Y-%m-%d/",
+    )

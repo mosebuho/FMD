@@ -4,17 +4,8 @@
     border: none;
 }
 
-
-.note-editor {
-    background: #272727;
-}
-
 .note-editor.note-frame {
     border: none;
-}
-
-.panel-default>.panel-heading {
-    background: #363636;
 }
 
 .note-btn {
@@ -24,8 +15,9 @@
 }
 
 .note-editable {
-    font-family: 'Noto Sans KR';
     color: #ddd;
+    text-align: left;
+    font-family: inherit;
 }
 
 .note-editable p {

@@ -11,6 +11,20 @@ section#notice .title {
     border-bottom: #848b79 1px solid;
 }
 
+section#notice .title a {
+    color: #aaa;
+    font-size: 14px;
+    float: right;
+    padding-top: 6px;
+}
+
+section#notice .inlist a {
+    color: #aaa;
+    font-size: 14px;
+    float: right;
+    padding-right: 3px;
+}
+
 section#notice ul.noticelist {
     list-style: none;
     padding: 0;

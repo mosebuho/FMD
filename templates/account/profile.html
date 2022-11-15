@@ -68,16 +68,21 @@
                                         ctx.drawImage(img, 0, 0, width, height);
                                         canvas.toBlob(function (blob) {
                                             var f2 = new File([blob], fileName + ".jpeg");
-                                            var xhr = new XMLHttpRequest();
-                                            var form = new FormData();
-                                            form.append("image", f2);
-                                            xhr.open("POST", "{% url 'user:image_edit' user.id %}");
-                                            xhr.send(form);
+                                            var data = new FormData()
+                                            data.append("image", f2)
+                                            $.ajax({
+                                                data: data,
+                                                type: "POST",
+                                                url: "{% url 'user:image_edit' user.id %}",
+                                                contentType: false,
+                                                processData: false,
+                                                success: function (data) {
+                                                    document.getElementById('userimage').src = data.url;
+                                                    document.getElementById('side-userimage').src = data.url;
+                                                }
+                                            });
                                         }, 'image/jpeg', 0.5);
                                     }
-                                    document.getElementById('userimage').src = img.src;
-                                    document.getElementById('side-userimage').src = img.src;
-                                    alert("프로필 사진이 변경되었습니다.")
                                 }
                             }
                         </script>

@@ -1,11 +1,13 @@
 from django.contrib import admin
+from .models import *
+
+
+from django.contrib import admin
 from .models import Community, News, Column, Notice, Event
-from django_summernote.admin import SummernoteModelAdmin
 
 
 @admin.register(Community)
-class CommunityAdmin(SummernoteModelAdmin):
-    summernote_fields = ("content",)
+class CommunityAdmin(admin.ModelAdmin):
     list_display = (
         "title",
         "writer",
@@ -16,8 +18,7 @@ class CommunityAdmin(SummernoteModelAdmin):
 
 
 @admin.register(News)
-class NewsAdmin(SummernoteModelAdmin):
-    summernote_fields = ("content",)
+class NewsAdmin(admin.ModelAdmin):
     list_display = (
         "title",
         "writer",
@@ -27,8 +28,7 @@ class NewsAdmin(SummernoteModelAdmin):
 
 
 @admin.register(Column)
-class ColumnAdmin(SummernoteModelAdmin):
-    summernote_fields = ("content",)
+class ColumnAdmin(admin.ModelAdmin):
     list_display = (
         "title",
         "writer",
@@ -38,19 +38,15 @@ class ColumnAdmin(SummernoteModelAdmin):
 
 
 @admin.register(Notice)
-class NoticeAdmin(SummernoteModelAdmin):
-    summernote_fields = ("content",)
+class NoticeAdmin(admin.ModelAdmin):
     list_display = (
         "title",
-        "content",
-        "writer",
         "date",
     )
 
 
 @admin.register(Event)
-class EventAdmin(SummernoteModelAdmin):
-    summernote_fields = ("content",)
+class EventAdmin(admin.ModelAdmin):
     list_display = (
         "title",
         "start",
