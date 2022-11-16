@@ -1,13 +1,13 @@
 {% extends "board/news_list.html" %}
 {% block content %}
 <link rel="stylesheet" href="/static/news.css/" />
-<img id="news_ad">
+<img style="image-rendering: -webkit-optimize-contrast;" id="news_ad">
 <section id="news_list">
     <ul class="news-page">
         {% for i in page_obj %}
         <a href="{% url 'board:column_detail' i.id %}">
             <li>
-                <img src="{{i.thumbnail.url}}">
+                <img style="image-rendering: -webkit-optimize-contrast;" src="{{i.thumbnail.url}}">
                 <div>
                     {{i.title|truncatechars:37}}
                     <p>

@@ -30,7 +30,7 @@
     </div>
     <div class="writer-info">
         <div>
-            <img src="{{ board.writer.image.url }}">
+            <img style="image-rendering: -webkit-optimize-contrast;" src="{{ board.writer.image.url }}">
             <span>
                 <p><a href="{% url 'user:profile' board.writer.id %}">{{ board.writer }}</a></p>
                 <p>{{ board.writer.join_date }}</p>
@@ -74,7 +74,7 @@
         </button>
         <button id="flag"><i class="fa-solid fa-flag"></i> 신고</button>
     </div>
-    <img id="detail-ad">
+    <img style="image-rendering: -webkit-optimize-contrast;" id="detail-ad">
     {% if request.user.is_authenticated %}
     <textarea id="comment_content" name="content" rows="4" placeholder="댓글을 입력하세요."></textarea>
     <button id="comment_create" onclick="comment_create()">등록</button>
@@ -93,7 +93,7 @@
     <ul id="comment_list">
         {% for comment in page_obj %}
         <li id="{{comment.id}}">
-            <img src="{{ comment.writer.image.url }}">
+            <img style="image-rendering: -webkit-optimize-contrast;" src="{{ comment.writer.image.url }}">
             <div>
                 {{comment.writer}}
                 <span>
@@ -128,7 +128,7 @@
                     {
                         $('#new_comment').append(
                             "<li id='" + response.comment_id + "'style='border-top:1px solid #848b79; border-bottom:1px solid #848b79;'>" +
-                            "<img src='" + response.img + "'><div>" + response.writer +
+                            "<img style='image-rendering: -webkit-optimize-contrast;'' src='" + response.img + "'><div>" + response.writer +
                             "<span><i class='fa-solid fa-clock' style='margin-right:3px;'></i>" + response.date_str + "<br><a onclick='comment_update(" + response.comment_id + ")'>수정</a>" +
                             " <a onclick='comment_delete(" + response.comment_id + ")'>삭제</a></span>" +
                             "<p id=" + response.comment_id + "content>" + response.content + "</p></div></li>"

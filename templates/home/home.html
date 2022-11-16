@@ -23,8 +23,8 @@
 <body>
     <header>
         <div class="top">
-            <a href="/"><img id="logo" src="{% static 'logo.png' %}"></a>
-            <img id="top-ad">
+            <a href="/"><img style="image-rendering: -webkit-optimize-contrast;" id="logo" src="{% static 'logo.png' %}"></a>
+            <img style="image-rendering: -webkit-optimize-contrast;" id="top-ad">
         </div>
         <nav>
             <form action="{% url 'search' %}" method="post">
@@ -88,7 +88,7 @@
                     {% for i in news_list %}
                     <a href="{% url 'board:news_detail' i.id %}">
                         <li>
-                            <img src="{{ i.thumbnail.url }}">
+                            <img style="image-rendering: -webkit-optimize-contrast;" src="{{ i.thumbnail.url }}">
                             <p>{{ i.title|truncatechars:37}}</p>
                         </li>
                     </a>
@@ -113,7 +113,7 @@
                         {% for list in column_list|slice:3 %}
                         <a href="{% url 'board:column_detail' list.id %}">
                             <li>
-                                <img src="{{ list.thumbnail.url }}">
+                                <img style="image-rendering: -webkit-optimize-contrast;" src="{{ list.thumbnail.url }}">
                                 <div>
                                     <span class="listintitle">{{list.title|truncatechars:30}}</span>
                                     <span class="listinsub">
@@ -130,7 +130,7 @@
                         {% for list in column_list|slice:"3:6" %}
                         <a href="{% url 'board:column_detail' list.id %}">
                             <li>
-                                <img src="{{ list.thumbnail.url }}">
+                                <img style="image-rendering: -webkit-optimize-contrast;" src="{{ list.thumbnail.url }}">
                                 <div>
                                     <span class="listintitle">{{list.title|truncatechars:30}}</span>
                                     <span class="listinsub">
@@ -240,7 +240,7 @@
                 {% if request.user.is_authenticated %}
                 <div class="profile">
                     <div class="profile-info">
-                        <img id="side-userimage" src="{{ request.user.image.url }}">
+                        <img style="image-rendering: -webkit-optimize-contrast;" id="side-userimage" src="{{ request.user.image.url }}">
                         <div>
                             <div>{{ request.user.nickname }}</div>
                             <a href="{% url 'user:profile' request.user.id %}">내정보</a>
@@ -260,7 +260,7 @@
                     </div>
                 </div>
                 {% endif %}
-                <img id="side1-ad">
+                <img style="image-rendering: -webkit-optimize-contrast;" id="side1-ad">
             </section>
             <section id="side2">
                 <dl>
@@ -284,7 +284,7 @@
                 <div class="container">
                     {% for i in events %}
                     <a href="{% url 'board:event_detail' i.id %}">
-                        <img src="{{ i.thumbnail.url }}">
+                        <img style="image-rendering: -webkit-optimize-contrast;" src="{{ i.thumbnail.url }}">
                     </a>
                     {% endfor %}
                 </div>
@@ -301,7 +301,7 @@
                     });
                 </script>
             </section>
-            <img id="side4-ad">
+            <img style="image-rendering: -webkit-optimize-contrast;" id="side4-ad">
         </aside>
     </main>
     {% endblock news %}

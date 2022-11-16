@@ -5,11 +5,11 @@
 <link rel="stylesheet" href="/static/event.css/" />
 <link rel="stylesheet" href="/static/summernote.css/" />
 <section id="write">
-    <img id="write-ad">
+    <img style="image-rendering: -webkit-optimize-contrast;" id="write-ad">
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="top">
-            <img id="preview">
+            <img style="image-rendering: -webkit-optimize-contrast;" id="preview">
             <label for="thumbnail">썸네일</label>
             <input type="file" name="thumbnail" accept="image/*" id="thumbnail" onchange="resizing()">
             <script>
@@ -20,7 +20,7 @@
                     img.src = URL.createObjectURL(f);
                     img.onload = function () {
                         var canvas = document.createElement('canvas');
-                        var maxsize = 600;
+                        var maxsize = 400;
                         var width = img.width;
                         var height = img.height;
                         if (width > height) {
@@ -47,7 +47,7 @@
                                     dataTranster.items.add(f2);
                                 });
                             document.querySelector('#thumbnail').files = dataTranster.files;
-                        }, 'image/jpeg', 0.7);
+                        }, 'image/jpeg', 0.5);
                     }
                     document.getElementById("preview").style.display = "inline-block";
                     document.getElementById("preview").src = img.src;

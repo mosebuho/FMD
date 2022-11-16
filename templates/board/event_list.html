@@ -31,7 +31,7 @@
         {% for i in page_obj %}
         <a href="{% url 'board:event_detail' i.id %}">
             <li>
-                <img src="{{i.thumbnail.url}}">
+                <img style="image-rendering: -webkit-optimize-contrast;" src="{{i.thumbnail.url}}">
                 <div>
                     {{i.title|truncatechars:37}}
                     <p>

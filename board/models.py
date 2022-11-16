@@ -165,8 +165,4 @@ class Event(models.Model):
 
 
 class Image(models.Model):
-    image = models.ImageField(
-        null=True,
-        blank=True,
-        upload_to="summernote/%Y-%m-%d/",
-    )
+    image = models.ImageField(null=True, blank=True, upload_to="summernote/%Y-%m-%d/")

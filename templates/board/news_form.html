@@ -5,11 +5,11 @@
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 <link rel="stylesheet" href="/static/summernote.css/" />
 <section id="write">
-    <img id="write-ad">
+    <img style="image-rendering: -webkit-optimize-contrast;" id="write-ad">
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="top">
-            <img id="preview">
+            <img style="image-rendering: -webkit-optimize-contrast;" id="preview">
             <label for="thumbnail">썸네일</label>
             <input type="file" accept="image/*" name="thumbnail" id="thumbnail" onchange="resizing()">
             <script>
@@ -20,7 +20,7 @@
                     img.src = URL.createObjectURL(f);
                     img.onload = function () {
                         var canvas = document.createElement('canvas');
-                        var maxsize = 600;
+                        var maxsize = 400;
                         var width = img.width;
                         var height = img.height;
                         if (width > height) {
@@ -80,7 +80,7 @@
                             img.src = URL.createObjectURL(file);
                             img.onload = function () {
                                 var canvas = document.createElement('canvas');
-                                var maxsize = 600;
+                                var maxsize = 800;
                                 var width = img.width;
                                 var height = img.height;
                                 if (width > height) {

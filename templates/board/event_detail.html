@@ -1,7 +1,7 @@
 {% extends "home/home.html" %}
 {% block content %}
 <link rel="stylesheet" href="/static/event.css/" />
-<img id="event-detail-ad">
+<img style="image-rendering: -webkit-optimize-contrast;" id="event-detail-ad">
 <section id="detail">
     {{ board.title }}
     {% if request.user.is_staff %}
