@@ -77,8 +77,8 @@ class CommunityDetailView(generic.DetailView):
         return context
 
     def get_comment_set(self):
-        queryset = self.object.comment_set.all()
-        paginator = Paginator(queryset, 6)
+        queryset = self.object.comment_set.order_by("-date")
+        paginator = Paginator(queryset, 25)
         page = self.request.GET.get("page")
         board_comments = paginator.get_page(page)
         return board_comments
@@ -124,73 +124,76 @@ def community_delete(request, pk):
 def like(request):
     board_id = request.GET["board_id"]
     board = Community.objects.get(id=board_id)
-    if board.like_users.filter(id=request.user.id).exists():
-        board.like_users.remove(request.user)
-        message = "off"
-        if request.user.is_authenticated:
+    if request.user.is_authenticated:
+        if board.like_users.filter(id=request.user.id).exists():
+            board.like_users.remove(request.user)
             board.like -= 1
             board.save()
-    elif not request.user.is_authenticated:
-        message = "notlogin"
-    else:
-        board.like_users.add(request.user)
-        message = "on"
-        if request.user.is_authenticated:
+            data = {"like": board.like, "message": "off"}
+        else:
+            board.like_users.add(request.user)
             board.like += 1
             board.save()
-    data = {"like": board.like, "message": message}
-    return JsonResponse(data)
+            data = {"like": board.like, "message": "on"}
+        return JsonResponse(data)
 
 
 def comment_create(request, pk):
     community = get_object_or_404(Community, id=pk)
     if request.user.is_authenticated:
         if request.POST.get("content"):
-            comment = Comment.objects.create(
-                community=community,
-                content=request.POST.get("content"),
-                writer=request.user,
-            )
-            community.save()
-            data = {
-                "writer": request.POST.get("writer"),
-                "content": request.POST.get("content"),
-                "date_str": comment.date_str,
-                "comment_id": comment.id,
-                "comment_count": community.comment_set.count(),
-                "img": request.user.image.url,
-            }
-            return JsonResponse(data)
+            if request.POST.get("parents_id"):
+                parents_id = request.POST.get("parents_id")
+                parents = Comment.objects.get(pk=parents_id)
+                comment = Comment.objects.create(
+                    community=community,
+                    content=request.POST.get("content"),
+                    writer=request.user,
+                    parents_id=parents.id,
+                )
+                comment.save()
+            else:
+                comment = Comment.objects.create(
+                    community=community,
+                    content=request.POST.get("content"),
+                    writer=request.user,
+                )
+                comment.save()
+        data = {
+            "writer": request.POST.get("writer"),
+            "content": request.POST.get("content"),
+            "date_str": comment.date_str,
+            "comment_id": comment.id,
+            "comment_count": community.comment_set.count(),
+            "img": request.user.image.url,
+        }
+        return JsonResponse(data)
 
 
-def comment_update(request, pk):
+def comment_update(request):
     comment_id = request.POST.get("comment_id")
     comment = Comment.objects.get(pk=comment_id)
-    board = get_object_or_404(Community, id=pk)
     edit_comment = request.POST.get("edit_comment")
     if request.user == comment.writer:
         if edit_comment:
             comment.content = edit_comment
             comment.save()
-            board.save()
-    data = {
-        "comment_id": comment_id,
-        "content": comment.content,
-        "edit_comment": edit_comment,
-    }
-    return JsonResponse(data)
+        data = {
+            "comment_id": comment_id,
+            "content": comment.content,
+        }
+        return JsonResponse(data)
 
 
 def comment_delete(request, pk):
-    board = get_object_or_404(Community, id=pk)
+    community = get_object_or_404(Community, id=pk)
     comment_id = request.POST.get("comment_id")
     comment = Comment.objects.get(pk=comment_id)
     if request.user == comment.writer:
         comment.delete()
-        board.save()
         data = {
             "comment_id": comment_id,
-            "comment_count": board.comment_set.count(),
+            "comment_count": community.comment_set.count(),
         }
         return JsonResponse(data)
 

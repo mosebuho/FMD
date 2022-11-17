@@ -47,15 +47,24 @@ class Comment(models.Model):
     writer = models.ForeignKey(
         User, on_delete=models.CASCADE, null=True, verbose_name="작성자"
     )
-    content = models.CharField(max_length=2000, verbose_name="댓글 내용")
+    content = models.CharField(max_length=2000, verbose_name="내용")
     date = models.DateTimeField(auto_now_add=True, verbose_name="작성일")
+    parents = models.ForeignKey(
+        "self",
+        on_delete=models.CASCADE,
+        related_name="recomment",
+        null=True,
+        verbose_name="작성자",
+    )
 
     @property
     def date_str(self):
         return self.date.strftime("%Y-%m-%d %H:%M")
 
     class Meta:
-        ordering = ["-date"]
+        db_table = "Comment"
+        verbose_name = "댓글"
+        verbose_name_plural = "댓글"
 
 
 class News(models.Model):
