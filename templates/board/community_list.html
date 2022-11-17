@@ -29,9 +29,10 @@
     <table>
         <thead>
             <tr>
-                <th style="width:50px;">추천</th>
-                <th style="width:50px;">조회수</th>
+                <th style="width:50px;">번호</th>
                 <th style="width:605px;">제목</th>
+                <th style="width:50px;">조회수</th>
+                <th style="width:50px;">추천</th>
                 <th style="width:80px;">작성자</th>
                 <th style="width:50px;">작성일</th>
             </tr>
@@ -39,14 +40,15 @@
         <tbody>
             {% for i in page_obj %}
             <tr>
-                <td>{{ i.like }}</td>
-                <td>{{ i.view }}</td>
+                <td>{{ i.id }}</td>
                 <td id="title">
                     <a href="{% url 'board:community_detail' i.pk %}" target="_self" style="text-decoration: none">
                         {{ i.title|truncatechars:45 }}
                     </a>
                     <i class="fa-solid fa-comment-dots"></i> {{ i.comment_set.count }}
                 </td>
+                <td>{{ i.view }}</td>
+                <td>{{ i.like }}</td>
                 <td>{{ i.writer }}</td>
                 <td>{{ i.date_short }}</td>
             </tr>

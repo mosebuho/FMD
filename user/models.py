@@ -20,7 +20,7 @@ class User(AbstractUser):
         return datetime.now() - timedelta(days=30) < self.n_changed
 
     def __str__(self):
-        return self.username
+        return self.nickname
 
     class Meta:
         db_table = "User"

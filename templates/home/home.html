@@ -242,7 +242,7 @@
                     <div class="profile-info">
                         <img style="image-rendering: -webkit-optimize-contrast;" id="side-userimage" src="{{ request.user.image.url }}">
                         <div>
-                            <div>{{ request.user.nickname }}</div>
+                            <div>{{ request.user }}</div>
                             <a href="{% url 'user:profile' request.user.id %}">내정보</a>
                             <a href="{% url 'account_logout' %}" id="logout">&nbsp로그아웃</a>
                         </div>

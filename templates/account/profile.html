@@ -212,7 +212,7 @@
                 {% if request.user.id == user.id %}
                 <th style="border:none;"></th>
                 <td style="text-align: right; font-size:14px; border:none;">
-                    <a href="" style="margin-right:10px;">
+                    <a href="{% url 'account_change_password' %}" style="margin-right:10px;">
                         <button
                             style="background:#363636; color:#bbb; border:1px solid #484848; width:100px; height:35px; cursor:pointer;">비밀번호
                             변경</button>

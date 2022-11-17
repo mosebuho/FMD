@@ -33,3 +33,4 @@ def search(request):
                 "event": event,
             },
         )
+
