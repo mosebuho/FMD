@@ -1,11 +1,46 @@
-section#notice {
+section#question .question {
+    display: flex;
+    flex-direction: row;
+    height: 100px;
+}
+
+section#question .title {
+    margin-bottom: 10px;
+}
+
+section#question textarea {
+    width: 100%;
+    font-family: inherit;
+    background: #363636;
+    color: #aaa;
+    padding: 5px;
+    outline: none;
+    font-size: 15px;
+    border: 1px solid #484848;
+    resize: none;
+}
+
+section#question button {
+    height: 100px;
+    vertical-align: 43px;
+    width: 55px;
+    background: #848b79;
+    color: #ddd;
+    cursor: pointer;
+    border: 1px solid #484848;
+    border-left: none;
+}
+
+section#notice,
+section#question {
     width: 900px;
     background: #272727;
     margin: 5px 0 0 0;
     padding: 10px;
 }
 
-section#notice .title {
+section#notice .title,
+section#question .title {
     font-size: 20px;
     padding: 2px 0 12px 0;
     border-bottom: #848b79 1px solid;

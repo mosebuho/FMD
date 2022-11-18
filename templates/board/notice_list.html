@@ -2,6 +2,40 @@
 {% block content %}
 <link rel="stylesheet" href="/static/notice.css/" />
 <img style="image-rendering: -webkit-optimize-contrast;" id="ad">
+<section id="question">
+    <div class="title">
+        건의
+    </div>
+    <div class="question">
+        {% if request.user.is_authenticated %}
+        <textarea id="content" placeholder="내용을 입력하세요."></textarea>
+        <button onclick="question()">등록</button>
+        {% else %}
+        <textarea placeholder="내용을 입력하세요." onclick="alert('로그인이 필요한 기능입니다.')"></textarea>
+        <button onclick="alert('로그인이 필요한 기능입니다.')">등록</button>
+        {% endif %}
+        <script>
+            function question() {
+                if ($('#content').val() == "") { alert('내용을 입력해주세요.'); }
+                else {
+                    $.ajax({
+                        type: "POST",
+                        url: "{% url 'board:question' %}",
+                        dataType: "json",
+                        data: {
+                            content: $("#content").val(),
+                            csrfmiddlewaretoken: '{{csrf_token}}',
+                        },
+                        success: function (response) {
+                            alert("문의가 성공적으로 접수되었습니다.")
+                            $('#content').val("");
+                        },
+                    })
+                }
+            };
+        </script>
+    </div>
+</section>
 <section id="notice">
     <div class="title">
         공지

@@ -52,3 +52,10 @@ class EventAdmin(admin.ModelAdmin):
         "start",
         "end",
     )
+
+@admin.register(Question)
+class EventAdmin(admin.ModelAdmin):
+    list_display = (
+        "content",
+        "writer",
+    )

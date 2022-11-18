@@ -35,5 +35,6 @@ urlpatterns = [
     path("notice/create/", views.NoticeCreateView.as_view(), name="notice_create"),
     path("notice/<int:pk>/update/", views.NoticeUpdateView.as_view(), name="notice_update"),
     path("notice/<int:pk>/delete/", views.notice_delete, name="notice_delete"),
+    path("question/", views.question, name="question"),
     path("summernote/", views.summernote, name="summernote"),
 ]

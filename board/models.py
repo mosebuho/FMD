@@ -175,3 +175,16 @@ class Event(models.Model):
 
 class Image(models.Model):
     image = models.ImageField(null=True, blank=True, upload_to="summernote/%Y-%m-%d/")
+
+class Question(models.Model):
+    content = models.TextField(verbose_name="내용")
+    writer = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name="작성자")
+    date = models.DateTimeField(auto_now_add=True, verbose_name="작성일")
+
+    def __str__(self):
+        return self.content
+
+    class Meta:
+        db_table = "Question"
+        verbose_name = "건의"
+        verbose_name_plural = "건의"

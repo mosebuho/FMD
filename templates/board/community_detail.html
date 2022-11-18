@@ -67,7 +67,6 @@
     {% if request.user.is_authenticated %}
     <textarea id="comment_content" name="content" rows="4" placeholder="댓글을 입력하세요."></textarea>
     <button id="comment_create" onclick="comment_create()">등록</button>
-    <input type="hidden" id="comment_writer" value={{request.user}}>
     {% else %}
     <textarea id="comment_content" rows="4" placeholder="댓글을 입력하세요." onclick="alert('로그인이 필요한 기능입니다.')"></textarea>
     {% endif %}
@@ -93,42 +92,6 @@
                 <p style="white-space:pre-wrap;" id="{{comment.id}}content">{{comment.content|safe}}</p>
                 <p id="{{ comment.id }}recomment"><a style="cursor: pointer; color:#848b79;"
                         onclick="recomment_create('{{ comment.id }}')">댓글</a></p>
-                <script>
-                    function recomment_create(value) {
-                        $("#" + value + "recomment").html("<textarea id='recomment_content' style='width:808px; margin-top:10px; height:85px;'></textarea>" +
-                            "<button id='cancel'>취소</button> <button id='done'>등록</button>")
-                        $("#cancel").click(function () {
-                            $("#" + value + "recomment").replaceWith("<p id='" + value + "recomment'><a style='cursor: pointer; color:#848b79;' onclick='recomment_create(" + value + ")'>댓글</a></p>");
-                        });
-                        $("#done").click(function () {
-                            if ($("#recomment_content").val() == "") { alert('댓글을 입력해주세요.'); }
-                            else {
-                                $.ajax({
-                                    type: "POST",
-                                    url: "{% url 'board:comment_create' board.id %}",
-                                    dataType: "json",
-                                    data: {
-                                        parents_id: value,
-                                        writer: $("#comment_writer").val(),
-                                        content: $("#recomment_content").val(),
-                                        csrfmiddlewaretoken: '{{csrf_token}}',
-                                    },
-                                    success: function (response) {
-                                        $("#" + value + "new_recomment").append(
-                                            "<li id='" + response.comment_id + "recomment'style='border-top:1px solid #848b79; border-bottom:1px solid #848b79;'>" +
-                                            "<img style='image-rendering: -webkit-optimize-contrast;' src='" + response.img + "'><div>" + response.writer +
-                                            "<span><i class='fa-solid fa-clock' style='margin-right:3px;'></i>" + response.date_str + "<br><a onclick='comment_update(" + response.comment_id + ")'>수정</a>" +
-                                            " <a onclick='comment_delete(" + response.comment_id + ")'>삭제</a></span>" +
-                                            "<p style='white-space:pre-wrap;' id=" + response.comment_id + "content>" + response.content + "</p></div></li>"
-                                        );
-                                        $("#" + value + "recomment").replaceWith("<p id='" + value + "recomment'><a style='cursor:pointer; color:#848b79;' onclick='recomment_create(" + value + ")'>댓글</a></p>");
-                                        $("#comment_count").html(response.comment_count);
-                                    },
-                                });
-                            }
-                        });
-                    }
-                </script>
                 <ul style="padding:0; margin-top:4px;" id="recomment_list">
                     {% for recomment in comment.recomment.all %}
                     <li style="border-bottom:none; margin-top:0;" id="{{recomment.id}}">
@@ -163,9 +126,7 @@
             $.ajax({
                 type: "POST",
                 url: "{% url 'board:comment_create' board.id %}",
-                dataType: "json",
                 data: {
-                    writer: $("#comment_writer").val(),
                     content: $("#comment_content").val(),
                     csrfmiddlewaretoken: '{{csrf_token}}',
                 },
@@ -198,7 +159,6 @@
                 $.ajax({
                     type: "POST",
                     url: "{% url 'board:comment_update' %}",
-                    dataType: "json",
                     data: {
                         comment_id: value,
                         edit_comment: $("#edit_comment").val(),
@@ -217,7 +177,6 @@
             $.ajax({
                 type: "POST",
                 url: "{% url 'board:comment_delete' board.id %}",
-                dataType: "json",
                 data: {
                     comment_id: value,
                     csrfmiddlewaretoken: "{{csrf_token}}",
@@ -228,6 +187,38 @@
                 },
             });
         }
+    }
+    function recomment_create(value) {
+        $("#" + value + "recomment").html("<textarea id='recomment_content' style='width:808px; margin-top:10px; height:85px;'></textarea>" +
+            "<button id='cancel'>취소</button> <button id='done'>등록</button>")
+        $("#cancel").click(function () {
+            $("#" + value + "recomment").replaceWith("<p id='" + value + "recomment'><a style='cursor: pointer; color:#848b79;' onclick='recomment_create(" + value + ")'>댓글</a></p>");
+        });
+        $("#done").click(function () {
+            if ($("#recomment_content").val() == "") { alert('댓글을 입력해주세요.'); }
+            else {
+                $.ajax({
+                    type: "POST",
+                    url: "{% url 'board:comment_create' board.id %}",
+                    data: {
+                        parents_id: value,
+                        content: $("#recomment_content").val(),
+                        csrfmiddlewaretoken: '{{csrf_token}}',
+                    },
+                    success: function (response) {
+                        $("#" + value + "new_recomment").append(
+                            "<li id='" + response.comment_id + "'style='border-top:1px solid #848b79; border-bottom:1px solid #848b79;'>" +
+                            "<img style='image-rendering: -webkit-optimize-contrast;' src='" + response.img + "'><div>" + response.writer +
+                            "<span><i class='fa-solid fa-clock' style='margin-right:3px;'></i>" + response.date_str + "<br><a onclick='comment_update(" + response.comment_id + ")'>수정</a>" +
+                            " <a onclick='comment_delete(" + response.comment_id + ")'>삭제</a></span>" +
+                            "<p style='white-space:pre-wrap;' id=" + response.comment_id + "content>" + response.content + "</p></div></li>"
+                        );
+                        $("#" + value + "recomment").replaceWith("<p id='" + value + "recomment'><a style='cursor:pointer; color:#848b79;' onclick='recomment_create(" + value + ")'>댓글</a></p>");
+                        $("#comment_count").html(response.comment_count);
+                    },
+                });
+            }
+        });
     }
 </script>
 {% endblock detail %}

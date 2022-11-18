@@ -160,7 +160,7 @@ def comment_create(request, pk):
                 )
                 comment.save()
         data = {
-            "writer": request.POST.get("writer"),
+            "writer": request.user.nickname,
             "content": request.POST.get("content"),
             "date_str": comment.date_str,
             "comment_id": comment.id,
@@ -179,7 +179,6 @@ def comment_update(request):
             comment.content = edit_comment
             comment.save()
         data = {
-            "comment_id": comment_id,
             "content": comment.content,
         }
         return JsonResponse(data)
@@ -192,7 +191,6 @@ def comment_delete(request, pk):
     if request.user == comment.writer:
         comment.delete()
         data = {
-            "comment_id": comment_id,
             "comment_count": community.comment_set.count(),
         }
         return JsonResponse(data)
@@ -486,3 +484,14 @@ def summernote(request):
     image.save()
     data = {"url": image.image.url}
     return JsonResponse(data)
+
+
+def question(request):
+    if request.user.is_authenticated:
+        question = Question.objects.create(
+            content=request.POST.get("content"),
+            writer=request.user,
+        )
+        question.save()
+        data = {}
+        return JsonResponse(data)
