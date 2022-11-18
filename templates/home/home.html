@@ -23,7 +23,8 @@
 <body>
     <header>
         <div class="top">
-            <a href="/"><img style="image-rendering: -webkit-optimize-contrast;" id="logo" src="{% static 'logo.png' %}"></a>
+            <a href="/"><img style="image-rendering: -webkit-optimize-contrast;" id="logo"
+                    src="{% static 'logo.png' %}"></a>
             <img style="image-rendering: -webkit-optimize-contrast;" id="top-ad">
         </div>
         <nav>
@@ -240,7 +241,8 @@
                 {% if request.user.is_authenticated %}
                 <div class="profile">
                     <div class="profile-info">
-                        <img style="image-rendering: -webkit-optimize-contrast;" id="side-userimage" src="{{ request.user.image.url }}">
+                        <img style="image-rendering: -webkit-optimize-contrast;" id="side-userimage"
+                            src="{{ request.user.image.url }}">
                         <div>
                             <div>{{ request.user }}</div>
                             <a href="{% url 'user:profile' request.user.id %}">내정보</a>
@@ -306,6 +308,7 @@
     </main>
     {% endblock news %}
     <footer>
+        Copyright 2022. 4MILLDUK all rights reserved.
     </footer>
 </body>
 

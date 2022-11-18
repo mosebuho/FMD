@@ -573,5 +573,9 @@ footer {
     height: 100px;
     width: 100%;
     margin-top: 50px;
+    padding: 35px 0 0 0;
     border-top: 1px solid #484848;
+    color: #aaa;
+    font-size: 13px;
+    text-align: center;
 }
