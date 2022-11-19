@@ -1,6 +1,6 @@
 {% extends "home/home.html" %}
 {% block news %}
-<link rel="stylesheet" href="/static/news.css/" />
+<link rel="stylesheet" type="text/css" href="{% static 'news.css' %}" />
 <input type="hidden" value={{news.view_count}}>
 <div class="ad">
     <img style="image-rendering: -webkit-optimize-contrast;" id="ad">
