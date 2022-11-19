@@ -1,5 +1,8 @@
 from pathlib import Path
 import os
+import pymysql
+
+pymysql.install_as_MySQLdb()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -9,9 +12,7 @@ SECRET_KEY = "django-insecure-b_2pza-(zid$e1k_74=ulf(lb+6u7u#ikolgg^2p+scw^kl13-
 
 DEBUG = True
 
-ALLOWED_HOSTS = [
-    ".ap-northeast-2.compute.amazonaws.com"
-]
+ALLOWED_HOSTS = [".ap-northeast-2.compute.amazonaws.com"]
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -27,9 +28,9 @@ INSTALLED_APPS = [
     "allauth.account",
     "allauth.socialaccount",
     "django_cleanup.apps.CleanupConfig",
-    'allauth.socialaccount.providers.google',
-    'allauth.socialaccount.providers.kakao',
-    'allauth.socialaccount.providers.naver',
+    "allauth.socialaccount.providers.google",
+    "allauth.socialaccount.providers.kakao",
+    "allauth.socialaccount.providers.naver",
 ]
 
 MIDDLEWARE = [
@@ -66,8 +67,13 @@ WSGI_APPLICATION = "FMD.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": "django.db.backends.mysql",
+        "NAME": "mosebuho",
+        "USER": "admin",
+        "PASSWORD": "ahtmqngh",
+        "HOST": "mosebuho.cvbbyywtu2uh.ap-northeast-2.rds.amazonaws.com",
+        "PORT": "3306",
+        "OPTIONS": {"init_command": "SET sql_mode='STRICT_TRANS_TABLES'"},
     }
 }
 
@@ -86,7 +92,7 @@ USE_I18N = True
 USE_TZ = False
 
 STATIC_URL = "static/"
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
