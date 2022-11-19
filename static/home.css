@@ -124,6 +124,7 @@ nav li {
 
 nav a {
     color: #ddd;
+    cursor: pointer;
 }
 
 section#news {
@@ -168,12 +169,11 @@ section#news li p {
     padding: 0 3px 0 3px
 }
 
-
-
 section#column {
     border: #484848 solid 1px;
     background: #272727;
     width: 900px;
+    height: 437px;
     padding: 10px;
     margin-top: 10px;
 }
