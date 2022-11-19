@@ -10,7 +10,7 @@ SECRET_KEY = "django-insecure-b_2pza-(zid$e1k_74=ulf(lb+6u7u#ikolgg^2p+scw^kl13-
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    "54.180.115.6"
+    ".ap-northeast-2.compute.amazonaws.com"
 ]
 
 INSTALLED_APPS = [
