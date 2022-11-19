@@ -58,4 +58,5 @@ class EventAdmin(admin.ModelAdmin):
     list_display = (
         "content",
         "writer",
+        "date",
     )

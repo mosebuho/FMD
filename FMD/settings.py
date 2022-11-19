@@ -39,6 +39,9 @@ INSTALLED_APPS = [
     "allauth.account",
     "allauth.socialaccount",
     "django_cleanup.apps.CleanupConfig",
+    'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.kakao',
+    'allauth.socialaccount.providers.naver',
 ]
 
 MIDDLEWARE = [
