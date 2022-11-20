@@ -72,7 +72,10 @@
                                             var data = new FormData()
                                             data.append("image", f2)
                                             $.ajax({
-                                                data: data,
+                                                data: {
+                                                    data,
+                                                    csrfmiddlewaretoken: '{{csrf_token}}',
+                                                },
                                                 type: "POST",
                                                 url: "{% url 'user:image_edit' user.id %}",
                                                 contentType: false,

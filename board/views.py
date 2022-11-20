@@ -10,7 +10,6 @@ from django.core.paginator import Paginator
 from user.decorator import *
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
-from django.views.decorators.csrf import csrf_exempt
 
 
 class CommunityListView(generic.ListView):
@@ -477,7 +476,6 @@ def event_delete(request, pk):
     return redirect("board:event_list")
 
 
-@csrf_exempt
 def summernote(request):
     f2 = request.FILES.get("file")
     image = Image(image=f2)

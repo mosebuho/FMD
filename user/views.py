@@ -5,7 +5,6 @@ import datetime
 from .forms import CheckPasswordForm
 from django.shortcuts import render, redirect
 from django.contrib.auth import logout
-from django.views.decorators.csrf import csrf_exempt
 
 
 def check(request):
@@ -68,7 +67,6 @@ def name_edit(request, pk):
         return JsonResponse(data)
 
 
-@csrf_exempt
 def image_edit(request, pk):
     target = User.objects.get(pk=pk)
     edit_image = request.FILES.get("image")

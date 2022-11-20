@@ -59,7 +59,10 @@
                                     var data = new FormData()
                                     data.append("file", f2)
                                     $.ajax({
-                                        data: data,
+                                        data: {
+                                            data,
+                                            csrfmiddlewaretoken: '{{csrf_token}}',
+                                        },
                                         type: "POST",
                                         url: "{% url 'board:summernote' %}",
                                         contentType: false,
