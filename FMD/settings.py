@@ -8,7 +8,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = "django-insecure-b_2pza-(zid$e1k_74=ulf(lb+6u7u#ikolgg^2p+scw^kl13-"
 
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [".4millduk.com"]
 
@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     "allauth.socialaccount.providers.google",
     "allauth.socialaccount.providers.kakao",
     "allauth.socialaccount.providers.naver",
+    "storages",
 ]
 
 MIDDLEWARE = [
@@ -82,12 +83,6 @@ TIME_ZONE = "Asia/Seoul"
 USE_I18N = True
 USE_TZ = False
 
-STATIC_URL = "/static/"
-STATIC_ROOT = os.path.join(BASE_DIR, "static")
-
-MEDIA_URL = "/media/"
-MEDIA_ROOT = os.path.join(BASE_DIR, "media")
-
 DJANGORESIZED_DEFAULT_FORCE_FORMAT = "JPEG"
 DJANGORESIZED_DEFAULT_FORMAT_EXTENSIONS = {"JPEG": ".jpg"}
 DJANGORESIZED_DEFAULT_NORMALIZE_ROTATION = True
@@ -132,3 +127,17 @@ EMAIL_USE_TLS = True
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
 ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 1
 ACCOUNT_EMAIL_SUBJECT_PREFIX = "4MILLDUK "
+
+
+STATICFILES_STORAGE = "FMD.storage.S3StaticStorage"
+DEFAULT_FILE_STORAGE = "FMD.storage.S3MediaStorage"
+
+AWS_ACCESS_KEY_ID = "AKIA3H7ZMVMP5MEIUVTR"
+AWS_SECRET_ACCESS_KEY = "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"
+AWS_S3_REGION_NAME = "ap-northeast-2"
+AWS_STORAGE_BUCKET_NAME = "4millduk"
+
+AWS_S3_CUSTOM_DOMAIN = (
+    f"{AWS_STORAGE_BUCKET_NAME}.s3.{AWS_S3_REGION_NAME}.amazonaws.com"
+)
+AWS_DEFAULT_ACL = "public-read"
