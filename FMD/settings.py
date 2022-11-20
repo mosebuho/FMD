@@ -8,10 +8,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = "django-insecure-b_2pza-(zid$e1k_74=ulf(lb+6u7u#ikolgg^2p+scw^kl13-"
 
+DEBUG = True
 
-DEBUG = False
-
-ALLOWED_HOSTS = [".ap-northeast-2.compute.amazonaws.com", ".4millduk.com"]
+ALLOWED_HOSTS = [".4millduk.com"]
 
 INSTALLED_APPS = [
     "django.contrib.admin",
