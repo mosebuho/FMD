@@ -6,7 +6,6 @@ pymysql.install_as_MySQLdb()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-
 SECRET_KEY = "django-insecure-b_2pza-(zid$e1k_74=ulf(lb+6u7u#ikolgg^2p+scw^kl13-"
 
 
@@ -84,10 +83,10 @@ TIME_ZONE = "Asia/Seoul"
 USE_I18N = True
 USE_TZ = False
 
-STATIC_URL = "static/"
+STATIC_URL = "/static/"
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
-MEDIA_URL = "media/"
+MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 DJANGORESIZED_DEFAULT_FORCE_FORMAT = "JPEG"
