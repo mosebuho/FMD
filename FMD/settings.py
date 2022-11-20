@@ -12,7 +12,7 @@ SECRET_KEY = "django-insecure-b_2pza-(zid$e1k_74=ulf(lb+6u7u#ikolgg^2p+scw^kl13-
 
 DEBUG = True
 
-ALLOWED_HOSTS = [".ap-northeast-2.compute.amazonaws.com"]
+ALLOWED_HOSTS = [".ap-northeast-2.compute.amazonaws.com", ".4millduk.com"]
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -78,11 +78,7 @@ DATABASES = {
 }
 
 
-AUTH_PASSWORD_VALIDATORS = [
-    {
-        "NAME": "django.contrib.auth.password_validation.PasswordValidator",
-    },
-]
+AUTH_PASSWORD_VALIDATORS = []
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
