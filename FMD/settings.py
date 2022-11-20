@@ -10,7 +10,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-b_2pza-(zid$e1k_74=ulf(lb+6u7u#ikolgg^2p+scw^kl13-"
 
 
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [".ap-northeast-2.compute.amazonaws.com", ".4millduk.com"]
 
@@ -77,9 +77,6 @@ DATABASES = {
     }
 }
 
-
-AUTH_PASSWORD_VALIDATORS = []
-
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 LANGUAGE_CODE = "ko-kr"
@@ -90,8 +87,8 @@ USE_TZ = False
 STATIC_URL = "static/"
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
-MEDIA_URL = "/media/"
-MEDIA_ROOT = os.path.join(BASE_DIR, "media/")
+MEDIA_URL = "media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 DJANGORESIZED_DEFAULT_FORCE_FORMAT = "JPEG"
 DJANGORESIZED_DEFAULT_FORMAT_EXTENSIONS = {"JPEG": ".jpg"}
