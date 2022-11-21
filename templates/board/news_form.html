@@ -101,11 +101,11 @@
                                 ctx.drawImage(img, 0, 0, width, height);
                                 canvas.toBlob(function (blob) {
                                     var f2 = new File([blob], fileName + ".jpeg");
-                                    var data = new FormData()
-                                    data.append("file", f2)
+                                    var form = new FormData()
+                                    form.append("file", f2)
                                     $.ajax({
                                         data: {
-                                            data,
+                                            form: form,
                                             csrfmiddlewaretoken: '{{csrf_token}}',
                                         },
                                         type: "POST",
