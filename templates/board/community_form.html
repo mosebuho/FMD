@@ -58,13 +58,11 @@
                                     ctx.drawImage(img, 0, 0, width, height);
                                     canvas.toBlob(function (blob) {
                                         var f2 = new File([blob], fileName + ".jpeg");
-                                        var form = new FormData()
-                                        form.append("file", f2)
+                                        var data = new FormData()
+                                        data.append("file", f2)
+                                        data.append('csrfmiddlewaretoken', '{{ csrf_token }}');
                                         $.ajax({
-                                            data: {
-                                                form: form,
-                                                csrfmiddlewaretoken: '{{csrf_token}}',
-                                            },
+                                            data: data,
                                             type: "POST",
                                             url: "{% url 'board:summernote' %}",
                                             contentType: false,

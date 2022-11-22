@@ -1,0 +1,43 @@
+.note-toolbar {
+    background: #363636;
+    text-align: left;
+    border: none;
+}
+
+.note-editor.note-frame {
+    border: none;
+}
+
+.note-btn {
+    background: #363636;
+    border: none;
+    color: #ddd;
+}
+
+.note-editable {
+    color: #ddd;
+    text-align: left;
+    font-family: inherit;
+}
+
+.note-editable p {
+    margin: 5px 0;
+}
+
+.note-btn.active {
+    background: #272727;
+    border: none;
+    color: #ddd;
+}
+
+.note-editor.note-frame .note-statusbar .note-resizebar .note-icon-bar {
+    border-top: 1px solid #aaa;
+}
+
+.note-btn:hover {
+    border: none;
+}
+
+.note-btn.dropdown-toggle {
+    border: none;
+}
