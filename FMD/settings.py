@@ -8,7 +8,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = "django-insecure-b_2pza-(zid$e1k_74=ulf(lb+6u7u#ikolgg^2p+scw^kl13-"
 
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = [".4millduk.com"]
 
@@ -29,7 +29,6 @@ INSTALLED_APPS = [
     "allauth.socialaccount.providers.google",
     "allauth.socialaccount.providers.kakao",
     "allauth.socialaccount.providers.naver",
-    "storages",
 ]
 
 MIDDLEWARE = [
@@ -83,6 +82,12 @@ TIME_ZONE = "Asia/Seoul"
 USE_I18N = True
 USE_TZ = False
 
+STATIC_URL = "/static/"
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+
 DJANGORESIZED_DEFAULT_FORCE_FORMAT = "JPEG"
 DJANGORESIZED_DEFAULT_FORMAT_EXTENSIONS = {"JPEG": ".jpg"}
 DJANGORESIZED_DEFAULT_NORMALIZE_ROTATION = True
@@ -113,10 +118,7 @@ ACCOUNT_EMAIL_REQUIRED = True
 ACCOUNT_USERNAME_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 ACCOUNT_CONFIRM_EMIAL_ON_GET = True
-ACCOUNT_FORMS = {
-    "login": "user.forms.LoginForm",
-    "signup": "user.forms.SignupForm",
-}
+ACCOUNT_FORMS = {"login": "user.forms.LoginForm", "signup": "user.forms.SignupForm"}
 ACCOUNT_LOGOUT_ON_GET = True
 
 EMAIL_HOST = "smtp.gmail.com"
@@ -124,22 +126,6 @@ EMAIL_PORT = "587"
 EMAIL_HOST_USER = "4millduk@gmail.com"
 EMAIL_HOST_PASSWORD = "dmixagdeuhplxcax"
 EMAIL_USE_TLS = True
-DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+DEFAULT_FROM_EMAIL = "4MILLDUK <4millduk@gmail.com>"
 ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 1
 ACCOUNT_EMAIL_SUBJECT_PREFIX = "4MILLDUK "
-
-
-AWS_ACCESS_KEY_ID = "AKIA3H7ZMVMP5MEIUVTR"
-AWS_SECRET_ACCESS_KEY = "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"
-AWS_STORAGE_BUCKET_NAME = "4millduk"
-AWS_REGION = 'ap-northeast-2'
-AWS_S3_CUSTOM_DOMAIN = '%s.s3.%s.amazonaws.com' % (AWS_STORAGE_BUCKET_NAME, AWS_REGION)
-AWS_S3_FILE_OVERWRITE = False
-AWS_DEFAULT_ACL = 'public-read'
-AWS_LOCATION = 'static'
-
-STATIC_URL = 'https://%s/%s/' % (AWS_S3_CUSTOM_DOMAIN, AWS_LOCATION)
-DEFAULT_FILE_STORAGE = "FMD.storage.MediaStorage"
-STATICFILES_STORAGE = "FMD.storage.StaticStorage"
-MEDIAFILES_LOCATION = 'media'
-STATICFILES_LOCATION = 'static'

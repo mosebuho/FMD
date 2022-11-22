@@ -478,11 +478,15 @@ section#side2 li span {
     font-size: 13px;
 }
 
-section#side2 div {
+section#side2 .comments {
     border-top: 1px solid #484848;
     background: #272727;
     height: 265px;
     padding: 5px;
+}
+
+section#side2 .comments dd {
+    font-size: 14px;
 }
 
 
