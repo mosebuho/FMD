@@ -1,6 +1,6 @@
-{% extends "home/home.html" %}
+{% extends "board/base.html" %}
 {% load static %}
-{% block content %}
+{% block board %}
 <link rel="stylesheet" type="text/css" href="{% static 'community.css' %}" />
 {% block write %}
 <section id="best">
@@ -24,7 +24,6 @@
         </ul>
     </div>
 </section>
-<img style="image-rendering: -webkit-optimize-contrast;" id="list-ad">
 {% block detail %}
 <section id="list">
     <table>
@@ -83,4 +82,4 @@
 </section>
 {% endblock detail %}
 {% endblock write %}
-{% endblock content %}
+{% endblock board %}

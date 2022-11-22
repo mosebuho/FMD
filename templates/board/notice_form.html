@@ -1,12 +1,11 @@
-{% extends "home/home.html" %}
+{% extends "board/base.html" %}
 {% load static %}
-{% block content %}
+{% block board %}
 <link rel="stylesheet" type="text/css" href="{% static 'news.css' %}" />
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
 <link rel="stylesheet" type="text/css" href="{% static 'summernote.css' %}" />
 <section id="write">
-    <img style="image-rendering: -webkit-optimize-contrast;" id="write-ad">
     <form method="post">
         {% csrf_token %}
         <div class="top">
@@ -89,4 +88,4 @@
         $(window).off('beforeunload');
     });
 </script>
-{% endblock content %}
+{% endblock board %}

@@ -1,10 +1,3 @@
-img#news_ad {
-    background: #272727;
-    width: 920px;
-    height: 120.5px;
-    margin: 5px 0;
-}
-
 section#news_list {
     width: 910px;
     padding: 0 5px;
@@ -83,16 +76,9 @@ section#button button a {
 
 /* detail */
 
-.ad {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin: 10px 0 0 0;
-}
-
 section#detail {
     margin: 10px 0 0 0;
-    width: 1180px;
+    width: 900px;
     border: 1px solid #484848;
     background: #272727;
     padding: 10px;
@@ -136,14 +122,6 @@ section#detail .content p {
 /* write */
 section#write {
     text-align: center;
-}
-
-section#write #write-ad {
-    border: 1px solid #484848;
-    background: #272727;
-    width: 920px;
-    height: 120.5px;
-    margin-top: 5px;
 }
 
 section#write form {

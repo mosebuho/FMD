@@ -1,12 +1,8 @@
-{% extends "home/home.html" %}
+{% extends "board/base.html" %}
 {% load static %}
-{% block news %}
+{% block board %}
 <link rel="stylesheet" type="text/css" href="{% static 'news.css' %}" />
 <input type="hidden" value={{news.view_count}}>
-<div class="ad">
-    <img style="image-rendering: -webkit-optimize-contrast;" id="ad">
-    <img style="image-rendering: -webkit-optimize-contrast;" id="ad">
-</div>
 <section id="detail">
     {{ news.title }}
     {% block column %}
@@ -34,4 +30,4 @@
         {{ news.content | safe }}
     </div>
 </section>
-{% endblock news %}
+{% endblock board %}

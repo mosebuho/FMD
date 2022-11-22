@@ -62,7 +62,6 @@
         {% endif %}
         <button id="flag"><i class="fa-solid fa-flag"></i> 신고</button>
     </div>
-    <img style="image-rendering: -webkit-optimize-contrast;" id="detail-ad">
     {% if request.user.is_authenticated %}
     <textarea id="comment_content" name="content" rows="4" placeholder="댓글을 입력하세요."></textarea>
     <button id="comment_create" onclick="comment_create()">등록</button>

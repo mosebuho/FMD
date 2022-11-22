@@ -1,8 +1,7 @@
-{% extends "home/home.html" %}
+{% extends "board/base.html" %}
 {% load static %}
-{% block content %}
+{% block board %}
 <link rel="stylesheet" type="text/css" href="{% static 'news.css' %}" />
-<img style="image-rendering: -webkit-optimize-contrast;" id="news_ad">
 <section id="news_list">
     <ul class="news-page">
         {% for i in page_obj %}
@@ -47,4 +46,4 @@
         <button type="submit">검색</button>
     </form>
 </section>
-{% endblock content %}
+{% endblock board %}

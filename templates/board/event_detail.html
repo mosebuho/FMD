@@ -1,8 +1,7 @@
-{% extends "home/home.html" %}
+{% extends "board/base.html" %}
 {% load static %}
-{% block content %}
+{% block board %}
 <link rel="stylesheet" type="text/css" href="{% static 'event.css' %}" />
-<img style="image-rendering: -webkit-optimize-contrast;" id="event-detail-ad">
 <section id="detail">
     {{ board.title }}
     {% if request.user.is_staff %}
@@ -26,4 +25,4 @@
         {{ board.content | safe }}
     </div>
 </section>
-{% endblock content %}
+{% endblock board %}

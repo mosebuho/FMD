@@ -1,8 +1,7 @@
-{% extends 'home/home.html' %}
+{% extends 'board/base.html' %}
 {% load static %}
-{% block content %}
+{% block board %}
 <link rel="stylesheet" type="text/css" href="{% static 'search.css' %}" />
-<img style="image-rendering: -webkit-optimize-contrast;" class="ad">
 <section id="search">
     <div class="title">
         뉴스
@@ -178,4 +177,4 @@
     </div>
     {% endif %}
 </section>
-{% endblock content %}
+{% endblock board %}

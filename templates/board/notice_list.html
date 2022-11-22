@@ -1,8 +1,7 @@
-{% extends "home/home.html" %}
+{% extends "board/base.html" %}
 {% load static %}
-{% block content %}
+{% block board %}
 <link rel="stylesheet" type="text/css" href="{% static 'notice.css' %}" />
-<img style="image-rendering: -webkit-optimize-contrast;" id="ad">
 <section id="question">
     <div class="title">
         건의
@@ -78,4 +77,4 @@
         }
     }
 </script>
-{% endblock content %}
+{% endblock board %}

@@ -86,7 +86,6 @@
             </ul>
         </nav>
     </header>
-    {% block news %}
     <main>
         <article>
             {% block content %}
@@ -99,7 +98,7 @@
                     <a href="{% url 'board:news_detail' i.id %}">
                         <li>
                             <img style="image-rendering: -webkit-optimize-contrast;" src="{{ i.thumbnail.url }}">
-                            <p>{{ i.title|truncatechars:37}}</p>
+                            <p>{{ i.title|truncatechars:35}}</p>
                         </li>
                     </a>
                     {% endfor %}
@@ -295,7 +294,6 @@
             </script>
         </aside>
     </main>
-    {% endblock news %}
     <footer>
         Copyright 2022. 4MILLDUK all rights reserved.
     </footer>
