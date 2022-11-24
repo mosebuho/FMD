@@ -219,9 +219,12 @@
                         <img style="image-rendering: -webkit-optimize-contrast;" id="side-userimage"
                             src="{{ request.user.image.url }}">
                         <div>
-                            <div>{{ request.user }}</div>
+                            <div id="profile-nickname">{{ request.user }}</div>
                             <a href="{% url 'user:profile' request.user.id %}">내정보</a>
-                            <a href="{% url 'account_logout' %}" id="logout">&nbsp로그아웃</a>
+                            <form action="{% url 'account_logout' %}" method="post">
+                                {% csrf_token %}
+                                <button id="logout" type="submit">&nbsp로그아웃</button>
+                            </form>
                         </div>
                     </div>
                 </div>

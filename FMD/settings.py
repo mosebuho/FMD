@@ -112,6 +112,9 @@ AUTHENTICATION_BACKENDS = {
 
 SITE_ID = 1
 
+SOCIALACCOUNT_AUTO_SIGNUP = True
+SOCIALACCOUNT_ADAPTER = 'user.adapter.CustomSocialAdapter'
+
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 ACCOUNT_AUTHENTICATION_METHOD = "username"
 ACCOUNT_EMAIL_REQUIRED = True
@@ -119,9 +122,7 @@ ACCOUNT_USERNAME_REQUIRED = True
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 ACCOUNT_CONFIRM_EMIAL_ON_GET = True
 ACCOUNT_FORMS = {"login": "user.forms.LoginForm", "signup": "user.forms.SignupForm"}
-ACCOUNT_LOGOUT_ON_GET = True
 
-SOCIALACCOUNT_AUTO_SIGNUP = True
 
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_PORT = "587"
