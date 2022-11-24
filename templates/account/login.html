@@ -36,15 +36,24 @@
     <div class="social">
         <form action="{% provider_login_url 'naver' %}" method="post">
             {% csrf_token %}
-            <button class="naver" type="submit">네이버 로그인</button>
+            <button class="naver" type="submit">
+                <img style="image-rendering: -webkit-optimize-contrast;" src="{% static 'naver.png' %}">
+                <span style="color:#fff">네이버 로그인</span>
+            </button>
         </form>
         <form action="{% provider_login_url 'kakao' %}" method="post">
             {% csrf_token %}
-            <button class="kakao" type="submit">카카오 로그인</button>
+            <button class="kakao" type="submit">
+                <img style="image-rendering: -webkit-optimize-contrast;" src="{% static 'kakao.png' %}">
+                <span>카카오 로그인</span>
+            </button>
         </form>
         <form action="{% provider_login_url 'google' %}" method="post">
             {% csrf_token %}
-            <button class="google" type="submit">구글 로그인</button>
+            <button class="google" type="submit">
+                <img style="image-rendering: -webkit-optimize-contrast;" src="{% static 'google.png' %}">
+                <span>구글 로그인</span>
+            </button>
         </form>
     </div>
     {% endblock signup %}

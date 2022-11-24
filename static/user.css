@@ -64,10 +64,24 @@ section#account .social {
     border-top: 1px solid #363636;
 }
 
+section#account .social img {
+    float: left;
+    width: 40px;
+    height: 40px;
+    margin: 0;
+    padding: 0;
+}
+
+section#account .social form span {
+    line-height: 42px;
+    color: #272727;
+    margin-right: 30px;
+}
+
 section#account .naver {
     font-weight: bold;
     width: 450px;
-    background: #00bf18;
+    background: #03c75a;
     height: 45px;
     border: #484848 solid 1px;
 }
@@ -76,7 +90,7 @@ section#account .kakao {
     font-weight: bold;
     color: #272727;
     width: 450px;
-    background: #fae301;
+    background: rgb(254, 229, 0);
     height: 45px;
     margin-top: 20px;
     border: #484848 solid 1px;
@@ -86,7 +100,7 @@ section#account .google {
     font-weight: bold;
     color: #272727;
     width: 450px;
-    background: #f4f4f4;
+    background: #fff;
     height: 45px;
     margin-top: 20px;
     border: #484848 solid 1px;
