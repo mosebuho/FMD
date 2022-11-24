@@ -79,14 +79,9 @@ def image_edit(request, pk):
 
 
 def quit(request):
+    if request.method == "GET":
+        return render(request, "account/quit.html")
     if request.method == "POST":
-        password_form = CheckPasswordForm(request.user, request.POST)
-        if password_form.is_valid():
-            request.user.delete()
-            logout(request)
-            return redirect("/")
-        else:
-            render(request, "account/quit.html", {"password_form": password_form})
-    else:
-        password_form = CheckPasswordForm(request.user)
-    return render(request, "account/quit.html", {"password_form": password_form})
+        request.user.delete()
+        logout(request)
+        return redirect("/")
