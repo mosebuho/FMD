@@ -11,7 +11,11 @@
                 <div>
                     {{i.title|truncatechars:37}}
                     <p>
+                        {% if i.writer.verified %}
+                        <i class="fa-solid fa-award"></i> {{ i.writer }}
+                        {% else %}
                         {{ i.writer }}
+                        {% endif %}
                         <i class="fa-solid fa-eye"></i> {{ i.view }}
                         <span><i class="fa-solid fa-clock"></i> {{ i.date_str }}</span>
                     </p>

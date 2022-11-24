@@ -9,7 +9,7 @@ section#best {
 section#best span {
     font-size: 17px;
     border-left: 2px solid #848b79;
-    padding-left: 5px;
+    padding: 0 0 2px 8px;
 }
 
 section#best div {
@@ -208,6 +208,7 @@ section#detail .buttons button#flag {
 
 section#detail textarea {
     font-family: inherit;
+    font-weight: bold;
     background: #363636;
     color: #aaa;
     padding: 5px;

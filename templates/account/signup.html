@@ -12,21 +12,18 @@
             var space = /\s/g;
             document.getElementById('id_help').style.color = "#ff3737";
             if ($("#username").val() == '') {
-                document.getElementById('id_help').innerHTML = '필수 항목입니다.';
-                document.getElementById('done').style.backgroundColor = "efefef4d";
-                document.getElementById('done').style.color = "#aaa";
-                $("#done").attr("disabled", true);
+                document.getElementById('id_help').innerHTML = '';
             }
             else if (space.test($("#username").val()) == true) {
                 document.getElementById('id_help').innerHTML = "공백을 제거해주세요.";
-                document.getElementById('done').style.backgroundColor = "efefef4d";
+                document.getElementById('done').style.backgroundColor = "#efefef4d";
                 document.getElementById('done').style.color = "#aaa";
                 $("#done").attr("disabled", true);
             }
             else {
                 if (!check.test($("#username").val()) || reg.test($("#username").val()) == true) {
                     document.getElementById('id_help').innerHTML = "영문과 숫자로 이루어진 5자 이상으로 생성해주세요.";
-                    document.getElementById('done').style.backgroundColor = "efefef4d";
+                    document.getElementById('done').style.backgroundColor = "#efefef4d";
                     document.getElementById('done').style.color = "#aaa";
                     $("#done").attr("disabled", true);
                 }
@@ -38,7 +35,7 @@
                         success: function (data) {
                             if (data['check'] == "fail") {
                                 document.getElementById('id_help').innerHTML = "이미 존재하는 아이디입니다.";
-                                document.getElementById('done').style.backgroundColor = "efefef4d";
+                                document.getElementById('done').style.backgroundColor = "#efefef4d";
                                 document.getElementById('done').style.color = "#aaa";
                                 $("#done").attr("disabled", true);
                             } else {
@@ -65,21 +62,18 @@
             var space = /\s/g;
             document.getElementById('name_help').style.color = "#ff3737";
             if ($("#nickname").val() == '') {
-                document.getElementById('name_help').innerHTML = '필수 항목입니다.';
-                document.getElementById('done').style.backgroundColor = "efefef4d";
-                document.getElementById('done').style.color = "#aaa";
-                $("#done").attr("disabled", true);
+                document.getElementById('name_help').innerHTML = '';
             }
             else if (space.test($("#nickname").val()) == true) {
                 document.getElementById('name_help').innerHTML = "공백을 제거해주세요.";
-                document.getElementById('done').style.backgroundColor = "efefef4d";
+                document.getElementById('done').style.backgroundColor = "#efefef4d";
                 document.getElementById('done').style.color = "#aaa";
                 $("#done").attr("disabled", true);
             }
             else {
                 if (!check.test($("#nickname").val()) || reg.test($("#nickname").val()) == true) {
                     document.getElementById('name_help').innerHTML = "특수 문자를 제외한 2자~8자내로 생성해주세요.";
-                    document.getElementById('done').style.backgroundColor = "efefef4d";
+                    document.getElementById('done').style.backgroundColor = "#efefef4d";
                     document.getElementById('done').style.color = "#aaa";
                     $("#done").attr("disabled", true);
                 }
@@ -91,7 +85,7 @@
                         success: function (data) {
                             if (data['check'] == "fail") {
                                 document.getElementById('name_help').innerHTML = "이미 존재하는 닉네임입니다.";
-                                document.getElementById('done').style.backgroundColor = "efefef4d";
+                                document.getElementById('done').style.backgroundColor = "#efefef4d";
                                 document.getElementById('done').style.color = "#aaa";
                                 $("#done").attr("disabled", true);
                             } else {
@@ -115,15 +109,12 @@
         function pw_val() {
             var reg = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,}$/;
             if ($("#password1").val() == '') {
-                document.getElementById('pw1_help').innerHTML = '필수 항목입니다.';
-                document.getElementById('done').style.backgroundColor = "efefef4d";
-                document.getElementById('done').style.color = "#aaa";
-                $("#done").attr("disabled", true);
+                document.getElementById('pw1_help').innerHTML = '';
             }
             else if (!reg.test($("#password1").val())) {
                 document.getElementById('pw1_help').style.color = "#ff3737";
                 document.getElementById('pw1_help').innerHTML = "영문 대/소문자, 숫자, 특수 문자를 모두 포함한 8자 이상으로 생성해주세요.";
-                document.getElementById('done').style.backgroundColor = "efefef4d";
+                document.getElementById('done').style.backgroundColor = "#efefef4d";
                 document.getElementById('done').style.color = "#aaa";
                 $("#done").attr("disabled", true);
             }
@@ -142,12 +133,6 @@
         style="margin-bottom:0;">
     <script>
         function pw_check() {
-            if ($("#password2").val() == '') {
-                document.getElementById('pw2_help').innerHTML = '필수 항목입니다.';
-                document.getElementById('done').style.backgroundColor = "efefef4d";
-                document.getElementById('done').style.color = "#aaa";
-                $("#done").attr("disabled", true);
-            }
             if (document.getElementById('password1').value != '' && document.getElementById('password2').value != '') {
                 if (document.getElementById('password1').value == document.getElementById('password2').value) {
                     document.getElementById('pw2_help').style.color = "#19ce60";
@@ -159,7 +144,7 @@
                 else {
                     document.getElementById('pw2_help').style.color = "#ff3737";
                     document.getElementById('pw2_help').innerHTML = '비밀번호가 일치하지 않습니다.';
-                    document.getElementById('done').style.backgroundColor = "efefef4d";
+                    document.getElementById('done').style.backgroundColor = "#efefef4d";
                     document.getElementById('done').style.color = "#aaa";
                     $("#done").attr("disabled", true);
                 }
@@ -174,14 +159,11 @@
             var exp = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
             document.getElementById('email_help').style.color = "#ff3737";
             if ($("#email").val() == "") {
-                document.getElementById('email_help').innerHTML = '필수 항목입니다.';
-                document.getElementById('done').style.backgroundColor = "efefef4d";
-                document.getElementById('done').style.color = "#aaa";
-                $("#done").attr("disabled", true);
+                document.getElementById('email_help').innerHTML = '';
             }
             else if (!exp.test($("#email").val())) {
                 document.getElementById('email_help').innerHTML = "이메일 형식이 올바르지 않습니다.";
-                document.getElementById('done').style.backgroundColor = "efefef4d";
+                document.getElementById('done').style.backgroundColor = "#efefef4d";
                 document.getElementById('done').style.color = "#aaa";
                 $("#done").attr("disabled", true);
             }
@@ -193,7 +175,7 @@
                     success: function (data) {
                         if (data['check'] == "fail") {
                             document.getElementById('email_help').innerHTML = "이미 사용중인 이메일입니다.";
-                            document.getElementById('done').style.backgroundColor = "efefef4d";
+                            document.getElementById('done').style.backgroundColor = "#efefef4d";
                             document.getElementById('done').style.color = "#aaa";
                             $("#done").attr("disabled", true);
                         } else {
@@ -211,6 +193,6 @@
     <p id="email_help" style="margin-top:5px;"></p>
 </div>
 <div>
-    <button type="submit" id="done" style="background:#efefef4d; color:#aaa;" disabled>회원가입</button>
+    <button type="submit" id="done" style="background:#848b79; color:#ddd;">회원가입</button>
 </div>
 {% endblock signup %}

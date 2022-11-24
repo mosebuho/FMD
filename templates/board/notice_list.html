@@ -46,7 +46,7 @@
     <ul class="noticelist">
         {% for list in notice_list %}
         <li class="inlist" onclick="openclose('{{list.id}}')">
-            <i class="fa-solid fa-caret-down"></i> <b>{{ list.title|truncatechars:45}}</b>
+            <i class="fa-solid fa-caret-down"></i> {{ list.title|truncatechars:45}}
             <span><i class="fa-solid fa-clock"></i> {{ list.date_str }}</span>
             {% if request.user.is_staff %}
             <a onclick="boardDelete('{{list.id}}')">삭제</a>

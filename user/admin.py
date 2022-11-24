@@ -14,4 +14,5 @@ class UserAdmin(admin.ModelAdmin):
         "lv",
         "verified",
         "n_changed",
+        "social",
     )

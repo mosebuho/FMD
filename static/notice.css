@@ -11,6 +11,7 @@ section#question .title {
 section#question textarea {
     width: 100%;
     font-family: inherit;
+    font-weight: bold;
     background: #363636;
     color: #aaa;
     padding: 5px;

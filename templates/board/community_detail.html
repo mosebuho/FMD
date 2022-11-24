@@ -18,7 +18,11 @@
     </span>
     {% endif %}
     <div class="sub">
-        {{ board.writer }} |
+        {% if board.writer.verified %}
+        <i class="fa-solid fa-award"></i> {{ board.writer }}
+        {% else %}
+        {{ board.writer }}
+        {% endif %} |
         <i class="fa-solid fa-eye"></i> {{ board.view }}
         <i class="fa-solid fa-thumbs-up"></i> {{ board.like }}
         <i class="fa-solid fa-comment-dots"></i> {{ board.comment_set.count }}
@@ -78,7 +82,11 @@
         <li id="{{comment.id}}">
             <img style="image-rendering: -webkit-optimize-contrast;" src="{{ comment.writer.image.url }}">
             <div>
-                <b>{{comment.writer}}</b>
+                {% if comment.writer.verified %}
+                <i class="fa-solid fa-award"></i> {{ comment.writer }}
+                {% else %}
+                {{ comment.writer }}
+                {% endif %}
                 <span>
                     <i class="fa-solid fa-clock"></i> {{comment.date_str}}
                     <br>
@@ -95,7 +103,11 @@
                     <li style="border-bottom:none; margin-top:0;" id="{{recomment.id}}">
                         <img style="image-rendering: -webkit-optimize-contrast;" src="{{ recomment.writer.image.url }}">
                         <div>
-                            <b>{{recomment.writer}}</b>
+                            {% if recomment.writer.verified %}
+                            <i class="fa-solid fa-award"></i> {{ recomment.writer }}
+                            {% else %}
+                            {{ recomment.writer }}
+                            {% endif %}
                             <span>
                                 <i class="fa-solid fa-clock"></i> {{recomment.date_str}}
                                 <br>

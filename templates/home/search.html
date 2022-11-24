@@ -16,8 +16,14 @@
                     <img style="image-rendering: -webkit-optimize-contrast;" src="{{ i.thumbnail.url }}">
                     <div>
                         <span class="listintitle">{{i.title|truncatechars:20}}</span>
-                        <span class="listinsub"> {{i.writer}} <i class="fa-solid fa-eye"></i> {{ i.view }} <i
-                                class="fa-solid fa-clock"></i> {{ i.date_str }}
+                        <span class="listinsub">
+                            {% if i.writer.verified %}
+                            <i class="fa-solid fa-award"></i> {{ i.writer }}
+                            {% else %}
+                            {{ i.writer }}
+                            {% endif %}
+                            <i class="fa-solid fa-eye"></i> {{ i.view }}
+                            <i class="fa-solid fa-clock"></i> {{ i.date_str }}
                         </span>
                         <span class="listincontent">{{i.content|safe|striptags|truncatechars:40}}</span>
                     </div>
@@ -32,8 +38,14 @@
                     <img style="image-rendering: -webkit-optimize-contrast;" src="{{ i.thumbnail.url }}">
                     <div>
                         <span class="listintitle">{{i.title|truncatechars:20}}</span>
-                        <span class="listinsub"> {{i.writer}} <i class="fa-solid fa-eye"></i> {{ i.view }} <i
-                                class="fa-solid fa-clock"></i> {{ i.date_str }}
+                        <span class="listinsub">
+                            {% if i.writer.verified %}
+                            <i class="fa-solid fa-award"></i> {{ i.writer }}
+                            {% else %}
+                            {{ i.writer }}
+                            {% endif %}
+                            <i class="fa-solid fa-eye"></i>
+                            {{ i.view }} <i class="fa-solid fa-clock"></i> {{ i.date_str }}
                         </span>
                         <span class="listincontent">{{i.content|safe|striptags|truncatechars:40}}</span>
                     </div>
@@ -60,8 +72,14 @@
                     <img style="image-rendering: -webkit-optimize-contrast;" src="{{ i.thumbnail.url }}">
                     <div>
                         <span class="listintitle">{{i.title|truncatechars:20}}</span>
-                        <span class="listinsub"> {{i.writer}} <i class="fa-solid fa-eye"></i> {{ i.view }} <i
-                                class="fa-solid fa-clock"></i> {{ i.date_str }}
+                        <span class="listinsub">
+                            {% if i.writer.verified %}
+                            <i class="fa-solid fa-award"></i> {{ i.writer }}
+                            {% else %}
+                            {{ i.writer }}
+                            {% endif %}
+                            <i class="fa-solid fa-eye"></i> {{ i.view }}
+                            <i class="fa-solid fa-clock"></i> {{ i.date_str }}
                         </span>
                         <span class="listincontent">{{i.content|safe|striptags|truncatechars:40}}</span>
                     </div>
@@ -76,8 +94,14 @@
                     <img style="image-rendering: -webkit-optimize-contrast;" src="{{ i.thumbnail.url }}">
                     <div>
                         <span class="listintitle">{{i.title|truncatechars:20}}</span>
-                        <span class="listinsub"> {{i.writer}} <i class="fa-solid fa-eye"></i> {{ i.view }} <i
-                                class="fa-solid fa-clock"></i> {{ i.date_str }}
+                        <span class="listinsub">
+                            {% if i.writer.verified %}
+                            <i class="fa-solid fa-award"></i> {{ i.writer }}
+                            {% else %}
+                            {{ i.writer }}
+                            {% endif %}
+                            <i class="fa-solid fa-eye"></i> {{ i.view }}
+                            <i class="fa-solid fa-clock"></i> {{ i.date_str }}
                         </span>
                         <span class="listincontent">{{i.content|safe|striptags|truncatechars:40}}</span>
                     </div>

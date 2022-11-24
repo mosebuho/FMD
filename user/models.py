@@ -14,6 +14,7 @@ class User(AbstractUser):
     exp = models.PositiveIntegerField(default=0)
     lv = models.PositiveIntegerField(default=0)
     verified = models.BooleanField(default=False, verbose_name="인증")
+    social = models.BooleanField(default=False, verbose_name="소셜 계정")
 
     @property
     def nchanged(self):
@@ -21,6 +22,8 @@ class User(AbstractUser):
             return True
         elif datetime.now() - timedelta(days=30) > self.n_changed:
             return False
+        else:
+            return True
 
     def __str__(self):
         return self.nickname

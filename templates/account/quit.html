@@ -3,7 +3,7 @@
 {% block emailcheck %}
 <div>
     <p style="font-size:24px; color:#ddd; margin:0">
-        <b>계정 탈퇴</b>
+        계정 탈퇴
     </p>
     <p style="color:#aaa; margin:5px 0 0 0; font-size:14px;">
         탈퇴시 개인 정보 및 이용 정보가 삭제되며 복구할 수 없습니다. <br>
@@ -20,11 +20,16 @@
             function val() {
                 if ($("#text").val() == '') {
                     document.getElementById('help').innerHTML = '';
+                    document.getElementById('done').style.color = "#aaa";
+                    document.getElementById('done').style.backgroundColor = "#efefef4d";
+                    $("#done").attr("disabled", true);
                     $("#box").attr("disabled", true)
-                    $("#done").attr("disabled", true)
                 }
                 else if (($("#text").val().indexOf("계정을 삭제합니다."))) {
                     document.getElementById('help').innerHTML = "문구를 정확히 입력해주세요.";
+                    document.getElementById('done').style.color = "#aaa";
+                    document.getElementById('done').style.backgroundColor = "#efefef4d";
+                    $("#done").attr("disabled", true);
                     $("#box").attr("disabled", true)
                     $("#done").attr("disabled", true)
                 }
@@ -37,7 +42,7 @@
         <p style="margin:0;">
             <input id="box" name="box" type="checkbox" style="width:19px; margin:0; height:19px; vertical-align:-4px;"
                 disabled onclick="check(this.form)">
-            <span style="font-size:15px;"><b>유의 사항 동의</b></span>
+            <span style="font-size:15px;">유의 사항 동의</span>
         </p>
         <script type="text/javascript">
             function check(form) {

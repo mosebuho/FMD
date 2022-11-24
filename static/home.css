@@ -10,13 +10,14 @@ body {
     font-family: "Noto Sans KR", sans-serif;
     color: #ddd;
     padding: 10px;
+    font-weight: bold;
 }
 
 select {
     outline: none;
     font-family: inherit;
     border: none;
-
+    font-weight: bold;
 }
 
 main {
@@ -41,11 +42,13 @@ input {
     padding: 10px;
     border: none;
     outline: none;
+    font-weight: bold;
 }
 
 button {
     border: none;
     font-family: inherit;
+    font-weight: bold;
 }
 
 a {
@@ -131,10 +134,14 @@ section#news {
     margin-top: 5px;
 }
 
-section#news .title {
-    font-size: 20px;
+.title {
+    font-size: 18px;
     padding: 2px 0 10px 0;
     border-bottom: #848b79 1px solid;
+}
+
+.title i {
+    padding: 0 0 0 2px;
 }
 
 section#news .news_container {
@@ -171,12 +178,6 @@ section#column {
     height: 437px;
     padding: 10px;
     margin-top: 10px;
-}
-
-section#column .title {
-    font-size: 20px;
-    padding: 2px 0 10px 0;
-    border-bottom: #848b79 1px solid;
 }
 
 section#column .content {
@@ -244,15 +245,6 @@ section#community {
     height: 430px;
 }
 
-section#community .title {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    font-size: 20px;
-    padding: 2px 0 10px 0;
-    border-bottom: #848b79 1px solid;
-}
-
 section#community .content {
     display: flex;
     flex-direction: row;
@@ -300,12 +292,6 @@ section#dictionary {
     width: 900px;
     height: 280px;
     padding: 10px;
-}
-
-section#dictionary .title {
-    font-size: 20px;
-    padding: 2px 0 10px 0;
-    border-bottom: #848b79 1px solid;
 }
 
 section#dictionary .content {
@@ -432,11 +418,19 @@ section#side1 .profile-info div div {
     font-size: 17px;
 }
 
-section#side1 .profile-info a {
+section#side1 .profile-info button {
     color: #aaa;
     font-size: 12px;
+    cursor: pointer;
+    background: #272727;
+    border: 1px solid #484848;
+    width: 95px;
+    height: 25px;
 }
 
+section#side1 .profile-info button a {
+    color: #aaa;
+}
 
 section#side2 {
     margin-top: 10px;
@@ -450,10 +444,14 @@ section#side2 dl {
     margin: 0;
 }
 
-section#side2 dt {
+aside dt {
     border-bottom: 1px solid #848b79;
-    font-size: 17px;
+    font-size: 16px;
     padding-bottom: 5px;
+}
+
+aside dt {
+    padding-left: 2px;
 }
 
 section#side2 dd {
@@ -469,6 +467,7 @@ section#side2 li a {
 
 section#side2 li {
     margin-top: 5px;
+    padding-left: 2px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -501,12 +500,6 @@ section#side3 dl {
     height: 180px;
     padding: 5px;
     margin: 0;
-}
-
-section#side3 dt {
-    border-bottom: 1px solid #848b79;
-    font-size: 17px;
-    padding-bottom: 5px;
 }
 
 section#side3 dd {

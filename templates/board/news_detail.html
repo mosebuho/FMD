@@ -22,7 +22,11 @@
     {% endif %}
     {% endblock column %}
     <div class="sub">
-        {{ news.writer }} |
+        {% if news.writer.verified %}
+        <i class="fa-solid fa-award"></i> {{ news.writer }}
+        {% else %}
+        {{ news.writer }}
+        {% endif %} |
         <i class="fa-solid fa-eye"></i> {{ news.view }}
         <span><i class="fa-solid fa-clock"></i> {{ news.date_str }}</span>
     </div>

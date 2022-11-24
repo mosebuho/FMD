@@ -49,13 +49,13 @@
             <ul>
                 <li>
                     <a href="{% url 'board:news_list'%}">
-                        <i class="fa-solid fa-newspaper"></i>
+                        <i class="fa-solid fa-earth-americas"></i>
                         뉴스/정보
                     </a>
                 </li>
                 <li>
                     <a href="{% url 'board:column_list'%}">
-                        <i class="fa-solid fa-chart-column"></i>
+                        <i class="fa-solid fa-square-poll-horizontal"></i>
                         군사칼럼
                     </a>
                 </li>
@@ -91,7 +91,7 @@
             {% block content %}
             <section id="news">
                 <div class="title">
-                    뉴스/정보
+                    <i class="fa-solid fa-earth-americas"></i> 뉴스/정보
                 </div>
                 <ul class="news_container">
                     {% for i in news_list %}
@@ -116,7 +116,9 @@
                 </script>
             </section>
             <section id="column">
-                <div class="title">군사칼럼</div>
+                <div class="title">
+                    <i class="fa-solid fa-chart-column"></i> 군사칼럼
+                </div>
                 <div class="content">
                     <ul>
                         {% for list in column_list|slice:3 %}
@@ -126,7 +128,11 @@
                                 <div>
                                     <span class="listintitle">{{list.title|truncatechars:30}}</span>
                                     <span class="listinsub">
-                                        {{list.writer}}
+                                        {% if list.writer.verified %}
+                                        <i class="fa-solid fa-award"></i> {{ list.writer }}
+                                        {% else %}
+                                        {{ list.writer }}
+                                        {% endif %}
                                         <i class="fa-solid fa-eye"></i> {{ list.view }}
                                     </span>
                                     <span>{{list.content|safe|striptags|truncatechars:40}}</span>
@@ -143,7 +149,11 @@
                                 <div>
                                     <span class="listintitle">{{list.title|truncatechars:30}}</span>
                                     <span class="listinsub">
-                                        {{list.writer}}
+                                        {% if list.writer.verified %}
+                                        <i class="fa-solid fa-award"></i> {{ list.writer }}
+                                        {% else %}
+                                        {{ list.writer }}
+                                        {% endif %}
                                         <i class="fa-solid fa-eye"></i> {{ list.view }}
                                     </span>
                                     <span>{{list.content|safe|striptags|truncatechars:40}}</span>
@@ -156,11 +166,13 @@
             </section>
             <section id="community">
                 <div class="title">
-                    커뮤니티
+                    <i class="fa-solid fa-comments"></i> 커뮤니티
                 </div>
                 <div class="content">
                     <div>
-                        <span><b>최신</b></span>
+                        <span>
+                            <i class="fa-solid fa-bolt"></i> 최신
+                        </span>
                         <ul>
                             {% for list in commu_new %}
                             <li>
@@ -172,7 +184,9 @@
                         </ul>
                     </div>
                     <div>
-                        <span><b>인기</b></span>
+                        <span>
+                            <i class="fa-solid fa-fire"></i> 인기
+                        </span>
                         <ul>
                             {% for list in commu_hot %}
                             <li>
@@ -186,7 +200,9 @@
                 </div>
             </section>
             <section id="dictionary">
-                <div class="title">밀덕백과</div>
+                <div class="title">
+                    <i class="fa-solid fa-book-bookmark"></i> 밀덕백과
+                </div>
                 <div class="content">
                     <div class="img-list">
                         <ul>
@@ -219,8 +235,16 @@
                         <img style="image-rendering: -webkit-optimize-contrast;" id="side-userimage"
                             src="{{ request.user.image.url }}">
                         <div>
-                            <div id="profile-nickname">{{ request.user }}</div>
-                            <a href="{% url 'user:profile' request.user.id %}">내정보</a>
+                            <div id="profile-nickname">
+                                {% if request.user.verified %}
+                                <i class="fa-solid fa-award"></i> {{ request.user }}
+                                {% else %}
+                                {{ user.nickname }}
+                                {% endif %}
+                            </div>
+                            <button>
+                                <a href="{% url 'user:profile' request.user.id %}">내정보</a>
+                            </button>
                             <form action="{% url 'account_logout' %}" method="post">
                                 {% csrf_token %}
                                 <button id="logout" type="submit">&nbsp로그아웃</button>
@@ -251,18 +275,24 @@
             </section>
             <section id="side2">
                 <dl>
-                    <dt>명예의 전당</dt>
+                    <dt>
+                        <i class="fa-solid fa-ranking-star"></i> 명예의 전당
+                    </dt>
                     <dd>
                         {% for user in ranking %}
                         <li>
-                            <a href="{% url 'user:profile' user.id %}">{{user.nickname}}</a>
+                            <a href="{% url 'user:profile' user.id %}">
+                                <i class="fa-solid fa-award"></i> {{user.nickname}}
+                            </a>
                             <span>{{user.exp}} 포인트</span>
                         </li>
                         {% endfor %}
                     </dd>
                 </dl>
                 <dl class="comments">
-                    <dt>최신 댓글</dt>
+                    <dt>
+                        <i class="fa-solid fa-bolt"></i> 최신 댓글
+                    </dt>
                     <dd>
                         {% for i in comments %}
                         <li>
@@ -274,7 +304,7 @@
             </section>
             <section id="side3">
                 <dl>
-                    <dt>행사</dt>
+                    <dt><i class="fa-regular fa-calendar"></i> 행사</dt>
                     <dd>
                         {% for i in events %}
                         <li>
