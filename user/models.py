@@ -9,15 +9,18 @@ class User(AbstractUser):
         default="profile_images/default.jpg",
         upload_to="profile_images/%Y-%m-%d/",
         verbose_name="프로필 이미지",
-    )    
-    n_changed = models.DateTimeField(auto_now_add=True, verbose_name="닉네임 변경일")
+    )
+    n_changed = models.DateTimeField(null=True, verbose_name="닉네임 변경일")
     exp = models.PositiveIntegerField(default=0)
     lv = models.PositiveIntegerField(default=0)
     verified = models.BooleanField(default=False, verbose_name="인증")
 
     @property
     def nchanged(self):
-        return datetime.now() - timedelta(days=30) < self.n_changed
+        if self.n_changed == None:
+            return True
+        elif datetime.now() - timedelta(days=30) > self.n_changed:
+            return False
 
     def __str__(self):
         return self.nickname

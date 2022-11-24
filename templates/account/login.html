@@ -32,10 +32,20 @@
     <p style="color:#ff3737; font-size:13px;">{{ error|linebreaksbr }}</p>
     {% endfor %}
     {% endif %}
+    {% load socialaccount %}
     <div class="social">
-        <button class="naver" type="submit">네이버 로그인</button>
-        <button class="kakao" type="submit">카카오 로그인</button>
-        <button class="google" type="submit">구글 로그인</button>
+        <form action="{% provider_login_url 'naver' %}" method="post">
+            {% csrf_token %}
+            <button class="naver" type="submit">네이버 로그인</button>
+        </form>
+        <form action="{% provider_login_url 'kakao' %}" method="post">
+            {% csrf_token %}
+            <button class="kakao" type="submit">카카오 로그인</button>
+        </form>
+        <form action="{% provider_login_url 'google' %}" method="post">
+            {% csrf_token %}
+            <button class="google" type="submit">구글 로그인</button>
+        </form>
     </div>
     {% endblock signup %}
     {% endblock emailcheck %}

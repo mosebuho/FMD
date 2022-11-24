@@ -8,7 +8,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = "django-insecure-b_2pza-(zid$e1k_74=ulf(lb+6u7u#ikolgg^2p+scw^kl13-"
 
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = [".4millduk.com"]
 
@@ -25,10 +25,10 @@ INSTALLED_APPS = [
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
-    "django_cleanup.apps.CleanupConfig",
     "allauth.socialaccount.providers.google",
     "allauth.socialaccount.providers.kakao",
     "allauth.socialaccount.providers.naver",
+    "django_cleanup.apps.CleanupConfig",
 ]
 
 MIDDLEWARE = [
@@ -120,6 +120,8 @@ ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 ACCOUNT_CONFIRM_EMIAL_ON_GET = True
 ACCOUNT_FORMS = {"login": "user.forms.LoginForm", "signup": "user.forms.SignupForm"}
 ACCOUNT_LOGOUT_ON_GET = True
+
+SOCIALACCOUNT_AUTO_SIGNUP = True
 
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_PORT = "587"

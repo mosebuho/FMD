@@ -56,7 +56,7 @@ def name_edit(request, pk):
     target = User.objects.get(pk=pk)
     edit_name = request.POST.get("edit_name")
     if request.user.id == target.id:
-        if not target.nchanged:
+        if target.nchanged == True:
             target.nickname = edit_name
             target.n_changed = datetime.datetime.now()
             target.save()
