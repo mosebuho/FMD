@@ -21,13 +21,13 @@ section#best div {
 }
 
 section#best a {
-    color: #aaa;
+    color: #bbb;
     text-decoration: none;
 }
 
 section#best li {
     font-size: 11px;
-    color: #aaa;
+    color: #bbb;
     padding: 2px 0;
 }
 
@@ -38,7 +38,7 @@ section#best li a {
 }
 
 section#best li a:visited {
-    color: #aaa;
+    color: #bbb;
 }
 
 section#best ul {
@@ -72,13 +72,13 @@ section#list td {
 section#list tr {
     font-size: 15px;
     border: 1px solid #363636;
-    color: #aaa;
+    color: #bbb;
 }
 
 section#list td#title {
     text-align: left;
     font-size: 11px;
-    color: #aaa;
+    color: #bbb;
 
 }
 
@@ -88,7 +88,7 @@ section#list a {
 }
 
 section#list a:visited {
-    color: #aaa;
+    color: #bbb;
 }
 
 section#button {
@@ -138,7 +138,7 @@ section#search input {
 section#search button {
     width: 70px;
     background: #272727;
-    color: #aaa;
+    color: #bbb;
     border-left: 1px solid #484848;
     cursor: pointer;
 }
@@ -156,12 +156,12 @@ section#detail {
 section#detail .modify {
     font-size: 15px;
     float: right;
-    color: #aaa;
+    color: #bbb;
     padding: 10px 0;
 }
 
 section#detail .modify a {
-    color: #aaa;
+    color: #bbb;
     cursor: pointer;
 }
 
@@ -171,7 +171,7 @@ section#detail .sub {
     border-top: 1px solid #484848;
     border-bottom: 1px solid #484848;
     font-size: 13px;
-    color: #aaa;
+    color: #bbb;
 }
 
 section#detail .sub span {
@@ -210,7 +210,7 @@ section#detail textarea {
     font-family: inherit;
     font-weight: bold;
     background: #363636;
-    color: #aaa;
+    color: #bbb;
     padding: 5px;
     outline: none;
     font-size: 15px;
@@ -281,7 +281,7 @@ section#detail li div {
 section#detail li div span {
     float: right;
     font-size: 12px;
-    color: #aaa;
+    color: #bbb;
     text-align: right;
 }
 
@@ -291,7 +291,7 @@ section#detail li div span a {
 
 
 section#detail li div p {
-    color: #aaa;
+    color: #bbb;
     margin: 5px 0 0 0;
     font-size: 14px;
 }

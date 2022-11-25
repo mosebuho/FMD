@@ -38,7 +38,7 @@ aside {
 
 input {
     font-family: inherit;
-    color: #aaa;
+    color: #bbb;
     padding: 10px;
     border: none;
     outline: none;
@@ -209,30 +209,28 @@ section#column li img {
 }
 
 section#column li div {
-    margin-left: 15px;
+    margin-left: 10px;
     width: 280px;
     display: flex;
     flex-direction: column;
 }
 
 section#column li span {
-    color: #aaa;
+    color: #bbb;
     font-size: 14px;
 }
 
 section#column li .listintitle {
     font-size: 18px;
     color: #ddd;
+    margin-bottom: 3px;
 }
 
 section#column li .listinsub {
     font-size: 12px;
     border-top: 1px solid #484848;
     border-bottom: 1px solid #484848;
-}
-
-section#column .listinsub i {
-    margin: 0 0 0 5px;
+    padding: 1px 0;
 }
 
 
@@ -270,7 +268,7 @@ section#community .content ul {
 
 section#community .content li {
     font-size: 11px;
-    color: #aaa;
+    color: #bbb;
     margin: 1px 0;
 }
 
@@ -281,7 +279,7 @@ section#community .content li a {
 }
 
 section#community .content li a:visited {
-    color: #aaa;
+    color: #bbb;
 }
 
 
@@ -322,7 +320,7 @@ section#dictionary .img-list ul li {
     display: flex;
     flex-direction: column;
     font-size: 14px;
-    color: #aaa;
+    color: #bbb;
 }
 
 section#dictionary .content img {
@@ -337,7 +335,7 @@ section#dictionary .list ul {
     border: 1px solid #484848;
     height: 215px;
     font-size: 15px;
-    color: #aaa;
+    color: #bbb;
     padding: 0 8px;
     list-style: none;
     margin: 0;
@@ -378,15 +376,15 @@ section#side1 .login div {
     justify-content: space-between;
     margin-top: 5px;
     font-size: 11px;
-    color: #aaa;
+    color: #bbb;
 }
 
 section#side1 .login div a {
-    color: #aaa;
+    color: #bbb;
 }
 
 section#side1 .login span {
-    color: #aaa;
+    color: #bbb;
 }
 
 
@@ -419,7 +417,7 @@ section#side1 .profile-info div div {
 }
 
 section#side1 .profile-info button {
-    color: #aaa;
+    color: #bbb;
     font-size: 12px;
     cursor: pointer;
     background: #272727;
@@ -429,7 +427,7 @@ section#side1 .profile-info button {
 }
 
 section#side1 .profile-info button a {
-    color: #aaa;
+    color: #bbb;
 }
 
 section#side2 {
@@ -456,13 +454,13 @@ aside dt {
 
 section#side2 dd {
     margin: 6px 0 0;
-    font-size: 15px;
+    font-size: 14px;
     list-style: none;
-    color: #aaa;
+    color: #bbb;
 }
 
 section#side2 li a {
-    color: #aaa;
+    color: #bbb;
 }
 
 section#side2 li {
@@ -513,7 +511,7 @@ section#side3 dd li {
 }
 
 section#side3 dd li a {
-    color: #aaa;
+    color: #bbb;
 }
 
 section#side3 .container {
@@ -552,7 +550,7 @@ footer {
     margin-top: 50px;
     padding: 35px 0 0 0;
     border-top: 1px solid #484848;
-    color: #aaa;
+    color: #bbb;
     font-size: 13px;
     text-align: center;
 }

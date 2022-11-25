@@ -24,7 +24,7 @@ section#search .list {
 }
 
 section#search div a {
-    color: #aaa;
+    color: #bbb;
     padding: 3px 0 0 0;
     font-size: 12px;
 }
@@ -51,7 +51,7 @@ section#search li div {
     display: flex;
     flex-direction: column;
     margin-left: 7px;
-    color: #aaa;
+    color: #bbb;
 }
 
 section#search li .listintitle {
@@ -112,7 +112,7 @@ section#search .content ul {
 section#search .content li {
     display: block;
     font-size: 11px;
-    color: #aaa;
+    color: #bbb;
     margin: 1px 0;
 }
 
@@ -123,5 +123,5 @@ section#search .content li a {
 }
 
 section#search .content li a:visited {
-    color: #aaa;
+    color: #bbb;
 }

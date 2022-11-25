@@ -14,7 +14,7 @@ section#account .input {
     width: 450px;
     margin: auto;
     font-size: 14px;
-    color: #aaa;
+    color: #bbb;
     text-align: left;
 }
 
@@ -53,7 +53,7 @@ section#account .help {
 }
 
 section#account .help a {
-    color: #aaa;
+    color: #bbb;
     font-size: 12px;
 }
 
@@ -134,7 +134,7 @@ section#profile li {
     list-style: none;
     padding: 10px 0;
     cursor: pointer;
-    color: #aaa;
+    color: #bbb;
 }
 
 section#profile a {
@@ -166,7 +166,7 @@ section#profile #nickname {
 
 section#profile #mycomment {
     font-size: 14px;
-    color: #aaa;
+    color: #bbb;
 }
 
 section#profile #userimage {

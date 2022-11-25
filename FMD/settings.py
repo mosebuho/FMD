@@ -66,10 +66,10 @@ WSGI_APPLICATION = "FMD.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",
-        "NAME": "mosebuho",
-        "USER": "admin",
-        "PASSWORD": "ahtmqngh",
-        "HOST": "mosebuho.cvbbyywtu2uh.ap-northeast-2.rds.amazonaws.com",
+        "NAME": "milldukdb",
+        "USER": "mosebuho",
+        "PASSWORD": "Ahtmqn12gh98",
+        "HOST": "3.35.109.82",
         "PORT": "3306",
         "OPTIONS": {"init_command": "SET sql_mode='STRICT_TRANS_TABLES'"},
     }
@@ -102,7 +102,7 @@ LOGOUT_REDIRECT_URL = "/"
 LOGIN_URL = "/login/"
 
 SESSION_EXPIRE_AT_BROWSER_CLOSE = True
-SESSION_COOKIE_AGE = 3600
+SESSION_COOKIE_AGE = 10800
 SESSION_SAVE_EVERY_REQUEST = True
 
 AUTHENTICATION_BACKENDS = {
@@ -113,7 +113,7 @@ AUTHENTICATION_BACKENDS = {
 SITE_ID = 1
 
 SOCIALACCOUNT_AUTO_SIGNUP = True
-SOCIALACCOUNT_ADAPTER = 'user.adapter.CustomSocialAdapter'
+SOCIALACCOUNT_ADAPTER = "user.adapter.CustomSocialAdapter"
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
 ACCOUNT_AUTHENTICATION_METHOD = "username"

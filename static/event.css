@@ -77,7 +77,7 @@ section#event ul a {
 
 section#event ul p {
     font-size: 15px;
-    color: #aaa;
+    color: #bbb;
     margin: 5px 0 0 0;
 }
 
@@ -114,12 +114,12 @@ section#detail {
 section#detail .modify {
     font-size: 15px;
     float: right;
-    color: #aaa;
+    color: #bbb;
     padding: 10px 0;
 }
 
 section#detail .modify a {
-    color: #aaa;
+    color: #bbb;
     cursor: pointer;
 }
 
@@ -129,7 +129,7 @@ section#detail .sub {
     border-top: 1px solid #484848;
     border-bottom: 1px solid #484848;
     font-size: 13px;
-    color: #aaa;
+    color: #bbb;
 }
 
 section#search form {
@@ -155,7 +155,7 @@ section#search input {
 section#search button {
     width: 70px;
     background: #272727;
-    color: #aaa;
+    color: #bbb;
     border-left: 1px solid #484848;
     cursor: pointer;
 }
@@ -179,13 +179,13 @@ section#write form .top {
 section#write #id_start {
     width: 100px;
     background: #363636;
-    color: #aaa;
+    color: #bbb;
 }
 
 section#write #id_end {
     width: 100px;
     background: #363636;
-    color: #aaa;
+    color: #bbb;
 }
 
 section#write #id_thumbnail {

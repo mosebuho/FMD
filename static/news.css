@@ -28,7 +28,7 @@ section#news_list .news-page li img {
 }
 
 section#news_list .news-page li div {
-    margin: 0 0 0 15px;
+    margin: 0 0 0 10px;
     font-size: 20px;
     color: #ddd;
     width: 100%;
@@ -40,7 +40,7 @@ section#news_list .news-page li p {
     border-top: 1px solid #484848;
     border-bottom: 1px solid #484848;
     padding: 3px 0;
-    color: #aaa;
+    color: #bbb;
 }
 
 section#news_list .news-page p span {
@@ -50,6 +50,7 @@ section#news_list .news-page p span {
 
 section#news_list .news-page li .content {
     font-size: 15px;
+    color: #bbb;
 }
 
 section#button {
@@ -89,12 +90,12 @@ section#detail {
 section#detail .modify {
     font-size: 15px;
     float: right;
-    color: #aaa;
+    color: #bbb;
     padding: 10px 0;
 }
 
 section#detail .modify a {
-    color: #aaa;
+    color: #bbb;
     cursor: pointer;
 }
 
@@ -104,7 +105,7 @@ section#detail .sub {
     border-top: 1px solid #484848;
     border-bottom: 1px solid #484848;
     font-size: 13px;
-    color: #aaa;
+    color: #bbb;
 }
 
 section#detail .sub span {
@@ -209,7 +210,7 @@ section#search input {
 section#search button {
     width: 70px;
     background: #272727;
-    color: #aaa;
+    color: #bbb;
     border-left: 1px solid #484848;
     cursor: pointer;
 }

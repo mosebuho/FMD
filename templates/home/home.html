@@ -55,7 +55,7 @@
                 </li>
                 <li>
                     <a href="{% url 'board:column_list'%}">
-                        <i class="fa-solid fa-square-poll-horizontal"></i>
+                        <i class="fa-solid fa-chart-column"></i>
                         군사칼럼
                     </a>
                 </li>
@@ -121,42 +121,48 @@
                 </div>
                 <div class="content">
                     <ul>
-                        {% for list in column_list|slice:3 %}
-                        <a href="{% url 'board:column_detail' list.id %}">
+                        {% for i in column_list|slice:3 %}
+                        <a href="{% url 'board:column_detail' i.id %}">
                             <li>
-                                <img style="image-rendering: -webkit-optimize-contrast;" src="{{ list.thumbnail.url }}">
+                                <img style="image-rendering: -webkit-optimize-contrast;" src="{{ i.thumbnail.url }}">
                                 <div>
-                                    <span class="listintitle">{{list.title|truncatechars:30}}</span>
+                                    <span class="listintitle">{{i.title|truncatechars:30}}</span>
                                     <span class="listinsub">
-                                        {% if list.writer.verified %}
-                                        <i class="fa-solid fa-award"></i> {{ list.writer }}
+                                        {% if i.writer.verified %}
+                                        <i class="fa-solid fa-award"></i> {{ i.writer }}
                                         {% else %}
-                                        {{ list.writer }}
+                                        {{ i.writer }}
                                         {% endif %}
-                                        <i class="fa-solid fa-eye"></i> {{ list.view }}
+                                        <i class="fa-solid fa-eye"></i> {{ i.view }}
+                                        <span style="float:right; font-size:12px;">
+                                            <i class="fa-solid fa-clock"></i> {{ i.date_str }}
+                                        </span>
                                     </span>
-                                    <span>{{list.content|safe|striptags|truncatechars:40}}</span>
+                                    <span>{{i.content|safe|striptags|truncatechars:60}}</span>
                                 </div>
                             </li>
                         </a>
                         {% endfor %}
                     </ul>
                     <ul>
-                        {% for list in column_list|slice:"3:6" %}
-                        <a href="{% url 'board:column_detail' list.id %}">
+                        {% for i in column_list|slice:"3:6" %}
+                        <a href="{% url 'board:column_detail' i.id %}">
                             <li>
-                                <img style="image-rendering: -webkit-optimize-contrast;" src="{{ list.thumbnail.url }}">
+                                <img style="image-rendering: -webkit-optimize-contrast;" src="{{ i.thumbnail.url }}">
                                 <div>
-                                    <span class="listintitle">{{list.title|truncatechars:30}}</span>
+                                    <span class="listintitle">{{i.title|truncatechars:30}}</span>
                                     <span class="listinsub">
-                                        {% if list.writer.verified %}
-                                        <i class="fa-solid fa-award"></i> {{ list.writer }}
+                                        {% if i.writer.verified %}
+                                        <i class="fa-solid fa-award"></i> {{ i.writer }}
                                         {% else %}
-                                        {{ list.writer }}
+                                        {{ i.writer }}
                                         {% endif %}
-                                        <i class="fa-solid fa-eye"></i> {{ list.view }}
+                                        <i class="fa-solid fa-eye"></i> {{ i.view }}
+                                        <span style="float:right; font-size:12px;">
+                                            <i class="fa-solid fa-clock"></i> {{ i.date_str }}
+                                        </span>
                                     </span>
-                                    <span>{{list.content|safe|striptags|truncatechars:40}}</span>
+                                    <span>{{i.content|safe|striptags|truncatechars:60}}</span>
                                 </div>
                             </li>
                         </a>
