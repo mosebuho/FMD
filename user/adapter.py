@@ -9,7 +9,7 @@ class CustomSocialAdapter(DefaultSocialAccountAdapter):
     def save_user(self, request, sociallogin, form=None):
         item = string.ascii_letters + string.digits
         pick = ""
-        for i in range(6):
+        for i in range(8):
             pick += random.choice(item)
         u = sociallogin.user
         u.set_unusable_password()

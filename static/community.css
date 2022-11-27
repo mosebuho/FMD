@@ -10,6 +10,7 @@ section#best span {
     font-size: 17px;
     border-left: 2px solid #848b79;
     padding: 0 0 2px 8px;
+    font-weight: bold;
 }
 
 section#best div {
@@ -150,14 +151,20 @@ section#detail {
     border: 1px solid #484848;
     background: #272727;
     padding: 10px;
-    font-size: 22px;
 }
+
+section#detail h1 {
+    margin: 0;
+    font-size: 18px;
+    display: inline;
+}
+
 
 section#detail .modify {
     font-size: 15px;
     float: right;
     color: #bbb;
-    padding: 10px 0;
+    padding: 4px 0;
 }
 
 section#detail .modify a {
@@ -167,7 +174,7 @@ section#detail .modify a {
 
 section#detail .sub {
     padding: 3px 0;
-    margin: 15px 0;
+    margin: 9px 0;
     border-top: 1px solid #484848;
     border-bottom: 1px solid #484848;
     font-size: 13px;
@@ -208,7 +215,7 @@ section#detail .buttons button#flag {
 
 section#detail textarea {
     font-family: inherit;
-    font-weight: bold;
+
     background: #363636;
     color: #bbb;
     padding: 5px;

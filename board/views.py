@@ -235,7 +235,7 @@ def news_search(request):
 class NewsDetailView(generic.DetailView):
     template_name = "board/news_detail.html"
     model = News
-    context_object_name = "news"
+    context_object_name = "board"
 
 
 @method_decorator(verified_required, name="dispatch")
@@ -315,7 +315,7 @@ def column_search(request):
 class ColumnDetailView(generic.DetailView):
     template_name = "board/column_detail.html"
     model = Column
-    context_object_name = "news"
+    context_object_name = "board"
 
 
 @method_decorator(verified_required, name="dispatch")

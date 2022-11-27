@@ -1,14 +1,17 @@
 {% extends "board/news_detail.html" %}
+{% block Chead %}
+<meta property="og:url" content="https://4millduk.com/board/column/{{board.id}}/">
+{% endblock Chead %}
 {% block column %}
-{% if request.user == news.writer %}
+{% if request.user == board.writer %}
 <span class="modify">
-    <a href="{% url 'board:column_update' news.id %}">수정</a>
+    <a href="{% url 'board:column_update' board.id %}">수정</a>
     <a onclick="boardDelete('{{board.id}}')">삭제</a>
     <script>
         function boardDelete() {
             var warning = confirm("게시글을 삭제할 경우 복구가 불가능합니다.\n정말 삭제하시겠습니까?");
             if (warning == true) {
-                window.location.href = "{% url 'board:column_delete' news.id %}"
+                window.location.href = "{% url 'board:column_delete' board.id %}"
             }
         }
     </script>

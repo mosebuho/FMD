@@ -2,7 +2,6 @@ from .models import User
 from django.http import JsonResponse
 from django.views import generic
 import datetime
-from .forms import CheckPasswordForm
 from django.shortcuts import render, redirect
 from django.contrib.auth import logout
 

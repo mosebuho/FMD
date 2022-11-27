@@ -1,20 +1,30 @@
 {% extends "board/base.html" %}
 {% load static %}
+{% block head %}
+<title>{{ board.title }}</title>
+<meta name="description" content="{{ board.content|safe|striptags|truncatechars:55 }}">
+<meta name="title" content="{{ board.title }}">
+<meta property="og:title" content="{{board.title}}">
+<meta property="og:description" content="{{ board.content|safe|striptags|truncatechars:55 }}">
+{% block Chead %}
+<meta property="og:url" content="https://4millduk.com/board/news/{{board.id}}/">
+{% endblock Chead %}
+{% endblock head %}
 {% block board %}
 <link rel="stylesheet" type="text/css" href="{% static 'news.css' %}" />
-<input type="hidden" value={{news.view_count}}>
+<input type="hidden" value={{board.view_count}}>
 <section id="detail">
-    {{ news.title }}
+    <h1>{{ board.title }}</h1>
     {% block column %}
-    {% if request.user == news.writer %}
+    {% if request.user == board.writer %}
     <span class="modify">
-        <a href="{% url 'board:news_update' news.id %}">수정</a>
+        <a href="{% url 'board:news_update' board.id %}">수정</a>
         <a onclick="boardDelete('{{board.id}}')">삭제</a>
         <script>
             function boardDelete() {
                 var warning = confirm("게시글을 삭제할 경우 복구가 불가능합니다.\n정말 삭제하시겠습니까?");
                 if (warning == true) {
-                    window.location.href = "{% url 'board:news_delete' news.id %}"
+                    window.location.href = "{% url 'board:news_delete' board.id %}"
                 }
             }
         </script>
@@ -22,16 +32,16 @@
     {% endif %}
     {% endblock column %}
     <div class="sub">
-        {% if news.writer.verified %}
-        <i class="fa-solid fa-award"></i> {{ news.writer }}
+        {% if board.writer.verified %}
+        <i class="fa-solid fa-award"></i> {{ board.writer }}
         {% else %}
-        {{ news.writer }}
+        {{ board.writer }}
         {% endif %} |
-        <i class="fa-solid fa-eye"></i> {{ news.view }}
-        <span><i class="fa-solid fa-clock"></i> {{ news.date_str }}</span>
+        <i class="fa-solid fa-eye"></i> {{ board.view }}
+        <span><i class="fa-solid fa-clock"></i> {{ board.date_str }}</span>
     </div>
     <div class="content">
-        {{ news.content | safe }}
+        {{ board.content | safe }}
     </div>
 </section>
 {% endblock board %}

@@ -1,9 +1,18 @@
 {% extends "board/base.html" %}
 {% load static %}
+{% block head %}
+<title>{{ board.title }}</title>
+<meta name="description" content="{{ board.content|safe|striptags|truncatechars:55 }}">
+<meta name="title" content="{{ board.title }}">
+<meta name="title" content="{{ board.title }}">
+<meta property="og:title" content="{{board.title}}">
+<meta property="og:description" content="{{ board.content|safe|striptags|truncatechars:55 }}">
+<meta property="og:url" content="https://4millduk.com/board/event/{{board.id}}/">
+{% endblock head %}
 {% block board %}
 <link rel="stylesheet" type="text/css" href="{% static 'event.css' %}" />
 <section id="detail">
-    {{ board.title }}
+    <h1>{{ board.title }}</h1>
     {% if request.user.is_staff %}
     <span class="modify">
         <a href="{% url 'board:event_update' board.id %}">수정</a>

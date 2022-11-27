@@ -114,7 +114,7 @@
                             </button>
                             <script>
                                 function name_val() {
-                                    var check = /^(?=.*[a-zA-Z0-9ㄱ-힣]).{2,8}$/;
+                                    var check = /^(?=.*[a-zA-Z0-9ㄱ-힣]).{2,10}$/;
                                     var reg = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/g;
                                     var space = /\s/g;
                                     if ($("#edit_name").val() == '') {
@@ -130,7 +130,7 @@
                                         $("#name_edit").attr("disabled", true);
                                     }
                                     else if (!check.test($("#edit_name").val()) || reg.test($("#edit_name").val()) == true) {
-                                        document.getElementById('name_help').innerHTML = "특수 문자를 제외한 2자~8자내로 생성해주세요.";
+                                        document.getElementById('name_help').innerHTML = "특수 문자를 제외한 2자~10자내로 생성해주세요.";
                                         $("#name_edit").attr("disabled", true);
                                         document.getElementById('name_edit').style.backgroundColor = "efefef4d";
                                         document.getElementById('name_edit').style.color = "#aaa";

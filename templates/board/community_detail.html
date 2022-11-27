@@ -1,8 +1,16 @@
 {% extends "board/community_list.html" %}
+{% block head %}
+<title>{{ board.title }}</title>
+<meta name="description" content="{{ board.content|safe|striptags|truncatechars:55 }}">
+<meta name="title" content="{{ board.title }}">
+<meta property="og:title" content="{{board.title}}">
+<meta property="og:description" content="{{ board.content|safe|striptags|truncatechars:55 }}">
+<meta property="og:url" content="https://4millduk.com/board/community/{{board.id}}/">
+{% endblock head %}
 {% block detail %}
 <input type="hidden" value={{board.view_count}}>
 <section id="detail">
-    {{ board.title }}
+    <h1>{{ board.title }}</h1>
     {% if request.user == board.writer %}
     <span class="modify">
         <a href="{% url 'board:community_update' board.id %}">수정</a>

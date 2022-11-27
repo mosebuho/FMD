@@ -3,9 +3,31 @@
 
 <head>
     {% load static %}
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-BL0XJGN51K"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-BL0XJGN51K');
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>4MILLDUK</title>
+    <meta name="google-site-verification" content="Uo6wtUJ5JJuq7oeydXzIFuUIS9DJFzY4M9ZicU04Bgk" />
+    <meta name="naver-site-verification" content="d664d44daa134288801fdd59dfea8046759604c6" />
+    <meta property="og:type" content="website">
+    {% block head %}
+    <title>포밀덕</title>
+    <meta name="description" content="밀덕을 위한 군사 커뮤니티 포밀덕">
+    <meta name="title" content="포밀덕">
+    <meta property="og:title" content="포밀덕">
+    <meta property="og:description" content="밀덕을 위한 군사 커뮤니티 포밀덕">
+    <meta property="og:url" content="https://4millduk.com/">
+    {% endblock head %}
+    <meta name="author" content="포밀덕">
+    <meta name="keywords" content="포밀덕, 밀리터리, 밀덕, 군사, 군대, 군갤, 군사뉴스, 국방뉴스, 국방신문, 군사커뮤니티, 밀덕커뮤니티, 밀덕사이트, 군사사이트">
+    <meta property="og:locale" content="ko_KR">
+    <meta property="og:site_name" content="포밀덕">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <link rel="shortcut icon" href="{% static 'favicon.ico' %}">
     <link rel="stylesheet" type="text/css" href="{% static 'home.css' %}" />
@@ -138,7 +160,7 @@
                                             <i class="fa-solid fa-clock"></i> {{ i.date_str }}
                                         </span>
                                     </span>
-                                    <span>{{i.content|safe|striptags|truncatechars:60}}</span>
+                                    <span>{{i.content|safe|striptags|truncatechars:50}}</span>
                                 </div>
                             </li>
                         </a>
@@ -162,7 +184,7 @@
                                             <i class="fa-solid fa-clock"></i> {{ i.date_str }}
                                         </span>
                                     </span>
-                                    <span>{{i.content|safe|striptags|truncatechars:60}}</span>
+                                    <span>{{i.content|safe|striptags|truncatechars:50}}</span>
                                 </div>
                             </li>
                         </a>
@@ -209,7 +231,10 @@
                 <div class="title">
                     <i class="fa-solid fa-book-bookmark"></i> 밀덕백과
                 </div>
-                <div class="content">
+                <div style="text-align:center; padding-top:100px;">
+                    준비중입니다.
+                </div>
+                <!--                 <div class="content">
                     <div class="img-list">
                         <ul>
                             <li>
@@ -230,6 +255,7 @@
                         </ul>
                     </div>
                 </div>
+ -->
             </section>
             {% endblock content %}
         </article>

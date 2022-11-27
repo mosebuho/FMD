@@ -10,14 +10,14 @@ body {
     font-family: "Noto Sans KR", sans-serif;
     color: #ddd;
     padding: 10px;
-    font-weight: bold;
+
 }
 
 select {
     outline: none;
     font-family: inherit;
     border: none;
-    font-weight: bold;
+
 }
 
 main {
@@ -42,13 +42,13 @@ input {
     padding: 10px;
     border: none;
     outline: none;
-    font-weight: bold;
+
 }
 
 button {
     border: none;
     font-family: inherit;
-    font-weight: bold;
+
 }
 
 a {
@@ -118,6 +118,7 @@ nav li {
     color: #ddd;
     font-size: 17px;
     list-style: none;
+    font-weight: bold;
 }
 
 nav a {
@@ -135,6 +136,7 @@ section#news {
 }
 
 .title {
+    font-weight: bold;
     font-size: 18px;
     padding: 2px 0 10px 0;
     border-bottom: #848b79 1px solid;
@@ -156,6 +158,7 @@ section#news .news_container a {
 section#news li {
     width: 215px;
     margin: 0 0 0 5px;
+    font-weight: bold;
 }
 
 
@@ -224,6 +227,7 @@ section#column li .listintitle {
     font-size: 18px;
     color: #ddd;
     margin-bottom: 3px;
+    font-weight: bold;
 }
 
 section#column li .listinsub {
@@ -258,6 +262,7 @@ section#community .content span {
     color: #ddd;
     border-left: 2px solid #848b79;
     padding: 0 0 2px 8px;
+    font-weight: bold;
 }
 
 section#community .content ul {
@@ -414,6 +419,7 @@ section#side1 .profile-info div {
 
 section#side1 .profile-info div div {
     font-size: 17px;
+    font-weight: bold;
 }
 
 section#side1 .profile-info button {
@@ -446,6 +452,7 @@ aside dt {
     border-bottom: 1px solid #848b79;
     font-size: 16px;
     padding-bottom: 5px;
+    font-weight: bold;
 }
 
 aside dt {

@@ -52,12 +52,12 @@
         }
     </script>
     <p id="id_help" style="margin-top:5px;"></p>
-    <span>닉네임</span> (특수문자를 제외한 2~8자)
+    <span>닉네임</span> (특수문자를 제외한 2~10자)
     <input type="text" name="nickname" maxlength="8" required id="nickname" onchange="name_val()"
         style="margin-bottom:0;">
     <script>
         function name_val() {
-            var check = /^(?=.*[a-zA-Z0-9ㄱ-힣]).{2,8}$/;
+            var check = /^(?=.*[a-zA-Z0-9ㄱ-힣]).{2,10}$/;
             var reg = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/g;
             var space = /\s/g;
             document.getElementById('name_help').style.color = "#ff3737";
@@ -72,7 +72,7 @@
             }
             else {
                 if (!check.test($("#nickname").val()) || reg.test($("#nickname").val()) == true) {
-                    document.getElementById('name_help').innerHTML = "특수 문자를 제외한 2자~8자내로 생성해주세요.";
+                    document.getElementById('name_help').innerHTML = "특수 문자를 제외한 2자~10자내로 생성해주세요.";
                     document.getElementById('done').style.backgroundColor = "#efefef4d";
                     document.getElementById('done').style.color = "#aaa";
                     $("#done").attr("disabled", true);
