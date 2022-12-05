@@ -1,5 +1,64 @@
 {% extends "board/base.html" %}
 {% load static %}
+{% if request.device.is_mobile or request.device.is_tablet %}
+{% block Mhead %}
+<title>뉴스/정보</title>
+<meta name="description" content="밀덕을 위한 군사 커뮤니티 포밀덕">
+<meta name="title" content="뉴스/정보 - 포밀덕">
+<meta property="og:title" content="뉴스/정보 - 포밀덕">
+<meta property="og:description" content="밀덕을 위한 군사 커뮤니티 포밀덕">
+<meta property="og:url" content="https://4millduk.com/board/news/">
+{% endblock Mhead %}
+{% block Mboard %}
+<link rel="stylesheet" type="text/css" href="{% static 'mobile/Mnews.css' %}" />
+<section id="news_list">
+    <ul class="news-page">
+        {% for i in page_obj %}
+        <a href="{% url 'board:news_detail' i.id %}">
+            <li>
+                <img style="image-rendering: -webkit-optimize-contrast;" src="{{i.thumbnail.url}}">
+                <div>
+                    <b>{{i.title|truncatechars:15}}</b>
+                    <p>
+                        {% if i.writer.verified %}
+                        <i class="fa-solid fa-award"></i> {{ i.writer }}
+                        {% else %}
+                        {{ i.writer }}
+                        {% endif %}
+                        <i class="fa-solid fa-eye"></i> {{ i.view }}
+                        <span><i class="fa-solid fa-clock"></i> {{ i.date_str }}</span>
+                    </p>
+                    <span class="content">{{i.content|striptags|safe|truncatechars:50}}</span>
+                </div>
+            </li>
+        </a>
+        {% endfor %}
+    </ul>
+</section>
+<section id="button">
+    {% block Msearch %}
+    {% include "pagination.html" %}
+    {% endblock Msearch %}
+</section>
+<section id="search">
+    <form action="{% url 'board:news_search' %}" method="post">
+        {% csrf_token %}
+        <input name="q" value="{{q}}">
+        <button type="submit">검색</button>
+    </form>
+</section>
+{% endblock Mboard %}
+
+{% else %}
+
+{% block head %}
+<title>뉴스/정보</title>
+<meta name="description" content="밀덕을 위한 군사 커뮤니티 포밀덕">
+<meta name="title" content="뉴스/정보 - 포밀덕">
+<meta property="og:title" content="뉴스/정보 - 포밀덕">
+<meta property="og:description" content="밀덕을 위한 군사 커뮤니티 포밀덕">
+<meta property="og:url" content="https://4millduk.com/board/news/">
+{% endblock head %}
 {% block board %}
 <link rel="stylesheet" type="text/css" href="{% static 'news.css' %}" />
 <section id="news_list">
@@ -51,3 +110,4 @@
     </form>
 </section>
 {% endblock board %}
+{% endif %}

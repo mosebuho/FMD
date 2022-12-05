@@ -10,7 +10,7 @@ SECRET_KEY = "django-insecure-b_2pza-(zid$e1k_74=ulf(lb+6u7u#ikolgg^2p+scw^kl13-
 
 DEBUG = True
 
-ALLOWED_HOSTS = [".4millduk.com"]
+ALLOWED_HOSTS = [".ap-northeast-2.compute.amazonaws.com", ".4millduk.com"]
 
 INSTALLED_APPS = [
     "django.contrib.admin",
@@ -20,6 +20,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "django.contrib.sites",
+    "django.contrib.sitemaps",
     "user",
     "board",
     "allauth",
@@ -29,6 +30,7 @@ INSTALLED_APPS = [
     "allauth.socialaccount.providers.kakao",
     "allauth.socialaccount.providers.naver",
     "django_cleanup.apps.CleanupConfig",
+    "mobiledetect",
 ]
 
 MIDDLEWARE = [
@@ -39,6 +41,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "mobiledetect.middleware.DetectMiddleware",
 ]
 
 ROOT_URLCONF = "FMD.urls"
@@ -69,7 +72,7 @@ DATABASES = {
         "NAME": "milldukdb",
         "USER": "mosebuho",
         "PASSWORD": "Ahtmqn12gh98",
-        "HOST": "3.35.109.82",
+        "HOST": "54.180.150.187",
         "PORT": "3306",
         "OPTIONS": {"init_command": "SET sql_mode='STRICT_TRANS_TABLES'"},
     }

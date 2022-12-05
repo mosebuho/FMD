@@ -1,8 +1,253 @@
 <!DOCTYPE html>
+{% load static %}
+
+{% if request.device.is_mobile or request.device.is_tablet %}
 <html>
 
 <head>
-    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="Uo6wtUJ5JJuq7oeydXzIFuUIS9DJFzY4M9ZicU04Bgk" />
+    <meta name="naver-site-verification" content="d664d44daa134288801fdd59dfea8046759604c6" />
+    <meta property="og:type" content="website">
+    {% block Mhead %}
+    <title>포밀덕</title>
+    <meta name="description" content="밀덕을 위한 군사 커뮤니티 포밀덕">
+    <meta name="title" content="포밀덕">
+    <meta property="og:title" content="포밀덕">
+    <meta property="og:description" content="밀덕을 위한 군사 커뮤니티 포밀덕">
+    <meta property="og:url" content="https://4millduk.com/">
+    {% endblock Mhead %}
+    <meta name="author" content="포밀덕">
+    <meta name="keywords" content="포밀덕, 밀리터리, 밀덕, 군사, 군대, 군갤, 군사뉴스, 국방뉴스, 국방신문, 군사커뮤니티, 밀덕커뮤니티, 밀덕사이트, 군사사이트">
+    <meta property="og:locale" content="ko_KR">
+    <meta property="og:site_name" content="포밀덕">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <link rel="shortcut icon" href="{% static 'favicon.ico' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'mobile/Mhome.css' %}" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Jua&family=Nanum+Gothic:wght@700&family=Noto+Sans+KR&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+        integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
+    <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8572587507451544"
+        crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <header>
+        <span onclick="openNav()"><i class="fa-solid fa-bars"
+                style="line-height:42px; color:#bbb; margin-left:4px;"></i></span>
+        <div id="mySidenav" class="sidenav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()" style="padding:0; border:none;">
+                <i class="fa-solid fa-bars" style="line-height:46px; color:#bbb; margin-left:14px;"></i>
+            </a>
+            <div>
+                {% if request.user.is_authenticated %}
+                <a href="{% url 'user:profile' request.user.id %}" style="border-top:1px solid #363636;">
+                    마이페이지
+                </a>
+                {% else %}
+                <a href="{% url 'account_login' %}" style="border-top:1px solid #363636;">
+                    로그인
+                </a>
+                {% endif %}
+                <a href="{% url 'board:news_list' %}">
+                    뉴스/정보
+                </a>
+                <a href="{% url 'board:column_list' %}">
+                    군사칼럼
+                </a>
+                <a href="{% url 'board:community_list' %}">
+                    커뮤니티
+                </a>
+                <a onclick="alert('준비중입니다.')">
+                    밀덕백과
+                </a>
+                <a href=" {% url 'board:event_list' %}">
+                    행사일정
+                </a>
+                <a href="{% url 'board:notice' %}">
+                    공지/건의
+                </a>
+            </div>
+        </div>
+        <script>
+            function openNav() {
+                document.getElementById("mySidenav").style.width = "250px";
+            }
+            function closeNav() {
+                document.getElementById("mySidenav").style.width = "0";
+            }
+        </script>
+        <a href="/" class="logo"><img src="{% static 'logo.png' %}"></a>
+        <form action="{% url 'search' %}" method="post">
+            {% csrf_token %}
+            <div class="top">
+                <input name="q" value="{{q}}">
+                <button type="submit">
+                    <i class="fa-solid fa-magnifying-glass" style="font-size:16px;"></i>
+                </button>
+            </div>
+        </form>
+    </header>
+    <main>
+        {% block Mcontent %}
+        <section id="image">
+            <div class="title">
+                <li data-tab="news" class='on'>
+                    <i class="fa-solid fa-earth-americas"></i> 뉴스
+                </li>
+                <li data-tab="column" style="background:#484848; color:#bbb;">
+                    <i class="fa-solid fa-chart-column"></i> 칼럼
+                </li>
+            </div>
+            <div id="news" class="tabcont on">
+                <ul>
+                    {% for i in news_list|slice:3 %}
+                    <a href="{% url 'board:news_detail' i.id %}">
+                        <li>
+                            <img style="image-rendering: -webkit-optimize-contrast;" src="{{ i.thumbnail.url }}">
+                            <span>{{i.title|truncatechars:20}}</span>
+                        </li>
+                    </a>
+                    {% endfor %}
+                </ul>
+                <ul>
+                    {% for i in news_list|slice:" 3:6" %} <a href="{% url 'board:news_detail' i.id %}">
+                        <li>
+                            <img style="image-rendering: -webkit-optimize-contrast;" src="{{ i.thumbnail.url }}">
+                            <span>{{i.title|truncatechars:20}}</span>
+                        </li>
+                    </a>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div id="column" class="tabcont">
+                <ul>
+                    {% for i in column_list|slice:3 %}
+                    <a href="{% url 'board:column_detail' i.id %}">
+                        <li>
+                            <img style="image-rendering: -webkit-optimize-contrast;" src="{{ i.thumbnail.url }}">
+                            <span>{{i.title|truncatechars:20}}</span>
+                        </li>
+                    </a>
+                    {% endfor %}
+                </ul>
+                <ul>
+                    {% for i in column_list|slice:" 3:6" %} <a href="{% url 'board:column_detail' i.id %}">
+                        <li>
+                            <img style="image-rendering: -webkit-optimize-contrast;" src="{{ i.thumbnail.url }}">
+                            <span>{{i.title|truncatechars:20}}</span>
+                        </li>
+                    </a>
+                    {% endfor %}
+                </ul>
+            </div>
+        </section>
+        <script>
+            $(function () {
+                $('#image .title li').click(function () {
+                    $('li').removeClass('on');
+                    $('.tabcont').removeClass('on');
+                    $(this).addClass('on');
+                    $('#' + $(this).attr('data-tab')).addClass('on');
+                    $('.title li').css('background-color', '#484848');
+                    $('.title li').css('color', '#bbb');
+                    $(this).css('background-color', '#272727');
+                    $(this).css('color', '#ddd');
+                })
+            });
+        </script>
+        <script async
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8572587507451544"
+            crossorigin="anonymous"></script>
+        <ins class="adsbygoogle" style="display:inline-block;width:100%;height:100px;margin-top:5px;"
+            data-ad-client="ca-pub-8572587507451544" data-ad-slot="4005165983"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+        <section id="community">
+            <div class="title">
+                <i class="fa-solid fa-comments"></i> 커뮤니티
+            </div>
+            <ul>
+                {% for i in commu_new|slice:8 %}
+                <li>
+                    <a href="{% url 'board:community_detail' i.id %}">{{ i.title|truncatechars:25 }}</a>
+                </li>
+                {% endfor %}
+            </ul>
+        </section>
+        <section id="dict">
+            <div class="title">
+                <i class="fa-solid fa-book-bookmark"></i> 밀덕백과
+            </div>
+            <div class="content">
+                준비중입니다.
+            </div>
+        </section>
+        <section id="event">
+            <div class="title">
+                <i class="fa-regular fa-calendar"></i> 행사
+            </div>
+            <div class="content">
+                <ul class="event_container">
+                    {% for i in events|slice:4 %}
+                    <li>
+                        <a href="{% url 'board:event_detail' i.id %}">
+                            <img src="{{ i.thumbnail.url }}">
+                        </a>
+                    </li>
+                    {% endfor %}
+                </ul>
+                <script>
+                    $('.event_container').slick({
+                        slidesToShow: 1,
+                        slidesToScroll: 1,
+                        autoplay: true,
+                        infinite: true,
+                        autoplaySpeed: 5000,
+                        arrows: false,
+                        draggable: true,
+                    });
+                </script>
+                <ul>
+                    {% for i in events|slice:4 %}
+                    <li class="text">
+                        <a href="{% url 'board:event_detail' i.id %}">{{ i.title|truncatechars:20 }}</a>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </section>
+        <script async
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8572587507451544"
+            crossorigin="anonymous"></script>
+        <ins class="adsbygoogle" style="display:inline-block;width:100%;height:100px;margin-top:5px;"
+            data-ad-client="ca-pub-8572587507451544" data-ad-slot="4984836047"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+        {% endblock Mcontent %}
+    </main>
+    <footer>
+        Copyright 2022. 4MILLDUK all rights reserved.
+    </footer>
+</body>
+
+
+</html>
+{% else %}
+
+
+<html>
+
+<head>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-BL0XJGN51K"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -120,7 +365,7 @@
                     <a href="{% url 'board:news_detail' i.id %}">
                         <li>
                             <img style="image-rendering: -webkit-optimize-contrast;" src="{{ i.thumbnail.url }}">
-                            <p>{{ i.title|truncatechars:35}}</p>
+                            <p>{{ i.title|truncatechars:33}}</p>
                         </li>
                     </a>
                     {% endfor %}
@@ -160,7 +405,7 @@
                                             <i class="fa-solid fa-clock"></i> {{ i.date_str }}
                                         </span>
                                     </span>
-                                    <span>{{i.content|safe|striptags|truncatechars:50}}</span>
+                                    <span>{{i.content|safe|striptags|truncatechars:45}}</span>
                                 </div>
                             </li>
                         </a>
@@ -184,7 +429,7 @@
                                             <i class="fa-solid fa-clock"></i> {{ i.date_str }}
                                         </span>
                                     </span>
-                                    <span>{{i.content|safe|striptags|truncatechars:50}}</span>
+                                    <span>{{i.content|safe|striptags|truncatechars:45}}</span>
                                 </div>
                             </li>
                         </a>
@@ -234,28 +479,6 @@
                 <div style="text-align:center; padding-top:100px;">
                     준비중입니다.
                 </div>
-                <!--                 <div class="content">
-                    <div class="img-list">
-                        <ul>
-                            <li>
-                                <img>
-                                4
-                            </li>
-                        </ul>
-                        <ul>
-                            <li>
-                                <img>
-                                4
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="list">
-                        <ul>
-                            <li>10</li>
-                        </ul>
-                    </div>
-                </div>
- -->
             </section>
             {% endblock content %}
         </article>
@@ -381,3 +604,4 @@
 </body>
 
 </html>
+{% endif %}

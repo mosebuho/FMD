@@ -1,24 +1,19 @@
 section#best {
-    border: #484848 solid 1px;
     background: #272727;
-    width: 900px;
-    padding: 10px;
+    width: 100%;
+    padding: 5px;
     margin-top: 5px;
+    height: 154px;
+    box-sizing: border-box;
 }
 
-section#best span {
-    font-size: 17px;
+section#best span.besttitle,
+section#list .besttitle {
+    font-size: 12px;
     border-left: 2px solid #848b79;
-    padding: 0 0 2px 8px;
+    padding: 0 0 2px 5px;
+    margin-left: 5px;
     font-weight: bold;
-}
-
-section#best div {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    font-size: 16px;
-    padding: 10px;
 }
 
 section#best a {
@@ -26,69 +21,55 @@ section#best a {
     text-decoration: none;
 }
 
-section#best li {
-    font-size: 11px;
-    color: #bbb;
-    padding: 2px 0;
-}
-
 section#best li a {
     padding: 2px 0;
     color: #ddd;
-    font-size: 15px;
+    font-size: 12px;
 }
 
 section#best li a:visited {
     color: #bbb;
 }
 
-section#best ul {
-    width: 49.5%;
+section#best ul,
+section#list ul {
+    width: 100%;
     list-style: none;
-    margin: 0;
+    margin: 2px 0 0 0;
     padding: 0;
 }
 
 section#list {
-    margin-top: 2px;
-    width: 920px;
-    border: 1px solid #484848;
+    margin-top: 10px;
+    width: 100%;
     background: #272727;
+    padding: 5px 0 0 0;
 }
 
-table {
-    text-align: center;
+section#list li,
+section#best li {
+    padding: 5px;
+    border-bottom: 1px solid #484848;
 }
 
-th {
-    font-size: 14px;
-    color: #555;
-    padding: 7px;
-}
-
-section#list td {
-    padding: 4px;
-}
-
-section#list tr {
-    font-size: 15px;
-    border: 1px solid #363636;
-    color: #bbb;
-}
-
-section#list td#title {
-    text-align: left;
+section#list li .sub,
+section#best li .sub {
     font-size: 11px;
     color: #bbb;
+    padding-left: 4px;
+    border-left: 2px solid #848b79;
+}
 
+section#list li .date {
+    float: right;
 }
 
 section#list a {
-    font-size: 15px;
+    font-size: 12px;
     color: #ddd;
 }
 
-section#list a:visited {
+a:visited {
     color: #bbb;
 }
 
@@ -99,16 +80,16 @@ section#button {
     height: 30px;
     font-size: 14px;
     margin: 5px 0 0 0;
-    padding-left: 80px;
+    padding-left: 20%;
 }
 
 
 section#button button {
     background: #848b79;
-    width: 80px;
+    width: 20%;
     text-align: center;
     color: #ddd;
-    cursor: pointer;
+    font-size: 12px;
 }
 
 section#button button a {
@@ -120,65 +101,63 @@ section#search form {
     flex-direction: row;
     justify-content: center;
     text-align: center;
-    width: 380px;
-    height: 40px;
-    font-size: 14px;
-    margin: auto;
-    margin-top: 20px;
-    border: 1px solid #484848;
+    width: 70%;
+    height: 35px;
+    font-size: 12px;
+    margin: 5px auto 0 auto;
 }
 
 
 section#search input {
     padding: 5px;
-    width: 300px;
+    width: 80%;
     height: auto;
     background: #272727;
 }
 
 section#search button {
-    width: 70px;
+    width: 20%;
     background: #272727;
     color: #bbb;
     border-left: 1px solid #484848;
-    cursor: pointer;
 }
+
+
+
 
 /* detail */
 
 section#detail {
-    width: 900px;
-    border: 1px solid #484848;
+    width: 100%;
     background: #272727;
     padding: 10px;
+    font-size: 14px;
+    box-sizing: border-box;
+    margin-top: 5px;
 }
 
 section#detail h1 {
-    margin: 0;
-    font-size: 18px;
     display: inline;
 }
-
 
 section#detail .modify {
     font-size: 15px;
     float: right;
-    color: #bbb;
-    padding: 4px 0;
+    color: #aaa;
+    padding: 10px 0;
 }
 
 section#detail .modify a {
-    color: #bbb;
-    cursor: pointer;
+    color: #aaa;
 }
 
 section#detail .sub {
     padding: 3px 0;
-    margin: 9px 0;
+    margin: 15px 0;
     border-top: 1px solid #484848;
     border-bottom: 1px solid #484848;
     font-size: 13px;
-    color: #bbb;
+    color: #aaa;
 }
 
 section#detail .sub span {
@@ -206,6 +185,7 @@ section#detail .content p {
 
 section#detail .buttons {
     text-align: center;
+    margin-top: 25px;
 }
 
 section#detail .buttons button {
@@ -217,7 +197,6 @@ section#detail .buttons button {
     background: #848b79;
     font-size: 15px;
     border: 1px solid #484848;
-    cursor: pointer;
 }
 
 section#detail .buttons button#flag {
@@ -226,12 +205,11 @@ section#detail .buttons button#flag {
 
 section#detail textarea {
     font-family: inherit;
-
     background: #363636;
-    color: #bbb;
+    color: #aaa;
     padding: 5px;
     outline: none;
-    font-size: 15px;
+    font-size: 12px;
     border: 1px solid #484848;
     resize: none;
 }
@@ -242,24 +220,24 @@ section#detail #comment_count {
 
 section#detail textarea#edit_comment {
     margin-top: 3px;
-    width: 98.40%;
+    width: 96.1%;
     height: 85px;
 }
 
 section#detail textarea#comment_content {
-    width: 888px;
+    width: 100%;
     margin-top: 5px;
     height: 85px;
+    box-sizing: border-box;
 }
 
 section#detail #comment_create {
-    width: 60px;
-    height: 35px;
+    width: 15%;
+    height: 25px;
     color: #ddd;
     border: 1px solid #484848;
     float: right;
     background: #848b79;
-    cursor: pointer;
 }
 
 section#detail #new_comment {
@@ -280,7 +258,7 @@ section#detail ul#comment_list {
     border-bottom: 1px solid #484848;
     display: flex;
     flex-direction: row;
-    font-size: 15px;
+    font-size: 12px;
     padding: 5px;
     margin: 10px 0 0 0;
 }
@@ -299,33 +277,28 @@ section#detail li div {
 section#detail li div span {
     float: right;
     font-size: 12px;
-    color: #bbb;
+    color: #aaa;
     text-align: right;
-}
-
-section#detail li div span a {
-    cursor: pointer;
 }
 
 
 section#detail li div p {
-    color: #bbb;
+    color: #aaa;
     margin: 5px 0 0 0;
     font-size: 14px;
 }
 
 section#detail li div p a {
-    font-size: 13px;
+    font-size: 12px;
 }
 
 section#detail li div p button {
-    width: 60px;
+    width: 15%;
     height: 35px;
     color: #ddd;
     border: 1px solid #484848;
     float: right;
     background: #848b79;
-    cursor: pointer;
 }
 
 section#detail button#cancel {
@@ -333,15 +306,13 @@ section#detail button#cancel {
     margin: 0 0 0 5px;
 }
 
-/* write */
 section#write {
     text-align: center;
 }
 
 section#write form {
-    width: 920px;
+    width: 100%;
     margin-top: 8px;
-    border: 1px solid #484848;
     background: #272727;
 }
 
@@ -351,15 +322,15 @@ section#write form .top {
 }
 
 section#write input#id_title {
-    height: 30px;
-    width: 900px;
+    height: 40px;
+    width: 100%;
     background: #363636;
     font-size: 15px;
 }
 
 section#write input#done {
     background: #848b79;
-    width: 80px;
+    width: 20%;
     height: 40px;
     color: #ddd;
     margin: 10px 5px;
@@ -368,7 +339,7 @@ section#write input#done {
 
 section#write button#cancel {
     background: #363636;
-    width: 80px;
+    width: 20%;
     height: 40px;
     color: #ddd;
     margin: 10px 5px;

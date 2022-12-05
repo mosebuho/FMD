@@ -1,5 +1,309 @@
 {% extends "home/home.html" %}
 {% load static %}
+{% if request.device.is_mobile or request.device.is_tablet %}
+{% block Mcontent %}
+<link rel="stylesheet" type="text/css" href="{% static 'mobile/Muser.css' %}" />
+<img id="profile-ad">
+<section id="profile">
+    <ul>
+        <li data-tab="info" class='on' style="background:#848b79; color:#ddd;">
+            <i class="fa-solid fa-circle-info"></i> 내정보
+        </li>
+        <li data-tab="myboard">
+            <i class="fa-solid fa-file-pen"></i> 작성한 글
+        </li>
+        <li data-tab="mycomment">
+            <i class="fa-solid fa-comment-dots"></i> 작성한 댓글
+        </li>
+        <li data-tab="mylike">
+            <i class="fa-solid fa-thumbs-up"></i> 추천한 글
+        </li>
+    </ul>
+    <div id="info" class="tabcont on" style="padding:0;">
+        <table>
+            <tbody>
+                <tr>
+                    <th id="img" style="padding:7px 0 3px 0; border-right:none;">
+                        <img id="userimage" src="{{ user.image.url }}">
+                    </th>
+                    <td>
+                        {% if request.user.id == user.id %}
+                        <span class="filebox">
+                            <form method="POST" action="{% url 'user:image_edit' user.id %}"
+                                enctype="multipart/form-data">
+                                {% csrf_token %}
+                                <label for="image">프로필 사진 변경</label>
+                                <span style="font-size:13px; color:#848b79; vertical-align:-4px; margin-right:-3px;">*
+                                </span>
+                                <span style="color:#bbb;">5MB 이하의 사진만 업로드 가능합니다.</span>
+                                <input type="file" accept="image/*" name="image" id="image" onchange="upload()"
+                                    class="form-control">
+                                <script>
+                                    function upload() {
+                                        var f = image.files[0];
+                                        if (f.size > 5242880) {
+                                            alert("5MB 이하의 사진을 업로드 해주세요.")
+                                        }
+                                        else {
+                                            function uuidv4() {
+                                                return 'xxxxxxxxxxxx4xxxyxxxxxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+                                                    var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+                                                    return v.toString(16);
+                                                });
+                                            }
+                                            var fileName = uuidv4(f.name.split('.')[0]);
+                                            var img = new Image();
+                                            img.src = URL.createObjectURL(f);
+                                            img.onload = function (e) {
+                                                var canvas = document.createElement('canvas');
+                                                var maxsize = 300;
+                                                var width = img.width;
+                                                var height = img.height;
+                                                if (width > height) {
+                                                    if (width > maxsize) {
+                                                        height *= maxsize / width;
+                                                        width = maxsize;
+                                                    }
+                                                } else {
+                                                    if (height > maxsize) {
+                                                        width *= maxsize / height;
+                                                        height = maxsize;
+                                                    }
+                                                }
+                                                canvas.width = width;
+                                                canvas.height = height;
+                                                var ctx = canvas.getContext('2d');
+                                                ctx.drawImage(img, 0, 0, width, height);
+                                                canvas.toBlob(function (blob) {
+                                                    var f2 = new File([blob], fileName + ".jpeg");
+                                                    var data = new FormData()
+                                                    data.append("image", f2)
+                                                    data.append('csrfmiddlewaretoken', '{{ csrf_token }}');
+                                                    $.ajax({
+                                                        data: data,
+                                                        type: "POST",
+                                                        url: "{% url 'user:image_edit' user.id %}",
+                                                        contentType: false,
+                                                        processData: false,
+                                                        success: function (data) {
+                                                            document.getElementById('userimage').src = data.url;
+                                                            document.getElementById('side-userimage').src = data.url;
+                                                        }
+                                                    });
+                                                }, 'image/jpeg', 0.5);
+                                            }
+                                        }
+                                    }
+                                </script>
+                            </form>
+                        </span>
+                        {% endif %}
+                    </td>
+                <tr>
+                    <th>닉네임</th>
+                    <td>
+                        <span id="nickname">
+                            {% if user.verified %}
+                            <i class="fa-solid fa-award"></i> {{ user.nickname }}
+                            {% else %}
+                            {{ user.nickname }}
+                            {% endif %}
+                            {% if request.user.id == user.id %}
+                            {% if user.nchanged %}
+                            <button onclick='name_edit()'
+                                style="background:#363636; color:#ddd; border:1px solid #484848; height:29px; margin-left:2px; cursor:pointer;">변경
+                            </button>
+                            <script>
+                                function name_val() {
+                                    var check = /^(?=.*[a-zA-Z0-9ㄱ-힣]).{2,10}$/;
+                                    var reg = /[\{\}\[\]\/?.,;:|\)*~`!^\-_+<>@\#$%&\\\=\(\'\"]/g;
+                                    var space = /\s/g;
+                                    if ($("#edit_name").val() == '') {
+                                        document.getElementById('name_help').innerHTML = '';
+                                        document.getElementById('name_edit').style.backgroundColor = "efefef4d";
+                                        document.getElementById('name_edit').style.color = "#aaa";
+                                        $("#name_edit").attr("disabled", true);
+                                    }
+                                    else if (space.test($("#edit_name").val()) == true) {
+                                        document.getElementById('name_help').innerHTML = "공백을 제거해주세요.";
+                                        document.getElementById('name_edit').style.backgroundColor = "efefef4d";
+                                        document.getElementById('name_edit').style.color = "#aaa";
+                                        $("#name_edit").attr("disabled", true);
+                                    }
+                                    else if (!check.test($("#edit_name").val()) || reg.test($("#edit_name").val()) == true) {
+                                        document.getElementById('name_help').innerHTML = "특수 문자를 제외한 2자~10자내로 생성해주세요.";
+                                        $("#name_edit").attr("disabled", true);
+                                        document.getElementById('name_edit').style.backgroundColor = "efefef4d";
+                                        document.getElementById('name_edit').style.color = "#aaa";
+                                    }
+                                    else {
+                                        $.ajax({
+                                            url: "{% url 'user:check' %}",
+                                            data: { "nickname": $("#edit_name").val() },
+                                            datatype: 'json',
+                                            success: function (data) {
+                                                if (data['check'] == "fail") {
+                                                    document.getElementById('name_help').innerHTML = "이미 존재하는 닉네임입니다.";
+                                                    $("#name_edit").attr("disabled", true);
+                                                    document.getElementById('name_edit').style.backgroundColor = "efefef4d";
+                                                    document.getElementById('name_edit').style.color = "#aaa";
+                                                    return false;
+                                                } else {
+                                                    document.getElementById('name_help').innerHTML = "";
+                                                    $("#name_edit").removeAttr("disabled");
+                                                    document.getElementById('name_edit').style.backgroundColor = "#848b79";
+                                                    document.getElementById('name_edit').style.color = "#ddd";
+                                                    return;
+                                                }
+                                            }
+                                        })
+                                    }
+                                }
+                                function name_edit(value) {
+                                    $("#nickname").html(
+                                        '<input type="text" id="edit_name" class="form-control" value="{{user.nickname}}" style="background:#363636; border:1px solid #484848; margin:5px 0;" onchange="name_val()">' +
+                                        '<button id="name_edit" style="color:#aaa; height:41.3px; width:45px; border:1px solid #484848; border-left:none; cursor:pointer" disabled>변경</button>' +
+                                        '<button id="name_cancel" style="background:#484848; color:#ddd; height:41.3px; width:45px; border:1px solid #484848; border-left:none; cursor:pointer">취소</button>'
+                                    );
+                                    $("#name_edit").click(function () {
+                                        var warning = confirm("닉네임은 30일에 한 번 변경 가능합니다. \n정말 변경하시겠습니까?");
+                                        if (warning == true) {
+                                            $.ajax({
+                                                type: "POST",
+                                                url: "{% url 'user:name_edit' user.id %}",
+                                                dataType: "json",
+                                                data: {
+                                                    user_id: value,
+                                                    edit_name: $("#edit_name").val(),
+                                                    csrfmiddlewaretoken: "{{csrf_token}}",
+                                                },
+                                                success: function (response) {
+                                                    $("#nickname").html(
+                                                        response.edit_name +
+                                                        '<span style="color:#bbb;"> <button style="color:#bbb; border:1px solid #484848; height:29px; margin-left:2px; cursor:pointer;" disabled>변경</button>' +
+                                                        '<span style="font-size:13px; color:#848b79; vertical-align:-4px; margin-right:-3px;"> * </span> 닉네임 변경일로부터 30일 이후 변경 가능합니다.</span>'
+                                                    );
+                                                    document.getElementById('profile-nickname').innerHTML = response.edit_name;
+                                                },
+                                            });
+                                        }
+                                    });
+                                    $("#name_cancel").click(function () {
+                                        $("#nickname").html(
+                                            "{{ user.nickname }}<button onclick='name_edit()' style='background:#363636; color:#ddd; border:1px solid #484848; margin:0 0 0 5px; height:29px; cursor:pointer;'>변경</button>");
+                                    });
+                                }
+                            </script>
+                        </span>
+                        <p id="name_help" style="margin:0; font-size:12px; color:#ff3737"></p>
+                        {% else %}
+                        <span style="color:#bbb;">
+                            <button
+                                style="color:#bbb; border:1px solid #484848; height:29px; margin-left:2px; cursor:pointer;"
+                                disabled>변경
+                            </button>
+                            <span
+                                style="font-size:13px; color:#848b79; vertical-align:-4px; margin-right:-3px;">*</span>
+                            닉네임 변경일로부터 30일 이후 변경 가능합니다.</span>
+                        {% endif %}
+                        {% endif %}
+                    </td>
+                </tr>
+                {% if request.user.id == user.id %}
+                <tr>
+                    <th>아이디</th>
+                    <td>{{ user.username }}</td>
+                </tr>
+                <tr>
+                    <th>이메일</th>
+                    <td>{{ user.email }}</td>
+                </tr>
+                {% endif %}
+                <tr>
+                    <th>가입일</th>
+                    <td>{{user.date_joined|date:"Y년 m월 d일"}}</td>
+                </tr>
+                {% if request.user.id == user.id %}
+                <th style="border:none;"></th>
+                <td style="text-align: right; font-size:14px; border:none;">
+                    {% if not request.user.social %}
+                    <a href="{% url 'account_change_password' %}" style="margin-right:10px;">
+                        <button
+                            style="background:#363636; color:#bbb; border:1px solid #484848; width:100px; height:35px; cursor:pointer;">비밀번호
+                            변경</button>
+                    </a>
+                    {% else %}
+                    {% endif %}
+                    <a href="{% url 'user:quit' %}" style="margin-right:10px;">
+                        <button
+                            style="background:#363636; color:#bbb; border:1px solid #484848; width:80px; height:35px; cursor:pointer;">탈퇴</button>
+                    </a>
+                </td>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+    {% if user.community_set.all %}
+    <div id="myboard" class="tabcont">
+        {% for board in user.community_set.all %}
+        <p>
+            <a href="{% url 'board:community_detail' board.id %}">{{ board.title|truncatechars:35 }}</a>
+            &nbsp<span><i class="fa-solid fa-comment-dots"></i> {{ board.comment_set.count }}</span>
+        </p>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div id="myboard" class="tabcont" style="text-align:center; padding: 40px; font-size:16px; color:#aaa;">
+        작성한 글이 없습니다.
+    </div>
+    {% endif %}
+    {% if user.comment_set.all %}
+    <div id="mycomment" class="tabcont">
+        {% for comment in user.comment_set.all %}
+        <p>
+            <a href="{% url 'board:community_detail' comment.community_id %}">
+                {{ comment.community.title|truncatechars:35 }}</a>
+            &nbsp<span><i class="fa-solid fa-comment-dots"></i> {{ comment.community.comment_set.count }}</span>
+        </p>
+        <i class="fa-solid fa-arrow-right"></i>&nbsp {{ comment.content }}
+        {% endfor %}
+    </div>
+    {% else %}
+    <div id="mycomment" class="tabcont" style="text-align:center; padding: 40px; font-size:16px; color:#aaa;">
+        작성한 댓글이 없습니다.
+    </div>
+    {% endif %}
+    {% if user.like_boards.all %}
+    <div id="mylike" class="tabcont">
+        {% for board in user.like_boards.all %}
+        <p>
+            <a href="{% url 'board:community_detail' board.id %}">{{ board.title|truncatechars:35 }}</a>
+            &nbsp<span><i class="fa-solid fa-comment-dots"></i> {{ board.comment_set.count }}</span>
+        </p>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div id="mylike" class="tabcont" style="text-align:center; padding: 40px; font-size:16px; color:#aaa;">
+        추천한 글이 없습니다.
+    </div>
+    {% endif %}
+</section>
+<script>
+    $(function () {
+        $('li').click(function () {
+            $('ul.tab li').removeClass('on');
+            $('.tabcont').removeClass('on');
+            $(this).addClass('on');
+            $('#' + $(this).attr('data-tab')).addClass('on');
+            $('#profile li').css('background-color', '#272727');
+            $('#profile li').css('color', '#aaa');
+            $(this).css('background-color', '#848b79');
+            $(this).css('color', '#ddd');
+        })
+    });
+</script>
+{% endblock Mcontent %}
+{% else %}
 {% block content %}
 <link rel="stylesheet" type="text/css" href="{% static 'user.css' %}" />
 <img id="profile-ad">
@@ -303,3 +607,4 @@
 </script>
 
 {% endblock content %}
+{% endif %}

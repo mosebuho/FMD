@@ -1,5 +1,69 @@
 {% extends "account/signup.html" %}
 {% load static %}
+{% if request.device.is_mobile or request.device.is_tablet %}
+{% block Memailcheck %}
+<div>
+    <p style="font-size:16px; color:#ddd; margin:0; font-weight: bold;">
+        계정 탈퇴
+    </p>
+    <p style="color:#aaa; margin:5px 0 0 0; font-size:14px;">
+        탈퇴시 개인 정보 및 이용 정보가 삭제되며 복구할 수 없습니다. <br>
+        아래 기입창에 <span style="color:#ff3737; font-weight:bold;">계정을 삭제합니다.</span>를 정확히 기입하신 후 <br>
+        하단의 유의사항 동의에 체크하고 탈퇴를 진행해주세요.
+    </p>
+    <form method="post" style="margin:15px 0 0 0;">
+        {% csrf_token %}
+        <p style="margin:0;">
+            <input type="text" id="text" style="margin:0 0 5px 0;" onchange="val()" placeholder="게정을 삭제합니다.">
+        </p>
+        <p id="help" style="margin:3px 0 5px 0; font-size:14px; color:#ff3737;"></p>
+        <script type="text/javascript">
+            function val() {
+                if ($("#text").val() == '') {
+                    document.getElementById('help').innerHTML = '';
+                    document.getElementById('done').style.color = "#aaa";
+                    document.getElementById('done').style.backgroundColor = "#efefef4d";
+                    $("#done").attr("disabled", true);
+                    $("#box").attr("disabled", true)
+                }
+                else if (($("#text").val().indexOf("계정을 삭제합니다."))) {
+                    document.getElementById('help').innerHTML = "문구를 정확히 입력해주세요.";
+                    document.getElementById('done').style.color = "#aaa";
+                    document.getElementById('done').style.backgroundColor = "#efefef4d";
+                    $("#done").attr("disabled", true);
+                    $("#box").attr("disabled", true)
+                    $("#done").attr("disabled", true)
+                }
+                else {
+                    document.getElementById('help').innerHTML = "";
+                    $("#box").removeAttr("disabled")
+                }
+            }
+        </script>
+        <p style="margin:0;">
+            <input id="box" name="box" type="checkbox" style="width:19px; margin:0; height:19px; vertical-align:-4px;"
+                disabled onclick="check(this.form)">
+            <span style="font-size:15px;">유의 사항 동의</span>
+        </p>
+        <script type="text/javascript">
+            function check(form) {
+                if (form.box.checked == true) {
+                    document.getElementById('done').style.color = "#ddd";
+                    document.getElementById('done').style.backgroundColor = "#848b79";
+                    $("#done").removeAttr("disabled");
+                } else {
+                    document.getElementById('done').style.color = "#aaa";
+                    document.getElementById('done').style.backgroundColor = "#efefef4d";
+                    $("#done").attr("disabled", true);
+                }
+            }
+        </script>
+        <button id="done" style="background:#efefef4d; color:#aaa; margin:15px 0 0 0;" type="submit"
+            disabled>탈퇴</button>
+    </form>
+</div>
+{% endblock Memailcheck %}
+{% else %}
 {% block emailcheck %}
 <div>
     <p style="font-size:24px; color:#ddd; margin:0">
@@ -62,3 +126,4 @@
     </form>
 </div>
 {% endblock emailcheck %}
+{% endif %}

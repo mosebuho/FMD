@@ -1,0 +1,260 @@
+html {
+    background: #363636;
+}
+
+body {
+    font-size: 12px;
+    color: #ddd;
+    position: relative;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+input {
+    font-family: inherit;
+    color: #bbb;
+    padding: 10px;
+    border: none;
+    outline: none;
+}
+
+button {
+    border: none;
+    font-family: inherit;
+}
+
+a {
+    text-decoration: none;
+    color: #ddd;
+}
+
+
+
+header a.logo {
+    width: 26%;
+    text-align: center;
+}
+
+header img {
+    width: 100%;
+    height: 35px;
+    margin-top: 3px;
+}
+
+header .top {
+    display: flex;
+}
+
+header {
+    height: 35px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 0 10px;
+    padding-top: 2px;
+}
+
+header form div {
+    width: 50%;
+    height: 30px;
+    margin-top: 6px;
+}
+
+header input {
+    background: #272727;
+    font-size: 11px;
+}
+
+header button {
+    background: #848b79;
+    color: #ddd;
+}
+
+main {
+    width: 100%;
+}
+
+ul {
+    list-style: none;
+}
+
+section#image {
+    margin-top: 10px;
+    width: 100%;
+    background: #272727;
+    height: 278px;
+}
+
+section#image .title {
+    display: flex;
+    flex-direction: row;
+    padding: 0;
+}
+
+.title {
+    border-bottom: 1px solid #848b79;
+    padding: 5px;
+    font-weight: bold;
+}
+
+.title li {
+    list-style: none;
+    width: 50%;
+    text-align: center;
+    padding: 5px;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+}
+
+section#image .tabcont {
+    display: none;
+}
+
+section#image .tabcont.on {
+    display: block;
+}
+
+section#image .tabcont ul {
+    justify-content: space-evenly;
+    padding: 10px 0 0 0;
+    display: flex;
+    flex-direction: row;
+}
+
+section#image .tabcont ul a {
+    width: 30%;
+}
+
+section#image .tabcont ul img {
+    width: 100%;
+    height: 107px;
+    position: relative;
+}
+
+section#image .tabcont ul li {
+    position: relative;
+    margin: 0;
+    padding: 0;
+}
+
+section#image .tabcont ul span {
+    position: absolute;
+    top: 82%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, .7);
+    font-weight: bold;
+    width: 101%;
+    height: 35px;
+    font-size: 12px;
+    padding: 3px;
+    box-sizing: border-box;
+    color: #ddd;
+}
+
+section#dict {
+    margin-top: 10px;
+    width: 100%;
+    height: 150px;
+    background: #272727;
+}
+
+section#dict .content {
+    text-align: center;
+    margin: 0;
+    padding-top: 45px;
+    font-weight: bold;
+}
+
+section#community {
+    margin-top: 5px;
+    width: 100%;
+    height: 268px;
+    background: #272727;
+}
+
+section#community li {
+    border-bottom: 1px solid #484848;
+    margin: 2px 0;
+    padding: 5px 0 5px 3px;
+}
+
+section#event {
+    margin-top: 10px;
+    width: 100%;
+    height: 140px;
+    background: #272727;
+}
+
+section#event .content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+section#event .content img {
+    width: 100%;
+    height: 102px;
+    margin-top: 5px;
+}
+
+section#event .content ul {
+    width: 50%;
+    margin-left: 5px;
+}
+
+section#event .content .text {
+    float: right;
+    width: 100%;
+    border-bottom: 1px solid #484848;
+    margin: 0;
+    padding: 5px 0 5px 2px;
+}
+
+
+footer {
+    position: relative;
+    height: 30px;
+    width: 100%;
+    margin-top: 15px;
+    padding: 15px 0 0 0;
+    border-top: 1px solid #484848;
+    color: #bbb;
+    text-align: center;
+}
+
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background: #272727;
+    overflow-x: hidden;
+    padding-top: 60px;
+    transition: 0.5s;
+}
+
+.sidenav a {
+    display: block;
+    transition: 0.3s;
+    padding: 20px 10px;
+    font-size: 16px;
+    font-weight: bold;
+    border-bottom: 1px solid #363636;
+}
+
+
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    font-size: 13px;
+}

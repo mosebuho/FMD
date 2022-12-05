@@ -121,6 +121,18 @@ section#detail .content {
     font-size: 16px;
 }
 
+section#detail .content table {
+    width: 100%;
+}
+
+section#detail .content table,
+section#detail .content tr,
+section#detail .content td {
+    border: 1px solid #bbb;
+    border-collapse: collapse;
+}
+
+
 section#detail .content p {
     margin: 0;
 }

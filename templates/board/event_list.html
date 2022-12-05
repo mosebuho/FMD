@@ -1,5 +1,80 @@
 {% extends "board/base.html" %}
 {% load static %}
+{% if request.device.is_mobile or request.device.is_tablet %}
+{% block Mhead %}
+<title>행사일정</title>
+<meta name="description" content="밀덕을 위한 군사 커뮤니티 포밀덕">
+<meta name="title" content="행사일정 - 포밀덕">
+<meta property="og:title" content="행사일정 - 포밀덕">
+<meta property="og:description" content="밀덕을 위한 군사 커뮤니티 포밀덕">
+<meta property="og:url" content="https://4millduk.com/board/event/">
+{% endblock Mhead %}
+
+{% block Mboard %}
+<link rel="stylesheet" type="text/css" href="{% static 'mobile/Mevent.css' %}" />
+<link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css' rel='stylesheet' />
+<script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.js'></script>
+<script src='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/locales-all.min.js'></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var calendarEl = document.getElementById('calendar');
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            locale: 'ko',
+            events: [
+                {% for i in page_obj %}
+                {
+                title: '{{i.title}}',
+                start: '{{i.start|date:"Y-m-d" }}',
+                end: '{{i.end|date:"Y-m-d" }}',
+            },
+            {% endfor %}
+            ]
+        });
+    calendar.render();
+    });
+</script>
+<section id="eventlist">
+    <div id='calendar'></div>
+    <ul>
+        {% for i in page_obj %}
+        <a href="{% url 'board:event_detail' i.id %}">
+            <li>
+                <img style="image-rendering: -webkit-optimize-contrast;" src="{{i.thumbnail.url}}">
+                <div>
+                    <b>{{i.title|truncatechars:20}}</b>
+                    <p>
+                        <i class="fa-regular fa-calendar"></i> {{ i.start|date }} ~ {{ i.end|date }}
+                    </p>
+                </div>
+            </li>
+        </a>
+        {% endfor %}
+    </ul>
+</section>
+<section id="button">
+    <div></div>
+    {% block Msearch %}
+    {% include 'pagination.html' %}
+    {% endblock Msearch %}
+    <div></div>
+</section>
+<section id="search">
+    <form action="{% url 'board:event_search' %}" method="post">
+        {% csrf_token %}
+        <input name="q" value="{{q}}" placeholder="검색어를 입력해주세요.">
+        <button type="submit">검색</button>
+    </form>
+</section>
+{% endblock Mboard %}
+{% else %}
+{% block head %}
+<title>행사일정</title>
+<meta name="description" content="밀덕을 위한 군사 커뮤니티 포밀덕">
+<meta name="title" content="행사일정 - 포밀덕">
+<meta property="og:title" content="행사일정 - 포밀덕">
+<meta property="og:description" content="밀덕을 위한 군사 커뮤니티 포밀덕">
+<meta property="og:url" content="https://4millduk.com/board/event/">
+{% endblock head %}
 {% block board %}
 <link rel="stylesheet" type="text/css" href="{% static 'event.css' %}" />
 <link href='https://cdn.jsdelivr.net/npm/fullcalendar@5.11.3/main.min.css' rel='stylesheet' />
@@ -24,9 +99,6 @@
     });
 </script>
 <section id="event">
-    <div class="title">
-        캘린더
-    </div>
     <div id='calendar'></div>
     <ul>
         {% for i in page_obj %}
@@ -69,3 +141,4 @@
     </form>
 </section>
 {% endblock board %}
+{% endif %}

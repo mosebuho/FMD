@@ -1,5 +1,98 @@
 {% extends "board/base.html" %}
 {% load static %}
+{% if request.device.is_mobile or request.device.is_tablet %}
+
+
+
+{% block Mhead %}
+<title>커뮤니티</title>
+<meta name="description" content="밀덕을 위한 군사 커뮤니티 포밀덕">
+<meta name="title" content="커뮤니티 - 포밀덕">
+<meta property="og:title" content="커뮤니티 - 포밀덕">
+<meta property="og:description" content="밀덕을 위한 군사 커뮤니티 포밀덕">
+<meta property="og:url" content="https://4millduk.com/board/community/">
+{% endblock Mhead %}
+
+{% block Mboard %}
+<link rel="stylesheet" type="text/css" href="{% static 'mobile/Mcommunity.css' %}" />
+{% block Mwrite %}
+<section id="best">
+    <span class="besttitle"><i class="fa-solid fa-fire"></i> 인기글</span>
+    <ul>
+        {% for i in commu_hot_list %}
+        <li>
+            <a href="{% url 'board:community_detail' i.id %}">{{i.title|truncatechars:25}}</a>
+            <span class="sub">
+                <i class="fa-solid fa-comment-dots"></i> {{ i.comment_set.count }}
+                <i class="fa-solid fa-eye"></i> {{ i.view }}
+                <i class="fa-solid fa-thumbs-up"></i> {{ i.like }}
+            </span>
+        </li>
+        {% endfor %}
+    </ul>
+</section>
+{% block Mdetail %}
+<section id="list">
+    <span class="besttitle"><i class="fa-solid fa-comments"></i> 커뮤니티</span>
+    <ul>
+        {% for i in page_obj %}
+        <li>
+            <a href="{% url 'board:community_detail' i.pk %}" target="_self" style="text-decoration: none">
+                {{ i.title|truncatechars:25 }}
+            </a>
+            <span class="sub">
+                <i class="fa-solid fa-comment-dots"></i> {{ i.comment_set.count }}
+                <i class="fa-solid fa-eye"></i> {{ i.view }}
+                <i class="fa-solid fa-thumbs-up"></i> {{ i.like }}
+            </span>
+            <span class="date">{{ i.date_short }}</span>
+        </li>
+        {% endfor %}
+    </ul>
+</section>
+<section id="button">
+    <div></div>
+    {% block Msearch %}
+    {% include "pagination.html" %}
+    {% endblock Msearch %}
+    {% if request.user.is_authenticated %}
+    <button>
+        <a href="{% url 'board:community_create' %}">
+            <i class="fa-solid fa-pen-to-square"></i> 글쓰기
+        </a>
+    </button>
+    {% else %}
+    <button onclick="alert('로그인 후 작성 가능합니다.')">
+        <i class="fa-solid fa-pen-to-square"></i> 글쓰기
+    </button>
+    {% endif %}
+</section>
+<section id="search">
+    <form action="{% url 'board:community_search' %}" method="post">
+        {% csrf_token %}
+        <input name="q" value="{{q}}" placeholder="검색어를 입력해주세요.">
+        <button type="submit">검색</button>
+    </form>
+</section>
+{% endblock Mdetail %}
+{% endblock Mwrite %}
+{% endblock Mboard %}
+
+
+
+
+
+
+{% else %}
+{% block head %}
+<title>커뮤니티</title>
+<meta name="description" content="밀덕을 위한 군사 커뮤니티 포밀덕">
+<meta name="title" content="커뮤니티 - 포밀덕">
+<meta property="og:title" content="커뮤니티 - 포밀덕">
+<meta property="og:description" content="밀덕을 위한 군사 커뮤니티 포밀덕">
+<meta property="og:url" content="https://4millduk.com/board/community/">
+{% endblock head %}
+
 {% block board %}
 <link rel="stylesheet" type="text/css" href="{% static 'community.css' %}" />
 {% block write %}
@@ -89,3 +182,4 @@
 {% endblock detail %}
 {% endblock write %}
 {% endblock board %}
+{% endif %}

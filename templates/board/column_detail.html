@@ -1,5 +1,14 @@
 {% extends "board/news_detail.html" %}
+{% if request.device.is_mobile or request.device.is_tablet %}
+{% block MChead %}
+<meta name="title" content="{{ board.title }} - 군사칼럼 - 포밀덕">
+<meta property="og:title" content="{{board.title}} - 군사칼럼 - 포밀덕">
+<meta property="og:url" content="https://4millduk.com/board/column/{{board.id}}/">
+{% endblock MChead %}
+{% else %}
 {% block Chead %}
+<meta name="title" content="{{ board.title }} - 군사칼럼 - 포밀덕">
+<meta property="og:title" content="{{board.title}} - 군사칼럼 - 포밀덕">
 <meta property="og:url" content="https://4millduk.com/board/column/{{board.id}}/">
 {% endblock Chead %}
 {% block column %}
@@ -18,3 +27,4 @@
 </span>
 {% endif %}
 {% endblock column %}
+{% endif %}

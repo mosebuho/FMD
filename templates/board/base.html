@@ -1,5 +1,15 @@
 {% extends "home/home.html" %}
 {% load static %}
+{% if request.device.is_mobile or request.device.is_tablet %}
+{% block Mcontent %}
+<div style="width:100%; height:100px; margin-top:10px;"></div>
+{% block Mboard %}
+{% endblock Mboard %}
+<div style="width:100%; height:100px; margin-top:10px;"></div>
+{% endblock Mcontent %}
+
+{% else %}
+
 {% block content %}
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8572587507451544"
     crossorigin="anonymous"></script>
@@ -10,4 +20,6 @@
 </script>
 {% block board %}
 {% endblock board %}
+<div style="width:100%; height:100px; margin-top:10px;"></div>
 {% endblock content %}
+{% endif %}

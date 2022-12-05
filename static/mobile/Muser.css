@@ -1,72 +1,72 @@
 section#account {
-    border: #484848 solid 1px;
     background: #272727;
     text-align: center;
     margin-top: 5px;
+    padding: 5px;
 }
 
 section#account img {
+    width: 50%;
     margin: 15px;
-    padding: 0 55px;
 }
 
 section#account .input {
-    width: 450px;
-    margin: auto;
+    width: 100%;
     font-size: 14px;
-    color: #bbb;
+    color: #aaa;
     text-align: left;
 }
 
 section#account .input span {
-    font-size: 18px;
+    font-size: 16px;
     color: #ddd;
+    font-weight: bold;
 }
 
 section#account input {
-    height: 30px;
-    width: 438px;
+    height: 45px;
+    width: 100%;
     background: #363636;
     padding: 5px;
-    border: #484848 solid 1px;
-    margin: 3px auto 15px auto;
+    margin: 5px auto 15px auto;
+    box-sizing: border-box;
 }
 
 section#account form button {
-    width: 450px;
+    width: 100%;
     background: #848b79;
     height: 45px;
     margin: 8px 0 0 0;
-    border: #484848 solid 1px;
     color: #ddd;
     font-size: 15px;
-    cursor: pointer;
+    font-weight: bold;
+    margin: 0;
 }
 
 section#account .help {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    width: 450px;
+    width: 100%;
     font-size: 14px;
-    margin: 5px auto 10px auto;
+    margin: 10px auto 10px auto;
 }
 
 section#account .help a {
-    color: #bbb;
+    color: #aaa;
     font-size: 12px;
 }
 
 section#account .social {
     margin: auto;
-    width: 450px;
+    width: 100%;
     padding-top: 20px;
     border-top: 1px solid #363636;
 }
 
 section#account .social img {
     float: left;
-    width: 40px;
+    width: 10%;
     height: 40px;
     margin: 0;
     padding: 0;
@@ -80,7 +80,7 @@ section#account .social form span {
 
 section#account .naver {
     font-weight: bold;
-    width: 450px;
+    width: 100%;
     background: #03c75a;
     height: 45px;
     border: #484848 solid 1px;
@@ -89,7 +89,7 @@ section#account .naver {
 section#account .kakao {
     font-weight: bold;
     color: #272727;
-    width: 450px;
+    width: 100%;
     background: rgb(254, 229, 0);
     height: 45px;
     margin-top: 20px;
@@ -99,14 +99,14 @@ section#account .kakao {
 section#account .google {
     font-weight: bold;
     color: #272727;
-    width: 450px;
+    width: 100%;
     background: #fff;
     height: 45px;
     margin-top: 20px;
     border: #484848 solid 1px;
 }
 
-/* profile */
+
 
 section#profile {
     text-align: center;
@@ -130,11 +130,10 @@ section#profile li {
     width: 100%;
     text-align: center;
     color: #ddd;
-    font-size: 17px;
+    font-size: 14px;
     list-style: none;
-    padding: 10px 0;
-    cursor: pointer;
-    color: #bbb;
+    padding: 7px 0;
+    color: #aaa;
     font-weight: bold;
 }
 
@@ -162,27 +161,26 @@ section#profile span {
 }
 
 section#profile #nickname {
-    font-size: 16px;
+    font-size: 13px;
 }
 
 section#profile #mycomment {
     font-size: 14px;
-    color: #bbb;
+    color: #aaa;
 }
 
 section#profile #userimage {
     border-radius: 50%;
-    width: 75px;
-    height: 75px;
+    width: 60%;
+    height: 50px;
     margin-left: 5px;
 }
 
 section#profile .filebox label {
     padding: .5em .75em;
     background: #363636;
-    font-size: 13px;
+    font-size: 11px;
     border: 1px solid #484848;
-    cursor: pointer;
 }
 
 section#profile .filebox input[type="file"] {

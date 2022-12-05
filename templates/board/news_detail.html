@@ -1,10 +1,42 @@
 {% extends "board/base.html" %}
 {% load static %}
+{% if request.device.is_mobile or request.device.is_tablet %}
+{% block Mhead %}
+<title>{{ board.title }}</title>
+<meta name="description" content="{{ board.content|safe|striptags|truncatechars:55 }}">
+<meta name="title" content="{{ board.title }} - 뉴스/정보 - 포밀덕">
+<meta property="og:title" content="{{board.title}} - 뉴스/정보 - 포밀덕">
+<meta property="og:description" content="{{ board.content|safe|striptags|truncatechars:55 }}">
+{% block MChead %}
+<meta property="og:url" content="https://4millduk.com/board/news/{{board.id}}/">
+{% endblock MChead %}
+{% endblock Mhead %}
+
+{% block Mboard %}
+<link rel="stylesheet" type="text/css" href="{% static 'mobile/Mnews.css' %}" />
+<input type="hidden" value={{board.view_count}}>
+<section id="detail">
+    <h1>{{ board.title }}</h1>
+    <div class="sub">
+        {% if board.writer.verified %}
+        <i class="fa-solid fa-award"></i> {{ board.writer }}
+        {% else %}
+        {{ board.writer }}
+        {% endif %} |
+        <i class="fa-solid fa-eye"></i> {{ board.view }}
+        <span><i class="fa-solid fa-clock"></i> {{ board.date_str }}</span>
+    </div>
+    <div class="content">
+        {{ board.content | safe }}
+    </div>
+</section>
+{% endblock Mboard %}
+{% else %}
 {% block head %}
 <title>{{ board.title }}</title>
 <meta name="description" content="{{ board.content|safe|striptags|truncatechars:55 }}">
-<meta name="title" content="{{ board.title }}">
-<meta property="og:title" content="{{board.title}}">
+<meta name="title" content="{{ board.title }} - 뉴스/정보 - 포밀덕">
+<meta property="og:title" content="{{board.title}} - 뉴스/정보 - 포밀덕">
 <meta property="og:description" content="{{ board.content|safe|striptags|truncatechars:55 }}">
 {% block Chead %}
 <meta property="og:url" content="https://4millduk.com/board/news/{{board.id}}/">
@@ -45,3 +77,4 @@
     </div>
 </section>
 {% endblock board %}
+{% endif %}

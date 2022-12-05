@@ -1,11 +1,32 @@
 {% extends "board/base.html" %}
 {% load static %}
+{% if request.device.is_mobile or request.device.is_tablet %}
+{% block Mhead %}
+<title>{{ board.title }}</title>
+<meta name="description" content="{{ board.content|safe|striptags|truncatechars:55 }}">
+<meta name="title" content="{{ board.title }} - 행사일정 - 포밀덕">
+<meta property="og:title" content="{{board.title}} - 행사일정 - 포밀덕">
+<meta property="og:description" content="{{ board.content|safe|striptags|truncatechars:55 }}">
+<meta property="og:url" content="https://4millduk.com/board/event/{{board.id}}/">
+{% endblock Mhead %}
+{% block Mboard %}
+<link rel="stylesheet" type="text/css" href="{% static 'mobile/Mevent.css' %}" />
+<section id="detail">
+    <h1>{{ board.title }}</h1>
+    <div class="sub">
+        <i class="fa-regular fa-calendar"></i> {{board.start|date}} ~ {{board.end|date}}
+    </div>
+    <div class="content">
+        {{ board.content | safe }}
+    </div>
+</section>
+{% endblock Mboard %}
+{% else %}
 {% block head %}
 <title>{{ board.title }}</title>
 <meta name="description" content="{{ board.content|safe|striptags|truncatechars:55 }}">
-<meta name="title" content="{{ board.title }}">
-<meta name="title" content="{{ board.title }}">
-<meta property="og:title" content="{{board.title}}">
+<meta name="title" content="{{ board.title }} - 행사일정 - 포밀덕">
+<meta property="og:title" content="{{board.title}} - 행사일정 - 포밀덕">
 <meta property="og:description" content="{{ board.content|safe|striptags|truncatechars:55 }}">
 <meta property="og:url" content="https://4millduk.com/board/event/{{board.id}}/">
 {% endblock head %}
@@ -35,3 +56,4 @@
     </div>
 </section>
 {% endblock board %}
+{% endif %}

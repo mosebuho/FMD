@@ -1,4 +1,10 @@
 {% extends "board/news_list.html" %}
+{% if request.device.is_mobile or request.device.is_tablet %}
+{% block Msearch %}
+{% include "search_pagination.html" %}
+{% endblock Msearch %}
+{% else %}
 {% block search %}
 {% include "search_pagination.html" %}
 {% endblock search %}
+{% endif %}

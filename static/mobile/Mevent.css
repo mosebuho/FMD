@@ -1,0 +1,126 @@
+section#eventlist {
+    background: #272727;
+    margin-top: 5px;
+}
+
+#calendar .fc-toolbar-title {
+    font-size: 20px;
+}
+
+#calendar .fc-button-primary {
+    background: #848b79;
+    border-color: #484848;
+}
+
+#calendar .fc-day-today {
+    background: #484848;
+}
+
+#calendar .fc-h-event {
+    border: 1px solid #848b79;
+    background: #848b79;
+    opacity: 0.8;
+}
+
+#calendar .fc-header-toolbar {
+    margin: 10px;
+}
+
+#calendar .fc-day-future,
+#calendar .fc-day-past,
+#calendar .fc-scrollgrid {
+    border: 1px solid #484848;
+}
+
+#calendar td,
+#calendar th {
+    border: none;
+}
+
+section#eventlist ul {
+    list-style: none;
+    margin: 10px 0 0 0;
+    border-top: 1px solid #848b79;
+    padding: 10px 0 0 0;
+}
+
+section#eventlist li {
+    display: flex;
+    flex-direction: row;
+    margin: 0 0 5px 0;
+    padding: 0 0 5px 0;
+    border-bottom: 1px solid #484848;
+}
+
+section#eventlist li b {
+    font-size: 16px;
+}
+
+section#eventlist img {
+    min-width: 30%;
+    width: 30%;
+    height: 70px;
+}
+
+section#eventlist ul div {
+    margin: 0 0 0 10px;
+}
+
+section#eventlist ul a {
+    color: #ddd;
+}
+
+section#eventlist ul p {
+    border-top: 1px solid #484848;
+    border-bottom: 1px solid #484848;
+    color: #aaa;
+    margin: 5px 0 0 0;
+    padding: 2px 0;
+}
+
+section#detail img {
+    width: 100%;
+}
+
+section#detail {
+    width: 100%;
+    background: #272727;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+section#detail .sub {
+    padding: 3px 0;
+    margin: 15px 0;
+    border-top: 1px solid #484848;
+    border-bottom: 1px solid #484848;
+    font-size: 13px;
+    color: #aaa;
+}
+
+
+section#search form {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    text-align: center;
+    width: 70%;
+    height: 35px;
+    font-size: 12px;
+    margin: 5px auto 0 auto;
+}
+
+
+section#search input {
+    padding: 5px;
+    width: 80%;
+    height: auto;
+    background: #272727;
+}
+
+section#search button {
+    width: 20%;
+    background: #272727;
+    color: #bbb;
+    border-left: 1px solid #484848;
+}

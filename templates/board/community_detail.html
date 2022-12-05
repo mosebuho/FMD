@@ -1,9 +1,255 @@
 {% extends "board/community_list.html" %}
+
+{% if request.device.is_mobile or request.device.is_tablet %}
+{% block Mhead %}
+<title>{{ board.title }}</title>
+<meta name="description" content="{{ board.content|safe|striptags|truncatechars:55 }}">
+<meta name="title" content="{{ board.title }} - 커뮤니티 - 포밀덕">
+<meta property="og:title" content="{{board.title}} - 커뮤니티 - 포밀덕">
+<meta property="og:description" content="{{ board.content|safe|striptags|truncatechars:55 }}">
+<meta property="og:url" content="https://4millduk.com/board/community/{{board.id}}/">
+{% endblock Mhead %}
+{% block Mdetail %}
+<input type="hidden" value={{board.view_count}}>
+<section id="detail">
+    <h1>{{ board.title }}</h1>
+    {% if request.user == board.writer %}
+    <span class="modify">
+        <a href="{% url 'board:community_update' board.id %}">수정</a>
+        <a onclick="boardDelete('{{board.id}}')">삭제</a>
+        <script>
+            function boardDelete() {
+                var warning = confirm("게시글을 삭제할 경우 복구가 불가능합니다.\n정말 삭제하시겠습니까?");
+                if (warning == true) {
+                    window.location.href = "{% url 'board:community_delete' board.id %}"
+                }
+            }
+        </script>
+    </span>
+    {% endif %}
+    <div class="sub">
+        {% if board.writer.verified %}
+        <i class="fa-solid fa-award"></i> {{ board.writer }}
+        {% else %}
+        {{ board.writer }}
+        {% endif %} |
+        <i class="fa-solid fa-eye"></i> {{ board.view }}
+        <i class="fa-solid fa-thumbs-up"></i> {{ board.like }}
+        <i class="fa-solid fa-comment-dots"></i> {{ board.comment_set.count }}
+        <span><i class="fa-solid fa-clock"></i> {{ board.date_str }}</span>
+    </div>
+    <div class="content">
+        {{ board.content | safe }}
+    </div>
+    <div class="buttons">
+        {% if request.user.is_authenticated %}
+        <button id="{{ board.id }}" onclick="like(this.id)">
+            {% if request.user in board.like_users.all %}
+            <i id="like" class="fa-solid fa-thumbs-up"></i> 추천 <span id="like_count">{{board.like}}</span>
+            {% else %}
+            <i id="like" class="fa-regular fa-thumbs-up"></i> 추천 <span id="like_count">{{board.like}}</span>
+            {% endif %}
+            <script>
+                function like(id) {
+                    $.ajax({
+                        url: "{% url 'board:like' %}",
+                        data: {
+                            board_id: id,
+                        },
+                        dataType: "json",
+                        success: function (response) {
+                            $("#like_count").html(response.like);
+                            if (response.message == "off") {
+                                $("#like").attr("class", "fa-regular fa-thumbs-up");
+                            } else {
+                                $("#like").attr("class", "fa-solid fa-thumbs-up");
+                            }
+                        },
+                    });
+                }
+            </script>
+        </button>
+        {% else %}
+        <button id="{{ board.id }}" onclick="alert('로그인이 필요한 기능입니다.')">
+            <i id="like" class="fa-regular fa-thumbs-up"></i> 추천 <span id="like_count">{{board.like}}</span>
+        </button>
+        {% endif %}
+        <button id="flag"><i class="fa-solid fa-flag"></i> 신고</button>
+    </div>
+    {% if request.user.is_authenticated %}
+    <textarea id="comment_content" name="content" rows="4" placeholder="댓글을 입력하세요."></textarea>
+    <button id="comment_create" onclick="comment_create()">등록</button>
+    {% else %}
+    <textarea id="comment_content" rows="4" placeholder="댓글을 입력하세요." onclick="alert('로그인이 필요한 기능입니다.')"></textarea>
+    {% endif %}
+    <span>
+        댓글 <span id="comment_count">{{board.comment_set.count}}</span>
+    </span>
+    <ul id="new_comment"></ul>
+    <ul id="comment_list">
+        {% for comment in page_obj %}
+        {% if comment.parents == null %}
+        <li id="{{comment.id}}">
+            <img style="image-rendering: -webkit-optimize-contrast;" src="{{ comment.writer.image.url }}">
+            <div>
+                {% if comment.writer.verified %}
+                <i class="fa-solid fa-award"></i> {{ comment.writer }}
+                {% else %}
+                {{ comment.writer }}
+                {% endif %}
+                <span>
+                    <i class="fa-solid fa-clock"></i> {{comment.date_str}}
+                    <br>
+                    {% if request.user == comment.writer %}
+                    <a onclick="comment_update('{{comment.id}}')">수정</a>
+                    <a onclick="comment_delete('{{comment.id}}')">삭제</a>
+                    {% endif %}
+                </span>
+                <p style="white-space:pre-wrap;" id="{{comment.id}}content">{{comment.content|safe}}</p>
+                <p id="{{ comment.id }}recomment"><a style="cursor: pointer; color:#848b79;"
+                        onclick="recomment_create('{{ comment.id }}')">댓글</a></p>
+                <ul style="padding:0; margin-top:4px;" id="recomment_list">
+                    {% for recomment in comment.recomment.all %}
+                    <li style="border-bottom:none; margin-top:0;" id="{{recomment.id}}">
+                        <img style="image-rendering: -webkit-optimize-contrast;" src="{{ recomment.writer.image.url }}">
+                        <div>
+                            {% if recomment.writer.verified %}
+                            <i class="fa-solid fa-award"></i> {{ recomment.writer }}
+                            {% else %}
+                            {{ recomment.writer }}
+                            {% endif %}
+                            <span>
+                                <i class="fa-solid fa-clock"></i> {{recomment.date_str}}
+                                <br>
+                                {% if request.user == recomment.writer %}
+                                <a onclick="comment_update('{{recomment.id}}')">수정</a>
+                                <a onclick="comment_delete('{{recomment.id}}')">삭제</a>
+                                {% endif %}
+                            </span>
+                            <p style="white-space:pre-wrap;" id="{{recomment.id}}content">{{recomment.content|safe}}</p>
+                        </div>
+                    </li>
+                    {% endfor %}
+                </ul>
+                <ul style="padding:0" id="{{ comment.id }}new_recomment"></ul>
+            </div>
+        </li>
+        {% endif %}
+        {% endfor %}
+    </ul>
+    {% include "pagination.html" %}
+</section>
+<script>
+    function comment_create() {
+        if ($('#comment_content').val() == "") { alert('내용을 입력해주세요.'); }
+        else {
+            $.ajax({
+                type: "POST",
+                url: "{% url 'board:comment_create' board.id %}",
+                data: {
+                    content: $("#comment_content").val(),
+                    csrfmiddlewaretoken: '{{csrf_token}}',
+                },
+                success: function (response) {
+                    $('#new_comment').append(
+                        "<li id='" + response.comment_id + "'style='border-top:1px solid #848b79; border-bottom:1px solid #848b79;'>" +
+                        "<img style='image-rendering: -webkit-optimize-contrast;' src='" + response.img + "'><div>" + response.writer +
+                        "<span><i class='fa-solid fa-clock' style='margin-right:3px;'></i>" + response.date_str + "<br><a onclick='comment_update(" + response.comment_id + ")'>수정</a>" +
+                        " <a onclick='comment_delete(" + response.comment_id + ")'>삭제</a></span>" +
+                        "<p style='white-space:pre-wrap;' id=" + response.comment_id + "content>" + response.content + "</p>" +
+                        "<p id='" + response.comment_id + "recomment'><a style='color:#848b79;'onclick='recomment_create(" + response.comment_id + ")'>댓글</a></p>" +
+                        "<ul style='padding:0' id='" + response.comment_id + "new_recomment'></ul></div></li>"
+                    );
+                    $("#comment_count").html(response.comment_count);
+                    $('#comment_content').val("");
+                },
+            })
+        }
+    };
+    function comment_update(value) {
+        var text = document.getElementById(value + 'content').textContent;
+        $("#" + value + "content").html("<textarea id='edit_comment'>" + text + "</textarea>" +
+            "<button id='cancel'>취소</button> <button id='done'>수정</button>")
+        $("#cancel").click(function () {
+            $("#" + value + "content").replaceWith("<p style='white-space:pre-wrap;' id='" + value + "content'>" + text + "</p>");
+        });
+        $("#done").click(function () {
+            if ($("#edit_comment").val() == "") { alert('댓글을 입력해주세요.'); }
+            else {
+                $.ajax({
+                    type: "POST",
+                    url: "{% url 'board:comment_update' %}",
+                    data: {
+                        comment_id: value,
+                        edit_comment: $("#edit_comment").val(),
+                        csrfmiddlewaretoken: "{{csrf_token}}",
+                    },
+                    success: function (response) {
+                        $("#" + value + "content").replaceWith("<p style='white-space:pre-wrap;' id='" + value + "content'>" + response.content + "</p>");
+                    },
+                });
+            }
+        });
+    }
+    function comment_delete(value) {
+        var delete_warning = confirm("댓글을 삭제할 경우 복구가 불가능합니다.\n정말 삭제하시겠습니까?");
+        if (delete_warning == true) {
+            $.ajax({
+                type: "POST",
+                url: "{% url 'board:comment_delete' board.id %}",
+                data: {
+                    comment_id: value,
+                    csrfmiddlewaretoken: "{{csrf_token}}",
+                },
+                success: function (response) {
+                    $("#" + value).remove();
+                    $("#comment_count").html(response.comment_count);
+                },
+            });
+        }
+    }
+    function recomment_create(value) {
+        $("#" + value + "recomment").html("<textarea id='recomment_content' style='width:96.1%; height:40px;'></textarea>" +
+            "<button id='cancel'>취소</button> <button id='done'>등록</button>")
+        $("#cancel").click(function () {
+            $("#" + value + "recomment").replaceWith("<p id='" + value + "recomment'><a style='cursor: pointer; color:#848b79;' onclick='recomment_create(" + value + ")'>댓글</a></p>");
+        });
+        $("#done").click(function () {
+            if ($("#recomment_content").val() == "") { alert('댓글을 입력해주세요.'); }
+            else {
+                $.ajax({
+                    type: "POST",
+                    url: "{% url 'board:comment_create' board.id %}",
+                    data: {
+                        parents_id: value,
+                        content: $("#recomment_content").val(),
+                        csrfmiddlewaretoken: '{{csrf_token}}',
+                    },
+                    success: function (response) {
+                        $("#" + value + "new_recomment").append(
+                            "<li id='" + response.comment_id + "'style='border-top:1px solid #848b79; border-bottom:1px solid #848b79;'>" +
+                            "<img style='image-rendering: -webkit-optimize-contrast;' src='" + response.img + "'><div>" + response.writer +
+                            "<span><i class='fa-solid fa-clock' style='margin-right:3px;'></i>" + response.date_str + "<br><a onclick='comment_update(" + response.comment_id + ")'>수정</a>" +
+                            " <a onclick='comment_delete(" + response.comment_id + ")'>삭제</a></span>" +
+                            "<p style='white-space:pre-wrap;' id=" + response.comment_id + "content>" + response.content + "</p></div></li>"
+                        );
+                        $("#" + value + "recomment").replaceWith("<p id='" + value + "recomment'><a style='cursor:pointer; color:#848b79;' onclick='recomment_create(" + value + ")'>댓글</a></p>");
+                        $("#comment_count").html(response.comment_count);
+                    },
+                });
+            }
+        });
+    }
+</script>
+{% endblock Mdetail %}
+
+
+{% else %}
 {% block head %}
 <title>{{ board.title }}</title>
 <meta name="description" content="{{ board.content|safe|striptags|truncatechars:55 }}">
-<meta name="title" content="{{ board.title }}">
-<meta property="og:title" content="{{board.title}}">
+<meta name="title" content="{{ board.title }} - 커뮤니티 - 포밀덕">
+<meta property="og:title" content="{{board.title}} - 커뮤니티 - 포밀덕">
 <meta property="og:description" content="{{ board.content|safe|striptags|truncatechars:55 }}">
 <meta property="og:url" content="https://4millduk.com/board/community/{{board.id}}/">
 {% endblock head %}
@@ -240,3 +486,4 @@
     }
 </script>
 {% endblock detail %}
+{% endif %}

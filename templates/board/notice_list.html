@@ -1,5 +1,86 @@
 {% extends "board/base.html" %}
 {% load static %}
+{% if request.device.is_mobile or request.device.is_tablet %}
+{% block Mhead %}
+<title>공지/건의</title>
+<meta name="description" content="밀덕을 위한 군사 커뮤니티 포밀덕">
+<meta name="title" content="공지/건의 - 포밀덕">
+<meta property="og:title" content="공지/건의 - 포밀덕">
+<meta property="og:description" content="밀덕을 위한 군사 커뮤니티 포밀덕">
+<meta property="og:url" content="https://4millduk.com/board/notice/">
+{% endblock Mhead %}
+{% block Mboard %}
+<link rel="stylesheet" type="text/css" href="{% static 'mobile/Mnotice.css' %}" />
+<section id="question">
+    <div class="title">
+        건의
+    </div>
+    <div class="question">
+        {% if request.user.is_authenticated %}
+        <textarea id="content" placeholder="내용을 입력하세요."></textarea>
+        <button onclick="question()">등록</button>
+        {% else %}
+        <textarea placeholder="내용을 입력하세요." onclick="alert('로그인이 필요한 기능입니다.')"></textarea>
+        <button onclick="alert('로그인이 필요한 기능입니다.')">등록</button>
+        {% endif %}
+        <script>
+            function question() {
+                if ($('#content').val() == "") { alert('내용을 입력해주세요.'); }
+                else {
+                    $.ajax({
+                        type: "POST",
+                        url: "{% url 'board:question' %}",
+                        dataType: "json",
+                        data: {
+                            content: $("#content").val(),
+                            csrfmiddlewaretoken: '{{csrf_token}}',
+                        },
+                        success: function (response) {
+                            alert("문의가 성공적으로 접수되었습니다.")
+                            $('#content').val("");
+                        },
+                    })
+                }
+            };
+        </script>
+    </div>
+</section>
+<section id="notice">
+    <div class="title">
+        공지
+    </div>
+    <ul class="noticelist">
+        {% for list in notice_list %}
+        <li class="inlist" onclick="openclose('{{list.id}}')">
+            <i class="fa-solid fa-caret-down"></i> {{ list.title|truncatechars:45}}
+            <span><i class="fa-solid fa-clock"></i> {{ list.date_str }}</span>
+            <div id="{{list.id}}" class="notice-content">
+                {{list.content|safe}}
+            </div>
+        </li>
+        {% endfor %}
+    </ul>
+    {% include "pagination.html" %}
+</section>
+<script>
+    function openclose(id) {
+        if (document.getElementById(id).style.display === 'block') {
+            document.getElementById(id).style.display = 'none';
+        } else {
+            document.getElementById(id).style.display = 'block';
+        }
+    }
+</script>
+{% endblock Mboard %}
+{% else %}
+{% block head %}
+<title>공지/건의</title>
+<meta name="description" content="밀덕을 위한 군사 커뮤니티 포밀덕">
+<meta name="title" content="공지/건의 - 포밀덕">
+<meta property="og:title" content="공지/건의 - 포밀덕">
+<meta property="og:description" content="밀덕을 위한 군사 커뮤니티 포밀덕">
+<meta property="og:url" content="https://4millduk.com/board/notice/">
+{% endblock head %}
 {% block board %}
 <link rel="stylesheet" type="text/css" href="{% static 'notice.css' %}" />
 <section id="question">
@@ -78,3 +159,4 @@
     }
 </script>
 {% endblock board %}
+{% endif %}

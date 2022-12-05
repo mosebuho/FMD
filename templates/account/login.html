@@ -1,5 +1,74 @@
 {% extends "home/home.html" %}
 {% load static %}
+{% if request.device.is_mobile or request.device.is_tablet %}
+{% block Mcontent %}
+<link rel="stylesheet" type="text/css" href="{% static 'mobile/Muser.css' %}" />
+<section id="account">
+    <img src="{% static 'logo2.png' %}" />
+    {% block Memailcheck %}
+    <form method="post">
+        {% csrf_token %}
+        {% block Msignup %}
+        <div class="input">
+            <span>아이디</span>
+            {{form.login}}
+            <span>비밀번호</span>
+            {{form.password}}
+        </div>
+        <button type="submit">로그인</button>
+        <div class="help">
+            <div>
+                <input type="checkbox" id="remember" name="remember"
+                    style="width:18px; height:18px; margin:0; vertical-align: -4px;">
+                로그인 유지
+            </div>
+            <div>
+                <a href="{% url 'account_reset_password' %}">계정찾기</a>&nbsp
+                <a href="{% url 'account_signup' %}">회원가입</a>
+            </div>
+        </div>
+    </form>
+    {% if form.non_field_errors %}
+    {% for error in form.non_field_errors %}
+    <p style="color:#ff3737; font-size:13px;">{{ error|linebreaksbr }}</p>
+    {% endfor %}
+    {% endif %}
+    {% load socialaccount %}
+    <div class="social">
+        <form action="{% provider_login_url 'naver' %}" method="post">
+            {% csrf_token %}
+            <button class="naver" type="submit">
+                <img style="image-rendering: -webkit-optimize-contrast;" src="{% static 'naver.png' %}">
+                <span style="color:#fff">네이버 로그인</span>
+            </button>
+        </form>
+        <form action="{% provider_login_url 'kakao' %}" method="post">
+            {% csrf_token %}
+            <button class="kakao" type="submit">
+                <img style="image-rendering: -webkit-optimize-contrast;" src="{% static 'kakao.png' %}">
+                <span>카카오 로그인</span>
+            </button>
+        </form>
+        <form action="{% provider_login_url 'google' %}" method="post">
+            {% csrf_token %}
+            <button class="google" type="submit">
+                <img style="image-rendering: -webkit-optimize-contrast;" src="{% static 'google.png' %}">
+                <span>구글 로그인</span>
+            </button>
+        </form>
+    </div>
+    {% endblock Msignup %}
+    {% endblock Memailcheck %}
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8572587507451544"
+        crossorigin="anonymous"></script>
+    <ins class="adsbygoogle" style="display:inline-block;width:450px;height:130px;margin:25px auto;"
+        data-ad-client="ca-pub-8572587507451544" data-ad-slot="1456279871"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+</section>
+{% endblock Mcontent %}
+{% else %}
 {% block content %}
 <link rel="stylesheet" type="text/css" href="{% static 'user.css' %}" />
 <section id="account">
@@ -67,3 +136,4 @@
     </script>
 </section>
 {% endblock content %}
+{% endif %}
